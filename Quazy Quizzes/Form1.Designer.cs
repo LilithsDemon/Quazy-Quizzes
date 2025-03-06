@@ -32,7 +32,14 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnSignup = new System.Windows.Forms.Button();
             this.btnLogin = new System.Windows.Forms.Button();
-            this.lblWelcome = new System.Windows.Forms.Label();
+            this.txtUsername = new System.Windows.Forms.TextBox();
+            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.lblIntro = new System.Windows.Forms.Label();
+            this.txtStudent = new System.Windows.Forms.TextBox();
+            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.txtFirst = new System.Windows.Forms.TextBox();
+            this.txtCourse = new System.Windows.Forms.TextBox();
+            this.txtSurname = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,27 +76,130 @@
             this.btnSignup.TabIndex = 2;
             this.btnSignup.Text = "Sign Up!";
             this.btnSignup.UseVisualStyleBackColor = false;
+            this.btnSignup.Click += new System.EventHandler(this.btnSignup_Click);
             // 
             // btnLogin
             // 
             this.btnLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.btnLogin.ForeColor = System.Drawing.Color.White;
-            this.btnLogin.Location = new System.Drawing.Point(1065, 612);
+            this.btnLogin.Location = new System.Drawing.Point(1057, 612);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(179, 63);
             this.btnLogin.TabIndex = 3;
             this.btnLogin.Text = "Login!";
             this.btnLogin.UseVisualStyleBackColor = false;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
-            // lblWelcome
+            // txtUsername
             // 
-            this.lblWelcome.AutoSize = true;
-            this.lblWelcome.Location = new System.Drawing.Point(706, 54);
-            this.lblWelcome.Name = "lblWelcome";
-            this.lblWelcome.Size = new System.Drawing.Size(35, 13);
-            this.lblWelcome.TabIndex = 4;
-            this.lblWelcome.Text = "label1";
+            this.txtUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.txtUsername.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtUsername.Location = new System.Drawing.Point(966, 373);
+            this.txtUsername.Multiline = true;
+            this.txtUsername.Name = "txtUsername";
+            this.txtUsername.Size = new System.Drawing.Size(374, 41);
+            this.txtUsername.TabIndex = 5;
+            this.txtUsername.Text = "Enter your username";
+            this.txtUsername.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtUsername.TextChanged += new System.EventHandler(this.txtUsername_TextChanged);
+            // 
+            // txtPassword
+            // 
+            this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.txtPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtPassword.Location = new System.Drawing.Point(966, 482);
+            this.txtPassword.Multiline = true;
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.Size = new System.Drawing.Size(374, 41);
+            this.txtPassword.TabIndex = 6;
+            this.txtPassword.Text = "Enter your password";
+            this.txtPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
+            // 
+            // lblIntro
+            // 
+            this.lblIntro.AutoSize = true;
+            this.lblIntro.BackColor = System.Drawing.Color.Black;
+            this.lblIntro.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
+            this.lblIntro.ForeColor = System.Drawing.Color.White;
+            this.lblIntro.Location = new System.Drawing.Point(247, 220);
+            this.lblIntro.Name = "lblIntro";
+            this.lblIntro.Size = new System.Drawing.Size(414, 234);
+            this.lblIntro.TabIndex = 7;
+            this.lblIntro.Text = "Quazy Quizzes is a game-\r\nbased learning platform \r\nthat allows users to \r\ncreate" +
+    ", share and play \r\ninteractive quizzes, \r\nserveys and discussions.";
+            // 
+            // txtStudent
+            // 
+            this.txtStudent.Enabled = false;
+            this.txtStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.txtStudent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtStudent.Location = new System.Drawing.Point(966, 220);
+            this.txtStudent.Multiline = true;
+            this.txtStudent.Name = "txtStudent";
+            this.txtStudent.Size = new System.Drawing.Size(374, 41);
+            this.txtStudent.TabIndex = 8;
+            this.txtStudent.Text = "Enter your student number";
+            this.txtStudent.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtStudent.Visible = false;
+            // 
+            // txtEmail
+            // 
+            this.txtEmail.Enabled = false;
+            this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.txtEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtEmail.Location = new System.Drawing.Point(966, 399);
+            this.txtEmail.Multiline = true;
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(374, 41);
+            this.txtEmail.TabIndex = 11;
+            this.txtEmail.Text = "Enter your email address";
+            this.txtEmail.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtEmail.Visible = false;
+            // 
+            // txtFirst
+            // 
+            this.txtFirst.Enabled = false;
+            this.txtFirst.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.txtFirst.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtFirst.Location = new System.Drawing.Point(966, 519);
+            this.txtFirst.Multiline = true;
+            this.txtFirst.Name = "txtFirst";
+            this.txtFirst.Size = new System.Drawing.Size(374, 41);
+            this.txtFirst.TabIndex = 10;
+            this.txtFirst.Text = "Enter your first name";
+            this.txtFirst.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtFirst.Visible = false;
+            // 
+            // txtCourse
+            // 
+            this.txtCourse.AllowDrop = true;
+            this.txtCourse.Enabled = false;
+            this.txtCourse.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.txtCourse.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtCourse.Location = new System.Drawing.Point(966, 459);
+            this.txtCourse.Multiline = true;
+            this.txtCourse.Name = "txtCourse";
+            this.txtCourse.Size = new System.Drawing.Size(374, 41);
+            this.txtCourse.TabIndex = 9;
+            this.txtCourse.Text = "Enter your course title";
+            this.txtCourse.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtCourse.Visible = false;
+            // 
+            // txtSurname
+            // 
+            this.txtSurname.Enabled = false;
+            this.txtSurname.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.txtSurname.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtSurname.Location = new System.Drawing.Point(966, 579);
+            this.txtSurname.Multiline = true;
+            this.txtSurname.Name = "txtSurname";
+            this.txtSurname.Size = new System.Drawing.Size(374, 41);
+            this.txtSurname.TabIndex = 12;
+            this.txtSurname.Text = "Enter your last name";
+            this.txtSurname.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtSurname.Visible = false;
             // 
             // Form1
             // 
@@ -97,7 +207,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1751, 1008);
-            this.Controls.Add(this.lblWelcome);
+            this.Controls.Add(this.txtSurname);
+            this.Controls.Add(this.txtEmail);
+            this.Controls.Add(this.txtFirst);
+            this.Controls.Add(this.txtCourse);
+            this.Controls.Add(this.txtStudent);
+            this.Controls.Add(this.lblIntro);
+            this.Controls.Add(this.txtPassword);
+            this.Controls.Add(this.txtUsername);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.btnSignup);
             this.Controls.Add(this.button1);
@@ -116,7 +233,14 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnSignup;
         private System.Windows.Forms.Button btnLogin;
-        private System.Windows.Forms.Label lblWelcome;
+        private System.Windows.Forms.TextBox txtUsername;
+        private System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.Label lblIntro;
+        private System.Windows.Forms.TextBox txtStudent;
+        private System.Windows.Forms.TextBox txtEmail;
+        private System.Windows.Forms.TextBox txtFirst;
+        private System.Windows.Forms.TextBox txtCourse;
+        private System.Windows.Forms.TextBox txtSurname;
     }
 }
 
