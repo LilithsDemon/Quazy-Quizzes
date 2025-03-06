@@ -40,6 +40,7 @@
             this.txtFirst = new System.Windows.Forms.TextBox();
             this.txtCourse = new System.Windows.Forms.TextBox();
             this.txtSurname = new System.Windows.Forms.TextBox();
+            this.lblTitle = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -93,12 +94,11 @@
             // 
             // txtUsername
             // 
-            this.txtUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.txtUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
             this.txtUsername.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtUsername.Location = new System.Drawing.Point(966, 373);
-            this.txtUsername.Multiline = true;
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(374, 41);
+            this.txtUsername.Size = new System.Drawing.Size(374, 38);
             this.txtUsername.TabIndex = 5;
             this.txtUsername.Text = "Enter your username";
             this.txtUsername.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -106,12 +106,11 @@
             // 
             // txtPassword
             // 
-            this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
             this.txtPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtPassword.Location = new System.Drawing.Point(966, 482);
-            this.txtPassword.Multiline = true;
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(374, 41);
+            this.txtPassword.Size = new System.Drawing.Size(374, 38);
             this.txtPassword.TabIndex = 6;
             this.txtPassword.Text = "Enter your password";
             this.txtPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -129,16 +128,16 @@
             this.lblIntro.TabIndex = 7;
             this.lblIntro.Text = "Quazy Quizzes is a game-\r\nbased learning platform \r\nthat allows users to \r\ncreate" +
     ", share and play \r\ninteractive quizzes, \r\nserveys and discussions.";
+            this.lblIntro.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtStudent
             // 
             this.txtStudent.Enabled = false;
-            this.txtStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.txtStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
             this.txtStudent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtStudent.Location = new System.Drawing.Point(966, 220);
-            this.txtStudent.Multiline = true;
             this.txtStudent.Name = "txtStudent";
-            this.txtStudent.Size = new System.Drawing.Size(374, 41);
+            this.txtStudent.Size = new System.Drawing.Size(374, 38);
             this.txtStudent.TabIndex = 8;
             this.txtStudent.Text = "Enter your student number";
             this.txtStudent.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -147,12 +146,11 @@
             // txtEmail
             // 
             this.txtEmail.Enabled = false;
-            this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
             this.txtEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtEmail.Location = new System.Drawing.Point(966, 399);
-            this.txtEmail.Multiline = true;
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(374, 41);
+            this.txtEmail.Size = new System.Drawing.Size(374, 38);
             this.txtEmail.TabIndex = 11;
             this.txtEmail.Text = "Enter your email address";
             this.txtEmail.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -161,12 +159,11 @@
             // txtFirst
             // 
             this.txtFirst.Enabled = false;
-            this.txtFirst.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.txtFirst.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
             this.txtFirst.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtFirst.Location = new System.Drawing.Point(966, 519);
-            this.txtFirst.Multiline = true;
             this.txtFirst.Name = "txtFirst";
-            this.txtFirst.Size = new System.Drawing.Size(374, 41);
+            this.txtFirst.Size = new System.Drawing.Size(374, 38);
             this.txtFirst.TabIndex = 10;
             this.txtFirst.Text = "Enter your first name";
             this.txtFirst.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -176,12 +173,11 @@
             // 
             this.txtCourse.AllowDrop = true;
             this.txtCourse.Enabled = false;
-            this.txtCourse.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.txtCourse.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
             this.txtCourse.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtCourse.Location = new System.Drawing.Point(966, 459);
-            this.txtCourse.Multiline = true;
             this.txtCourse.Name = "txtCourse";
-            this.txtCourse.Size = new System.Drawing.Size(374, 41);
+            this.txtCourse.Size = new System.Drawing.Size(374, 38);
             this.txtCourse.TabIndex = 9;
             this.txtCourse.Text = "Enter your course title";
             this.txtCourse.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -190,16 +186,25 @@
             // txtSurname
             // 
             this.txtSurname.Enabled = false;
-            this.txtSurname.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.txtSurname.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
             this.txtSurname.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtSurname.Location = new System.Drawing.Point(966, 579);
-            this.txtSurname.Multiline = true;
             this.txtSurname.Name = "txtSurname";
-            this.txtSurname.Size = new System.Drawing.Size(374, 41);
+            this.txtSurname.Size = new System.Drawing.Size(374, 38);
             this.txtSurname.TabIndex = 12;
             this.txtSurname.Text = "Enter your last name";
             this.txtSurname.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSurname.Visible = false;
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F);
+            this.lblTitle.Location = new System.Drawing.Point(556, 9);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(514, 46);
+            this.lblTitle.TabIndex = 13;
+            this.lblTitle.Text = "Welcome to Quazy Quizzes";
             // 
             // Form1
             // 
@@ -207,6 +212,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1751, 1008);
+            this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.txtSurname);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.txtFirst);
@@ -241,6 +247,7 @@
         private System.Windows.Forms.TextBox txtFirst;
         private System.Windows.Forms.TextBox txtCourse;
         private System.Windows.Forms.TextBox txtSurname;
+        private System.Windows.Forms.Label lblTitle;
     }
 }
 

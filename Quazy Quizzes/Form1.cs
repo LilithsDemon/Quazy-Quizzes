@@ -22,7 +22,11 @@ namespace Quazy_Quizzes
             
             // Set the password character to a star
             txtPassword.PasswordChar = '*';
-            
+            if(txtPassword.Text == "Enter your passwor")
+            {
+                txtPassword.Text = "";
+            }
+
         }
 
         private void txtUsername_TextChanged(object sender, EventArgs e)
@@ -50,6 +54,7 @@ namespace Quazy_Quizzes
                 txtFirst.Visible = true;
                 txtSurname.Visible = true;
                 lblIntro.Text = "Please enter your details to\r\nstart enjoying our Quazy \r\nQuizzes now! \r\nWe just need a few of your \r\ndetails and a confirmation\r\nfrom your lecturer and you\r\ncan begin right now!";
+                lblTitle.Text = "Sign Up to Quazy Quizzes";
             }
             else
             {
@@ -79,7 +84,7 @@ namespace Quazy_Quizzes
                 btnSignup.Location = new Point(340, 612);
                 btnLogin.Location = new Point(1065, 612);
                 lblIntro.Text = "Quazy Quizzes is a game-\r\nbased learning platform \r\nthat allows users to \r\ncreate, share and play \r\ninteractive quizzes, \r\nserveys and discussions.\r\n";
-
+                lblTitle.Text = "Welcome to Quazy Quizzes";
             }
             
         }
