@@ -4,24 +4,27 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using MySqlConnector;
+using Status;
 
 
 namespace Conn
 {
     class ConnectionHandler
     {
-        // This is not how this should be done but I am doing it anyway
+        //Hard coded values for the database values
         private string _host = "plesk.remote.ac";
         private string _dbName = "ws328700_CSD";
         private string _username = "ws328700_WSDUser";
         private string _password = "@ms9I72g3";
         private string _constring = "";
 
+        // This sets up the class making the connection string to the database
         public ConnectionHandler()
         {
             this._constring = $"Server={this._host};User={this._username};Database={this._dbName};Password={this._password}; CharSet=utf8; SslMode=none";
         }
 
+        // Open connection for inside this class, is private so should not be able to be used outside the class
         private MySqlConnection OpenConnection()
         {
             MySqlConnection con = new MySqlConnection(this._constring);
@@ -29,7 +32,16 @@ namespace Conn
             return con;
         }
 
+        //Closes the connection opened to the database inside of this class
+        private void CloseConnection()
+        {
+            MySqlConnection con = new MySqlConnection(this._constring);
+            con.Close();
+        }
+
+        // A public way of getting a connection if you want to do your own things with the database connection
         public MySqlConnection GetConnection() => new MySqlConnection(this._constring);
+
 
         // For use in the class, just checks that there are the same number of parameters given in both parameters
         private bool CheckParams(string[] paramNames, string[] parameters)
@@ -38,12 +50,7 @@ namespace Conn
             else return false;
         }
 
-        private void CloseConnection()
-        {
-            MySqlConnection con = new MySqlConnection(this._constring);
-            con.Close();
-        }
-
+        // Creates a parametised statement to be sent to the database
         private MySqlCommand createCommand(MySqlConnection con, string sql, string[] paramNames, string[] parameters)
         {
             var command = con.CreateCommand();
@@ -55,7 +62,7 @@ namespace Conn
             return command;
         }
 
-
+        // Executes query with params such as Select * From `Users` Where ...
         public MySqlDataReader exectuteQuery(string sql, string[] paramName, string[] parameters)
         {
             if (!CheckParams(paramName, parameters)) throw new ArgumentException("paramName and parameters must have the same length");
@@ -69,6 +76,7 @@ namespace Conn
             else throw new Exception("No rows returned");
         }
 
+        // Executes a query when there are no params such as Select * From `Users`
         public MySqlDataReader executeQueryNoParams(string sql)
         {
             MySqlConnection con = OpenConnection();
@@ -93,6 +101,7 @@ namespace Conn
             else return true;
         }
 
+        // Executes a command with no params
         public bool executeCommandNoParams(string sql)
         {
             MySqlConnection con = OpenConnection();
