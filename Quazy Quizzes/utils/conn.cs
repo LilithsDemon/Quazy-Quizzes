@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using MySqlConnector;
@@ -28,9 +29,13 @@ namespace Conn
             return con;
         }
 
-        public MySqlConnection GetConnection()
+        public MySqlConnection GetConnection() => new MySqlConnection(this._constring);
+
+        // For use in the class, just checks that there are the same number of parameters given in both parameters
+        private bool CheckParams(string[] paramNames, string[] parameters)
         {
-            return new MySqlConnection(this._constring);
+            if (paramNames.Length == parameters.Length) return true;
+            else return false;
         }
 
         private void CloseConnection()
@@ -53,24 +58,15 @@ namespace Conn
 
         public MySqlDataReader exectuteQuery(string sql, string[] paramName, string[] parameters)
         {
-            if (paramName.Length != parameters.Length)
-            {
-                throw new ArgumentException("paramName and parameters must have the same length");
-            }
+            if (!CheckParams(paramName, parameters)) throw new ArgumentException("paramName and parameters must have the same length");
 
             MySqlConnection con = OpenConnection();
 
             var command = createCommand(con, sql, paramName, parameters);
             var reader = command.ExecuteReader();
             CloseConnection();
-            if (reader.HasRows)
-            {
-                return reader;
-            }
-            else
-            {
-                throw new Exception("No rows returned");
-            }
+            if (reader.HasRows) return reader;
+            else throw new Exception("No rows returned");
         }
 
         public MySqlDataReader executeQueryNoParams(string sql)
@@ -80,31 +76,33 @@ namespace Conn
             command.CommandText = @sql;
             var reader = command.ExecuteReader();
             CloseConnection();
-            if (reader.HasRows)
-            {
-                return reader;
-            }
-            else
-            {
-                throw new Exception("No rows returned");
-            }
+            if (reader.HasRows) return reader;
+            else throw new Exception("No rows returned");
         }
 
-        public void exectuteCommand(string sql, string[] paramName, string[] parameters)
+        public bool exectuteCommand(string sql, string[] paramName, string[] parameters)
         {
+            if (!CheckParams(paramName, parameters)) throw new ArgumentException("Param Names and parameters must have the same length");
+
             MySqlConnection con = OpenConnection();
             var command = createCommand(con, sql, paramName, parameters);
-            command.ExecuteNonQuery();
+            int rows = command.ExecuteNonQuery();
             CloseConnection();
+            // If no rows were affected return false to show it did not work else return true
+            if (rows == -1) return false;
+            else return true;
         }
 
-        public void executeCommandNoParams(string sql)
+        public bool executeCommandNoParams(string sql)
         {
             MySqlConnection con = OpenConnection();
             var command = con.CreateCommand();
             command.CommandText = @sql;
-            command.ExecuteNonQuery();
+            int rows = command.ExecuteNonQuery();
             CloseConnection();
+            // If no rows were affected return false to show it did not work else return true
+            if (rows == -1) return false;
+            else return true;
         }
 
     }
