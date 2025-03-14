@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace QQColourScheme
+﻿namespace QQColourScheme
 {
     class ColourScheme
     {
@@ -18,9 +11,10 @@ namespace QQColourScheme
         public string _buttonBackground { private set; get; }
         public string _buttonText { private set; get; }
         public string _buttonHover { private set; get; }
+        public string _headerBackground { private set; get; }
 
         public ColourScheme(string background, string secondaryBackground, string primaryText, string secondaryText,
-            string inputBackground, string inputText, string buttonBackground, string buttonText, string buttonHover)
+            string inputBackground, string inputText, string buttonBackground, string buttonText, string buttonHover, string headerBackground)
         {
             _background = background;
             _secondaryBackground = secondaryBackground;
@@ -31,6 +25,7 @@ namespace QQColourScheme
             _buttonBackground = buttonBackground;
             _buttonText = buttonText;
             _buttonHover = buttonHover;
+            _headerBackground = headerBackground;
         }
     }
 }

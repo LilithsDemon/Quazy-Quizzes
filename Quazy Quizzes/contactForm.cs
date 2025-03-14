@@ -18,7 +18,8 @@ namespace QQContactForm
             "#1E1E1E", // Input text
             "#00B2CC",  // Button background
             "#FFFFFF",  // Button text
-            "#00A2BB"  // Button hover
+            "#00A2BB",  // Button hover
+            "#00B2CC"   // Header background
         );
 
         private ColourScheme _darkTheme = new ColourScheme(
@@ -30,7 +31,8 @@ namespace QQContactForm
             "#FFFFFF", // Input text
             "#00B2CC",  // Button background
             "#FFFFFF",  // Button text
-            "#00A2BB"  // Button hover
+            "#00A2BB",  // Button hover
+            "#00B2CC"   // Header background
         );
 
         private List<Label> _stdText = new List<Label>();
@@ -40,7 +42,7 @@ namespace QQContactForm
         public ContactForm()
         {
             InitializeComponent();
-            _stdText = new List<Label> {_lblTitle, _lblMessage, _lblSubject, _lblEmail, _lblCounter};
+            _stdText = new List<Label> {_lblMessage, _lblSubject, _lblEmail, _lblCounter};
             _stdInputBox = new List<RichTextBox> { _txtSubject, _txtMessage, _txtEmail };
             _stdButton = new List<Button> { _btnBack, _btnToggleTheme, _btnSubmit };
         }
@@ -85,8 +87,9 @@ namespace QQContactForm
             {
                 this.BackColor = ColorTranslator.FromHtml(_darkTheme._background);
                 _containerPanel.BackColor = ColorTranslator.FromHtml(_darkTheme._cardBackground);
+                _lblTitle.ForeColor = ColorTranslator.FromHtml(_darkTheme._foregroudText);
 
-                for(int i = 0; i < _stdText.Count; i++)
+                for (int i = 0; i < _stdText.Count; i++)
                 {
                     _stdText[i].ForeColor = ColorTranslator.FromHtml(_darkTheme._foregroudText);
                     _stdText[i].BackColor = ColorTranslator.FromHtml(_darkTheme._backgroundText);
@@ -107,8 +110,9 @@ namespace QQContactForm
 
             this.BackColor = ColorTranslator.FromHtml(_lightMode._background);
             _containerPanel.BackColor = ColorTranslator.FromHtml(_lightMode._cardBackground);
+            _lblTitle.ForeColor = ColorTranslator.FromHtml(_lightMode._foregroudText);
 
-            for(int i = 0; i < _stdText.Count; i++)
+            for (int i = 0; i < _stdText.Count; i++)
             {
                 _stdText[i].ForeColor = ColorTranslator.FromHtml(_lightMode._foregroudText);
                 _stdText[i].BackColor = ColorTranslator.FromHtml(_lightMode._backgroundText);
