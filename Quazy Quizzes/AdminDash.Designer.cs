@@ -34,6 +34,9 @@
             this.lblCourses = new System.Windows.Forms.Label();
             this.cboboxSelect = new System.Windows.Forms.ComboBox();
             this.cboboxOptions = new System.Windows.Forms.ComboBox();
+            this.lblRemove = new System.Windows.Forms.Label();
+            this.btnRemove = new System.Windows.Forms.Button();
+            this.cboClasses = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -101,11 +104,45 @@
             this.cboboxOptions.Size = new System.Drawing.Size(317, 37);
             this.cboboxOptions.TabIndex = 32;
             // 
+            // lblRemove
+            // 
+            this.lblRemove.AutoSize = true;
+            this.lblRemove.Enabled = false;
+            this.lblRemove.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.lblRemove.Location = new System.Drawing.Point(209, 265);
+            this.lblRemove.Name = "lblRemove";
+            this.lblRemove.Size = new System.Drawing.Size(564, 29);
+            this.lblRemove.TabIndex = 33;
+            this.lblRemove.Text = "Would you like to revoke their ownership of a class?";
+            this.lblRemove.Visible = false;
+            // 
+            // btnRemove
+            // 
+            this.btnRemove.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.btnRemove.Location = new System.Drawing.Point(1002, 259);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(139, 40);
+            this.btnRemove.TabIndex = 34;
+            this.btnRemove.Text = "Remove";
+            this.btnRemove.UseVisualStyleBackColor = true;
+            // 
+            // cboClasses
+            // 
+            this.cboClasses.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.cboClasses.FormattingEnabled = true;
+            this.cboClasses.Location = new System.Drawing.Point(791, 262);
+            this.cboClasses.Name = "cboClasses";
+            this.cboClasses.Size = new System.Drawing.Size(188, 37);
+            this.cboClasses.TabIndex = 35;
+            // 
             // AdminDash
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1751, 1008);
+            this.Controls.Add(this.cboClasses);
+            this.Controls.Add(this.btnRemove);
+            this.Controls.Add(this.lblRemove);
             this.Controls.Add(this.cboboxOptions);
             this.Controls.Add(this.cboboxSelect);
             this.Controls.Add(this.lblCourses);
@@ -128,5 +165,8 @@
         private System.Windows.Forms.Label lblCourses;
         private System.Windows.Forms.ComboBox cboboxSelect;
         private System.Windows.Forms.ComboBox cboboxOptions;
+        private System.Windows.Forms.Label lblRemove;
+        private System.Windows.Forms.Button btnRemove;
+        private System.Windows.Forms.ComboBox cboClasses;
     }
 }

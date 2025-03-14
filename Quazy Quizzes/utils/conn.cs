@@ -1,13 +1,119 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using MySqlConnector;
+using Status;
 
-namespace Quazy_Quizzes.utils
+
+namespace Conn
 {
-    internal class conn
+    class ConnectionHandler
     {
+        //Hard coded values for the database values
+        private string _host = "plesk.remote.ac";
+        private string _dbName = "ws328700_CSD";
+        private string _username = "ws328700_WSDUser";
+        private string _password = "@ms9I72g3";
+        private string _constring = "";
+
+        // This sets up the class making the connection string to the database
+        public ConnectionHandler()
+        {
+            this._constring = $"Server={this._host};User={this._username};Database={this._dbName};Password={this._password}; CharSet=utf8; SslMode=none";
+        }
+
+        // Open connection for inside this class, is private so should not be able to be used outside the class
+        private MySqlConnection OpenConnection()
+        {
+            MySqlConnection con = new MySqlConnection(this._constring);
+            con.Open();
+            return con;
+        }
+
+        //Closes the connection opened to the database inside of this class
+        private void CloseConnection(MySqlConnection con)
+        {
+            con.Close();
+        }
+
+        // A public way of getting a connection if you want to do your own things with the database connection
+        public MySqlConnection GetConnection() => new MySqlConnection(this._constring);
+
+
+        // For use in the class, just checks that there are the same number of parameters given in both parameters
+        private bool CheckParams(string[] paramNames, string[] parameters)
+        {
+            if (paramNames.Length == parameters.Length) return true;
+            else return false;
+        }
+
+        // Creates a parametised statement to be sent to the database
+        private MySqlCommand CreateCommand(MySqlConnection con, string sql, string[] paramNames, string[] parameters)
+        {
+            var command = con.CreateCommand();
+            command.CommandText = @sql;
+            // Goes through paramNames and ties the paremeter to the name for the parametised query
+            for (int i = 0; i < paramNames.Length; i++)
+            {
+                command.Parameters.AddWithValue(paramNames[i], parameters[i]);
+            }
+            return command;
+        }
+
+        // Executes query with params such as Select * From `Users` Where ...
+        public MySqlDataReader ExectuteQuery(string sql, string[] paramName, string[] parameters)
+        {
+            if (!CheckParams(paramName, parameters)) throw new ArgumentException("paramName and parameters must have the same length");
+
+            MySqlConnection con = OpenConnection();
+
+            var command = CreateCommand(con, sql, paramName, parameters);
+            var reader = command.ExecuteReader();
+            CloseConnection(con);
+            if (reader.HasRows) return reader;
+            else throw new Exception("No rows returned");
+        }
+
+        // Executes a query when there are no params such as Select * From `Users`
+        public MySqlDataReader ExecuteQueryNoParams(string sql)
+        {
+            MySqlConnection con = OpenConnection();
+            var command = con.CreateCommand();
+            command.CommandText = @sql;
+            var reader = command.ExecuteReader();
+            if (reader.HasRows) return reader;
+            else throw new Exception("No rows returned");
+        }
+
+        //Executes a command such as Insert ... with parameters
+        public bool ExectuteCommand(string sql, string[] paramName, string[] parameters)
+        {
+            if (!CheckParams(paramName, parameters)) throw new ArgumentException("Param Names and parameters must have the same length");
+
+            MySqlConnection con = OpenConnection();
+            var command = CreateCommand(con, sql, paramName, parameters);
+            int rows = command.ExecuteNonQuery();
+            CloseConnection(con);
+            // If no rows were affected return false to show it did not work else return true
+            if (rows == -1) return false;
+            else return true;
+        }
+
+        // Executes a command with no parameters
+        public bool ExecuteCommandNoParams(string sql)
+        {
+            MySqlConnection con = OpenConnection();
+            var command = con.CreateCommand();
+            command.CommandText = @sql;
+            int rows = command.ExecuteNonQuery();
+            CloseConnection(con);
+            // If no rows were affected return false to show it did not work else return true
+            if (rows == -1) return false;
+            else return true;
+        }
+        
 
     }
 }
