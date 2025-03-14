@@ -100,6 +100,7 @@
     <Compile Include="testing\testingTools.cs" />
     <Compile Include="testing\tests.cs" />
     <Compile Include="user\user.cs" />
+    <Compile Include="utils\colourScheme.cs" />
     <Compile Include="utils\conn.cs" />
     <Compile Include="utils\status.cs" />
     <EmbeddedResource Include="contactForm.resx">

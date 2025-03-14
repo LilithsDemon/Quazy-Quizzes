@@ -1,12 +1,33 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using QQColourScheme;
 
 namespace QQContactForm
 {
     public partial class ContactForm : Form
     {
         private bool _isDarkMode = false;
+        private ColourScheme _lightMode = new ColourScheme(
+            "#FFFFFF", // Background
+            "#00E5FF", // Secondary background
+            "#1E1E1E", // Primary text
+            "#1E1E1E", // Secondary text
+            "#FFFFFF", // Input background
+            "#1E1E1E", // Input text
+            "#00B2CC"  // Button background
+        );
+
+        private ColourScheme _darkTheme = new ColourScheme(
+            "#1E1E1E", // Background
+            "#00E5FF", // Secondary background
+            "#FFFFFF", // Primary text
+            "#FFFFFF", // Secondary text
+            "#121212", // Input background
+            "#FFFFFF", // Input text
+            "#00B2CC"  // Button background
+        );
 
         public ContactForm()
         {
@@ -51,54 +72,55 @@ namespace QQContactForm
 
             if (_isDarkMode)
             {
-                this.BackColor = ColorTranslator.FromHtml("#1E1E1E"); // Primary background
-                _lblTitle.BackColor = ColorTranslator.FromHtml("#00E5FF"); // Secondary background
-                _lblTitle.ForeColor = ColorTranslator.FromHtml("#FFFFFF");
+                this.BackColor = ColorTranslator.FromHtml(_darkTheme.Background);
+                _lblTitle.BackColor = ColorTranslator.FromHtml(_darkTheme.SecondaryBackground);
+                _lblTitle.ForeColor = ColorTranslator.FromHtml(_darkTheme.PrimaryText);
 
-                _lblSubject.ForeColor = ColorTranslator.FromHtml("#FFFFFF");
-                _lblMessage.ForeColor = ColorTranslator.FromHtml("#FFFFFF");
-                _lblCounter.ForeColor = ColorTranslator.FromHtml("#FFFFFF");
-                _lblEmail.ForeColor = ColorTranslator.FromHtml("#FFFFFF");
+                _lblSubject.ForeColor = ColorTranslator.FromHtml(_darkTheme.PrimaryText);
+                _lblMessage.ForeColor = ColorTranslator.FromHtml(_darkTheme.PrimaryText);
+                _lblCounter.ForeColor = ColorTranslator.FromHtml(_darkTheme.PrimaryText);
+                _lblEmail.ForeColor = ColorTranslator.FromHtml(_darkTheme.PrimaryText);
 
-                _txtSubject.BackColor = ColorTranslator.FromHtml("#121212");
-                _txtSubject.ForeColor = ColorTranslator.FromHtml("#FFFFFF");
+                _txtSubject.BackColor = ColorTranslator.FromHtml(_darkTheme.InputBackground);
+                _txtSubject.ForeColor = ColorTranslator.FromHtml(_darkTheme.InputText);
 
-                _txtEmail.BackColor = ColorTranslator.FromHtml("#121212");
-                _txtEmail.ForeColor = ColorTranslator.FromHtml("#FFFFFF");
+                _txtEmail.BackColor = ColorTranslator.FromHtml(_darkTheme.InputBackground);
+                _txtEmail.ForeColor = ColorTranslator.FromHtml(_darkTheme.InputText);
 
-                _txtMessage.BackColor = ColorTranslator.FromHtml("#121212");
-                _txtMessage.ForeColor = ColorTranslator.FromHtml("#FFFFFF");
+                _txtMessage.BackColor = ColorTranslator.FromHtml(_darkTheme.InputBackground);
+                _txtMessage.ForeColor = ColorTranslator.FromHtml(_darkTheme.InputText);
 
-                _btnBack.BackColor = ColorTranslator.FromHtml("#00B2CC");
-                _btnToggleTheme.BackColor = ColorTranslator.FromHtml("#00B2CC");
-                _btnSubmit.BackColor = ColorTranslator.FromHtml("#00B2CC");
+                _btnBack.BackColor = ColorTranslator.FromHtml(_darkTheme.ButtonBackground);
+                _btnToggleTheme.BackColor = ColorTranslator.FromHtml(_darkTheme.ButtonBackground);
+                _btnSubmit.BackColor = ColorTranslator.FromHtml(_darkTheme.ButtonBackground);
 
-                _containerPanel.BackColor = ColorTranslator.FromHtml("#121212");
+                _containerPanel.BackColor = ColorTranslator.FromHtml(_darkTheme.InputBackground);
             }
             else
             {
-                this.BackColor = ColorTranslator.FromHtml("#FFFFFF"); // Light background
-                _lblTitle.BackColor = ColorTranslator.FromHtml("#00E5FF"); // Secondary background
-                _lblTitle.ForeColor = ColorTranslator.FromHtml("#1E1E1E");
+                this.BackColor = ColorTranslator.FromHtml(_lightMode.Background);
+                _lblTitle.BackColor = ColorTranslator.FromHtml(_lightMode.SecondaryBackground);
+                _lblTitle.ForeColor = ColorTranslator.FromHtml(_lightMode.PrimaryText);
 
-                _lblSubject.ForeColor = ColorTranslator.FromHtml("#1E1E1E");
-                _lblMessage.ForeColor = ColorTranslator.FromHtml("#1E1E1E");
-                _lblCounter.ForeColor = ColorTranslator.FromHtml("#1E1E1E");
-                _lblEmail.ForeColor = ColorTranslator.FromHtml("#1E1E1E");
+                _lblSubject.ForeColor = ColorTranslator.FromHtml(_lightMode.PrimaryText);
+                _lblMessage.ForeColor = ColorTranslator.FromHtml(_lightMode.PrimaryText);
+                _lblCounter.ForeColor = ColorTranslator.FromHtml(_lightMode.PrimaryText);
+                _lblEmail.ForeColor = ColorTranslator.FromHtml(_lightMode.PrimaryText);
 
-                _txtSubject.BackColor = ColorTranslator.FromHtml("#FFFFFF");
-                _txtSubject.ForeColor = ColorTranslator.FromHtml("#1E1E1E");
+                _txtSubject.BackColor = ColorTranslator.FromHtml(_lightMode.InputBackground);
+                _txtSubject.ForeColor = ColorTranslator.FromHtml(_lightMode.InputText);
 
-                _txtMessage.BackColor = ColorTranslator.FromHtml("#FFFFFF");
-                _txtMessage.ForeColor = ColorTranslator.FromHtml("#1E1E1E");
+                _txtMessage.BackColor = ColorTranslator.FromHtml(_lightMode.InputBackground);
+                _txtMessage.ForeColor = ColorTranslator.FromHtml(_lightMode.InputText);
 
-                _txtEmail.BackColor = ColorTranslator.FromHtml("#FFFFFF");
-                _txtEmail.ForeColor = ColorTranslator.FromHtml("#1E1E1E");
+                _txtEmail.BackColor = ColorTranslator.FromHtml(_lightMode.InputBackground);
+                _txtEmail.ForeColor = ColorTranslator.FromHtml(_lightMode.InputText);
 
-                _btnBack.BackColor = ColorTranslator.FromHtml("#00B2CC");
-                _btnToggleTheme.BackColor = ColorTranslator.FromHtml("#00B2");
+                _btnBack.BackColor = ColorTranslator.FromHtml(_lightMode.ButtonBackground);
+                _btnToggleTheme.BackColor = ColorTranslator.FromHtml(_lightMode.ButtonBackground);
+                _btnSubmit.BackColor = ColorTranslator.FromHtml(_lightMode.ButtonBackground);
 
-                _containerPanel.BackColor = ColorTranslator.FromHtml("#FFFFFF");
+                _containerPanel.BackColor = ColorTranslator.FromHtml(_lightMode.InputBackground);
             }
         }
 
@@ -131,16 +153,6 @@ namespace QQContactForm
                 _txtEmail.Clear();
                 _lblCounter.Text = "0/500";
             }
-        }
-
-        private void LblEmail_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TxtEmail_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
