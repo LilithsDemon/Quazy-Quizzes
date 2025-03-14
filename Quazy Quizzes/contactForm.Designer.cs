@@ -176,6 +176,9 @@ namespace QQContactForm
             // 
             // _txtEmail
             // 
+            this._txtEmail.BackColor = System.Drawing.Color.White;
+            this._txtEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this._txtEmail.Location = new System.Drawing.Point(50, 111);
             this._txtEmail.Name = "_txtEmail";
             this._txtEmail.Size = new System.Drawing.Size(750, 36);
@@ -184,6 +187,7 @@ namespace QQContactForm
             // 
             // _txtSubject
             // 
+            this._txtSubject.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this._txtSubject.Location = new System.Drawing.Point(50, 41);
             this._txtSubject.Name = "_txtSubject";
             this._txtSubject.Size = new System.Drawing.Size(750, 36);
