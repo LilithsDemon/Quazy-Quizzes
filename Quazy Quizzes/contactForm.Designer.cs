@@ -45,7 +45,7 @@ namespace QQContactForm
             | System.Windows.Forms.AnchorStyles.Right)));
             this._lblTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this._lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold);
-            this._lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this._lblTitle.ForeColor = System.Drawing.Color.Black;
             this._lblTitle.Location = new System.Drawing.Point(0, 0);
             this._lblTitle.Name = "_lblTitle";
             this._lblTitle.Size = new System.Drawing.Size(1280, 80);
