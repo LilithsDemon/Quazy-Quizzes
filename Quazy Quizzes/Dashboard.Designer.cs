@@ -32,11 +32,8 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnHome = new System.Windows.Forms.Button();
             this.lblCourses = new System.Windows.Forms.Label();
-            this.btnCourse1 = new System.Windows.Forms.Button();
-            this.btnCourse2 = new System.Windows.Forms.Button();
-            this.btnCourse3 = new System.Windows.Forms.Button();
-            this.btnCourse4 = new System.Windows.Forms.Button();
-            this.btnCourse5 = new System.Windows.Forms.Button();
+            this.cboCourse = new System.Windows.Forms.ComboBox();
+            this.rctxtLeaderboards = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,7 +65,7 @@
             this.btnHome.Name = "btnHome";
             this.btnHome.Size = new System.Drawing.Size(213, 99);
             this.btnHome.TabIndex = 20;
-            this.btnHome.Text = "Return to Home";
+            this.btnHome.Text = "Logout";
             this.btnHome.UseVisualStyleBackColor = false;
             // 
             // lblCourses
@@ -82,66 +79,33 @@
             this.lblCourses.Text = "Select one of your courses";
             this.lblCourses.Click += new System.EventHandler(this.lblCourses_Click);
             // 
-            // btnCourse1
+            // cboCourse
             // 
-            this.btnCourse1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.btnCourse1.Location = new System.Drawing.Point(186, 223);
-            this.btnCourse1.Name = "btnCourse1";
-            this.btnCourse1.Size = new System.Drawing.Size(184, 58);
-            this.btnCourse1.TabIndex = 22;
-            this.btnCourse1.Text = "(Course 1)";
-            this.btnCourse1.UseVisualStyleBackColor = true;
+            this.cboCourse.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.cboCourse.FormattingEnabled = true;
+            this.cboCourse.Location = new System.Drawing.Point(504, 152);
+            this.cboCourse.Name = "cboCourse";
+            this.cboCourse.Size = new System.Drawing.Size(257, 37);
+            this.cboCourse.TabIndex = 22;
+            this.cboCourse.SelectedIndexChanged += new System.EventHandler(this.cboCourse_SelectedIndexChanged);
             // 
-            // btnCourse2
+            // rctxtLeaderboards
             // 
-            this.btnCourse2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.btnCourse2.Location = new System.Drawing.Point(186, 334);
-            this.btnCourse2.Name = "btnCourse2";
-            this.btnCourse2.Size = new System.Drawing.Size(184, 58);
-            this.btnCourse2.TabIndex = 23;
-            this.btnCourse2.Text = "(Course 2)";
-            this.btnCourse2.UseVisualStyleBackColor = true;
-            // 
-            // btnCourse3
-            // 
-            this.btnCourse3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.btnCourse3.Location = new System.Drawing.Point(186, 456);
-            this.btnCourse3.Name = "btnCourse3";
-            this.btnCourse3.Size = new System.Drawing.Size(184, 58);
-            this.btnCourse3.TabIndex = 24;
-            this.btnCourse3.Text = "(Course 3)";
-            this.btnCourse3.UseVisualStyleBackColor = true;
-            // 
-            // btnCourse4
-            // 
-            this.btnCourse4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.btnCourse4.Location = new System.Drawing.Point(186, 572);
-            this.btnCourse4.Name = "btnCourse4";
-            this.btnCourse4.Size = new System.Drawing.Size(184, 58);
-            this.btnCourse4.TabIndex = 25;
-            this.btnCourse4.Text = "(Course 4)";
-            this.btnCourse4.UseVisualStyleBackColor = true;
-            // 
-            // btnCourse5
-            // 
-            this.btnCourse5.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.btnCourse5.Location = new System.Drawing.Point(186, 683);
-            this.btnCourse5.Name = "btnCourse5";
-            this.btnCourse5.Size = new System.Drawing.Size(184, 58);
-            this.btnCourse5.TabIndex = 26;
-            this.btnCourse5.Text = "(Course 5)";
-            this.btnCourse5.UseVisualStyleBackColor = true;
+            this.rctxtLeaderboards.Enabled = false;
+            this.rctxtLeaderboards.Location = new System.Drawing.Point(1220, 293);
+            this.rctxtLeaderboards.Name = "rctxtLeaderboards";
+            this.rctxtLeaderboards.Size = new System.Drawing.Size(284, 362);
+            this.rctxtLeaderboards.TabIndex = 23;
+            this.rctxtLeaderboards.Text = "";
+            this.rctxtLeaderboards.Visible = false;
             // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1751, 1008);
-            this.Controls.Add(this.btnCourse5);
-            this.Controls.Add(this.btnCourse4);
-            this.Controls.Add(this.btnCourse3);
-            this.Controls.Add(this.btnCourse2);
-            this.Controls.Add(this.btnCourse1);
+            this.Controls.Add(this.rctxtLeaderboards);
+            this.Controls.Add(this.cboCourse);
             this.Controls.Add(this.lblCourses);
             this.Controls.Add(this.btnHome);
             this.Controls.Add(this.lblTitle);
@@ -160,10 +124,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnHome;
         private System.Windows.Forms.Label lblCourses;
-        private System.Windows.Forms.Button btnCourse1;
-        private System.Windows.Forms.Button btnCourse2;
-        private System.Windows.Forms.Button btnCourse3;
-        private System.Windows.Forms.Button btnCourse4;
-        private System.Windows.Forms.Button btnCourse5;
+        private System.Windows.Forms.ComboBox cboCourse;
+        private System.Windows.Forms.RichTextBox rctxtLeaderboards;
     }
 }

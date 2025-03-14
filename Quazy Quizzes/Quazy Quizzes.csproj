@@ -81,6 +81,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminDash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminDash.Designer.cs">
+      <DependentUpon>AdminDash.cs</DependentUpon>
+    </Compile>
     <Compile Include="auth_files\login.cs" />
     <Compile Include="auth_files\registration.cs" />
     <Compile Include="Form1.cs">
@@ -114,6 +120,9 @@
     <Compile Include="user\user.cs" />
     <Compile Include="utils\conn.cs" />
     <Compile Include="utils\status.cs" />
+    <EmbeddedResource Include="AdminDash.resx">
+      <DependentUpon>AdminDash.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
