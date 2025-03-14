@@ -33,9 +33,8 @@ namespace Conn
         }
 
         //Closes the connection opened to the database inside of this class
-        private void CloseConnection()
+        private void CloseConnection(MySqlConnection con)
         {
-            MySqlConnection con = new MySqlConnection(this._constring);
             con.Close();
         }
 
@@ -51,10 +50,11 @@ namespace Conn
         }
 
         // Creates a parametised statement to be sent to the database
-        private MySqlCommand createCommand(MySqlConnection con, string sql, string[] paramNames, string[] parameters)
+        private MySqlCommand CreateCommand(MySqlConnection con, string sql, string[] paramNames, string[] parameters)
         {
             var command = con.CreateCommand();
             command.CommandText = @sql;
+            // Goes through paramNames and ties the paremeter to the name for the parametised query
             for (int i = 0; i < paramNames.Length; i++)
             {
                 command.Parameters.AddWithValue(paramNames[i], parameters[i]);
@@ -63,52 +63,53 @@ namespace Conn
         }
 
         // Executes query with params such as Select * From `Users` Where ...
-        public MySqlDataReader exectuteQuery(string sql, string[] paramName, string[] parameters)
+        public MySqlDataReader ExectuteQuery(string sql, string[] paramName, string[] parameters)
         {
             if (!CheckParams(paramName, parameters)) throw new ArgumentException("paramName and parameters must have the same length");
 
             MySqlConnection con = OpenConnection();
 
-            var command = createCommand(con, sql, paramName, parameters);
+            var command = CreateCommand(con, sql, paramName, parameters);
             var reader = command.ExecuteReader();
-            CloseConnection();
+            CloseConnection(con);
             if (reader.HasRows) return reader;
             else throw new Exception("No rows returned");
         }
 
         // Executes a query when there are no params such as Select * From `Users`
-        public MySqlDataReader executeQueryNoParams(string sql)
+        public MySqlDataReader ExecuteQueryNoParams(string sql)
         {
             MySqlConnection con = OpenConnection();
             var command = con.CreateCommand();
             command.CommandText = @sql;
             var reader = command.ExecuteReader();
-            CloseConnection();
+            CloseConnection(con);
             if (reader.HasRows) return reader;
             else throw new Exception("No rows returned");
         }
 
-        public bool exectuteCommand(string sql, string[] paramName, string[] parameters)
+        //Executes a command such as Insert ... with parameters
+        public bool ExectuteCommand(string sql, string[] paramName, string[] parameters)
         {
             if (!CheckParams(paramName, parameters)) throw new ArgumentException("Param Names and parameters must have the same length");
 
             MySqlConnection con = OpenConnection();
-            var command = createCommand(con, sql, paramName, parameters);
+            var command = CreateCommand(con, sql, paramName, parameters);
             int rows = command.ExecuteNonQuery();
-            CloseConnection();
+            CloseConnection(con);
             // If no rows were affected return false to show it did not work else return true
             if (rows == -1) return false;
             else return true;
         }
 
-        // Executes a command with no params
-        public bool executeCommandNoParams(string sql)
+        // Executes a command with no parameters
+        public bool ExecuteCommandNoParams(string sql)
         {
             MySqlConnection con = OpenConnection();
             var command = con.CreateCommand();
             command.CommandText = @sql;
             int rows = command.ExecuteNonQuery();
-            CloseConnection();
+            CloseConnection(con);
             // If no rows were affected return false to show it did not work else return true
             if (rows == -1) return false;
             else return true;
