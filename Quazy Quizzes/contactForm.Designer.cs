@@ -187,6 +187,8 @@ namespace QQContactForm
             // 
             // _txtSubject
             // 
+            this._txtSubject.BackColor = System.Drawing.Color.White;
+            this._txtSubject.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this._txtSubject.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this._txtSubject.Location = new System.Drawing.Point(50, 41);
             this._txtSubject.Name = "_txtSubject";
