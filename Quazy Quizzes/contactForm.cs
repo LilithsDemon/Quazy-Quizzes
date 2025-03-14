@@ -81,66 +81,54 @@ namespace QQContactForm
         {
             _isDarkMode = !_isDarkMode;
 
-
             if (_isDarkMode)
             {
-                this.BackColor = ColorTranslator.FromHtml(_darkTheme.Background);
-                _containerPanel.BackColor = ColorTranslator.FromHtml(_darkTheme.InputBackground);
+                this.BackColor = ColorTranslator.FromHtml(_darkTheme._background);
+                _containerPanel.BackColor = ColorTranslator.FromHtml(_darkTheme._cardBackground);
 
                 for(int i = 0; i < _stdText.Count; i++)
                 {
-                    _stdText[i].ForeColor = ColorTranslator.FromHtml(_darkTheme.PrimaryText);
-                    _stdText[i].BackColor = ColorTranslator.FromHtml(_darkTheme.SecondaryText);
+                    _stdText[i].ForeColor = ColorTranslator.FromHtml(_darkTheme._foregroudText);
+                    _stdText[i].BackColor = ColorTranslator.FromHtml(_darkTheme._backgroundText);
                 }
 
                 for(int i = 0; i < _stdInputBox.Count; i++)
                 {
-                    _stdInputBox[i].BackColor = ColorTranslator.FromHtml(_darkTheme.InputBackground);
-                    _stdInputBox[i].ForeColor = ColorTranslator.FromHtml(_darkTheme.SecondaryText);
+                    _stdInputBox[i].BackColor = ColorTranslator.FromHtml(_darkTheme._cardBackground);
+                    _stdInputBox[i].ForeColor = ColorTranslator.FromHtml(_darkTheme._secondaryTextFg);
                 }
 
                 for (int i = 0; i < _stdButton.Count; i++)
                 {
-                    _stdButton[i].BackColor = ColorTranslator.FromHtml(_darkTheme.ButtonBackground);
+                    _stdButton[i].BackColor = ColorTranslator.FromHtml(_darkTheme._buttonBackground);
                 }
                 return;
             }
 
-
-            this.BackColor = ColorTranslator.FromHtml(_lightMode.Background);
-            _containerPanel.BackColor = ColorTranslator.FromHtml(_lightMode.InputBackground);
+            this.BackColor = ColorTranslator.FromHtml(_lightMode._background);
+            _containerPanel.BackColor = ColorTranslator.FromHtml(_lightMode._cardBackground);
 
             for(int i = 0; i < _stdText.Count; i++)
             {
-                _stdText[i].ForeColor = ColorTranslator.FromHtml(_lightMode.PrimaryText);
-                _stdText[i].BackColor = ColorTranslator.FromHtml(_lightMode.SecondaryText);
+                _stdText[i].ForeColor = ColorTranslator.FromHtml(_lightMode._foregroudText);
+                _stdText[i].BackColor = ColorTranslator.FromHtml(_lightMode._backgroundText);
             }
 
             for (int i = 0; i < _stdInputBox.Count; i++)
             {
-                _stdInputBox[i].BackColor = ColorTranslator.FromHtml(_lightMode.InputBackground);
-                _stdInputBox[i].ForeColor = ColorTranslator.FromHtml(_lightMode.InputText);
+                _stdInputBox[i].BackColor = ColorTranslator.FromHtml(_lightMode._cardBackground);
+                _stdInputBox[i].ForeColor = ColorTranslator.FromHtml(_lightMode._secondaryTextFg);
             }
 
             for (int i = 0; i < _stdButton.Count; i++)
             {
-                _stdButton[i].BackColor = ColorTranslator.FromHtml(_lightMode.ButtonBackground);
+                _stdButton[i].BackColor = ColorTranslator.FromHtml(_lightMode._buttonBackground);
             }
         }
 
         private void UpdateCharacterCount(object sender, EventArgs e)
         {
             _lblCounter.Text = $"{_txtMessage.Text.Length}/500";
-        }
-
-        private bool IsLightTheme()
-        {
-            return true; // Placeholder
-        }
-
-        private void LblCounter_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void BtnSubmit_Click(object sender, EventArgs e)
@@ -157,6 +145,11 @@ namespace QQContactForm
                 _txtEmail.Clear();
                 _lblCounter.Text = "0/500";
             }
+        }
+
+        private void _lblCounter_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

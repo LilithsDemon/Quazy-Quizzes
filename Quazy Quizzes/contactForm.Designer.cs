@@ -33,9 +33,9 @@ namespace QQContactForm
             this._lblCounter = new System.Windows.Forms.Label();
             this._btnSubmit = new System.Windows.Forms.Button();
             this._containerPanel = new System.Windows.Forms.Panel();
-            this._lblEmail = new System.Windows.Forms.Label();
-            this._txtSubject = new System.Windows.Forms.RichTextBox();
             this._txtEmail = new System.Windows.Forms.RichTextBox();
+            this._txtSubject = new System.Windows.Forms.RichTextBox();
+            this._lblEmail = new System.Windows.Forms.Label();
             this._containerPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -118,10 +118,12 @@ namespace QQContactForm
             this._txtMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this._txtMessage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this._txtMessage.Location = new System.Drawing.Point(50, 190);
+            this._txtMessage.MaxLength = 500;
             this._txtMessage.Name = "_txtMessage";
             this._txtMessage.Size = new System.Drawing.Size(750, 180);
             this._txtMessage.TabIndex = 3;
             this._txtMessage.Text = "";
+            this._txtMessage.TextChanged += new System.EventHandler(this.UpdateCharacterCount);
             // 
             // _lblCounter
             // 
@@ -134,6 +136,7 @@ namespace QQContactForm
             this._lblCounter.Size = new System.Drawing.Size(96, 36);
             this._lblCounter.TabIndex = 4;
             this._lblCounter.Text = "0/500";
+            this._lblCounter.Click += new System.EventHandler(this._lblCounter_Click);
             // 
             // _btnSubmit
             // 
@@ -171,6 +174,22 @@ namespace QQContactForm
             this._containerPanel.Size = new System.Drawing.Size(880, 480);
             this._containerPanel.TabIndex = 0;
             // 
+            // _txtEmail
+            // 
+            this._txtEmail.Location = new System.Drawing.Point(50, 111);
+            this._txtEmail.Name = "_txtEmail";
+            this._txtEmail.Size = new System.Drawing.Size(750, 36);
+            this._txtEmail.TabIndex = 9;
+            this._txtEmail.Text = "";
+            // 
+            // _txtSubject
+            // 
+            this._txtSubject.Location = new System.Drawing.Point(50, 41);
+            this._txtSubject.Name = "_txtSubject";
+            this._txtSubject.Size = new System.Drawing.Size(750, 36);
+            this._txtSubject.TabIndex = 8;
+            this._txtSubject.Text = "";
+            // 
             // _lblEmail
             // 
             this._lblEmail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -183,22 +202,6 @@ namespace QQContactForm
             this._lblEmail.Size = new System.Drawing.Size(131, 29);
             this._lblEmail.TabIndex = 6;
             this._lblEmail.Text = "Your Email";
-            // 
-            // _txtSubject
-            // 
-            this._txtSubject.Location = new System.Drawing.Point(50, 41);
-            this._txtSubject.Name = "_txtSubject";
-            this._txtSubject.Size = new System.Drawing.Size(750, 36);
-            this._txtSubject.TabIndex = 8;
-            this._txtSubject.Text = "";
-            // 
-            // _txtEmail
-            // 
-            this._txtEmail.Location = new System.Drawing.Point(50, 111);
-            this._txtEmail.Name = "_txtEmail";
-            this._txtEmail.Size = new System.Drawing.Size(750, 36);
-            this._txtEmail.TabIndex = 9;
-            this._txtEmail.Text = "";
             // 
             // ContactForm
             // 
