@@ -13,25 +13,36 @@ namespace QQContactForm
             "#FFFFFF", // Background
             "#00E5FF", // Secondary background
             "#1E1E1E", // Primary text
-            "#1E1E1E", // Secondary text
+            "#FFFFFF", // Secondary text
             "#FFFFFF", // Input background
             "#1E1E1E", // Input text
-            "#00B2CC"  // Button background
+            "#00B2CC",  // Button background
+            "#FFFFFF",  // Button text
+            "#00A2BB"  // Button hover
         );
 
         private ColourScheme _darkTheme = new ColourScheme(
             "#1E1E1E", // Background
             "#00E5FF", // Secondary background
             "#FFFFFF", // Primary text
-            "#FFFFFF", // Secondary text
+            "#121212", // Secondary text
             "#121212", // Input background
             "#FFFFFF", // Input text
-            "#00B2CC"  // Button background
+            "#00B2CC",  // Button background
+            "#FFFFFF",  // Button text
+            "#00A2BB"  // Button hover
         );
+
+        private List<Label> _stdText = new List<Label>();
+        private List<RichTextBox> _stdInputBox = new List<RichTextBox>();
+        private List<Button> _stdButton = new List<Button>();
 
         public ContactForm()
         {
             InitializeComponent();
+            _stdText = new List<Label> {_lblTitle, _lblMessage, _lblSubject, _lblEmail, _lblCounter};
+            _stdInputBox = new List<RichTextBox> { _txtSubject, _txtMessage, _txtEmail };
+            _stdButton = new List<Button> { _btnBack, _btnToggleTheme, _btnSubmit };
         }
 
         private void BtnBack_Click(object sender, EventArgs e)
@@ -70,57 +81,50 @@ namespace QQContactForm
         {
             _isDarkMode = !_isDarkMode;
 
+
             if (_isDarkMode)
             {
                 this.BackColor = ColorTranslator.FromHtml(_darkTheme.Background);
-                _lblTitle.BackColor = ColorTranslator.FromHtml(_darkTheme.SecondaryBackground);
-                _lblTitle.ForeColor = ColorTranslator.FromHtml(_darkTheme.PrimaryText);
-
-                _lblSubject.ForeColor = ColorTranslator.FromHtml(_darkTheme.PrimaryText);
-                _lblMessage.ForeColor = ColorTranslator.FromHtml(_darkTheme.PrimaryText);
-                _lblCounter.ForeColor = ColorTranslator.FromHtml(_darkTheme.PrimaryText);
-                _lblEmail.ForeColor = ColorTranslator.FromHtml(_darkTheme.PrimaryText);
-
-                _txtSubject.BackColor = ColorTranslator.FromHtml(_darkTheme.InputBackground);
-                _txtSubject.ForeColor = ColorTranslator.FromHtml(_darkTheme.InputText);
-
-                _txtEmail.BackColor = ColorTranslator.FromHtml(_darkTheme.InputBackground);
-                _txtEmail.ForeColor = ColorTranslator.FromHtml(_darkTheme.InputText);
-
-                _txtMessage.BackColor = ColorTranslator.FromHtml(_darkTheme.InputBackground);
-                _txtMessage.ForeColor = ColorTranslator.FromHtml(_darkTheme.InputText);
-
-                _btnBack.BackColor = ColorTranslator.FromHtml(_darkTheme.ButtonBackground);
-                _btnToggleTheme.BackColor = ColorTranslator.FromHtml(_darkTheme.ButtonBackground);
-                _btnSubmit.BackColor = ColorTranslator.FromHtml(_darkTheme.ButtonBackground);
-
                 _containerPanel.BackColor = ColorTranslator.FromHtml(_darkTheme.InputBackground);
+
+                for(int i = 0; i < _stdText.Count; i++)
+                {
+                    _stdText[i].ForeColor = ColorTranslator.FromHtml(_darkTheme.PrimaryText);
+                    _stdText[i].BackColor = ColorTranslator.FromHtml(_darkTheme.SecondaryText);
+                }
+
+                for(int i = 0; i < _stdInputBox.Count; i++)
+                {
+                    _stdInputBox[i].BackColor = ColorTranslator.FromHtml(_darkTheme.InputBackground);
+                    _stdInputBox[i].ForeColor = ColorTranslator.FromHtml(_darkTheme.SecondaryText);
+                }
+
+                for (int i = 0; i < _stdButton.Count; i++)
+                {
+                    _stdButton[i].BackColor = ColorTranslator.FromHtml(_darkTheme.ButtonBackground);
+                }
+                return;
             }
-            else
+
+
+            this.BackColor = ColorTranslator.FromHtml(_lightMode.Background);
+            _containerPanel.BackColor = ColorTranslator.FromHtml(_lightMode.InputBackground);
+
+            for(int i = 0; i < _stdText.Count; i++)
             {
-                this.BackColor = ColorTranslator.FromHtml(_lightMode.Background);
-                _lblTitle.BackColor = ColorTranslator.FromHtml(_lightMode.SecondaryBackground);
-                _lblTitle.ForeColor = ColorTranslator.FromHtml(_lightMode.PrimaryText);
+                _stdText[i].ForeColor = ColorTranslator.FromHtml(_lightMode.PrimaryText);
+                _stdText[i].BackColor = ColorTranslator.FromHtml(_lightMode.SecondaryText);
+            }
 
-                _lblSubject.ForeColor = ColorTranslator.FromHtml(_lightMode.PrimaryText);
-                _lblMessage.ForeColor = ColorTranslator.FromHtml(_lightMode.PrimaryText);
-                _lblCounter.ForeColor = ColorTranslator.FromHtml(_lightMode.PrimaryText);
-                _lblEmail.ForeColor = ColorTranslator.FromHtml(_lightMode.PrimaryText);
+            for (int i = 0; i < _stdInputBox.Count; i++)
+            {
+                _stdInputBox[i].BackColor = ColorTranslator.FromHtml(_lightMode.InputBackground);
+                _stdInputBox[i].ForeColor = ColorTranslator.FromHtml(_lightMode.InputText);
+            }
 
-                _txtSubject.BackColor = ColorTranslator.FromHtml(_lightMode.InputBackground);
-                _txtSubject.ForeColor = ColorTranslator.FromHtml(_lightMode.InputText);
-
-                _txtMessage.BackColor = ColorTranslator.FromHtml(_lightMode.InputBackground);
-                _txtMessage.ForeColor = ColorTranslator.FromHtml(_lightMode.InputText);
-
-                _txtEmail.BackColor = ColorTranslator.FromHtml(_lightMode.InputBackground);
-                _txtEmail.ForeColor = ColorTranslator.FromHtml(_lightMode.InputText);
-
-                _btnBack.BackColor = ColorTranslator.FromHtml(_lightMode.ButtonBackground);
-                _btnToggleTheme.BackColor = ColorTranslator.FromHtml(_lightMode.ButtonBackground);
-                _btnSubmit.BackColor = ColorTranslator.FromHtml(_lightMode.ButtonBackground);
-
-                _containerPanel.BackColor = ColorTranslator.FromHtml(_lightMode.InputBackground);
+            for (int i = 0; i < _stdButton.Count; i++)
+            {
+                _stdButton[i].BackColor = ColorTranslator.FromHtml(_lightMode.ButtonBackground);
             }
         }
 

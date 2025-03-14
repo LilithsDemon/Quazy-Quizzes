@@ -16,9 +16,11 @@ namespace QQColourScheme
         public string InputBackground { private set; get; }
         public string InputText { private set; get; }
         public string ButtonBackground { private set; get; }
+        public string ButtonText { private set; get; }
+        public string ButtonHover { private set; get; }
 
         public ColourScheme(string background, string secondaryBackground, string primaryText, string secondaryText,
-            string inputBackground, string inputText, string buttonBackground)
+            string inputBackground, string inputText, string buttonBackground, string buttonText, string buttonHover)
         {
             Background = background;
             SecondaryBackground = secondaryBackground;
@@ -27,6 +29,8 @@ namespace QQColourScheme
             InputBackground = inputBackground;
             InputText = inputText;
             ButtonBackground = buttonBackground;
+            ButtonText = buttonText;
+            ButtonHover = buttonHover;
         }
     }
 }
