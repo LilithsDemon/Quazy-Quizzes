@@ -2,20 +2,20 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace QQcontactForm
+namespace QQContactForm
 {
-    public partial class Form1 : Form
+    public partial class ContactForm : Form
     {
-        private bool isDarkMode = false;
+        private bool _isDarkMode = false;
 
-        public Form1()
+        public ContactForm()
         {
             InitializeComponent();
         }
 
-        private void btnBack_Click(object sender, EventArgs e)
+        private void BtnBack_Click(object sender, EventArgs e)
         {
-            this.Hide(); // Hide Form1
+            this.Hide(); // Hide ContactForm
             Form popupForm = new Form
             {
                 Size = new Size(300, 200),
@@ -37,7 +37,7 @@ namespace QQcontactForm
             };
             btnShowForm.Click += (s, args) =>
             {
-                this.Show(); // Show Form1
+                this.Show(); // Show ContactForm
                 popupForm.Close(); // Close the popup form
             };
 
@@ -47,64 +47,64 @@ namespace QQcontactForm
 
         private void ToggleTheme(object sender, EventArgs e)
         {
-            isDarkMode = !isDarkMode;
+            _isDarkMode = !_isDarkMode;
 
-            if (isDarkMode)
+            if (_isDarkMode)
             {
                 this.BackColor = ColorTranslator.FromHtml("#1E1E1E"); // Primary background
-                lblTitle.BackColor = ColorTranslator.FromHtml("#00E5FF"); // Secondary background
-                lblTitle.ForeColor = ColorTranslator.FromHtml("#FFFFFF");
+                _lblTitle.BackColor = ColorTranslator.FromHtml("#00E5FF"); // Secondary background
+                _lblTitle.ForeColor = ColorTranslator.FromHtml("#FFFFFF");
 
-                lblSubject.ForeColor = ColorTranslator.FromHtml("#FFFFFF");
-                lblMessage.ForeColor = ColorTranslator.FromHtml("#FFFFFF");
-                lblCounter.ForeColor = ColorTranslator.FromHtml("#FFFFFF");
-                lblEmail.ForeColor = ColorTranslator.FromHtml("#FFFFFF");
+                _lblSubject.ForeColor = ColorTranslator.FromHtml("#FFFFFF");
+                _lblMessage.ForeColor = ColorTranslator.FromHtml("#FFFFFF");
+                _lblCounter.ForeColor = ColorTranslator.FromHtml("#FFFFFF");
+                _lblEmail.ForeColor = ColorTranslator.FromHtml("#FFFFFF");
 
-                txtSubject.BackColor = ColorTranslator.FromHtml("#121212");
-                txtSubject.ForeColor = ColorTranslator.FromHtml("#FFFFFF");
+                _txtSubject.BackColor = ColorTranslator.FromHtml("#121212");
+                _txtSubject.ForeColor = ColorTranslator.FromHtml("#FFFFFF");
 
-                txtemail.BackColor = ColorTranslator.FromHtml("#121212");
-                txtemail.ForeColor = ColorTranslator.FromHtml("#FFFFFF");
+                _txtEmail.BackColor = ColorTranslator.FromHtml("#121212");
+                _txtEmail.ForeColor = ColorTranslator.FromHtml("#FFFFFF");
 
-                txtMessage.BackColor = ColorTranslator.FromHtml("#121212");
-                txtMessage.ForeColor = ColorTranslator.FromHtml("#FFFFFF");
+                _txtMessage.BackColor = ColorTranslator.FromHtml("#121212");
+                _txtMessage.ForeColor = ColorTranslator.FromHtml("#FFFFFF");
 
-                btnBack.BackColor = ColorTranslator.FromHtml("#00B2CC");
-                btnToggleTheme.BackColor = ColorTranslator.FromHtml("#00B2CC");
-                btnSubmit.BackColor = ColorTranslator.FromHtml("#00B2CC");
+                _btnBack.BackColor = ColorTranslator.FromHtml("#00B2CC");
+                _btnToggleTheme.BackColor = ColorTranslator.FromHtml("#00B2CC");
+                _btnSubmit.BackColor = ColorTranslator.FromHtml("#00B2CC");
 
-                containerPanel.BackColor = ColorTranslator.FromHtml("#121212");
+                _containerPanel.BackColor = ColorTranslator.FromHtml("#121212");
             }
             else
             {
                 this.BackColor = ColorTranslator.FromHtml("#FFFFFF"); // Light background
-                lblTitle.BackColor = ColorTranslator.FromHtml("#00E5FF"); // Secondary background
-                lblTitle.ForeColor = ColorTranslator.FromHtml("#1E1E1E");
+                _lblTitle.BackColor = ColorTranslator.FromHtml("#00E5FF"); // Secondary background
+                _lblTitle.ForeColor = ColorTranslator.FromHtml("#1E1E1E");
 
-                lblSubject.ForeColor = ColorTranslator.FromHtml("#1E1E1E");
-                lblMessage.ForeColor = ColorTranslator.FromHtml("#1E1E1E");
-                lblCounter.ForeColor = ColorTranslator.FromHtml("#1E1E1E");
-                lblEmail.ForeColor = ColorTranslator.FromHtml("#1E1E1E");
+                _lblSubject.ForeColor = ColorTranslator.FromHtml("#1E1E1E");
+                _lblMessage.ForeColor = ColorTranslator.FromHtml("#1E1E1E");
+                _lblCounter.ForeColor = ColorTranslator.FromHtml("#1E1E1E");
+                _lblEmail.ForeColor = ColorTranslator.FromHtml("#1E1E1E");
 
-                txtSubject.BackColor = ColorTranslator.FromHtml("#FFFFFF");
-                txtSubject.ForeColor = ColorTranslator.FromHtml("#1E1E1E");
+                _txtSubject.BackColor = ColorTranslator.FromHtml("#FFFFFF");
+                _txtSubject.ForeColor = ColorTranslator.FromHtml("#1E1E1E");
 
-                txtMessage.BackColor = ColorTranslator.FromHtml("#FFFFFF");
-                txtMessage.ForeColor = ColorTranslator.FromHtml("#1E1E1E");
+                _txtMessage.BackColor = ColorTranslator.FromHtml("#FFFFFF");
+                _txtMessage.ForeColor = ColorTranslator.FromHtml("#1E1E1E");
 
-                txtemail.BackColor = ColorTranslator.FromHtml("#FFFFFF");
-                txtemail.ForeColor = ColorTranslator.FromHtml("#1E1E1E");
+                _txtEmail.BackColor = ColorTranslator.FromHtml("#FFFFFF");
+                _txtEmail.ForeColor = ColorTranslator.FromHtml("#1E1E1E");
 
-                btnBack.BackColor = ColorTranslator.FromHtml("#00B2CC");
-                btnToggleTheme.BackColor = ColorTranslator.FromHtml("#00B2");
+                _btnBack.BackColor = ColorTranslator.FromHtml("#00B2CC");
+                _btnToggleTheme.BackColor = ColorTranslator.FromHtml("#00B2");
 
-                containerPanel.BackColor = ColorTranslator.FromHtml("#FFFFFF");
+                _containerPanel.BackColor = ColorTranslator.FromHtml("#FFFFFF");
             }
         }
 
         private void UpdateCharacterCount(object sender, EventArgs e)
         {
-            lblCounter.Text = $"{txtMessage.Text.Length}/500";
+            _lblCounter.Text = $"{_txtMessage.Text.Length}/500";
         }
 
         private bool IsLightTheme()
@@ -112,33 +112,33 @@ namespace QQcontactForm
             return true; // Placeholder
         }
 
-        private void lblCounter_Click(object sender, EventArgs e)
+        private void LblCounter_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void btnSubmit_Click(object sender, EventArgs e)
+        private void BtnSubmit_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtSubject.Text) || string.IsNullOrWhiteSpace(txtMessage.Text) || (string.IsNullOrWhiteSpace(txtemail.Text)))
+            if (string.IsNullOrWhiteSpace(_txtSubject.Text) || string.IsNullOrWhiteSpace(_txtMessage.Text) || (string.IsNullOrWhiteSpace(_txtEmail.Text)))
             {
                 MessageBox.Show("Please ensure all fields are filled in.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
                 MessageBox.Show("Your message has been submitted!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtSubject.Clear();
-                txtMessage.Clear();
-                txtemail.Clear();
-                lblCounter.Text = "0/500";
+                _txtSubject.Clear();
+                _txtMessage.Clear();
+                _txtEmail.Clear();
+                _lblCounter.Text = "0/500";
             }
         }
 
-        private void lblEmail_Click(object sender, EventArgs e)
+        private void LblEmail_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void txtEmail_TextChanged(object sender, EventArgs e)
+        private void TxtEmail_TextChanged(object sender, EventArgs e)
         {
 
         }
