@@ -63,6 +63,20 @@ namespace Conn
             return command;
         }
 
+        // Creates a the command sent to the database for a stored procedure.
+        private MySqlCommand CreateStoredCommand(MySqlConnection con, string storedName, string[] paramNames, string[] parameters)
+        {
+            var command = con.CreateCommand();
+            command.CommandType = CommandType.StoredProcedure;
+            command.CommandText = storedName;
+            // Goes through paramNames and ties the paremeter to the name for the parametised query
+            for (int i = 0; i < paramNames.Length; i++)
+            {
+                command.Parameters.AddWithValue(paramNames[i], parameters[i]);
+            }
+            return command;
+        }
+
         // Executes query with params such as Select * From `Users` Where ...
         public MySqlDataReader ExectuteQuery(string sql, string[] paramName, string[] parameters)
         {
@@ -114,6 +128,16 @@ namespace Conn
             // If no rows were affected return false to show it did not work else return true
             if (rows == -1) return false;
             else return true;
+        }
+
+        // This will be used to be able to use a stored query that is used for getting data from the database
+        public MySqlDataReader StoredQuery(string procedureName, string[] paramNames, string[] parameters)
+        {
+            MySqlConnection con = OpenConnection();
+            var command = CreateStoredCommand(con, procedureName, paramNames, parameters);
+            var reader = command.ExecuteReader();
+            CloseConnection();
+            return reader;
         }
 
     }

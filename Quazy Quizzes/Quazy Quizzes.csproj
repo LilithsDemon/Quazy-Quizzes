@@ -96,6 +96,7 @@
     <Compile Include="user\user.cs" />
     <Compile Include="utils\conn.cs" />
     <Compile Include="utils\status.cs" />
+    <Compile Include="utils\stored_procedures.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
