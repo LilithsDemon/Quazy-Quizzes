@@ -128,12 +128,15 @@
             // 
             // cboClasses
             // 
+            this.cboClasses.Enabled = false;
             this.cboClasses.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.cboClasses.FormattingEnabled = true;
             this.cboClasses.Location = new System.Drawing.Point(791, 262);
             this.cboClasses.Name = "cboClasses";
             this.cboClasses.Size = new System.Drawing.Size(188, 37);
             this.cboClasses.TabIndex = 35;
+            this.cboClasses.Visible = false;
+            this.cboClasses.SelectedIndexChanged += new System.EventHandler(this.cboClasses_SelectedIndexChanged);
             // 
             // AdminDash
             // 

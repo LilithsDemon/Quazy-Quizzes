@@ -20,7 +20,7 @@ namespace Quazy_Quizzes
         {
             InitializeComponent();
 
-            //Get the teachers names
+            //Get the teachers' names
 
             ConnectionHandler con = new ConnectionHandler();
             string getTeachersSQL = "SELECT * FROM `Users` WHERE `Role` = 1;";
@@ -49,6 +49,8 @@ namespace Quazy_Quizzes
             if(cboboxSelect.SelectedIndex == 0)
             {
                 //Teacher profiles
+                //Making it so the combo boxes for revoking the teacher profiles become visible and enabled
+                
                 cboboxOptions.Items.Add("Test Teacher");
                 foreach(string teacher in TeachersList)
                 {
@@ -58,7 +60,10 @@ namespace Quazy_Quizzes
                 lblRemove.Visible = true;
                 cboClasses.Enabled = true;
                 cboClasses.Visible = true;
+                cboboxSelect.Visible = true;
+                cboboxSelect.Enabled = true;
                 cboClasses.Items.Add("Test Class");
+                //sql to fetch the classes via coursename and find ones associated with the teacher
                 string getClassesSQL = "SELECT `Courses`.`CourseName`\r\nFROM `Users` \r\nLEFT JOIN `UserToCourse`\r\nON `Users`.`UserID` = `UserToCourse`.`UserID`\r\nLEFT JOIN `Courses`\r\nON `UserToCourse`.`CourseID` = `Courses`.`CourseID`\r\nWHERE `Users`.`UserName` = " + cboboxOptions.Text + ";";
 
 
@@ -66,15 +71,20 @@ namespace Quazy_Quizzes
             else if (cboboxSelect.SelectedIndex == 1)
             {
 
-                //Courses
+                //shows courses and allows admins to edit them, remove discontinued ones or anything else that may be required.
                 cboboxOptions.Items.Add("Test course");
             }
             else if (cboboxSelect.SelectedIndex == 2)
             {
-                //student profile
+                //student profile editing options.
                 cboboxOptions.Items.Add("Test Student");
             }
             
+        }
+
+        private void cboClasses_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
