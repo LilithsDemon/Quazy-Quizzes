@@ -103,6 +103,7 @@
     <Compile Include="utils\colourScheme.cs" />
     <Compile Include="utils\conn.cs" />
     <Compile Include="utils\status.cs" />
+    <Compile Include="utils\stored_procedures.cs" />
     <EmbeddedResource Include="contactForm.resx">
       <DependentUpon>contactForm.cs</DependentUpon>
     </EmbeddedResource>
