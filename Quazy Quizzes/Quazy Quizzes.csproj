@@ -89,6 +89,12 @@
     </Compile>
     <Compile Include="auth_files\login.cs" />
     <Compile Include="auth_files\registration.cs" />
+    <Compile Include="contactForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="contactForm.Designer.cs">
+      <DependentUpon>contactForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,8 +124,13 @@
     <Compile Include="testing\testingTools.cs" />
     <Compile Include="testing\tests.cs" />
     <Compile Include="user\user.cs" />
+    <Compile Include="utils\colourScheme.cs" />
     <Compile Include="utils\conn.cs" />
     <Compile Include="utils\status.cs" />
+    <Compile Include="utils\stored_procedures.cs" />
+    <EmbeddedResource Include="contactForm.resx">
+      <DependentUpon>contactForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AdminDash.resx">
       <DependentUpon>AdminDash.cs</DependentUpon>
     </EmbeddedResource>
