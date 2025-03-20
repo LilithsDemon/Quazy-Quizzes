@@ -1,4 +1,10 @@
-﻿namespace QQColourScheme
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
+using Quazy_Quizzes;
+
+namespace QQColourScheme
 {
     class ColourScheme
     {
@@ -26,6 +32,56 @@
             _buttonText = buttonText;
             _buttonHover = buttonHover;
             _headerBackground = headerBackground;
+        }
+        
+        // Set the colour scheme on given text elements
+        public void SetColourSchemeText(List<Label> textElements)
+        {
+            for (int i = 0; i < textElements.Count; i++)
+            {
+                textElements[i].ForeColor = ColorTranslator.FromHtml(this._foregroudText);
+                textElements[i].BackColor = ColorTranslator.FromHtml(this._backgroundText);
+            }
+        }
+
+        // Method overloading to allow for just one text element instead of a list of them
+        public void SetColourSchemeText(Label textElement)
+        {
+            textElement.ForeColor = ColorTranslator.FromHtml(this._foregroudText);
+            textElement.BackColor = ColorTranslator.FromHtml(this._backgroundText);
+        }
+
+
+        // Set the colour scheme on given RichTextBoxElements
+        public void SetColourSchemeTextBox(List<RichTextBox> textBoxElements)
+        {
+            for (int i = 0; i < textBoxElements.Count; i++)
+            {
+                textBoxElements[i].BackColor = ColorTranslator.FromHtml(this._cardBackground);
+                textBoxElements[i].ForeColor = ColorTranslator.FromHtml(this._secondaryTextFg);
+            }
+        }
+
+        // Method overloading to allow for just one RichTextBox element instead of a list of them
+        public void SetColourSchemeTextBox(RichTextBox textBoxElement)
+        {
+            textBoxElement.BackColor = ColorTranslator.FromHtml(this._cardBackground);
+            textBoxElement.ForeColor = ColorTranslator.FromHtml(this._secondaryTextFg);
+        }
+
+        // Set the colour scheme on given Button Elements
+        public void SetColourSchemeButtons(List<Button> buttonElements)
+        {
+            for (int i = 0; i < buttonElements.Count; i++)
+            {
+                buttonElements[i].BackColor = ColorTranslator.FromHtml(this._buttonBackground);
+            }
+        }
+
+        // Method overloading to allow for just one Button element instead of a list of them
+        public void SetColourSchemeButtons(Button buttonElement)
+        {
+            buttonElement.BackColor = ColorTranslator.FromHtml(this._buttonBackground);
         }
     }
 }
