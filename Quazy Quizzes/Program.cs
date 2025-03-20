@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Conn;
 using QQStoredProcedures;
+using QQContactForm;
 
 namespace Quazy_Quizzes
 {
@@ -28,7 +29,8 @@ namespace Quazy_Quizzes
             */
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            //Application.Run(new Form1());
+            Application.Run(new ContactForm());
         }
     }
 }
