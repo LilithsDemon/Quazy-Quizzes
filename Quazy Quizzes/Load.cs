@@ -18,6 +18,7 @@ namespace Quazy_Quizzes
         public Load()
         {
             InitializeComponent();
+            this.LoadingBgWorker.RunWorkerAsync();
         }
         
         public void LoadForm1()
@@ -25,7 +26,6 @@ namespace Quazy_Quizzes
             Form1 form1 = new Form1();
             form1.Location = this.Location;
             form1.StartPosition = FormStartPosition.Manual;
-            form1.FormClosing += delegate { this.Show(); };
             form1.Show();
             this.Hide();
         }
@@ -35,7 +35,6 @@ namespace Quazy_Quizzes
             ErrorForm errorForm = new ErrorForm();
             errorForm.Location = this.Location;
             errorForm.StartPosition = FormStartPosition.Manual;
-            errorForm.FormClosing += delegate { this.Show(); };
             errorForm.Show();
             this.Hide();
         }
@@ -43,9 +42,6 @@ namespace Quazy_Quizzes
         private void LoadingBgWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             BackgroundWorker bw = sender as BackgroundWorker;
-
-            // Extract the argument.
-            int arg = (int)e.Argument;
 
             // Start the time-consuming operation.
             e.Result = CheckConnection(bw, 0);
@@ -74,9 +70,8 @@ namespace Quazy_Quizzes
             }
             else
             {
-                Console.WriteLine(e.Result.ToString());
                 // The operation completed normally.
-                if(e.Result.ToString() == "1")
+                if(e.Result.ToString() == "True")
                 {
                     LoadForm1();
                 }
@@ -90,10 +85,15 @@ namespace Quazy_Quizzes
         // Code ran in the background
         private bool CheckConnection(BackgroundWorker BW, int SleepPeriod)
         {
-            CodeStatus checkDbConnection = new ConnectionHandler().CheckConnection();
-            if (checkDbConnection._statusCode == 200)
+            while (!BW.CancellationPending)
             {
-                return true;
+                CodeStatus checkDbConnection = new ConnectionHandler().CheckConnection();
+                if (checkDbConnection._statusCode == 200)
+                {
+                    LoadingBar.Value = 100;
+                    return true;
+                }
+                return false;
             }
             return false;
         }
