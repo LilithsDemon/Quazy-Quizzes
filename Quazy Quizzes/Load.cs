@@ -73,6 +73,7 @@ namespace Quazy_Quizzes
                 // The operation completed normally.
                 if(e.Result.ToString() == "True")
                 {
+                    LoadingBar.Value = 100;
                     LoadForm1();
                 }
                 else
@@ -88,11 +89,7 @@ namespace Quazy_Quizzes
             while (!BW.CancellationPending)
             {
                 CodeStatus checkDbConnection = new ConnectionHandler().CheckConnection();
-                if (checkDbConnection._statusCode == 200)
-                {
-                    LoadingBar.Value = 100;
-                    return true;
-                }
+                if (checkDbConnection._statusCode == 200) return true;
                 return false;
             }
             return false;
