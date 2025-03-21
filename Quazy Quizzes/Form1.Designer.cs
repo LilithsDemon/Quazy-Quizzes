@@ -28,8 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.HelpBtn = new System.Windows.Forms.Button();
             this.btnSignup = new System.Windows.Forms.Button();
             this.btnLogin = new System.Windows.Forms.Button();
             this.txtUsername = new System.Windows.Forms.TextBox();
@@ -41,31 +40,22 @@
             this.txtCourse = new System.Windows.Forms.TextBox();
             this.txtSurname = new System.Windows.Forms.TextBox();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // button1
+            // HelpBtn
             // 
-            this.button1.BackColor = System.Drawing.Color.Fuchsia;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(340, 708);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(179, 63);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Get Help!";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Quazy_Quizzes.Properties.Resources.BackgroundBox;
-            this.pictureBox1.Location = new System.Drawing.Point(111, 45);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1490, 887);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
+            this.HelpBtn.BackColor = System.Drawing.Color.Fuchsia;
+            this.HelpBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.HelpBtn.ForeColor = System.Drawing.Color.White;
+            this.HelpBtn.Location = new System.Drawing.Point(340, 708);
+            this.HelpBtn.Name = "HelpBtn";
+            this.HelpBtn.Size = new System.Drawing.Size(179, 63);
+            this.HelpBtn.TabIndex = 0;
+            this.HelpBtn.Text = "Get Help!";
+            this.HelpBtn.UseVisualStyleBackColor = false;
+            this.HelpBtn.Click += new System.EventHandler(this.HelpBtn_Click);
             // 
             // btnSignup
             // 
@@ -78,7 +68,7 @@
             this.btnSignup.TabIndex = 2;
             this.btnSignup.Text = "Sign Up!";
             this.btnSignup.UseVisualStyleBackColor = false;
-            this.btnSignup.Click += new System.EventHandler(this.btnSignup_Click);
+            this.btnSignup.Click += new System.EventHandler(this.SignupBtn_Click);
             // 
             // btnLogin
             // 
@@ -91,7 +81,7 @@
             this.btnLogin.TabIndex = 3;
             this.btnLogin.Text = "Login!";
             this.btnLogin.UseVisualStyleBackColor = false;
-            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
+            this.btnLogin.Click += new System.EventHandler(this.LoginBtn_Click);
             // 
             // txtUsername
             // 
@@ -103,7 +93,7 @@
             this.txtUsername.TabIndex = 5;
             this.txtUsername.Text = "Enter your username";
             this.txtUsername.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtUsername.TextChanged += new System.EventHandler(this.txtUsername_TextChanged);
+            this.txtUsername.TextChanged += new System.EventHandler(this.TxtUsername_TextChanged);
             // 
             // txtPassword
             // 
@@ -115,7 +105,7 @@
             this.txtPassword.TabIndex = 6;
             this.txtPassword.Text = "Enter your password";
             this.txtPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
+            this.txtPassword.TextChanged += new System.EventHandler(this.TxtPassword_TextChanged);
             // 
             // lblIntro
             // 
@@ -207,6 +197,16 @@
             this.lblTitle.TabIndex = 13;
             this.lblTitle.Text = "Welcome to Quazy Quizzes";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Quazy_Quizzes.Properties.Resources.BackgroundBox;
+            this.pictureBox1.Location = new System.Drawing.Point(111, 45);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(1490, 887);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -224,7 +224,7 @@
             this.Controls.Add(this.txtUsername);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.btnSignup);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.HelpBtn);
             this.Controls.Add(this.pictureBox1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -236,8 +236,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button HelpBtn;
         private System.Windows.Forms.Button btnSignup;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.TextBox txtUsername;
@@ -249,6 +248,7 @@
         private System.Windows.Forms.TextBox txtCourse;
         private System.Windows.Forms.TextBox txtSurname;
         private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

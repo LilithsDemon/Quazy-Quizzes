@@ -14,27 +14,24 @@ namespace Quazy_Quizzes
 {
     public partial class AdminDash : Form
     {
-        public List<string> TeachersList = new List<string>();
+        public List<string> _teachersList = new List<string>();
 
         public AdminDash()
         {
             InitializeComponent();
 
             //Get the teachers' names
+            
 
             ConnectionHandler con = new ConnectionHandler();
             string getTeachersSQL = "SELECT * FROM `Users` WHERE `Role` = 1;";
-            
-            var conn = con.GetConnection();
-            conn.Open();
 
-            var teachers = con.ExecuteQueryNoParams(getTeachersSQL);
-            //Assume it has rows
-            while(teachers.Read())
+            var reader = con.ExecuteQueryNoParams(getTeachersSQL);
+            while (reader.Read())
             {
-                TeachersList.Add(teachers.GetString("Username"));
+                _teachersList.Add(reader["UserName"].ToString());
             }
-            conn.Close();
+            
         }
 
         private void AdminDash_Load(object sender, EventArgs e)
@@ -52,7 +49,7 @@ namespace Quazy_Quizzes
                 //Making it so the combo boxes for revoking the teacher profiles become visible and enabled
                 
                 cboboxOptions.Items.Add("Test Teacher");
-                foreach(string teacher in TeachersList)
+                foreach(string teacher in _teachersList)
                 {
                     cboboxOptions.Items.Add(teacher);
                 }

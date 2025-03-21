@@ -13,7 +13,8 @@ namespace QQContactForm
         // Groups of the different components, used when setting the colours for them
         private List<Label> _stdText = new List<Label>();
         private List<RichTextBox> _stdInputBox = new List<RichTextBox>();
-        private List<Button> _stdButton = new List<Button>();
+        private List<Button> _primaryButton = new List<Button>();
+        private List<Button> _secondaryButton = new List<Button>();
 
         public ContactForm()
         {
@@ -21,8 +22,10 @@ namespace QQContactForm
             // The different components in the page sorted into categories
             _stdText = new List<Label> {_lblMessage, _lblSubject, _lblEmail, _lblCounter};
             _stdInputBox = new List<RichTextBox> { _txtSubject, _txtMessage, _txtEmail };
-            _stdButton = new List<Button> { _btnBack, _btnToggleTheme, _btnSubmit };
-            
+            _primaryButton = new List<Button> { _btnSubmit };
+            _secondaryButton = new List<Button> { _btnToggleTheme, _btnBack };
+
+
             // Get page to match colour scheme
             if(Program._isDarkMode) SetColourScheme(Program._darkTheme);
             else SetColourScheme(Program._lightTheme);
@@ -66,10 +69,12 @@ namespace QQContactForm
             this.BackColor = ColorTranslator.FromHtml(colourScheme._background);
             _containerPanel.BackColor = ColorTranslator.FromHtml(colourScheme._cardBackground);
             _lblTitle.ForeColor = ColorTranslator.FromHtml(colourScheme._foregroudText);
+            _lblTitle.BackColor = ColorTranslator.FromHtml(colourScheme._headerBackground);
 
             colourScheme.SetColourSchemeText(_stdText);
             colourScheme.SetColourSchemeTextBox(_stdInputBox);
-            colourScheme.SetColourSchemeButtons(_stdButton);
+            colourScheme.SetColourSchemePrimaryButtons(_primaryButton);
+            colourScheme.SetColourSchemeSecondaryButtons(_secondaryButton);
         }
 
         // Changes the theme between light and dark mode

@@ -7,23 +7,42 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using QQColourScheme;
+using Conn;
+using Status;
 
 namespace Quazy_Quizzes
 {
     public partial class Form1 : Form
     {
+        private List<Button> _primaryButtons = new List<Button>();
+        private List<Button> _secondaryButtons = new List<Button>();
+
         public Form1()
         {
 
             InitializeComponent();
-            
-            txtUsername.MouseClick += new MouseEventHandler(txtUsername_Click);
-            txtPassword.TextChanged += new EventHandler(txtPassword_TextChanged);
-            txtUsername.TextChanged += new EventHandler(txtUsername_TextChanged);
-            txtPassword.MouseClick += new MouseEventHandler(txtPassword_Click);
 
+            _primaryButtons = new List<Button>() { btnSignup, btnLogin };
+            _secondaryButtons = new List<Button>() { HelpBtn};
+
+            txtUsername.MouseClick += new MouseEventHandler(TxtUsername_Click);
+            txtPassword.TextChanged += new EventHandler(TxtPassword_TextChanged);
+            txtUsername.TextChanged += new EventHandler(TxtUsername_TextChanged);
+            txtPassword.MouseClick += new MouseEventHandler(TxtPassword_Click);
+
+            //Sets Colour Scheme
+            if (Program._isDarkMode) SetColourScheme(Program._darkTheme);
+            else SetColourScheme(Program._lightTheme);
         }
-        private void txtPassword_Click(object sender, EventArgs e)
+
+        private void SetColourScheme(ColourScheme colourScheme)
+        {
+            this.BackColor = ColorTranslator.FromHtml(colourScheme._background);
+
+            colourScheme.SetColourSchemePrimaryButtons(_primaryButtons);
+        }
+        private void TxtPassword_Click(object sender, EventArgs e)
         {
             // Set the password character to a star
             txtPassword.PasswordChar = '*';
@@ -33,7 +52,7 @@ namespace Quazy_Quizzes
             }
         }
 
-        private void txtUsername_Click(object sender, EventArgs e)
+        private void TxtUsername_Click(object sender, EventArgs e)
         {
             //clears the text ready for the user to enter their username
             if (txtUsername.Text == "Enter your username")
@@ -42,20 +61,20 @@ namespace Quazy_Quizzes
             }
         }
 
-        private void txtPassword_TextChanged(object sender, EventArgs e)
+        private void TxtPassword_TextChanged(object sender, EventArgs e)
         {
             
 
 
         }
 
-        private void txtUsername_TextChanged(object sender, EventArgs e)
+        private void TxtUsername_TextChanged(object sender, EventArgs e)
         {
             
             
         }
 
-        private void btnSignup_Click(object sender, EventArgs e)
+        private void SignupBtn_Click(object sender, EventArgs e)
         {
             if(txtStudent.Enabled == false)
             {
@@ -85,7 +104,7 @@ namespace Quazy_Quizzes
 
         }
 
-        private void btnLogin_Click(object sender, EventArgs e)
+        private void LoginBtn_Click(object sender, EventArgs e)
         {
             if(txtStudent.Enabled == true)
             {
@@ -114,9 +133,8 @@ namespace Quazy_Quizzes
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void HelpBtn_Click(object sender, EventArgs e)
         {
-            //this is temporary code to take you to the admin dashboard for testing at the moment. In future this will be implemented within the login system and this will be a button to guide you to an assistance page or a contact form.
             AdminDash adminDash = new AdminDash();
             adminDash.Show();
         }
