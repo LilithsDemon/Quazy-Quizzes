@@ -74,6 +74,7 @@
             // LoadingBgWorker
             // 
             this.LoadingBgWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.LoadingBgWorker_DoWork);
+            this.LoadingBgWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.LoadingBgWorker_RunWorkerCompleted);
             // 
             // Load
             // 

@@ -58,23 +58,44 @@ namespace Quazy_Quizzes
             }
         }
 
+        private void LoadingBgWorker_RunWorkerCompleted(
+            object sender,
+            RunWorkerCompletedEventArgs e)
+        {
+            if (e.Cancelled)
+            {
+                // The user canceled the operation.
+                Console.WriteLine("Operation was canceled");
+            }
+            else if (e.Error != null)
+            {
+                // There was an error during the operation.
+                Console.WriteLine(String.Format("An error occurred: {0}", e.Error.Message));
+            }
+            else
+            {
+                Console.WriteLine(e.Result.ToString());
+                // The operation completed normally.
+                if(e.Result.ToString() == "1")
+                {
+                    LoadForm1();
+                }
+                else
+                {
+                    LoadErrorForm();
+                }
+            }
+        }
+
         // Code ran in the background
         private bool CheckConnection(BackgroundWorker BW, int SleepPeriod)
         {
             CodeStatus checkDbConnection = new ConnectionHandler().CheckConnection();
             if (checkDbConnection._statusCode == 200)
             {
-                LoadingBar.Value = 100;
-                Console.WriteLine("Load form 1");
-                LoadForm1();
                 return true;
             }
-            else
-            {
-                Console.WriteLine("Error Form");
-                LoadErrorForm();
-                return false;
-            }
+            return false;
         }
     }
 }
