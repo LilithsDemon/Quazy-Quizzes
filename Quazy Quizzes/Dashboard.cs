@@ -7,24 +7,33 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using QQColourScheme;
 
 namespace Quazy_Quizzes
 {
     public partial class Dashboard : Form
     {
+        private List<Button> _emergencyButtons = new List<Button>();
         public Dashboard()
         {
             InitializeComponent();
-            
-            
+
+            _emergencyButtons = new List<Button> { BackBtn };
+
+            // Get page to match colour scheme
+            if (Program._isDarkMode) SetColourScheme(Program._darkTheme);
+            else SetColourScheme(Program._lightTheme);
         }
 
-        private void lblCourses_Click(object sender, EventArgs e)
+        // Chanes the elements to be the correct colours based on the colour scheme given for this page
+        private void SetColourScheme(ColourScheme colourScheme)
         {
-            
+            this.BackColor = ColorTranslator.FromHtml(colourScheme._background);
+
+            colourScheme.SetColourSchemeEmergencyButtons(_emergencyButtons);
         }
 
-        private void cboCourse_SelectedIndexChanged(object sender, EventArgs e)
+        private void CboCourse_SelectedIndexChanged(object sender, EventArgs e)
         {
             rctxtLeaderboards.Text = "Leaderboards for " + cboCourse.Text + "\n";
             rctxtLeaderboards.Visible = true;

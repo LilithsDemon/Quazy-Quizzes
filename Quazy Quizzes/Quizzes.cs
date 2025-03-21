@@ -7,64 +7,38 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using QQColourScheme;
 
 namespace Quazy_Quizzes
 {
     public partial class Quizzes : Form
     {
+        private List<Button> _primaryButtons = new List<Button>();
+        private List<Button> _secondaryButtons = new List<Button>();
+        private List<Button> _emergencyButtons = new List<Button>();
+
+
         public Quizzes()
         {
             InitializeComponent();
+
+            _primaryButtons = new List<Button>() { NextBtn };
+            _secondaryButtons = new List<Button>() { PreviousBtn };
+            _emergencyButtons = new List<Button>() { HomeBtn };
+
+            // Get page to match colour scheme
+            if (Program._isDarkMode) SetColourScheme(Program._darkTheme);
+            else SetColourScheme(Program._lightTheme);
         }
 
-        private void btnNext_Click(object sender, EventArgs e)
+        // Chanes the elements to be the correct colours based on the colour scheme given for this page
+        private void SetColourScheme(ColourScheme colourScheme)
         {
+            this.BackColor = ColorTranslator.FromHtml(colourScheme._background);
 
-        }
-
-        private void lblQuizname_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void rbnAnswer1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblQuestion_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnHome_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void rbnAnswer2_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void rbnAnswer4_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void rbnAnswer3_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnPrevious_Click(object sender, EventArgs e)
-        {
-
+            colourScheme.SetColourSchemePrimaryButtons(_primaryButtons);
+            colourScheme.SetColourSchemeSecondaryButtons(_secondaryButtons);
+            colourScheme.SetColourSchemeEmergencyButtons(_emergencyButtons);
         }
     }
 }

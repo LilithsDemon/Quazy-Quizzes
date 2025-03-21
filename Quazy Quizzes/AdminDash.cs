@@ -9,30 +9,39 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Conn;
 using MySqlConnector;
+using QQColourScheme;
 
 namespace Quazy_Quizzes
 {
     public partial class AdminDash : Form
     {
         public List<string> _teachersList = new List<string>();
+        public List<Button> _secondaryButtons = new List<Button>();
 
         public AdminDash()
         {
             InitializeComponent();
 
-            //Get the teachers' names
-            
+            _secondaryButtons = new List<Button>() { };
 
+            if (Program._isDarkMode) SetColourScheme(Program._darkTheme);
+            else SetColourScheme(Program._lightTheme);
+
+            //Get the teachers' names
             ConnectionHandler con = new ConnectionHandler();
             string getTeachersSQL = "SELECT * FROM `Users` WHERE `Role` = 1;";
 
             var reader = con.ExecuteQueryNoParams(getTeachersSQL);
-            while (reader.Read())
-            {
-                _teachersList.Add(reader["UserName"].ToString());
-            }
+            while (reader.Read()) _teachersList.Add(reader["UserName"].ToString());
             
         }
+        private void SetColourScheme(ColourScheme colourScheme)
+        {
+            this.BackColor = ColorTranslator.FromHtml(colourScheme._background);
+
+            colourScheme.SetColourSchemeSecondaryButtons(_secondaryButtons);
+        }
+
 
         private void AdminDash_Load(object sender, EventArgs e)
         {
@@ -40,7 +49,7 @@ namespace Quazy_Quizzes
 
         }
 
-        private void cboboxSelect_SelectedIndexChanged(object sender, EventArgs e)
+        private void CboBoxSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
             
             if(cboboxSelect.SelectedIndex == 0)
@@ -79,7 +88,7 @@ namespace Quazy_Quizzes
             
         }
 
-        private void cboClasses_SelectedIndexChanged(object sender, EventArgs e)
+        private void CboClasses_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
