@@ -28,10 +28,12 @@ namespace Quazy_Quizzes
         "#FFFFFF", // Secondary text
         "#FFFFFF", // Input background
         "#1E1E1E", // Input text
-        "#00B2CC",  // Button background
+        "#00B2CC",  // Primary Button background
+        "#FF00FF", //Secondary Button Background
+        "#FF0000", // Energency Button Background
         "#FFFFFF",  // Button text
         "#00A2BB",  // Button hover
-        "#00B2CC"   // Header background
+        "#11B9D1"   // Header background
         );
 
         // Setting up a dark theme class to store the data
@@ -42,7 +44,9 @@ namespace Quazy_Quizzes
        "#121212", // Secondary text
        "#121212", // Input background
        "#FFFFFF", // Input text
-       "#00B2CC",  // Button background
+       "#00B2CC",  // Primary Button background
+       "#FF00FF", // Secondary Button Background
+       "#FF0000", // Emergency Button Background
        "#FFFFFF",  // Button text
        "#00A2BB",  // Button hover
        "#00B2CC"   // Header background
@@ -64,7 +68,7 @@ namespace Quazy_Quizzes
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
-            Application.Run(new ContactForm());
+            Application.Run(new Load());
         }
     }
 }

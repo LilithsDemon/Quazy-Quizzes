@@ -32,14 +32,14 @@
             this.rbnAnswer3 = new System.Windows.Forms.RadioButton();
             this.rbnAnswer2 = new System.Windows.Forms.RadioButton();
             this.rbnAnswer1 = new System.Windows.Forms.RadioButton();
-            this.btnHome = new System.Windows.Forms.Button();
-            this.btnPrevious = new System.Windows.Forms.Button();
-            this.btnNew = new System.Windows.Forms.Button();
+            this.HomeBtn = new System.Windows.Forms.Button();
+            this.PrevBtn = new System.Windows.Forms.Button();
+            this.AddBtn = new System.Windows.Forms.Button();
             this.lblQuizname = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblQuestion = new System.Windows.Forms.Label();
             this.rctxtQuestionEntry = new System.Windows.Forms.RichTextBox();
-            this.btnFinish = new System.Windows.Forms.Button();
+            this.SubmitBtn = new System.Windows.Forms.Button();
             this.lblAnswers = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.rchtxtAnswer1 = new System.Windows.Forms.RichTextBox();
@@ -75,7 +75,6 @@
             this.rbnAnswer3.TabStop = true;
             this.rbnAnswer3.Text = "Answer 3";
             this.rbnAnswer3.UseVisualStyleBackColor = false;
-            this.rbnAnswer3.CheckedChanged += new System.EventHandler(this.rbnAnswer3_CheckedChanged);
             // 
             // rbnAnswer2
             // 
@@ -103,38 +102,38 @@
             this.rbnAnswer1.Text = "Answer 1";
             this.rbnAnswer1.UseVisualStyleBackColor = false;
             // 
-            // btnHome
+            // HomeBtn
             // 
-            this.btnHome.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.btnHome.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
-            this.btnHome.Location = new System.Drawing.Point(35, 19);
-            this.btnHome.Name = "btnHome";
-            this.btnHome.Size = new System.Drawing.Size(213, 99);
-            this.btnHome.TabIndex = 29;
-            this.btnHome.Text = "Return to Home";
-            this.btnHome.UseVisualStyleBackColor = false;
+            this.HomeBtn.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.HomeBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
+            this.HomeBtn.Location = new System.Drawing.Point(35, 19);
+            this.HomeBtn.Name = "HomeBtn";
+            this.HomeBtn.Size = new System.Drawing.Size(213, 99);
+            this.HomeBtn.TabIndex = 29;
+            this.HomeBtn.Text = "Return to Home";
+            this.HomeBtn.UseVisualStyleBackColor = false;
             // 
-            // btnPrevious
+            // PrevBtn
             // 
-            this.btnPrevious.BackColor = System.Drawing.Color.Green;
-            this.btnPrevious.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
-            this.btnPrevious.Location = new System.Drawing.Point(191, 729);
-            this.btnPrevious.Name = "btnPrevious";
-            this.btnPrevious.Size = new System.Drawing.Size(213, 140);
-            this.btnPrevious.TabIndex = 28;
-            this.btnPrevious.Text = "Review Previous Question";
-            this.btnPrevious.UseVisualStyleBackColor = false;
+            this.PrevBtn.BackColor = System.Drawing.Color.Green;
+            this.PrevBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
+            this.PrevBtn.Location = new System.Drawing.Point(191, 729);
+            this.PrevBtn.Name = "PrevBtn";
+            this.PrevBtn.Size = new System.Drawing.Size(213, 140);
+            this.PrevBtn.TabIndex = 28;
+            this.PrevBtn.Text = "Review Previous Question";
+            this.PrevBtn.UseVisualStyleBackColor = false;
             // 
-            // btnNew
+            // AddBtn
             // 
-            this.btnNew.BackColor = System.Drawing.Color.Magenta;
-            this.btnNew.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
-            this.btnNew.Location = new System.Drawing.Point(1333, 729);
-            this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(252, 67);
-            this.btnNew.TabIndex = 27;
-            this.btnNew.Text = "Add Question";
-            this.btnNew.UseVisualStyleBackColor = false;
+            this.AddBtn.BackColor = System.Drawing.Color.Magenta;
+            this.AddBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
+            this.AddBtn.Location = new System.Drawing.Point(1333, 729);
+            this.AddBtn.Name = "AddBtn";
+            this.AddBtn.Size = new System.Drawing.Size(252, 67);
+            this.AddBtn.TabIndex = 27;
+            this.AddBtn.Text = "Add Question";
+            this.AddBtn.UseVisualStyleBackColor = false;
             // 
             // lblQuizname
             // 
@@ -177,16 +176,16 @@
             this.rctxtQuestionEntry.TabIndex = 34;
             this.rctxtQuestionEntry.Text = "";
             // 
-            // btnFinish
+            // SubmitBtn
             // 
-            this.btnFinish.BackColor = System.Drawing.Color.Magenta;
-            this.btnFinish.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
-            this.btnFinish.Location = new System.Drawing.Point(1333, 802);
-            this.btnFinish.Name = "btnFinish";
-            this.btnFinish.Size = new System.Drawing.Size(252, 67);
-            this.btnFinish.TabIndex = 39;
-            this.btnFinish.Text = "Submit quiz";
-            this.btnFinish.UseVisualStyleBackColor = false;
+            this.SubmitBtn.BackColor = System.Drawing.Color.Magenta;
+            this.SubmitBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
+            this.SubmitBtn.Location = new System.Drawing.Point(1333, 802);
+            this.SubmitBtn.Name = "SubmitBtn";
+            this.SubmitBtn.Size = new System.Drawing.Size(252, 67);
+            this.SubmitBtn.TabIndex = 39;
+            this.SubmitBtn.Text = "Submit quiz";
+            this.SubmitBtn.UseVisualStyleBackColor = false;
             // 
             // lblAnswers
             // 
@@ -207,7 +206,6 @@
             this.label2.Size = new System.Drawing.Size(582, 39);
             this.label2.TabIndex = 41;
             this.label2.Text = "Please select which answer is correct";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // rchtxtAnswer1
             // 
@@ -263,15 +261,15 @@
             this.Controls.Add(this.rchtxtAnswer1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblAnswers);
-            this.Controls.Add(this.btnFinish);
+            this.Controls.Add(this.SubmitBtn);
             this.Controls.Add(this.rctxtQuestionEntry);
             this.Controls.Add(this.rbnAnswer4);
             this.Controls.Add(this.rbnAnswer3);
             this.Controls.Add(this.rbnAnswer2);
             this.Controls.Add(this.rbnAnswer1);
-            this.Controls.Add(this.btnHome);
-            this.Controls.Add(this.btnPrevious);
-            this.Controls.Add(this.btnNew);
+            this.Controls.Add(this.HomeBtn);
+            this.Controls.Add(this.PrevBtn);
+            this.Controls.Add(this.AddBtn);
             this.Controls.Add(this.lblQuestion);
             this.Controls.Add(this.lblQuizname);
             this.Controls.Add(this.pictureBox1);
@@ -289,14 +287,14 @@
         private System.Windows.Forms.RadioButton rbnAnswer3;
         private System.Windows.Forms.RadioButton rbnAnswer2;
         private System.Windows.Forms.RadioButton rbnAnswer1;
-        private System.Windows.Forms.Button btnHome;
-        private System.Windows.Forms.Button btnPrevious;
-        private System.Windows.Forms.Button btnNew;
+        private System.Windows.Forms.Button HomeBtn;
+        private System.Windows.Forms.Button PrevBtn;
+        private System.Windows.Forms.Button AddBtn;
         private System.Windows.Forms.Label lblQuizname;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblQuestion;
         private System.Windows.Forms.RichTextBox rctxtQuestionEntry;
-        private System.Windows.Forms.Button btnFinish;
+        private System.Windows.Forms.Button SubmitBtn;
         private System.Windows.Forms.Label lblAnswers;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.RichTextBox rchtxtAnswer1;

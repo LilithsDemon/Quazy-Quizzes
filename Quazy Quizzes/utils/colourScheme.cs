@@ -14,13 +14,16 @@ namespace QQColourScheme
         public string _backgroundText { private set; get; }
         public string _cardBackground { private set; get; }
         public string _secondaryTextFg { private set; get; }
-        public string _buttonBackground { private set; get; }
+        public string _primaryButtonBackground { private set; get; }
+        public string _secondaryButtonBackground { private set; get; }
+        public string _emergencyButtonBackground { private set; get; }
         public string _buttonText { private set; get; }
         public string _buttonHover { private set; get; }
         public string _headerBackground { private set; get; }
 
         public ColourScheme(string background, string secondaryBackground, string primaryText, string secondaryText,
-            string inputBackground, string inputText, string buttonBackground, string buttonText, string buttonHover, string headerBackground)
+            string inputBackground, string inputText, string primaryButtonBackground, string secondaryButtonBackground,
+            string emergencyButtonBackground, string buttonText, string buttonHover, string headerBackground)
         {
             _background = background;
             _secondaryBackground = secondaryBackground;
@@ -28,7 +31,9 @@ namespace QQColourScheme
             _backgroundText = secondaryText;
             _cardBackground = inputBackground;
             _secondaryTextFg = inputText;
-            _buttonBackground = buttonBackground;
+            _primaryButtonBackground = primaryButtonBackground;
+            _secondaryButtonBackground = secondaryButtonBackground;
+            _emergencyButtonBackground = emergencyButtonBackground;
             _buttonText = buttonText;
             _buttonHover = buttonHover;
             _headerBackground = headerBackground;
@@ -70,18 +75,46 @@ namespace QQColourScheme
         }
 
         // Set the colour scheme on given Button Elements
-        public void SetColourSchemeButtons(List<Button> buttonElements)
+        public void SetColourSchemePrimaryButtons(List<Button> buttonElements)
         {
             for (int i = 0; i < buttonElements.Count; i++)
             {
-                buttonElements[i].BackColor = ColorTranslator.FromHtml(this._buttonBackground);
+                buttonElements[i].BackColor = ColorTranslator.FromHtml(this._primaryButtonBackground);
             }
         }
 
         // Method overloading to allow for just one Button element instead of a list of them
-        public void SetColourSchemeButtons(Button buttonElement)
+        public void SetColourSchemePrimaryButtons(Button buttonElement)
         {
-            buttonElement.BackColor = ColorTranslator.FromHtml(this._buttonBackground);
+            buttonElement.BackColor = ColorTranslator.FromHtml(this._primaryButtonBackground);
+        }
+
+        public void SetColourSchemeSecondaryButtons(List<Button> buttonElements)
+        {
+            for (int i = 0; i < buttonElements.Count; i++)
+            {
+                buttonElements[i].BackColor = ColorTranslator.FromHtml(this._secondaryButtonBackground);
+            }
+        }
+
+        // Method overloading to allow for just one Button element instead of a list of them
+        public void SetColourSchemeSecondaryButtons(Button buttonElement)
+        {
+            buttonElement.BackColor = ColorTranslator.FromHtml(this._secondaryButtonBackground);
+        }
+
+        public void SetColourSchemeEmergencyButtons(List<Button> buttonElements)
+        {
+            for (int i = 0; i < buttonElements.Count; i++)
+            {
+                buttonElements[i].BackColor = ColorTranslator.FromHtml(this._emergencyButtonBackground);
+            }
+        }
+
+        // Method overloading to allow for just one Button element instead of a list of them
+        public void SetColourSchemeEmergencyButtons(Button buttonElement)
+        {
+            buttonElement.BackColor = ColorTranslator.FromHtml(this._emergencyButtonBackground);
         }
     }
 }

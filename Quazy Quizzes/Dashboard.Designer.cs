@@ -30,7 +30,7 @@
         {
             this.lblTitle = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnHome = new System.Windows.Forms.Button();
+            this.BackBtn = new System.Windows.Forms.Button();
             this.lblCourses = new System.Windows.Forms.Label();
             this.cboCourse = new System.Windows.Forms.ComboBox();
             this.rctxtLeaderboards = new System.Windows.Forms.RichTextBox();
@@ -57,16 +57,16 @@
             this.pictureBox1.TabIndex = 14;
             this.pictureBox1.TabStop = false;
             // 
-            // btnHome
+            // BackBtn
             // 
-            this.btnHome.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.btnHome.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
-            this.btnHome.Location = new System.Drawing.Point(12, 9);
-            this.btnHome.Name = "btnHome";
-            this.btnHome.Size = new System.Drawing.Size(213, 99);
-            this.btnHome.TabIndex = 20;
-            this.btnHome.Text = "Logout";
-            this.btnHome.UseVisualStyleBackColor = false;
+            this.BackBtn.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.BackBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
+            this.BackBtn.Location = new System.Drawing.Point(12, 9);
+            this.BackBtn.Name = "BackBtn";
+            this.BackBtn.Size = new System.Drawing.Size(213, 99);
+            this.BackBtn.TabIndex = 20;
+            this.BackBtn.Text = "Go Back";
+            this.BackBtn.UseVisualStyleBackColor = false;
             // 
             // lblCourses
             // 
@@ -77,7 +77,6 @@
             this.lblCourses.Size = new System.Drawing.Size(297, 29);
             this.lblCourses.TabIndex = 21;
             this.lblCourses.Text = "Select one of your courses";
-            this.lblCourses.Click += new System.EventHandler(this.lblCourses_Click);
             // 
             // cboCourse
             // 
@@ -87,7 +86,7 @@
             this.cboCourse.Name = "cboCourse";
             this.cboCourse.Size = new System.Drawing.Size(257, 37);
             this.cboCourse.TabIndex = 22;
-            this.cboCourse.SelectedIndexChanged += new System.EventHandler(this.cboCourse_SelectedIndexChanged);
+            this.cboCourse.SelectedIndexChanged += new System.EventHandler(this.CboCourse_SelectedIndexChanged);
             // 
             // rctxtLeaderboards
             // 
@@ -107,7 +106,7 @@
             this.Controls.Add(this.rctxtLeaderboards);
             this.Controls.Add(this.cboCourse);
             this.Controls.Add(this.lblCourses);
-            this.Controls.Add(this.btnHome);
+            this.Controls.Add(this.BackBtn);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.pictureBox1);
             this.Name = "Dashboard";
@@ -122,7 +121,7 @@
 
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button btnHome;
+        private System.Windows.Forms.Button BackBtn;
         private System.Windows.Forms.Label lblCourses;
         private System.Windows.Forms.ComboBox cboCourse;
         private System.Windows.Forms.RichTextBox rctxtLeaderboards;
