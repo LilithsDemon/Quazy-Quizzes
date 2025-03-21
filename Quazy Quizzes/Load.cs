@@ -46,6 +46,7 @@ namespace Quazy_Quizzes
             this.Hide();
         }
 
+        // This is setting up worker 1 with it's arguments
         private void LoadingBgWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
             BackgroundWorker bw = sender as BackgroundWorker;
@@ -61,6 +62,7 @@ namespace Quazy_Quizzes
             }
         }
 
+        // Called when worker 1 has been completed
         private void LoadingBgWorker1_RunWorkerCompleted(
             object sender,
             RunWorkerCompletedEventArgs e)
@@ -87,6 +89,7 @@ namespace Quazy_Quizzes
             }
         }
 
+        // This is setting up worker 2 with it's arguments
         private void LoadingBgWorker2_DoWork(object sender, DoWorkEventArgs e)
         {
             BackgroundWorker bw = sender as BackgroundWorker;
@@ -102,6 +105,7 @@ namespace Quazy_Quizzes
             }
         }
 
+        // Called when worker 2 has been completed
         private void LoadingBgWorker2_RunWorkerCompleted(
             object sender,
             RunWorkerCompletedEventArgs e)
