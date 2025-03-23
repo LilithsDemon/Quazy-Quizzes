@@ -116,7 +116,7 @@ namespace QQColourScheme
             buttonElement.MouseHover += (sender, e) => buttonElement.BackColor = ColorTranslator.FromHtml(buttonColourScheme._buttonHover);
             buttonElement.MouseLeave += (sender, e) => buttonElement.BackColor = ColorTranslator.FromHtml(buttonColourScheme._buttonBackground);
             buttonElement.FlatStyle = FlatStyle.Flat;
-            buttonElement.FlatAppearance.BorderSize = 0;
+            buttonElement.FlatAppearance.BorderSize = 1;
         }
 
         // Set the colour scheme on given Button Elements
