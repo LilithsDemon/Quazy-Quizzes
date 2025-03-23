@@ -42,11 +42,7 @@ namespace QQColourScheme
         // Set the colour scheme on given text elements
         public void SetColourSchemeText(List<Label> textElements)
         {
-            for (int i = 0; i < textElements.Count; i++)
-            {
-                textElements[i].ForeColor = ColorTranslator.FromHtml(this._foregroudText);
-                textElements[i].BackColor = ColorTranslator.FromHtml(this._backgroundText);
-            }
+            foreach (Label textElement in textElements) SetColourSchemeText(textElement);
         }
 
         // Method overloading to allow for just one text element instead of a list of them
@@ -60,11 +56,7 @@ namespace QQColourScheme
         // Set the colour scheme on given RichTextBoxElements
         public void SetColourSchemeTextBox(List<RichTextBox> textBoxElements)
         {
-            for (int i = 0; i < textBoxElements.Count; i++)
-            {
-                textBoxElements[i].BackColor = ColorTranslator.FromHtml(this._cardBackground);
-                textBoxElements[i].ForeColor = ColorTranslator.FromHtml(this._secondaryTextFg);
-            }
+                foreach (RichTextBox textBoxElement in textBoxElements) SetColourSchemeTextBox(textBoxElement);
         }
 
         // Method overloading to allow for just one RichTextBox element instead of a list of them
@@ -77,10 +69,7 @@ namespace QQColourScheme
         // Set the colour scheme on given Button Elements
         public void SetColourSchemePrimaryButtons(List<Button> buttonElements)
         {
-            for (int i = 0; i < buttonElements.Count; i++)
-            {
-                buttonElements[i].BackColor = ColorTranslator.FromHtml(this._primaryButtonBackground);
-            }
+            foreach(Button buttonElement in buttonElements) SetColourSchemePrimaryButtons(buttonElement);
         }
 
         // Method overloading to allow for just one Button element instead of a list of them
@@ -91,10 +80,7 @@ namespace QQColourScheme
 
         public void SetColourSchemeSecondaryButtons(List<Button> buttonElements)
         {
-            for (int i = 0; i < buttonElements.Count; i++)
-            {
-                buttonElements[i].BackColor = ColorTranslator.FromHtml(this._secondaryButtonBackground);
-            }
+            foreach (Button buttonElement in buttonElements) SetColourSchemeSecondaryButtons(buttonElement);
         }
 
         // Method overloading to allow for just one Button element instead of a list of them
@@ -105,10 +91,7 @@ namespace QQColourScheme
 
         public void SetColourSchemeEmergencyButtons(List<Button> buttonElements)
         {
-            for (int i = 0; i < buttonElements.Count; i++)
-            {
-                buttonElements[i].BackColor = ColorTranslator.FromHtml(this._emergencyButtonBackground);
-            }
+            foreach (Button buttonElement in buttonElements) SetColourSchemeEmergencyButtons(buttonElement);
         }
 
         // Method overloading to allow for just one Button element instead of a list of them
