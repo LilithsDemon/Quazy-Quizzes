@@ -1,4 +1,6 @@
-﻿namespace Quazy_Quizzes
+﻿using System.ComponentModel;
+
+namespace Quazy_Quizzes
 {
     partial class Load
     {
@@ -28,40 +30,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Load));
             this.WelcomeLbl = new System.Windows.Forms.Label();
-            this.ProgramLbl = new System.Windows.Forms.Label();
             this.LoadingBar = new System.Windows.Forms.ProgressBar();
-            this.LoadingBgWorker = new System.ComponentModel.BackgroundWorker();
+            this.LoadingBgWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.Logo = new System.Windows.Forms.PictureBox();
+            this.LoadingBgWorker2 = new System.ComponentModel.BackgroundWorker();
+            ((System.ComponentModel.ISupportInitialize)(this.Logo)).BeginInit();
             this.SuspendLayout();
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 428);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(800, 22);
-            this.statusStrip1.TabIndex = 0;
-            this.statusStrip1.Text = "statusStrip1";
             // 
             // WelcomeLbl
             // 
             this.WelcomeLbl.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.WelcomeLbl.AutoSize = true;
-            this.WelcomeLbl.Location = new System.Drawing.Point(368, 43);
+            this.WelcomeLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WelcomeLbl.Location = new System.Drawing.Point(281, 54);
             this.WelcomeLbl.Name = "WelcomeLbl";
-            this.WelcomeLbl.Size = new System.Drawing.Size(80, 13);
+            this.WelcomeLbl.Size = new System.Drawing.Size(267, 42);
             this.WelcomeLbl.TabIndex = 1;
             this.WelcomeLbl.Text = "Welcome To ...";
             this.WelcomeLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // ProgramLbl
-            // 
-            this.ProgramLbl.AutoSize = true;
-            this.ProgramLbl.Location = new System.Drawing.Point(368, 208);
-            this.ProgramLbl.Name = "ProgramLbl";
-            this.ProgramLbl.Size = new System.Drawing.Size(77, 13);
-            this.ProgramLbl.TabIndex = 2;
-            this.ProgramLbl.Text = "Quazy Quizzes";
             // 
             // LoadingBar
             // 
@@ -71,33 +59,49 @@
             this.LoadingBar.TabIndex = 3;
             this.LoadingBar.Value = 10;
             // 
-            // LoadingBgWorker
+            // LoadingBgWorker1
             // 
-            this.LoadingBgWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.LoadingBgWorker_DoWork);
-            this.LoadingBgWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.LoadingBgWorker_RunWorkerCompleted);
+            this.LoadingBgWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.LoadingBgWorker1_DoWork);
+            this.LoadingBgWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.LoadingBgWorker1_RunWorkerCompleted);
+            // 
+            // Logo
+            // 
+            this.Logo.Image = ((System.Drawing.Image)(resources.GetObject("Logo.Image")));
+            this.Logo.ImageLocation = "";
+            this.Logo.InitialImage = null;
+            this.Logo.Location = new System.Drawing.Point(39, 127);
+            this.Logo.Name = "Logo";
+            this.Logo.Size = new System.Drawing.Size(721, 141);
+            this.Logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.Logo.TabIndex = 4;
+            this.Logo.TabStop = false;
+            // 
+            // LoadingBgWorker2
+            // 
+            this.LoadingBgWorker2.DoWork += new System.ComponentModel.DoWorkEventHandler(this.LoadingBgWorker2_DoWork);
+            this.LoadingBgWorker2.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.LoadingBgWorker2_RunWorkerCompleted);
             // 
             // Load
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.Logo);
             this.Controls.Add(this.LoadingBar);
-            this.Controls.Add(this.ProgramLbl);
             this.Controls.Add(this.WelcomeLbl);
-            this.Controls.Add(this.statusStrip1);
             this.Name = "Load";
             this.Text = "Load";
+            ((System.ComponentModel.ISupportInitialize)(this.Logo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.Label WelcomeLbl;
-        private System.Windows.Forms.Label ProgramLbl;
         private System.Windows.Forms.ProgressBar LoadingBar;
-        private System.ComponentModel.BackgroundWorker LoadingBgWorker;
+        private System.ComponentModel.BackgroundWorker LoadingBgWorker1;
+        private System.Windows.Forms.PictureBox Logo;
+        private System.ComponentModel.BackgroundWorker LoadingBgWorker2;
     }
 }

@@ -21,36 +21,32 @@ namespace Quazy_Quizzes
         public static bool _isDarkMode = false;
 
         // Setting up a light theme class to store the data
+
         public static ColourScheme _lightTheme = new ColourScheme(
-        "#FFFFFF", // Background
-        "#00E5FF", // Secondary background
-        "#1E1E1E", // Primary text
-        "#FFFFFF", // Secondary text
-        "#FFFFFF", // Input background
-        "#1E1E1E", // Input text
-        "#00B2CC",  // Primary Button background
-        "#FF00FF", //Secondary Button Background
-        "#FF0000", // Energency Button Background
-        "#FFFFFF",  // Button text
-        "#00A2BB",  // Button hover
-        "#11B9D1"   // Header background
+            "#FFFFFF", // Background
+            "#11B9D1", // Header background
+            "#000000", // Header Text
+            "00E5FF", // Secondary background
+            "#FFFFFF", // Card background
+            "#000000", // Primary text
+            "#FFFFFF", // Secondary text
+            new ButtonColourScheme("#00B2CC", "#000000", "#00E2DA"), // Primary button
+            new ButtonColourScheme("#FF00FF", "#000000", "#DD00DD"), // Secondary button
+            new ButtonColourScheme("#FF0000", "#FFFFFF", "#DD0000") // Emergency button
         );
 
-        // Setting up a dark theme class to store the data
         public static ColourScheme _darkTheme = new ColourScheme(
-       "#1E1E1E", // Background
-       "#00E5FF", // Secondary background
-       "#FFFFFF", // Primary text
-       "#121212", // Secondary text
-       "#121212", // Input background
-       "#FFFFFF", // Input text
-       "#00B2CC",  // Primary Button background
-       "#FF00FF", // Secondary Button Background
-       "#FF0000", // Emergency Button Background
-       "#FFFFFF",  // Button text
-       "#00A2BB",  // Button hover
-       "#00B2CC"   // Header background
-       );
+            "#1E1E1E", // Background
+            "#00B2CC", // Header background
+            "#FFFFFF", // Header Text
+            "#00E5FF", // Secondary background
+            "#121212", // Card background
+            "#FFFFFF", // Primary text
+            "#000000", // Secondary text
+            new ButtonColourScheme("#00B2CC", "#000000", "#00E2DA"), // Primary button
+            new ButtonColourScheme("#FF00FF", "#000000", "#DD00DD"), // Secondary button
+            new ButtonColourScheme("#FF0000", "#FFFFFF", "#DD0000") // Emergency button
+        );
 
         [STAThread]
         static void Main()
