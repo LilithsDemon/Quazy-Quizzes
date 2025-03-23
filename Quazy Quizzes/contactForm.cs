@@ -68,10 +68,8 @@ namespace QQContactForm
         {
             this.BackColor = ColorTranslator.FromHtml(colourScheme._background);
             _containerPanel.BackColor = ColorTranslator.FromHtml(colourScheme._cardBackground);
-            _lblTitle.ForeColor = ColorTranslator.FromHtml(colourScheme._foregroudText);
-            _lblTitle.BackColor = ColorTranslator.FromHtml(colourScheme._headerBackground);
 
-            colourScheme.SetColourSchemeText(_stdText);
+            colourScheme.SetColourSchemePrimaryText(_stdText);
             colourScheme.SetColourSchemeTextBox(_stdInputBox);
             colourScheme.SetColourSchemePrimaryButtons(_primaryButton);
             colourScheme.SetColourSchemeSecondaryButtons(_secondaryButton);
