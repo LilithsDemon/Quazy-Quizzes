@@ -156,10 +156,10 @@
             // UsernameLbl
             // 
             this.UsernameLbl.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.UsernameLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UsernameLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UsernameLbl.Location = new System.Drawing.Point(600, 275);
             this.UsernameLbl.Name = "UsernameLbl";
-            this.UsernameLbl.Size = new System.Drawing.Size(600, 23);
+            this.UsernameLbl.Size = new System.Drawing.Size(600, 35);
             this.UsernameLbl.TabIndex = 12;
             this.UsernameLbl.Text = "Account Username";
             this.UsernameLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -167,7 +167,7 @@
             // NameLbl
             // 
             this.NameLbl.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.NameLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NameLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NameLbl.Location = new System.Drawing.Point(600, 325);
             this.NameLbl.Name = "NameLbl";
             this.NameLbl.Size = new System.Drawing.Size(600, 25);
@@ -188,6 +188,7 @@
             // EmailLbl
             // 
             this.EmailLbl.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.EmailLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EmailLbl.Location = new System.Drawing.Point(600, 375);
             this.EmailLbl.Name = "EmailLbl";
             this.EmailLbl.Size = new System.Drawing.Size(600, 25);
@@ -208,9 +209,10 @@
             // 
             this.SearchLbl.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.SearchLbl.AutoSize = true;
-            this.SearchLbl.Location = new System.Drawing.Point(175, 230);
+            this.SearchLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SearchLbl.Location = new System.Drawing.Point(175, 225);
             this.SearchLbl.Name = "SearchLbl";
-            this.SearchLbl.Size = new System.Drawing.Size(50, 13);
+            this.SearchLbl.Size = new System.Drawing.Size(59, 16);
             this.SearchLbl.TabIndex = 17;
             this.SearchLbl.Text = "Search...";
             this.SearchLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -218,6 +220,7 @@
             // LastLoginLbl
             // 
             this.LastLoginLbl.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.LastLoginLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LastLoginLbl.Location = new System.Drawing.Point(600, 425);
             this.LastLoginLbl.Name = "LastLoginLbl";
             this.LastLoginLbl.Size = new System.Drawing.Size(600, 25);
