@@ -152,6 +152,7 @@
             this.ActGrid.Size = new System.Drawing.Size(250, 275);
             this.ActGrid.TabIndex = 11;
             this.ActGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ActGrid_CellClick);
+            this.ActGrid.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.ActGrid_RowEnter);
             // 
             // UsernameLbl
             // 

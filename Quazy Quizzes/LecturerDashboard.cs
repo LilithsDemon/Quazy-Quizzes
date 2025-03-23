@@ -53,6 +53,10 @@ namespace Quazy_Quizzes
             }
 
             FillUserTable(0); // Should be put into a background worker
+
+            // Ensure the DataGridView allows row selection
+            ActGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            ActGrid.MultiSelect = false;
         }
 
         private void SetColourScheme(ColourScheme colourScheme)
@@ -118,6 +122,12 @@ namespace Quazy_Quizzes
                 string active = (reader[1].ToString() == "true") ? "Active" : "Inactive";
                 ActGrid.Rows.Add(reader[0].ToString(), active);
             }
+
+            if (ActGrid.Rows.Count > 0)
+            {
+                ActGrid.Rows[0].Selected = true;
+                LoadUserInfo(ActGrid.Rows[0].Cells["UserName"].Value.ToString());
+            }
         }
 
         private void ActGrid_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -144,6 +154,17 @@ namespace Quazy_Quizzes
         private void SearchBar_KeyUp(object sender, KeyEventArgs e)
         {
             FillUserTable((_userPage == false) ? 0 : 1, SearchBar.Text);
+        }
+
+        private void ActGrid_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (ActGrid.SelectedRows.Count > 0)
+            {
+                DataGridViewRow row = ActGrid.SelectedRows[0];
+                if (row.Cells["UserName"].Value == null) return;
+                string username = row.Cells["UserName"].Value.ToString();
+                LoadUserInfo(username);
+            }
         }
     }
 }
