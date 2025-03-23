@@ -36,7 +36,7 @@
             this.TitleLbl = new System.Windows.Forms.Label();
             this.StdntActsBtn = new System.Windows.Forms.Button();
             this.LectrActsBtn = new System.Windows.Forms.Button();
-            this.AccountGrid = new System.Windows.Forms.DataGridView();
+            this.ActGrid = new System.Windows.Forms.DataGridView();
             this.UsernameLbl = new System.Windows.Forms.Label();
             this.NameLbl = new System.Windows.Forms.Label();
             this.NewUserBtn = new System.Windows.Forms.Button();
@@ -47,33 +47,34 @@
             this.EditActBtn = new System.Windows.Forms.Button();
             this.DisableActBtn = new System.Windows.Forms.Button();
             this.DeleteActBtn = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.AccountGrid)).BeginInit();
+            this.ToggleThemeBtn = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.ActGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // HeaderBg
             // 
-            this.HeaderBg.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.HeaderBg.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.HeaderBg.Dock = System.Windows.Forms.DockStyle.Top;
             this.HeaderBg.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold);
             this.HeaderBg.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.HeaderBg.Location = new System.Drawing.Point(0, 0);
             this.HeaderBg.Name = "HeaderBg";
-            this.HeaderBg.Size = new System.Drawing.Size(1200, 80);
+            this.HeaderBg.Size = new System.Drawing.Size(1184, 80);
             this.HeaderBg.TabIndex = 2;
             this.HeaderBg.Text = "Lecturer Dashboard";
             this.HeaderBg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // SidebarBg
             // 
-            this.SidebarBg.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.SidebarBg.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.SidebarBg.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.SidebarBg.Dock = System.Windows.Forms.DockStyle.Left;
+            this.SidebarBg.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SidebarBg.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold);
             this.SidebarBg.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.SidebarBg.Location = new System.Drawing.Point(0, 80);
             this.SidebarBg.Name = "SidebarBg";
-            this.SidebarBg.Size = new System.Drawing.Size(100, 800);
+            this.SidebarBg.Size = new System.Drawing.Size(100, 546);
             this.SidebarBg.TabIndex = 3;
             this.SidebarBg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -112,9 +113,9 @@
             // 
             this.TitleLbl.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.TitleLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TitleLbl.Location = new System.Drawing.Point(100, 100);
+            this.TitleLbl.Location = new System.Drawing.Point(575, 100);
             this.TitleLbl.Name = "TitleLbl";
-            this.TitleLbl.Size = new System.Drawing.Size(1100, 55);
+            this.TitleLbl.Size = new System.Drawing.Size(150, 55);
             this.TitleLbl.TabIndex = 7;
             this.TitleLbl.Text = "Title";
             this.TitleLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -127,6 +128,7 @@
             this.StdntActsBtn.TabIndex = 8;
             this.StdntActsBtn.Text = "Student Accounts";
             this.StdntActsBtn.UseVisualStyleBackColor = true;
+            this.StdntActsBtn.Click += new System.EventHandler(this.StdntActsBtn_Click);
             // 
             // LectrActsBtn
             // 
@@ -137,19 +139,23 @@
             this.LectrActsBtn.TabIndex = 9;
             this.LectrActsBtn.Text = "Lecturer Accounts";
             this.LectrActsBtn.UseVisualStyleBackColor = true;
+            this.LectrActsBtn.Click += new System.EventHandler(this.LectrActsBtn_Click);
             // 
-            // AccountGrid
+            // ActGrid
             // 
-            this.AccountGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.AccountGrid.Location = new System.Drawing.Point(175, 275);
-            this.AccountGrid.MultiSelect = false;
-            this.AccountGrid.Name = "AccountGrid";
-            this.AccountGrid.ReadOnly = true;
-            this.AccountGrid.Size = new System.Drawing.Size(250, 275);
-            this.AccountGrid.TabIndex = 11;
+            this.ActGrid.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.ActGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ActGrid.Location = new System.Drawing.Point(175, 275);
+            this.ActGrid.MultiSelect = false;
+            this.ActGrid.Name = "ActGrid";
+            this.ActGrid.ReadOnly = true;
+            this.ActGrid.Size = new System.Drawing.Size(250, 275);
+            this.ActGrid.TabIndex = 11;
+            this.ActGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ActGrid_CellClick);
             // 
             // UsernameLbl
             // 
+            this.UsernameLbl.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.UsernameLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UsernameLbl.Location = new System.Drawing.Point(600, 275);
             this.UsernameLbl.Name = "UsernameLbl";
@@ -160,6 +166,7 @@
             // 
             // NameLbl
             // 
+            this.NameLbl.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.NameLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NameLbl.Location = new System.Drawing.Point(600, 325);
             this.NameLbl.Name = "NameLbl";
@@ -170,6 +177,7 @@
             // 
             // NewUserBtn
             // 
+            this.NewUserBtn.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.NewUserBtn.Location = new System.Drawing.Point(575, 570);
             this.NewUserBtn.Name = "NewUserBtn";
             this.NewUserBtn.Size = new System.Drawing.Size(150, 50);
@@ -179,6 +187,7 @@
             // 
             // EmailLbl
             // 
+            this.EmailLbl.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.EmailLbl.Location = new System.Drawing.Point(600, 375);
             this.EmailLbl.Name = "EmailLbl";
             this.EmailLbl.Size = new System.Drawing.Size(600, 25);
@@ -188,13 +197,16 @@
             // 
             // SearchBar
             // 
+            this.SearchBar.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.SearchBar.Location = new System.Drawing.Point(175, 245);
             this.SearchBar.Name = "SearchBar";
             this.SearchBar.Size = new System.Drawing.Size(200, 20);
             this.SearchBar.TabIndex = 16;
+            this.SearchBar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.SearchBar_KeyUp);
             // 
             // SearchLbl
             // 
+            this.SearchLbl.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.SearchLbl.AutoSize = true;
             this.SearchLbl.Location = new System.Drawing.Point(175, 230);
             this.SearchLbl.Name = "SearchLbl";
@@ -205,6 +217,7 @@
             // 
             // LastLoginLbl
             // 
+            this.LastLoginLbl.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.LastLoginLbl.Location = new System.Drawing.Point(600, 425);
             this.LastLoginLbl.Name = "LastLoginLbl";
             this.LastLoginLbl.Size = new System.Drawing.Size(600, 25);
@@ -214,6 +227,7 @@
             // 
             // EditActBtn
             // 
+            this.EditActBtn.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.EditActBtn.Location = new System.Drawing.Point(700, 515);
             this.EditActBtn.Name = "EditActBtn";
             this.EditActBtn.Size = new System.Drawing.Size(100, 30);
@@ -223,6 +237,7 @@
             // 
             // DisableActBtn
             // 
+            this.DisableActBtn.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.DisableActBtn.Location = new System.Drawing.Point(850, 515);
             this.DisableActBtn.Name = "DisableActBtn";
             this.DisableActBtn.Size = new System.Drawing.Size(100, 30);
@@ -232,6 +247,7 @@
             // 
             // DeleteActBtn
             // 
+            this.DeleteActBtn.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.DeleteActBtn.Location = new System.Drawing.Point(1000, 515);
             this.DeleteActBtn.Name = "DeleteActBtn";
             this.DeleteActBtn.Size = new System.Drawing.Size(100, 30);
@@ -239,11 +255,28 @@
             this.DeleteActBtn.Text = "Delete Account";
             this.DeleteActBtn.UseVisualStyleBackColor = true;
             // 
+            // ToggleThemeBtn
+            // 
+            this.ToggleThemeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ToggleThemeBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(178)))), ((int)(((byte)(204)))));
+            this.ToggleThemeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ToggleThemeBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.ToggleThemeBtn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.ToggleThemeBtn.Location = new System.Drawing.Point(950, 20);
+            this.ToggleThemeBtn.Name = "ToggleThemeBtn";
+            this.ToggleThemeBtn.Size = new System.Drawing.Size(200, 40);
+            this.ToggleThemeBtn.TabIndex = 22;
+            this.ToggleThemeBtn.Text = "Toggle Theme";
+            this.ToggleThemeBtn.UseVisualStyleBackColor = false;
+            this.ToggleThemeBtn.Click += new System.EventHandler(this.ToggleThemeBtn_Click);
+            // 
             // LecturerDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 626);
+            this.Controls.Add(this.ActGrid);
+            this.Controls.Add(this.ToggleThemeBtn);
             this.Controls.Add(this.DeleteActBtn);
             this.Controls.Add(this.DisableActBtn);
             this.Controls.Add(this.EditActBtn);
@@ -254,7 +287,6 @@
             this.Controls.Add(this.NewUserBtn);
             this.Controls.Add(this.NameLbl);
             this.Controls.Add(this.UsernameLbl);
-            this.Controls.Add(this.AccountGrid);
             this.Controls.Add(this.LectrActsBtn);
             this.Controls.Add(this.StdntActsBtn);
             this.Controls.Add(this.TitleLbl);
@@ -265,7 +297,7 @@
             this.Controls.Add(this.HeaderBg);
             this.Name = "LecturerDashboard";
             this.Text = "LecturerDashboard";
-            ((System.ComponentModel.ISupportInitialize)(this.AccountGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ActGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -281,7 +313,7 @@
         private System.Windows.Forms.Label TitleLbl;
         private System.Windows.Forms.Button StdntActsBtn;
         private System.Windows.Forms.Button LectrActsBtn;
-        private System.Windows.Forms.DataGridView AccountGrid;
+        private System.Windows.Forms.DataGridView ActGrid;
         private System.Windows.Forms.Label UsernameLbl;
         private System.Windows.Forms.Label NameLbl;
         private System.Windows.Forms.Button NewUserBtn;
@@ -292,5 +324,6 @@
         private System.Windows.Forms.Button EditActBtn;
         private System.Windows.Forms.Button DisableActBtn;
         private System.Windows.Forms.Button DeleteActBtn;
+        private System.Windows.Forms.Button ToggleThemeBtn;
     }
 }
