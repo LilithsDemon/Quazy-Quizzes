@@ -26,12 +26,12 @@ namespace Quazy_Quizzes
             "#FFFFFF", // Background
             "#11B9D1", // Header background
             "#000000", // Header Text
-            "00E5FF", // Secondary background
+            "#00E5FF", // Secondary background
             "#FFFFFF", // Card background
             "#000000", // Primary text
             "#FFFFFF", // Secondary text
             new ButtonColourScheme("#00B2CC", "#000000", "#00E2DA"), // Primary button
-            new ButtonColourScheme("#FF00FF", "#000000", "#DD00DD"), // Secondary button
+            new ButtonColourScheme("#FF00FF", "#FFFFFF", "#DD00DD"), // Secondary button
             new ButtonColourScheme("#FF0000", "#FFFFFF", "#DD0000") // Emergency button
         );
 
@@ -44,7 +44,7 @@ namespace Quazy_Quizzes
             "#FFFFFF", // Primary text
             "#000000", // Secondary text
             new ButtonColourScheme("#00B2CC", "#000000", "#00E2DA"), // Primary button
-            new ButtonColourScheme("#FF00FF", "#000000", "#DD00DD"), // Secondary button
+            new ButtonColourScheme("#FF00FF", "#FFFFFF", "#DD00DD"), // Secondary button
             new ButtonColourScheme("#FF0000", "#FFFFFF", "#DD0000") // Emergency button
         );
 

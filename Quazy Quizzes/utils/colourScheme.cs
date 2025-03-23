@@ -94,20 +94,43 @@ namespace QQColourScheme
             textBoxElement.ForeColor = ColorTranslator.FromHtml(this._primaryText);
         }
 
+        // Sets the button based on what button type is passed in
+        private void SetColourSchemeButton(Button buttonElement, int buttonType)
+        {
+            ButtonColourScheme buttonColourScheme = this._primaryButtonColourScheme;
+            switch(buttonType)
+            {
+                case 0:
+                    buttonColourScheme = this._primaryButtonColourScheme;
+                    break;
+                case 1:
+                    buttonColourScheme = this._secondaryButtonColourScheme;
+                    break;
+                case 2:
+                    buttonColourScheme = this._emergencyButtonColourScheme;
+                    break;
+            }
+
+            buttonElement.BackColor = ColorTranslator.FromHtml(buttonColourScheme._buttonBackground);
+            buttonElement.ForeColor = ColorTranslator.FromHtml(buttonColourScheme._buttonText);
+            buttonElement.MouseHover += (sender, e) => buttonElement.BackColor = ColorTranslator.FromHtml(buttonColourScheme._buttonHover);
+            buttonElement.MouseLeave += (sender, e) => buttonElement.BackColor = ColorTranslator.FromHtml(buttonColourScheme._buttonBackground);
+            buttonElement.FlatStyle = FlatStyle.Flat;
+            buttonElement.FlatAppearance.BorderSize = 0;
+        }
+
         // Set the colour scheme on given Button Elements
         public void SetColourSchemePrimaryButtons(List<Button> buttonElements)
         {
-            foreach(Button buttonElement in buttonElements) SetColourSchemePrimaryButtons(buttonElement);
+            foreach (Button buttonElement in buttonElements) SetColourSchemePrimaryButtons(buttonElement);
         }
 
         // Method overloading to allow for just one Button element instead of a list of them
         public void SetColourSchemePrimaryButtons(Button buttonElement)
         {
-            buttonElement.BackColor = ColorTranslator.FromHtml(this._primaryButtonColourScheme._buttonBackground);
-            buttonElement.ForeColor = ColorTranslator.FromHtml(this._primaryButtonColourScheme._buttonText);
-            buttonElement.MouseHover += (sender, e) => buttonElement.BackColor = ColorTranslator.FromHtml(this._primaryButtonColourScheme._buttonHover);
+            SetColourSchemeButton(buttonElement, 0);
         }
-
+        
         public void SetColourSchemeSecondaryButtons(List<Button> buttonElements)
         {
             foreach (Button buttonElement in buttonElements) SetColourSchemeSecondaryButtons(buttonElement);
@@ -116,9 +139,7 @@ namespace QQColourScheme
         // Method overloading to allow for just one Button element instead of a list of them
         public void SetColourSchemeSecondaryButtons(Button buttonElement)
         {
-            buttonElement.BackColor = ColorTranslator.FromHtml(this._secondaryButtonColourScheme._buttonBackground);
-            buttonElement.ForeColor = ColorTranslator.FromHtml(this._secondaryButtonColourScheme._buttonText);
-            buttonElement.MouseHover += (sender, e) => buttonElement.BackColor = ColorTranslator.FromHtml(this._secondaryButtonColourScheme._buttonHover);
+            SetColourSchemeButton(buttonElement, 1);
         }
 
         public void SetColourSchemeEmergencyButtons(List<Button> buttonElements)
@@ -129,9 +150,7 @@ namespace QQColourScheme
         // Method overloading to allow for just one Button element instead of a list of them
         public void SetColourSchemeEmergencyButtons(Button buttonElement)
         {
-            buttonElement.BackColor = ColorTranslator.FromHtml(this._emergencyButtonColourScheme._buttonBackground);
-            buttonElement.ForeColor = ColorTranslator.FromHtml(this._emergencyButtonColourScheme._buttonText);
-            buttonElement.MouseHover += (sender, e) => buttonElement.BackColor = ColorTranslator.FromHtml(this._emergencyButtonColourScheme._buttonHover);
+            SetColourSchemeButton(buttonElement, 2);
         }
     }
 }

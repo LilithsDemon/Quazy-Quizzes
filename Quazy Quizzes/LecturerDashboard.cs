@@ -24,9 +24,9 @@ namespace Quazy_Quizzes
         {
             InitializeComponent();
 
-            this._primaryButtons = new List<Button> { UsersBtn };
-            this._secondaryButtons = new List<Button> { TestsBtn };
-            this._emergencyButtons = new List<Button> { LogOutBtn };
+            this._primaryButtons = new List<Button> { UsersBtn, TestsBtn, NewUserBtn };
+            this._secondaryButtons = new List<Button> { StdntActsBtn, LectrActsBtn, EditActBtn };
+            this._emergencyButtons = new List<Button> { LogOutBtn, DisableActBtn, DeleteActBtn };
 
             // Get page to match colour scheme
             if (Program._isDarkMode) SetColourScheme(Program._darkTheme);
@@ -37,17 +37,14 @@ namespace Quazy_Quizzes
         {
             this.BackColor = ColorTranslator.FromHtml(colourScheme._background);
 
-            this.HeaderBg.ForeColor = ColorTranslator.FromHtml(colourScheme._foregroudText);
-            this.HeaderBg.BackColor = ColorTranslator.FromHtml(colourScheme._headerBackground);
+            colourScheme.SetColourSchemeHeader(HeaderBg);
             this.SidebarBg.BackColor = ColorTranslator.FromHtml(colourScheme._secondaryBackground);
-            this.SidebarBg.ForeColor = ColorTranslator.FromHtml(colourScheme._secondaryTextFg);
+            this.SidebarBg.ForeColor = ColorTranslator.FromHtml(colourScheme._secondaryText);
 
 
             colourScheme.SetColourSchemePrimaryButtons(_primaryButtons);
             colourScheme.SetColourSchemeSecondaryButtons(_secondaryButtons);
             colourScheme.SetColourSchemeEmergencyButtons(_emergencyButtons);
         }
-
-
     }
 }
