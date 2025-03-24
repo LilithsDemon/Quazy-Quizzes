@@ -6,6 +6,9 @@ using Quazy_Quizzes;
 
 namespace QQColourScheme
 {
+
+    // Class to hold the colour scheme for individual buttons
+    // Allow a more fluid way to make button profiles.
     class ButtonColourScheme
     {
         public string _buttonBackground { private set; get; }
@@ -113,8 +116,12 @@ namespace QQColourScheme
 
             buttonElement.BackColor = ColorTranslator.FromHtml(buttonColourScheme._buttonBackground);
             buttonElement.ForeColor = ColorTranslator.FromHtml(buttonColourScheme._buttonText);
+
+            // Change the colour of the button when the mouse hovers over it
             buttonElement.MouseHover += (sender, e) => buttonElement.BackColor = ColorTranslator.FromHtml(buttonColourScheme._buttonHover);
             buttonElement.MouseLeave += (sender, e) => buttonElement.BackColor = ColorTranslator.FromHtml(buttonColourScheme._buttonBackground);
+
+            // Standard button styling settingss
             buttonElement.FlatStyle = FlatStyle.Flat;
             buttonElement.FlatAppearance.BorderSize = 1;
         }
