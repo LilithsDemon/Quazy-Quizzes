@@ -8,8 +8,8 @@ namespace Status
 {
     class CodeStatus
     {
-        protected int _statusCode = 0;
-        protected string _statusMessage = "";
+        public int _statusCode { get; protected set; } = 0;
+        public string _statusMessage { get; protected set; } = "";
 
         public CodeStatus(int statusCode, string statusMessage)
         {
