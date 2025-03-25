@@ -1,26 +1,33 @@
 ﻿using System;
+using System.Globalization;
 using Conn;
+using QQStoredProcedures;
 using Status;
 
 namespace Registration
 {
     class Register
     {
-        private string _username = null;
-        private string _firstName = null;
-        private string _lastName = null;
-        private string _password = null;
-        private bool? _role = null;
-        private int? _securityQuestion = null;
-        private string _securityAnswer = null;
+        private string _username;
+        private string _firstName;
+        private string _lastName;
+        private string _email;
+        private string _password;
+        private int _role;
+        private bool _active;
+        private int _securityQuestion;
+        private string _securityAnswer;
 
-        public Register(string username, string firstName, string lastName, string password, bool role, int securityQuestion, string securityAnswer)
+        public Register(string username, string firstName, string lastName, string email, string password,
+            int role, bool active, int securityQuestion, string securityAnswer)
         {
             this._username = username;
             this._firstName = firstName;
             this._lastName = lastName;
+            this._email = email;
             this._password = password;
             this._role = role;
+            this._active = active;
             this._securityQuestion = securityQuestion;
             this._securityAnswer = securityAnswer;
         }
@@ -30,27 +37,28 @@ namespace Registration
             // Check to see if user with that username already exists
             try
             {
-                var reader = new ConnectionHandler().ExectuteQuery("SELECT * FROM `Users` WHERE 'UserName' = @username",
-                new string[] { "@username" }, new string[] { this._username });
-                // If there is lines then the user exists and should error
-                return new CodeStatus(400, "Sorry a user with this username already exists");
-
+                var reader = StoredProcedures.GetAllUserDataFromUsername(this._username);
+                // If there is lines then a user with that username already exists
+                if (reader.HasRows) return new CodeStatus(400, "Sorry a user with this username already exists");
             }
             catch (Exception ex) // If exception states that no data exists then we know that the username is free
             {
-                if (ex.Message != "No rows") return new CodeStatus(400, ex.Message);
+
             }
 
 
             // Insert user to database
-            string insertSQL = "INSERT INTO `Users`(`UserID`, `UserName`, `FirstName`, `LastName`, `Password`, `Role`, `Active`, `SecurityQ`, `SecurityA`)" +
-                            " VALUES (null, @userName, @firstName, @lastName, @password, @role, @active, @securityQ, @securityA)";
-            string[] insertParamNames = { "@userName", "@firstName", "@lastName", "@password", "@role", "@active", "securityQ", "securityA" };
+            string insertSQL = "INSERT INTO `Users`(`UserID`, `UserName`, `FirstName`, `LastName`, `Email`, `Password`, `Role`, `Active`, `SecurityQ`, `SecurityA`, `LastLogIn`)" +
+                            " VALUES (null, @userName, @firstName, @lastName, @email, @password, @role, @active, @securityQ, @securityA, @lastLogIn)";
+            string[] insertParamNames = { "@userName", "@firstName", "@lastName", "@email", "@password", "@role", "@active", "@securityQ", "@securityA", "@lastLogIn" };
 
             this._password = BCrypt.Net.BCrypt.HashPassword(this._password);
             this._securityAnswer = BCrypt.Net.BCrypt.HashPassword(this._securityAnswer);
 
-            string[] insertParameters = { this._username, this._firstName, this._lastName, this._password, this._role.ToString(), this._role.ToString(), this._securityQuestion.ToString(), this._securityAnswer };
+            DateTime dateTime = DateTime.Now;
+
+            string[] insertParameters = { this._username, this._firstName, this._lastName, this._email, this._password,
+                this._role.ToString(), this._role.ToString(), this._securityQuestion.ToString(), this._securityAnswer, dateTime.ToString("yyyy-MM-dd HH:mm:ss")};
 
             bool inserted = false;
 

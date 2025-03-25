@@ -10,6 +10,7 @@ using QQColourScheme;
 using UserData;
 using LogIn;
 using Status;
+using Registration;
 
 namespace Quazy_Quizzes
 {
@@ -67,8 +68,6 @@ namespace Quazy_Quizzes
             */
 
             /* Quick Test of login
-            */
-
             UserLogin userLogin = new UserLogin("Lucy", "password123");
             CodeStatus codeStatus = userLogin.LoginWOSecurity();
             Console.WriteLine(codeStatus._statusCode.ToString() + " | " + codeStatus._statusMessage );
@@ -78,6 +77,13 @@ namespace Quazy_Quizzes
             Console.WriteLine(_user._lastName);
             Console.WriteLine(_user._email);
             Console.WriteLine(_user._role);
+            */
+
+            /* Quick Test of registration
+            Register register = new Register("registration_test_user", "test", "user", "test_user@email.com", "password123", 0, false, 1, "Hello World!");
+            CodeStatus registerStatus = register.RegisterUser();
+            Console.WriteLine(registerStatus._statusCode.ToString() + " | " + registerStatus._statusMessage);
+            */
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

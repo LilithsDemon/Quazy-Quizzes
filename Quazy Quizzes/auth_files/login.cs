@@ -35,6 +35,15 @@ namespace LogIn
             return StoredProcedures.GetAllUserDataFromUsername(this._username);
         }
 
+        private void UpdateLastLogIn()
+        {
+            // Update the last login time
+            string updateSQL = "UPDATE `Users` SET `LastLogIn` = @lastLogIn WHERE `UserName` = @userName";
+            string[] updateParamNames = { "@lastLogIn", "@userName" };
+            string[] updateParameters = { DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), this._username };
+            new ConnectionHandler().ExectuteCommand(updateSQL, updateParamNames, updateParameters);
+        }
+
         private void SetUserData(int userID, string username, string firstName, string lastName, int role, string email)
         {
             // Set the user data to the saved user class
@@ -50,7 +59,9 @@ namespace LogIn
                 // Set the program user data
                 SetUserData(Convert.ToInt32(reader["UserID"]), reader["UserName"].ToString(), reader["FirstName"].ToString(),
                     reader["LastName"].ToString(), Convert.ToInt32(reader["Role"]), reader["Email"].ToString());
+
                 // Logged in
+                UpdateLastLogIn();
                 return new CodeStatus(200, "Login Successful");
             }
             else return new CodeStatus(401, "User entered the wrong password, or security question");
@@ -65,7 +76,9 @@ namespace LogIn
                 // Set the program user data
                 SetUserData(Convert.ToInt32(reader["UserID"]), reader["UserName"].ToString(), reader["FirstName"].ToString(),
                     reader["LastName"].ToString(), Convert.ToInt32(reader["Role"]), reader["Email"].ToString());
+
                 // Logged in
+                UpdateLastLogIn();
                 return new CodeStatus(200, "Login Successful");
             }
             else return new CodeStatus(401, "User entered the wrong password, or security question");
