@@ -7,6 +7,9 @@ using Conn;
 using QQStoredProcedures;
 using QQContactForm;
 using QQColourScheme;
+using UserData;
+using LogIn;
+using Status;
 
 namespace Quazy_Quizzes
 {
@@ -19,6 +22,8 @@ namespace Quazy_Quizzes
 
         // Boolean to store what theme we are using
         public static bool _isDarkMode = false;
+
+        public static User _user = new User();
 
         // Setting up a light theme class to store the data
 
@@ -60,11 +65,25 @@ namespace Quazy_Quizzes
                 Console.WriteLine(examName + " " + examScore);
             }
             */
-        
+
+            /* Quick Test of login
+            */
+
+            UserLogin userLogin = new UserLogin("Lucy", "password123");
+            CodeStatus codeStatus = userLogin.LoginWOSecurity();
+            Console.WriteLine(codeStatus._statusCode.ToString() + " | " + codeStatus._statusMessage );
+            Console.WriteLine(_user._userID);
+            Console.WriteLine(_user._username);
+            Console.WriteLine(_user._firstName);
+            Console.WriteLine(_user._lastName);
+            Console.WriteLine(_user._email);
+            Console.WriteLine(_user._role);
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
-            Application.Run(new LecturerDashboard());
+            Application.Run(new Load());
+            
         }
     }
 }
