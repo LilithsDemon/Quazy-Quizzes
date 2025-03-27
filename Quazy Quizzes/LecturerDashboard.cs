@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using QQColourScheme;
 using Conn;
 using QQStoredProcedures;
+using System.Net.Mail;
 
 namespace Quazy_Quizzes
 {
@@ -132,7 +133,8 @@ namespace Quazy_Quizzes
             // For each user
             while (reader.Read())
             {
-                string active = (reader[1].ToString() == "true") ? "Active" : "Inactive";
+                Console.WriteLine(reader[1].ToString());
+                string active = (reader[1].ToString() == "True") ? "Active" : "Inactive";
                 ActGrid.Rows.Add(reader[0].ToString(), active);
             }
 
@@ -143,6 +145,19 @@ namespace Quazy_Quizzes
             }
         }
 
+        private void ChangeActStatusBtn(bool actState)
+        {
+            if (actState) {
+                DisableActBtn.Text = "Disable Account";
+                if (Program._isDarkMode) Program._darkTheme.SetColourSchemeEmergencyButtons(DisableActBtn);
+                else if (!Program._isDarkMode) Program._lightTheme.SetColourSchemeEmergencyButtons(DisableActBtn);
+                return;
+            }
+            DisableActBtn.Text = "Enable Account";
+            if (Program._isDarkMode) Program._darkTheme.SetColourSchemePrimaryButtons(DisableActBtn);
+            else if (!Program._isDarkMode) Program._lightTheme.SetColourSchemePrimaryButtons(DisableActBtn);
+        }
+
         // If a cell is clicked it will load the users data for that user
         private void ActGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -151,6 +166,8 @@ namespace Quazy_Quizzes
                 DataGridViewRow row = ActGrid.Rows[e.RowIndex];
                 if (row.Cells["UserName"].Value == null) return;
                 string username = row.Cells["UserName"].Value.ToString();
+                if (row.Cells["Status"].Value.ToString() == "Active") ChangeActStatusBtn(true);
+                else ChangeActStatusBtn(false);
                 LoadUserInfo(username);
             }
         }
@@ -181,8 +198,30 @@ namespace Quazy_Quizzes
                 DataGridViewRow row = ActGrid.SelectedRows[0];
                 if (row.Cells["UserName"].Value == null) return;
                 string username = row.Cells["UserName"].Value.ToString();
+                if (row.Cells["Status"].Value.ToString() == "Active") ChangeActStatusBtn(true);
+                else ChangeActStatusBtn(false);
                 LoadUserInfo(username);
             }
+        }
+
+        private void EditActBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DisableActBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DeleteActBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void NewUserBtn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

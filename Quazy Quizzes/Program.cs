@@ -81,7 +81,7 @@ namespace Quazy_Quizzes
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
-            Application.Run(new Load());
+            Application.Run(new LecturerDashboard());
             
         }
     }

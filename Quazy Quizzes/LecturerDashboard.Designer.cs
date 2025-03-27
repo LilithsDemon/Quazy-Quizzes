@@ -185,6 +185,7 @@
             this.NewUserBtn.TabIndex = 14;
             this.NewUserBtn.Text = "Create New user";
             this.NewUserBtn.UseVisualStyleBackColor = true;
+            this.NewUserBtn.Click += new System.EventHandler(this.NewUserBtn_Click);
             // 
             // EmailLbl
             // 
@@ -238,6 +239,7 @@
             this.EditActBtn.TabIndex = 19;
             this.EditActBtn.Text = "Edit Account";
             this.EditActBtn.UseVisualStyleBackColor = true;
+            this.EditActBtn.Click += new System.EventHandler(this.EditActBtn_Click);
             // 
             // DisableActBtn
             // 
@@ -248,6 +250,7 @@
             this.DisableActBtn.TabIndex = 20;
             this.DisableActBtn.Text = "Disable Account";
             this.DisableActBtn.UseVisualStyleBackColor = true;
+            this.DisableActBtn.Click += new System.EventHandler(this.DisableActBtn_Click);
             // 
             // DeleteActBtn
             // 
@@ -258,6 +261,7 @@
             this.DeleteActBtn.TabIndex = 21;
             this.DeleteActBtn.Text = "Delete Account";
             this.DeleteActBtn.UseVisualStyleBackColor = true;
+            this.DeleteActBtn.Click += new System.EventHandler(this.DeleteActBtn_Click);
             // 
             // ToggleThemeBtn
             // 
