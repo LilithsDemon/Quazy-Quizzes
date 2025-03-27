@@ -70,13 +70,6 @@ namespace Quazy_Quizzes
             /* Quick Test of login
             UserLogin userLogin = new UserLogin("Lucy", "password123");
             CodeStatus codeStatus = userLogin.LoginWOSecurity();
-            Console.WriteLine(codeStatus._statusCode.ToString() + " | " + codeStatus._statusMessage );
-            Console.WriteLine(_user._userID);
-            Console.WriteLine(_user._username);
-            Console.WriteLine(_user._firstName);
-            Console.WriteLine(_user._lastName);
-            Console.WriteLine(_user._email);
-            Console.WriteLine(_user._role);
             */
 
             /* Quick Test of registration
@@ -88,7 +81,7 @@ namespace Quazy_Quizzes
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
-            Application.Run(new Load());
+            Application.Run(new Quizzes());
             
         }
     }
