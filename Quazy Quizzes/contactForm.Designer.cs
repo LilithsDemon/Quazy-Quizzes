@@ -55,6 +55,7 @@ namespace QQContactForm
             // 
             // _btnBack
             // 
+            this._btnBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
             this._btnBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(178)))), ((int)(((byte)(204)))));
             this._btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
@@ -84,8 +85,7 @@ namespace QQContactForm
             // 
             // _lblSubject
             // 
-            this._lblSubject.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this._lblSubject.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
             this._lblSubject.AutoSize = true;
             this._lblSubject.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this._lblSubject.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
@@ -97,8 +97,7 @@ namespace QQContactForm
             // 
             // _lblMessage
             // 
-            this._lblMessage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this._lblMessage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
             this._lblMessage.AutoSize = true;
             this._lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this._lblMessage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
@@ -176,6 +175,8 @@ namespace QQContactForm
             // 
             // TxtEmail
             // 
+            this.TxtEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right));
             this.TxtEmail.BackColor = System.Drawing.Color.White;
             this.TxtEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
@@ -187,6 +188,8 @@ namespace QQContactForm
             // 
             // TxtSubject
             // 
+            this.TxtSubject.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right));
             this.TxtSubject.BackColor = System.Drawing.Color.White;
             this.TxtSubject.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TxtSubject.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
@@ -198,8 +201,7 @@ namespace QQContactForm
             // 
             // _lblEmail
             // 
-            this._lblEmail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this._lblEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)));
             this._lblEmail.AutoSize = true;
             this._lblEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this._lblEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
@@ -217,6 +219,7 @@ namespace QQContactForm
             this.Controls.Add(this._btnBack);
             this.Controls.Add(this._containerPanel);
             this.Controls.Add(this._lblTitle);
+            this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "ContactForm";
             this.Text = "Contact Us";
             this._containerPanel.ResumeLayout(false);
