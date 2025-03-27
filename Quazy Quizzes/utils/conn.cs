@@ -24,6 +24,22 @@ namespace Conn
             this._constring = $"Server={this._host};User={this._username};Database={this._dbName};Password={this._password}; CharSet=utf8; SslMode=none";
         }
 
+        // Check Connection
+        public CodeStatus CheckConnection()
+        {
+            MySqlConnection con = new MySqlConnection(this._constring);
+            try
+            {
+                con.Open();
+            }
+            catch (Exception e)
+            {
+                if (e.GetType() == typeof(MySqlConnector.MySqlException)) return new CodeStatus(503, "Error with connection to Database");
+                else return new CodeStatus(500, "Unknown error");
+            }
+            return new CodeStatus(200, "Connection Established");
+        }
+
         // Open connection for inside this class, is private so should not be able to be used outside the class
         private MySqlConnection OpenConnection()
         {
@@ -33,8 +49,9 @@ namespace Conn
         }
 
         //Closes the connection opened to the database inside of this class
-        private void CloseConnection(MySqlConnection con)
+        private void CloseConnection()
         {
+            MySqlConnection con = new MySqlConnection(this._constring);
             con.Close();
         }
 
@@ -62,6 +79,20 @@ namespace Conn
             return command;
         }
 
+        // Creates a the command sent to the database for a stored procedure.
+        private MySqlCommand CreateStoredCommand(MySqlConnection con, string storedName, string[] paramNames, string[] parameters)
+        {
+            var command = con.CreateCommand();
+            command.CommandType = CommandType.StoredProcedure;
+            command.CommandText = storedName;
+            // Goes through paramNames and ties the paremeter to the name for the parametised query
+            for (int i = 0; i < paramNames.Length; i++)
+            {
+                command.Parameters.AddWithValue(paramNames[i], parameters[i]);
+            }
+            return command;
+        }
+
         // Executes query with params such as Select * From `Users` Where ...
         public MySqlDataReader ExectuteQuery(string sql, string[] paramName, string[] parameters)
         {
@@ -71,7 +102,7 @@ namespace Conn
 
             var command = CreateCommand(con, sql, paramName, parameters);
             var reader = command.ExecuteReader();
-            CloseConnection(con);
+            CloseConnection();
             if (reader.HasRows) return reader;
             else throw new Exception("No rows returned");
         }
@@ -83,7 +114,7 @@ namespace Conn
             var command = con.CreateCommand();
             command.CommandText = @sql;
             var reader = command.ExecuteReader();
-            CloseConnection(con);
+            CloseConnection();
             if (reader.HasRows) return reader;
             else throw new Exception("No rows returned");
         }
@@ -96,7 +127,7 @@ namespace Conn
             MySqlConnection con = OpenConnection();
             var command = CreateCommand(con, sql, paramName, parameters);
             int rows = command.ExecuteNonQuery();
-            CloseConnection(con);
+            CloseConnection();
             // If no rows were affected return false to show it did not work else return true
             if (rows == -1) return false;
             else return true;
@@ -109,10 +140,20 @@ namespace Conn
             var command = con.CreateCommand();
             command.CommandText = @sql;
             int rows = command.ExecuteNonQuery();
-            CloseConnection(con);
+            CloseConnection();
             // If no rows were affected return false to show it did not work else return true
             if (rows == -1) return false;
             else return true;
+        }
+
+        // This will be used to be able to use a stored query that is used for getting data from the database
+        public MySqlDataReader StoredQuery(string procedureName, string[] paramNames, string[] parameters)
+        {
+            MySqlConnection con = OpenConnection();
+            var command = CreateStoredCommand(con, procedureName, paramNames, parameters);
+            var reader = command.ExecuteReader();
+            CloseConnection();
+            return reader;
         }
 
     }

@@ -3,48 +3,32 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using QQColourScheme;
+using Quazy_Quizzes;
 
 namespace QQContactForm
 {
     public partial class ContactForm : Form
     {
-        private bool _isDarkMode = false;
-        private ColourScheme _lightMode = new ColourScheme(
-            "#FFFFFF", // Background
-            "#00E5FF", // Secondary background
-            "#1E1E1E", // Primary text
-            "#FFFFFF", // Secondary text
-            "#FFFFFF", // Input background
-            "#1E1E1E", // Input text
-            "#00B2CC",  // Button background
-            "#FFFFFF",  // Button text
-            "#00A2BB",  // Button hover
-            "#00B2CC"   // Header background
-        );
 
-        private ColourScheme _darkTheme = new ColourScheme(
-            "#1E1E1E", // Background
-            "#00E5FF", // Secondary background
-            "#FFFFFF", // Primary text
-            "#121212", // Secondary text
-            "#121212", // Input background
-            "#FFFFFF", // Input text
-            "#00B2CC",  // Button background
-            "#FFFFFF",  // Button text
-            "#00A2BB",  // Button hover
-            "#00B2CC"   // Header background
-        );
-
+        // Groups of the different components, used when setting the colours for them
         private List<Label> _stdText = new List<Label>();
         private List<RichTextBox> _stdInputBox = new List<RichTextBox>();
-        private List<Button> _stdButton = new List<Button>();
+        private List<Button> _primaryButton = new List<Button>();
+        private List<Button> _secondaryButton = new List<Button>();
 
         public ContactForm()
         {
             InitializeComponent();
+            // The different components in the page sorted into categories
             _stdText = new List<Label> {_lblMessage, _lblSubject, _lblEmail, _lblCounter};
             _stdInputBox = new List<RichTextBox> { _txtSubject, _txtMessage, _txtEmail };
-            _stdButton = new List<Button> { _btnBack, _btnToggleTheme, _btnSubmit };
+            _primaryButton = new List<Button> { _btnSubmit };
+            _secondaryButton = new List<Button> { _btnToggleTheme, _btnBack };
+
+
+            // Get page to match colour scheme
+            if(Program._isDarkMode) SetColourScheme(Program._darkTheme);
+            else SetColourScheme(Program._lightTheme);
         }
 
         private void BtnBack_Click(object sender, EventArgs e)
@@ -79,55 +63,31 @@ namespace QQContactForm
             popupForm.ShowDialog();
         }
 
+        // Chanes the elements to be the correct colours based on the colour scheme given for this page
+        private void SetColourScheme(ColourScheme colourScheme)
+        {
+            this.BackColor = ColorTranslator.FromHtml(colourScheme._background);
+            _containerPanel.BackColor = ColorTranslator.FromHtml(colourScheme._cardBackground);
+
+            colourScheme.SetColourSchemePrimaryText(_stdText);
+            colourScheme.SetColourSchemeTextBox(_stdInputBox);
+            colourScheme.SetColourSchemePrimaryButtons(_primaryButton);
+            colourScheme.SetColourSchemeSecondaryButtons(_secondaryButton);
+        }
+
+        // Changes the theme between light and dark mode
         private void ToggleTheme(object sender, EventArgs e)
         {
-            _isDarkMode = !_isDarkMode;
+            Program._isDarkMode = !Program._isDarkMode;
 
-            if (_isDarkMode)
+            // If is now supposed to be dark mode
+            if (Program._isDarkMode)
             {
-                this.BackColor = ColorTranslator.FromHtml(_darkTheme._background);
-                _containerPanel.BackColor = ColorTranslator.FromHtml(_darkTheme._cardBackground);
-                _lblTitle.ForeColor = ColorTranslator.FromHtml(_darkTheme._foregroudText);
-
-                for (int i = 0; i < _stdText.Count; i++)
-                {
-                    _stdText[i].ForeColor = ColorTranslator.FromHtml(_darkTheme._foregroudText);
-                    _stdText[i].BackColor = ColorTranslator.FromHtml(_darkTheme._backgroundText);
-                }
-
-                for(int i = 0; i < _stdInputBox.Count; i++)
-                {
-                    _stdInputBox[i].BackColor = ColorTranslator.FromHtml(_darkTheme._cardBackground);
-                    _stdInputBox[i].ForeColor = ColorTranslator.FromHtml(_darkTheme._secondaryTextFg);
-                }
-
-                for (int i = 0; i < _stdButton.Count; i++)
-                {
-                    _stdButton[i].BackColor = ColorTranslator.FromHtml(_darkTheme._buttonBackground);
-                }
+                SetColourScheme(Program._darkTheme);
                 return;
             }
 
-            this.BackColor = ColorTranslator.FromHtml(_lightMode._background);
-            _containerPanel.BackColor = ColorTranslator.FromHtml(_lightMode._cardBackground);
-            _lblTitle.ForeColor = ColorTranslator.FromHtml(_lightMode._foregroudText);
-
-            for (int i = 0; i < _stdText.Count; i++)
-            {
-                _stdText[i].ForeColor = ColorTranslator.FromHtml(_lightMode._foregroudText);
-                _stdText[i].BackColor = ColorTranslator.FromHtml(_lightMode._backgroundText);
-            }
-
-            for (int i = 0; i < _stdInputBox.Count; i++)
-            {
-                _stdInputBox[i].BackColor = ColorTranslator.FromHtml(_lightMode._cardBackground);
-                _stdInputBox[i].ForeColor = ColorTranslator.FromHtml(_lightMode._secondaryTextFg);
-            }
-
-            for (int i = 0; i < _stdButton.Count; i++)
-            {
-                _stdButton[i].BackColor = ColorTranslator.FromHtml(_lightMode._buttonBackground);
-            }
+            SetColourScheme(Program._lightTheme);
         }
 
         private void UpdateCharacterCount(object sender, EventArgs e)
