@@ -37,5 +37,21 @@ namespace QQStoredProcedures
             string[] parameters = new string[] { userId.ToString(), courseId.ToString() };
             return new ConnectionHandler().StoredQuery(procedureName, paramNames, parameters);
         }
+
+        public static MySqlDataReader GetAllStudents(string search)
+        {
+            string procedureName = "GetAllStudents";
+            string[] paramNames = new string[] { "@Search" };
+            string[] parameters = new string[] { search };
+            return new ConnectionHandler().StoredQuery(procedureName, paramNames, parameters);
+        }
+
+        public static MySqlDataReader GetAllLecturers(string search)
+        {
+            string procedureName = "GetAllLecturers";
+            string[] paramNames = new string[] { "@Search" };
+            string[] parameters = new string[] { search };
+            return new ConnectionHandler().StoredQuery(procedureName, paramNames, parameters);
+        }
     }
 }
