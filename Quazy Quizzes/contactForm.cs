@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Net;
+using System.Net.Mail;
 using System.Windows.Forms;
 using QQColourScheme;
 using Quazy_Quizzes;
@@ -9,8 +11,6 @@ namespace QQContactForm
 {
     public partial class ContactForm : Form
     {
-
-        // Groups of the different components, used when setting the colours for them
         private List<Label> _stdText = new List<Label>();
         private List<RichTextBox> _stdInputBox = new List<RichTextBox>();
         private List<Button> _primaryButton = new List<Button>();
@@ -19,21 +19,18 @@ namespace QQContactForm
         public ContactForm()
         {
             InitializeComponent();
-            // The different components in the page sorted into categories
-            _stdText = new List<Label> {_lblMessage, _lblSubject, _lblEmail, _lblCounter};
-            _stdInputBox = new List<RichTextBox> { _txtSubject, _txtMessage, _txtEmail };
+            _stdText = new List<Label> { _lblMessage, _lblSubject, _lblEmail, LblCounter };
+            _stdInputBox = new List<RichTextBox> { TxtSubject, TxtMessage, TxtEmail };
             _primaryButton = new List<Button> { _btnSubmit };
             _secondaryButton = new List<Button> { _btnToggleTheme, _btnBack };
 
-
-            // Get page to match colour scheme
-            if(Program._isDarkMode) SetColourScheme(Program._darkTheme);
+            if (Program._isDarkMode) SetColourScheme(Program._darkTheme);
             else SetColourScheme(Program._lightTheme);
         }
 
         private void BtnBack_Click(object sender, EventArgs e)
         {
-            this.Hide(); // Hide ContactForm
+            this.Hide();
             Form popupForm = new Form
             {
                 Size = new Size(300, 200),
@@ -55,15 +52,14 @@ namespace QQContactForm
             };
             btnShowForm.Click += (s, args) =>
             {
-                this.Show(); // Show ContactForm
-                popupForm.Close(); // Close the popup form
+                this.Show();
+                popupForm.Close();
             };
 
             popupForm.Controls.Add(btnShowForm);
             popupForm.ShowDialog();
         }
 
-        // Chanes the elements to be the correct colours based on the colour scheme given for this page
         private void SetColourScheme(ColourScheme colourScheme)
         {
             this.BackColor = ColorTranslator.FromHtml(colourScheme._background);
@@ -75,12 +71,10 @@ namespace QQContactForm
             colourScheme.SetColourSchemeSecondaryButtons(_secondaryButton);
         }
 
-        // Changes the theme between light and dark mode
         private void ToggleTheme(object sender, EventArgs e)
         {
             Program._isDarkMode = !Program._isDarkMode;
 
-            // If is now supposed to be dark mode
             if (Program._isDarkMode)
             {
                 SetColourScheme(Program._darkTheme);
@@ -92,28 +86,56 @@ namespace QQContactForm
 
         private void UpdateCharacterCount(object sender, EventArgs e)
         {
-            _lblCounter.Text = $"{_txtMessage.Text.Length}/500";
+            LblCounter.Text = $"{TxtMessage.Text.Length}/500";
         }
 
         private void BtnSubmit_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(_txtSubject.Text) || string.IsNullOrWhiteSpace(_txtMessage.Text) || (string.IsNullOrWhiteSpace(_txtEmail.Text)))
+            if (string.IsNullOrWhiteSpace(TxtSubject.Text) ||
+                string.IsNullOrWhiteSpace(TxtMessage.Text) ||
+                string.IsNullOrWhiteSpace(TxtEmail.Text))
             {
                 MessageBox.Show("Please ensure all fields are filled in.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            else
+
+            try
             {
-                MessageBox.Show("Your message has been submitted!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                _txtSubject.Clear();
-                _txtMessage.Clear();
-                _txtEmail.Clear();
-                _lblCounter.Text = "0/500";
+                // Email details
+                string userEmail = TxtEmail.Text;
+                string subject = TxtSubject.Text;
+                string body = TxtMessage.Text;
+
+                MailMessage mail = new MailMessage();
+                mail.From = new MailAddress("olitaylorjones@gmail.com");
+                mail.To.Add("ws330966@weston.ac.uk");
+                mail.Subject = subject;
+                mail.Body = $"From: {userEmail}\n\n{body}";
+                mail.ReplyToList.Add(new MailAddress(userEmail));
+
+                SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587)
+                {
+                    Credentials = new NetworkCredential("olitaylorjones@gmail.com", "zgwwkccuflyjbaoo"),
+                    EnableSsl = true
+                };
+
+                smtp.Send(mail);
+
+                MessageBox.Show("Your message has been submitted and emailed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                TxtSubject.Clear();
+                TxtMessage.Clear();
+                TxtEmail.Clear();
+                LblCounter.Text = "0/500";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to send email.\n\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void _lblCounter_Click(object sender, EventArgs e)
         {
-
         }
     }
 }

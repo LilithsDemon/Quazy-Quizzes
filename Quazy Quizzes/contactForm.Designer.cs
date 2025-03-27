@@ -9,8 +9,8 @@ namespace QQContactForm
         private IContainer _components = null;
         private Label _lblTitle;
         private Button _btnBack, _btnToggleTheme, _btnSubmit;
-        private Label _lblSubject, _lblMessage, _lblCounter, _lblEmail;
-        private RichTextBox _txtMessage;
+        private Label _lblSubject, _lblMessage, LblCounter, _lblEmail;
+        private RichTextBox TxtMessage;
         private Panel _containerPanel;
 
         protected override void Dispose(bool disposing)
@@ -29,12 +29,12 @@ namespace QQContactForm
             this._btnToggleTheme = new System.Windows.Forms.Button();
             this._lblSubject = new System.Windows.Forms.Label();
             this._lblMessage = new System.Windows.Forms.Label();
-            this._txtMessage = new System.Windows.Forms.RichTextBox();
-            this._lblCounter = new System.Windows.Forms.Label();
+            this.TxtMessage = new System.Windows.Forms.RichTextBox();
+            this.LblCounter = new System.Windows.Forms.Label();
             this._btnSubmit = new System.Windows.Forms.Button();
             this._containerPanel = new System.Windows.Forms.Panel();
-            this._txtEmail = new System.Windows.Forms.RichTextBox();
-            this._txtSubject = new System.Windows.Forms.RichTextBox();
+            this.TxtEmail = new System.Windows.Forms.RichTextBox();
+            this.TxtSubject = new System.Windows.Forms.RichTextBox();
             this._lblEmail = new System.Windows.Forms.Label();
             this._containerPanel.SuspendLayout();
             this.SuspendLayout();
@@ -108,35 +108,35 @@ namespace QQContactForm
             this._lblMessage.TabIndex = 2;
             this._lblMessage.Text = "Your Message:";
             // 
-            // _txtMessage
+            // TxtMessage
             // 
-            this._txtMessage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.TxtMessage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this._txtMessage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this._txtMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._txtMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this._txtMessage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this._txtMessage.Location = new System.Drawing.Point(50, 190);
-            this._txtMessage.MaxLength = 500;
-            this._txtMessage.Name = "_txtMessage";
-            this._txtMessage.Size = new System.Drawing.Size(750, 180);
-            this._txtMessage.TabIndex = 3;
-            this._txtMessage.Text = "";
-            this._txtMessage.TextChanged += new System.EventHandler(this.UpdateCharacterCount);
+            this.TxtMessage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.TxtMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.TxtMessage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.TxtMessage.Location = new System.Drawing.Point(50, 190);
+            this.TxtMessage.MaxLength = 500;
+            this.TxtMessage.Name = "TxtMessage";
+            this.TxtMessage.Size = new System.Drawing.Size(750, 180);
+            this.TxtMessage.TabIndex = 3;
+            this.TxtMessage.Text = "";
+            this.TxtMessage.TextChanged += new System.EventHandler(this.UpdateCharacterCount);
             // 
-            // _lblCounter
+            // LblCounter
             // 
-            this._lblCounter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this._lblCounter.AutoSize = true;
-            this._lblCounter.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold);
-            this._lblCounter.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this._lblCounter.Location = new System.Drawing.Point(680, 380);
-            this._lblCounter.Name = "_lblCounter";
-            this._lblCounter.Size = new System.Drawing.Size(96, 36);
-            this._lblCounter.TabIndex = 4;
-            this._lblCounter.Text = "0/500";
-            this._lblCounter.Click += new System.EventHandler(this._lblCounter_Click);
+            this.LblCounter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.LblCounter.AutoSize = true;
+            this.LblCounter.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold);
+            this.LblCounter.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.LblCounter.Location = new System.Drawing.Point(680, 380);
+            this.LblCounter.Name = "LblCounter";
+            this.LblCounter.Size = new System.Drawing.Size(96, 36);
+            this.LblCounter.TabIndex = 4;
+            this.LblCounter.Text = "0/500";
+            this.LblCounter.Click += new System.EventHandler(this._lblCounter_Click);
             // 
             // _btnSubmit
             // 
@@ -160,13 +160,13 @@ namespace QQContactForm
             | System.Windows.Forms.AnchorStyles.Right)));
             this._containerPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this._containerPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._containerPanel.Controls.Add(this._txtEmail);
-            this._containerPanel.Controls.Add(this._txtSubject);
+            this._containerPanel.Controls.Add(this.TxtEmail);
+            this._containerPanel.Controls.Add(this.TxtSubject);
             this._containerPanel.Controls.Add(this._lblEmail);
             this._containerPanel.Controls.Add(this._lblSubject);
             this._containerPanel.Controls.Add(this._lblMessage);
-            this._containerPanel.Controls.Add(this._txtMessage);
-            this._containerPanel.Controls.Add(this._lblCounter);
+            this._containerPanel.Controls.Add(this.TxtMessage);
+            this._containerPanel.Controls.Add(this.LblCounter);
             this._containerPanel.Controls.Add(this._btnSubmit);
             this._containerPanel.Location = new System.Drawing.Point(200, 120);
             this._containerPanel.Name = "_containerPanel";
@@ -174,27 +174,27 @@ namespace QQContactForm
             this._containerPanel.Size = new System.Drawing.Size(880, 480);
             this._containerPanel.TabIndex = 0;
             // 
-            // _txtEmail
+            // TxtEmail
             // 
-            this._txtEmail.BackColor = System.Drawing.Color.White;
-            this._txtEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this._txtEmail.Location = new System.Drawing.Point(50, 111);
-            this._txtEmail.Name = "_txtEmail";
-            this._txtEmail.Size = new System.Drawing.Size(750, 36);
-            this._txtEmail.TabIndex = 9;
-            this._txtEmail.Text = "";
+            this.TxtEmail.BackColor = System.Drawing.Color.White;
+            this.TxtEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.TxtEmail.Location = new System.Drawing.Point(50, 111);
+            this.TxtEmail.Name = "TxtEmail";
+            this.TxtEmail.Size = new System.Drawing.Size(750, 36);
+            this.TxtEmail.TabIndex = 9;
+            this.TxtEmail.Text = "";
             // 
-            // _txtSubject
+            // TxtSubject
             // 
-            this._txtSubject.BackColor = System.Drawing.Color.White;
-            this._txtSubject.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._txtSubject.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this._txtSubject.Location = new System.Drawing.Point(50, 41);
-            this._txtSubject.Name = "_txtSubject";
-            this._txtSubject.Size = new System.Drawing.Size(750, 36);
-            this._txtSubject.TabIndex = 8;
-            this._txtSubject.Text = "";
+            this.TxtSubject.BackColor = System.Drawing.Color.White;
+            this.TxtSubject.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtSubject.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.TxtSubject.Location = new System.Drawing.Point(50, 41);
+            this.TxtSubject.Name = "TxtSubject";
+            this.TxtSubject.Size = new System.Drawing.Size(750, 36);
+            this.TxtSubject.TabIndex = 8;
+            this.TxtSubject.Text = "";
             // 
             // _lblEmail
             // 
@@ -225,7 +225,7 @@ namespace QQContactForm
 
         }
 
-        private RichTextBox _txtEmail;
-        private RichTextBox _txtSubject;
+        private RichTextBox TxtEmail;
+        private RichTextBox TxtSubject;
     }
 }
