@@ -9,9 +9,9 @@ namespace QQContactForm
         // Components used in the form
         private IContainer _components = null;
         private Label _lblTitle;
-        private Button _btnBack, _btnToggleTheme, _btnSubmit;
-        private Label _lblSubject, _lblMessage, _lblCounter, _lblEmail;
-        private RichTextBox _txtMessage, _txtEmail, _txtSubject;
+        private Button _btnBack, _btnToggleTheme, BtnSubmit;
+        private Label _lblSubject, _lblMessage, LblCounter, _lblEmail;
+        private RichTextBox TxtMessage, TxtEmail, TxtSubject;
         private Panel _containerPanel;
 
         // Dispose method to clean up resources
@@ -27,184 +27,204 @@ namespace QQContactForm
         // Initialize the components of the form
         private void InitializeComponent()
         {
-            // Title label at the top of the form
             this._lblTitle = new System.Windows.Forms.Label();
-            this._lblTitle.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            this._lblTitle.BackColor = Color.FromArgb(0, 229, 255);
-            this._lblTitle.Font = new Font("Microsoft Sans Serif", 36F, FontStyle.Bold);
-            this._lblTitle.ForeColor = Color.Black;
-            this._lblTitle.Location = new Point(0, 0);
+            this._btnBack = new System.Windows.Forms.Button();
+            this._btnToggleTheme = new System.Windows.Forms.Button();
+            this._lblSubject = new System.Windows.Forms.Label();
+            this._lblMessage = new System.Windows.Forms.Label();
+            this.TxtMessage = new System.Windows.Forms.RichTextBox();
+            this.LblCounter = new System.Windows.Forms.Label();
+            this.BtnSubmit = new System.Windows.Forms.Button();
+            this._containerPanel = new System.Windows.Forms.Panel();
+            this.TxtEmail = new System.Windows.Forms.RichTextBox();
+            this.TxtSubject = new System.Windows.Forms.RichTextBox();
+            this._lblEmail = new System.Windows.Forms.Label();
+            this._containerPanel.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // _lblTitle
+            // 
+            this._lblTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this._lblTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this._lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold);
+            this._lblTitle.ForeColor = System.Drawing.Color.Black;
+            this._lblTitle.Location = new System.Drawing.Point(0, 0);
             this._lblTitle.Name = "_lblTitle";
-            this._lblTitle.Size = new Size(1280, 80);
+            this._lblTitle.Size = new System.Drawing.Size(1280, 80);
             this._lblTitle.TabIndex = 1;
             this._lblTitle.Text = "Contact Us";
-            this._lblTitle.TextAlign = ContentAlignment.MiddleCenter;
-
-            // Back button to navigate to the previous form
-            this._btnBack = new System.Windows.Forms.Button();
-            this._btnBack.Anchor = AnchorStyles.Top | AnchorStyles.Left;
-            this._btnBack.BackColor = Color.FromArgb(0, 178, 204);
-            this._btnBack.FlatStyle = FlatStyle.Flat;
-            this._btnBack.Font = new Font("Microsoft Sans Serif", 18F);
-            this._btnBack.ForeColor = Color.White;
-            this._btnBack.Location = new Point(20, 20);
+            this._lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // _btnBack
+            // 
+            this._btnBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(178)))), ((int)(((byte)(204)))));
+            this._btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this._btnBack.ForeColor = System.Drawing.Color.White;
+            this._btnBack.Location = new System.Drawing.Point(20, 20);
             this._btnBack.Name = "_btnBack";
-            this._btnBack.Size = new Size(120, 40);
+            this._btnBack.Size = new System.Drawing.Size(120, 40);
             this._btnBack.TabIndex = 2;
             this._btnBack.Text = "Back";
             this._btnBack.UseVisualStyleBackColor = false;
-            this._btnBack.Click += new System.EventHandler(this.BtnBack_Click);
-
-            // Toggle theme button to switch between light and dark modes
-            this._btnToggleTheme = new System.Windows.Forms.Button();
-            this._btnToggleTheme.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            this._btnToggleTheme.BackColor = Color.FromArgb(0, 178, 204);
-            this._btnToggleTheme.FlatStyle = FlatStyle.Flat;
-            this._btnToggleTheme.Font = new Font("Microsoft Sans Serif", 18F);
-            this._btnToggleTheme.ForeColor = Color.White;
-            this._btnToggleTheme.Location = new Point(1108, 20);
+            this._btnBack.Click += new System.EventHandler(this.BackButton_Click);
+            // 
+            // _btnToggleTheme
+            // 
+            this._btnToggleTheme.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this._btnToggleTheme.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(178)))), ((int)(((byte)(204)))));
+            this._btnToggleTheme.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._btnToggleTheme.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this._btnToggleTheme.ForeColor = System.Drawing.Color.White;
+            this._btnToggleTheme.Location = new System.Drawing.Point(1108, 20);
             this._btnToggleTheme.Name = "_btnToggleTheme";
-            this._btnToggleTheme.Size = new Size(152, 40);
+            this._btnToggleTheme.Size = new System.Drawing.Size(152, 40);
             this._btnToggleTheme.TabIndex = 3;
             this._btnToggleTheme.Text = "Toggle Theme";
             this._btnToggleTheme.UseVisualStyleBackColor = false;
-            this._btnToggleTheme.Click += new System.EventHandler(this.ToggleTheme);
-
-            // Subject label
-            this._lblSubject = new System.Windows.Forms.Label();
-            this._lblSubject.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+            this._btnToggleTheme.Click += new System.EventHandler(this.ToggleTheme_ButtonClick);
+            // 
+            // _lblSubject
+            // 
             this._lblSubject.AutoSize = true;
-            this._lblSubject.Font = new Font("Microsoft Sans Serif", 18F);
-            this._lblSubject.ForeColor = Color.FromArgb(30, 30, 30);
-            this._lblSubject.Location = new Point(50, 9);
+            this._lblSubject.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this._lblSubject.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this._lblSubject.Location = new System.Drawing.Point(80, 39);
             this._lblSubject.Name = "_lblSubject";
-            this._lblSubject.Size = new Size(205, 29);
+            this._lblSubject.Size = new System.Drawing.Size(205, 29);
             this._lblSubject.TabIndex = 0;
             this._lblSubject.Text = "Message Subject:";
-
-            // Message label
-            this._lblMessage = new System.Windows.Forms.Label();
-            this._lblMessage.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+            // 
+            // _lblMessage
+            // 
             this._lblMessage.AutoSize = true;
-            this._lblMessage.Font = new Font("Microsoft Sans Serif", 18F);
-            this._lblMessage.ForeColor = Color.FromArgb(30, 30, 30);
-            this._lblMessage.Location = new Point(50, 150);
+            this._lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this._lblMessage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this._lblMessage.Location = new System.Drawing.Point(80, 180);
             this._lblMessage.Name = "_lblMessage";
-            this._lblMessage.Size = new Size(175, 29);
+            this._lblMessage.Size = new System.Drawing.Size(175, 29);
             this._lblMessage.TabIndex = 2;
             this._lblMessage.Text = "Your Message:";
-
-            // Message text box
-            this._txtMessage = new System.Windows.Forms.RichTextBox();
-            this._txtMessage.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            this._txtMessage.BackColor = Color.White;
-            this._txtMessage.BorderStyle = BorderStyle.FixedSingle;
-            this._txtMessage.Font = new Font("Microsoft Sans Serif", 18F);
-            this._txtMessage.ForeColor = Color.FromArgb(30, 30, 30);
-            this._txtMessage.Location = new Point(50, 190);
-            this._txtMessage.MaxLength = 500;
-            this._txtMessage.Name = "_txtMessage";
-            this._txtMessage.Size = new Size(750, 180);
-            this._txtMessage.TabIndex = 3;
-            this._txtMessage.Text = "";
-            this._txtMessage.TextChanged += new System.EventHandler(this.UpdateCharacterCount);
-
-            // Character counter label
-            this._lblCounter = new System.Windows.Forms.Label();
-            this._lblCounter.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            this._lblCounter.AutoSize = true;
-            this._lblCounter.Font = new Font("Microsoft Sans Serif", 22F, FontStyle.Bold);
-            this._lblCounter.ForeColor = Color.FromArgb(30, 30, 30);
-            this._lblCounter.Location = new Point(680, 380);
-            this._lblCounter.Name = "_lblCounter";
-            this._lblCounter.Size = new Size(96, 36);
-            this._lblCounter.TabIndex = 4;
-            this._lblCounter.Text = "0/500";
-            this._lblCounter.Click += new System.EventHandler(this._lblCounter_Click);
-
-            // Submit button
-            this._btnSubmit = new System.Windows.Forms.Button();
-            this._btnSubmit.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            this._btnSubmit.BackColor = Color.FromArgb(0, 178, 204);
-            this._btnSubmit.FlatStyle = FlatStyle.Flat;
-            this._btnSubmit.Font = new Font("Microsoft Sans Serif", 18F);
-            this._btnSubmit.ForeColor = Color.White;
-            this._btnSubmit.Location = new Point(310, 420);
-            this._btnSubmit.Name = "_btnSubmit";
-            this._btnSubmit.Size = new Size(180, 50);
-            this._btnSubmit.TabIndex = 5;
-            this._btnSubmit.Text = "Submit";
-            this._btnSubmit.UseVisualStyleBackColor = false;
-            this._btnSubmit.Click += new System.EventHandler(this.BtnSubmit_Click);
-
-            // Container panel for form elements
-            this._containerPanel = new System.Windows.Forms.Panel();
-            this._containerPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            this._containerPanel.BackColor = Color.White;
-            this._containerPanel.BorderStyle = BorderStyle.FixedSingle;
-            this._containerPanel.Controls.Add(this._txtEmail);
-            this._containerPanel.Controls.Add(this._txtSubject);
+            // 
+            // TxtMessage
+            // 
+            this.TxtMessage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtMessage.BackColor = System.Drawing.Color.White;
+            this.TxtMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.TxtMessage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.TxtMessage.Location = new System.Drawing.Point(80, 212);
+            this.TxtMessage.MaxLength = 500;
+            this.TxtMessage.Name = "TxtMessage";
+            this.TxtMessage.Size = new System.Drawing.Size(765, 156);
+            this.TxtMessage.TabIndex = 3;
+            this.TxtMessage.Text = "";
+            this.TxtMessage.TextChanged += new System.EventHandler(this.MessageTextBox_TextChanged);
+            // 
+            // LblCounter
+            // 
+            this.LblCounter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.LblCounter.AutoSize = true;
+            this.LblCounter.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold);
+            this.LblCounter.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.LblCounter.Location = new System.Drawing.Point(749, 371);
+            this.LblCounter.Name = "LblCounter";
+            this.LblCounter.Size = new System.Drawing.Size(96, 36);
+            this.LblCounter.TabIndex = 4;
+            this.LblCounter.Text = "0/500";
+            this.LblCounter.Click += new System.EventHandler(this.CounterLabel_Click);
+            // 
+            // BtnSubmit
+            // 
+            this.BtnSubmit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnSubmit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(178)))), ((int)(((byte)(204)))));
+            this.BtnSubmit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnSubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.BtnSubmit.ForeColor = System.Drawing.Color.White;
+            this.BtnSubmit.Location = new System.Drawing.Point(665, 410);
+            this.BtnSubmit.Name = "BtnSubmit";
+            this.BtnSubmit.Size = new System.Drawing.Size(180, 50);
+            this.BtnSubmit.TabIndex = 5;
+            this.BtnSubmit.Text = "Submit";
+            this.BtnSubmit.UseVisualStyleBackColor = false;
+            this.BtnSubmit.Click += new System.EventHandler(this.SubmitButton_Click);
+            // 
+            // _containerPanel
+            // 
+            this._containerPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this._containerPanel.BackColor = System.Drawing.Color.White;
+            this._containerPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._containerPanel.Controls.Add(this.TxtEmail);
+            this._containerPanel.Controls.Add(this.TxtSubject);
             this._containerPanel.Controls.Add(this._lblEmail);
             this._containerPanel.Controls.Add(this._lblSubject);
             this._containerPanel.Controls.Add(this._lblMessage);
-            this._containerPanel.Controls.Add(this._txtMessage);
-            this._containerPanel.Controls.Add(this._lblCounter);
-            this._containerPanel.Controls.Add(this._btnSubmit);
-            this._containerPanel.Location = new Point(200, 120);
+            this._containerPanel.Controls.Add(this.TxtMessage);
+            this._containerPanel.Controls.Add(this.LblCounter);
+            this._containerPanel.Controls.Add(this.BtnSubmit);
+            this._containerPanel.Location = new System.Drawing.Point(200, 120);
             this._containerPanel.Name = "_containerPanel";
-            this._containerPanel.Padding = new Padding(30);
-            this._containerPanel.Size = new Size(880, 480);
+            this._containerPanel.Padding = new System.Windows.Forms.Padding(30);
+            this._containerPanel.Size = new System.Drawing.Size(880, 480);
             this._containerPanel.TabIndex = 0;
-
-            // Email text box
-            this._txtEmail = new System.Windows.Forms.RichTextBox();
-            this._txtEmail.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            this._txtEmail.BackColor = Color.White;
-            this._txtEmail.BorderStyle = BorderStyle.FixedSingle;
-            this._txtEmail.Font = new Font("Microsoft Sans Serif", 18F);
-            this._txtEmail.Location = new Point(50, 111);
-            this._txtEmail.Name = "_txtEmail";
-            this._txtEmail.Size = new Size(750, 36);
-            this._txtEmail.TabIndex = 9;
-            this._txtEmail.Text = "";
-
-            // Subject text box
-            this._txtSubject = new System.Windows.Forms.RichTextBox();
-            this._txtSubject.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            this._txtSubject.BackColor = Color.White;
-            this._txtSubject.BorderStyle = BorderStyle.FixedSingle;
-            this._txtSubject.Font = new Font("Microsoft Sans Serif", 18F);
-            this._txtSubject.Location = new Point(50, 41);
-            this._txtSubject.Name = "_txtSubject";
-            this._txtSubject.Size = new Size(750, 36);
-            this._txtSubject.TabIndex = 8;
-            this._txtSubject.Text = "";
-
-            // Email label
-            this._lblEmail = new System.Windows.Forms.Label();
-            this._lblEmail.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+            // 
+            // TxtEmail
+            // 
+            this.TxtEmail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtEmail.BackColor = System.Drawing.Color.White;
+            this.TxtEmail.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.TxtEmail.Location = new System.Drawing.Point(80, 141);
+            this.TxtEmail.Name = "TxtEmail";
+            this.TxtEmail.Size = new System.Drawing.Size(765, 36);
+            this.TxtEmail.TabIndex = 9;
+            this.TxtEmail.Text = "";
+            // 
+            // TxtSubject
+            // 
+            this.TxtSubject.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtSubject.BackColor = System.Drawing.Color.White;
+            this.TxtSubject.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.TxtSubject.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.TxtSubject.Location = new System.Drawing.Point(80, 71);
+            this.TxtSubject.Name = "TxtSubject";
+            this.TxtSubject.Size = new System.Drawing.Size(765, 36);
+            this.TxtSubject.TabIndex = 8;
+            this.TxtSubject.Text = "";
+            // 
+            // _lblEmail
+            // 
             this._lblEmail.AutoSize = true;
-            this._lblEmail.Font = new Font("Microsoft Sans Serif", 18F);
-            this._lblEmail.ForeColor = Color.FromArgb(30, 30, 30);
-            this._lblEmail.Location = new Point(50, 79);
+            this._lblEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this._lblEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this._lblEmail.Location = new System.Drawing.Point(80, 109);
             this._lblEmail.Name = "_lblEmail";
-            this._lblEmail.Size = new Size(131, 29);
+            this._lblEmail.Size = new System.Drawing.Size(131, 29);
             this._lblEmail.TabIndex = 6;
             this._lblEmail.Text = "Your Email";
-
-            // ContactForm properties
-            this.BackColor = Color.White;
-            this.ClientSize = new Size(1280, 720);
+            // 
+            // ContactForm
+            // 
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(1280, 720);
             this.Controls.Add(this._btnToggleTheme);
             this.Controls.Add(this._btnBack);
             this.Controls.Add(this._containerPanel);
             this.Controls.Add(this._lblTitle);
-            this.MinimumSize = new Size(800, 600);
+            this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "ContactForm";
             this.Text = "Contact Us";
             this._containerPanel.ResumeLayout(false);
             this._containerPanel.PerformLayout();
             this.ResumeLayout(false);
+
         }
     }
 }

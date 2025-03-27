@@ -23,9 +23,9 @@ namespace QQContactForm
             InitializeComponent();
 
             // Grouping UI elements into categories
-            _stdText = new List<Label> { _lblMessage, _lblSubject, _lblEmail, _lblCounter };
-            _stdInputBox = new List<RichTextBox> { _txtSubject, _txtMessage, _txtEmail };
-            _primaryButton = new List<Button> { _btnSubmit };
+            _stdText = new List<Label> { _lblMessage, _lblSubject, _lblEmail, LblCounter };
+            _stdInputBox = new List<RichTextBox> { TxtSubject, TxtMessage, TxtEmail };
+            _primaryButton = new List<Button> { BtnSubmit };
             _secondaryButton = new List<Button> { _btnToggleTheme, _btnBack };
 
             // Apply the appropriate theme based on the current mode
@@ -34,7 +34,7 @@ namespace QQContactForm
         }
 
         // Handles the "Back" button click event to navigate back to the previous form
-        private void BtnBack_Click(object sender, EventArgs e)
+        private void BackButton_Click(object sender, EventArgs e)
         {
             this.Hide(); // Hide the current form
             Form popupForm = new Form
@@ -81,7 +81,7 @@ namespace QQContactForm
         }
 
         // Toggles between light and dark themes
-        private void ToggleTheme(object sender, EventArgs e)
+        private void ToggleTheme_ButtonClick(object sender, EventArgs e)
         {
             Program._isDarkMode = !Program._isDarkMode;
 
@@ -96,18 +96,18 @@ namespace QQContactForm
         }
 
         // Updates the character count label as the user types in the message box
-        private void UpdateCharacterCount(object sender, EventArgs e)
+        private void MessageTextBox_TextChanged(object sender, EventArgs e)
         {
-            _lblCounter.Text = $"{_txtMessage.Text.Length}/500";
+            LblCounter.Text = $"{TxtMessage.Text.Length}/500";
         }
 
         // Handles the "Submit" button click event to send the form data via email
-        private void BtnSubmit_Click(object sender, EventArgs e)
+        private void SubmitButton_Click(object sender, EventArgs e)
         {
             // Validate that all fields are filled
-            if (string.IsNullOrWhiteSpace(_txtSubject.Text) ||
-                string.IsNullOrWhiteSpace(_txtMessage.Text) ||
-                string.IsNullOrWhiteSpace(_txtEmail.Text))
+            if (string.IsNullOrWhiteSpace(TxtSubject.Text) ||
+                string.IsNullOrWhiteSpace(TxtMessage.Text) ||
+                string.IsNullOrWhiteSpace(TxtEmail.Text))
             {
                 MessageBox.Show("Please ensure all fields are filled in.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -116,9 +116,9 @@ namespace QQContactForm
             try
             {
                 // Email details
-                string userEmail = _txtEmail.Text;
-                string subject = _txtSubject.Text;
-                string body = _txtMessage.Text;
+                string userEmail = TxtEmail.Text;
+                string subject = TxtSubject.Text;
+                string body = TxtMessage.Text;
 
                 // Create and configure the email message
                 MailMessage mail = new MailMessage();
@@ -141,10 +141,10 @@ namespace QQContactForm
                 MessageBox.Show("Your message has been submitted and emailed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 // Clear the form fields
-                _txtSubject.Clear();
-                _txtMessage.Clear();
-                _txtEmail.Clear();
-                _lblCounter.Text = "0/500";
+                TxtSubject.Clear();
+                TxtMessage.Clear();
+                TxtEmail.Clear();
+                LblCounter.Text = "0/500";
             }
             catch (Exception ex)
             {
@@ -154,7 +154,7 @@ namespace QQContactForm
         }
 
         // Placeholder for the counter label click event (currently unused)
-        private void _lblCounter_Click(object sender, EventArgs e)
+        private void CounterLabel_Click(object sender, EventArgs e)
         {
         }
     }
