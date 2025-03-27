@@ -23,10 +23,10 @@ namespace QQContactForm
             InitializeComponent();
 
             // Grouping UI elements into categories
-            _stdText = new List<Label> { _lblMessage, _lblSubject, _lblEmail, LblCounter };
+            _stdText = new List<Label> { LblMessage, LblSubject, LblEmail, LblCounter };
             _stdInputBox = new List<RichTextBox> { TxtSubject, TxtMessage, TxtEmail };
             _primaryButton = new List<Button> { BtnSubmit };
-            _secondaryButton = new List<Button> { _btnToggleTheme, _btnBack };
+            _secondaryButton = new List<Button> { BtnToggleTheme, BtnBack };
 
             // Apply the appropriate theme based on the current mode
             if (Program._isDarkMode) SetColourScheme(Program._darkTheme);

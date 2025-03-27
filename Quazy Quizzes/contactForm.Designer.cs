@@ -9,8 +9,8 @@ namespace QQContactForm
         // Components used in the form
         private IContainer _components = null;
         private Label _lblTitle;
-        private Button _btnBack, _btnToggleTheme, BtnSubmit;
-        private Label _lblSubject, _lblMessage, LblCounter, _lblEmail;
+        private Button BtnBack, BtnToggleTheme, BtnSubmit;
+        private Label LblSubject, LblMessage, LblCounter, LblEmail;
         private RichTextBox TxtMessage, TxtEmail, TxtSubject;
         private Panel _containerPanel;
 
@@ -28,17 +28,17 @@ namespace QQContactForm
         private void InitializeComponent()
         {
             this._lblTitle = new System.Windows.Forms.Label();
-            this._btnBack = new System.Windows.Forms.Button();
-            this._btnToggleTheme = new System.Windows.Forms.Button();
-            this._lblSubject = new System.Windows.Forms.Label();
-            this._lblMessage = new System.Windows.Forms.Label();
+            this.BtnBack = new System.Windows.Forms.Button();
+            this.BtnToggleTheme = new System.Windows.Forms.Button();
+            this.LblSubject = new System.Windows.Forms.Label();
+            this.LblMessage = new System.Windows.Forms.Label();
             this.TxtMessage = new System.Windows.Forms.RichTextBox();
             this.LblCounter = new System.Windows.Forms.Label();
             this.BtnSubmit = new System.Windows.Forms.Button();
             this._containerPanel = new System.Windows.Forms.Panel();
             this.TxtEmail = new System.Windows.Forms.RichTextBox();
             this.TxtSubject = new System.Windows.Forms.RichTextBox();
-            this._lblEmail = new System.Windows.Forms.Label();
+            this.LblEmail = new System.Windows.Forms.Label();
             this._containerPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,56 +56,56 @@ namespace QQContactForm
             this._lblTitle.Text = "Contact Us";
             this._lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // _btnBack
+            // BtnBack
             // 
-            this._btnBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(178)))), ((int)(((byte)(204)))));
-            this._btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this._btnBack.ForeColor = System.Drawing.Color.White;
-            this._btnBack.Location = new System.Drawing.Point(20, 20);
-            this._btnBack.Name = "_btnBack";
-            this._btnBack.Size = new System.Drawing.Size(120, 40);
-            this._btnBack.TabIndex = 2;
-            this._btnBack.Text = "Back";
-            this._btnBack.UseVisualStyleBackColor = false;
-            this._btnBack.Click += new System.EventHandler(this.BackButton_Click);
+            this.BtnBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(178)))), ((int)(((byte)(204)))));
+            this.BtnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.BtnBack.ForeColor = System.Drawing.Color.White;
+            this.BtnBack.Location = new System.Drawing.Point(20, 20);
+            this.BtnBack.Name = "BtnBack";
+            this.BtnBack.Size = new System.Drawing.Size(120, 40);
+            this.BtnBack.TabIndex = 2;
+            this.BtnBack.Text = "Back";
+            this.BtnBack.UseVisualStyleBackColor = false;
+            this.BtnBack.Click += new System.EventHandler(this.BackButton_Click);
             // 
-            // _btnToggleTheme
+            // BtnToggleTheme
             // 
-            this._btnToggleTheme.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this._btnToggleTheme.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(178)))), ((int)(((byte)(204)))));
-            this._btnToggleTheme.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._btnToggleTheme.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this._btnToggleTheme.ForeColor = System.Drawing.Color.White;
-            this._btnToggleTheme.Location = new System.Drawing.Point(1108, 20);
-            this._btnToggleTheme.Name = "_btnToggleTheme";
-            this._btnToggleTheme.Size = new System.Drawing.Size(152, 40);
-            this._btnToggleTheme.TabIndex = 3;
-            this._btnToggleTheme.Text = "Toggle Theme";
-            this._btnToggleTheme.UseVisualStyleBackColor = false;
-            this._btnToggleTheme.Click += new System.EventHandler(this.ToggleTheme_ButtonClick);
+            this.BtnToggleTheme.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnToggleTheme.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(178)))), ((int)(((byte)(204)))));
+            this.BtnToggleTheme.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnToggleTheme.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.BtnToggleTheme.ForeColor = System.Drawing.Color.White;
+            this.BtnToggleTheme.Location = new System.Drawing.Point(1108, 20);
+            this.BtnToggleTheme.Name = "BtnToggleTheme";
+            this.BtnToggleTheme.Size = new System.Drawing.Size(152, 40);
+            this.BtnToggleTheme.TabIndex = 3;
+            this.BtnToggleTheme.Text = "Toggle Theme";
+            this.BtnToggleTheme.UseVisualStyleBackColor = false;
+            this.BtnToggleTheme.Click += new System.EventHandler(this.ToggleTheme_ButtonClick);
             // 
-            // _lblSubject
+            // LblSubject
             // 
-            this._lblSubject.AutoSize = true;
-            this._lblSubject.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this._lblSubject.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this._lblSubject.Location = new System.Drawing.Point(80, 39);
-            this._lblSubject.Name = "_lblSubject";
-            this._lblSubject.Size = new System.Drawing.Size(205, 29);
-            this._lblSubject.TabIndex = 0;
-            this._lblSubject.Text = "Message Subject:";
+            this.LblSubject.AutoSize = true;
+            this.LblSubject.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.LblSubject.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.LblSubject.Location = new System.Drawing.Point(80, 39);
+            this.LblSubject.Name = "LblSubject";
+            this.LblSubject.Size = new System.Drawing.Size(205, 29);
+            this.LblSubject.TabIndex = 0;
+            this.LblSubject.Text = "Message Subject:";
             // 
-            // _lblMessage
+            // LblMessage
             // 
-            this._lblMessage.AutoSize = true;
-            this._lblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this._lblMessage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this._lblMessage.Location = new System.Drawing.Point(80, 180);
-            this._lblMessage.Name = "_lblMessage";
-            this._lblMessage.Size = new System.Drawing.Size(175, 29);
-            this._lblMessage.TabIndex = 2;
-            this._lblMessage.Text = "Your Message:";
+            this.LblMessage.AutoSize = true;
+            this.LblMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.LblMessage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.LblMessage.Location = new System.Drawing.Point(80, 180);
+            this.LblMessage.Name = "LblMessage";
+            this.LblMessage.Size = new System.Drawing.Size(175, 29);
+            this.LblMessage.TabIndex = 2;
+            this.LblMessage.Text = "Your Message:";
             // 
             // TxtMessage
             // 
@@ -161,9 +161,9 @@ namespace QQContactForm
             this._containerPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this._containerPanel.Controls.Add(this.TxtEmail);
             this._containerPanel.Controls.Add(this.TxtSubject);
-            this._containerPanel.Controls.Add(this._lblEmail);
-            this._containerPanel.Controls.Add(this._lblSubject);
-            this._containerPanel.Controls.Add(this._lblMessage);
+            this._containerPanel.Controls.Add(this.LblEmail);
+            this._containerPanel.Controls.Add(this.LblSubject);
+            this._containerPanel.Controls.Add(this.LblMessage);
             this._containerPanel.Controls.Add(this.TxtMessage);
             this._containerPanel.Controls.Add(this.LblCounter);
             this._containerPanel.Controls.Add(this.BtnSubmit);
@@ -199,23 +199,23 @@ namespace QQContactForm
             this.TxtSubject.TabIndex = 8;
             this.TxtSubject.Text = "";
             // 
-            // _lblEmail
+            // LblEmail
             // 
-            this._lblEmail.AutoSize = true;
-            this._lblEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this._lblEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this._lblEmail.Location = new System.Drawing.Point(80, 109);
-            this._lblEmail.Name = "_lblEmail";
-            this._lblEmail.Size = new System.Drawing.Size(131, 29);
-            this._lblEmail.TabIndex = 6;
-            this._lblEmail.Text = "Your Email";
+            this.LblEmail.AutoSize = true;
+            this.LblEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.LblEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.LblEmail.Location = new System.Drawing.Point(80, 109);
+            this.LblEmail.Name = "LblEmail";
+            this.LblEmail.Size = new System.Drawing.Size(131, 29);
+            this.LblEmail.TabIndex = 6;
+            this.LblEmail.Text = "Your Email";
             // 
             // ContactForm
             // 
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1280, 720);
-            this.Controls.Add(this._btnToggleTheme);
-            this.Controls.Add(this._btnBack);
+            this.Controls.Add(this.BtnToggleTheme);
+            this.Controls.Add(this.BtnBack);
             this.Controls.Add(this._containerPanel);
             this.Controls.Add(this._lblTitle);
             this.MinimumSize = new System.Drawing.Size(800, 600);
