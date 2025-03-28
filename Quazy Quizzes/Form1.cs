@@ -104,6 +104,9 @@ namespace Quazy_Quizzes
             }
             else
             {
+                string securityQSql = "SELECT * FROM `SecurityQuestions`";
+                var securityQReader = new ConnectionHandler().ExecuteQueryNoParams(securityQSql);
+
                 Form popupForm = new Form
             {
                 Size = new Size(300, 200),
@@ -118,9 +121,14 @@ namespace Quazy_Quizzes
                     Location = new Point(50, 50),
                     Size = new Size(200, 50),
                     DropDownStyle = ComboBoxStyle.DropDownList,
-                    
+                     
                     
                 };
+                while (securityQReader.Read())
+                {
+                    cbSecurityQ.Items.Add(securityQReader["Question"].ToString());
+                }
+
                 Button btnShowForm = new Button
             {
                 Text = "Save Q/A",
@@ -137,8 +145,23 @@ namespace Quazy_Quizzes
                 string firstName = txtFirst.Text;
                 string lastName = txtSurname.Text;
                 string email = txtEmail.Text;
-                
-                Register register = new Register(username, firstName, lastName, email, password, 0, false /*, securityQ, securityA*/);
+
+                string securityQSql2 = "SELECT * FROM `SecurityQuestions` WHERE `Question` = @question";
+                string[] securityQParamNames = { "@question" };
+                string[] securityQParameters = { cbSecurityQ.SelectedItem.ToString() };
+                try
+                {
+                    var securityQReader2 = new ConnectionHandler().ExectuteQuery(securityQSql2, securityQParamNames, securityQParameters);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Please select a security question");
+                    return;
+                }
+
+                int securityQ = Convert.ToInt32(securityQReader["SecurityQID"]);
+
+                Register register = new Register(username, firstName, lastName, email, password, 0, false , securityQ, /*securityA*/);
                 CodeStatus registerStatus = register.RegisterUser();
             }
 
