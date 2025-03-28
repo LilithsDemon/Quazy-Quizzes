@@ -116,9 +116,9 @@
             // 
             this.TitleLbl.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.TitleLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TitleLbl.Location = new System.Drawing.Point(575, 100);
+            this.TitleLbl.Location = new System.Drawing.Point(106, 101);
             this.TitleLbl.Name = "TitleLbl";
-            this.TitleLbl.Size = new System.Drawing.Size(150, 55);
+            this.TitleLbl.Size = new System.Drawing.Size(1078, 55);
             this.TitleLbl.TabIndex = 7;
             this.TitleLbl.Text = "Title";
             this.TitleLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

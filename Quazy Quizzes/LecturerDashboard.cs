@@ -13,6 +13,7 @@ using QQColourScheme;
 using Conn;
 using QQStoredProcedures;
 using System.Net.Mail;
+using System.Security.Principal;
 
 namespace Quazy_Quizzes
 {
@@ -31,7 +32,8 @@ namespace Quazy_Quizzes
         // Used in testing, should be in user class
         int _usersRole = 2;
 
-        bool _userPage = false; // False is student account, True is lecturer account
+        bool _userPage = true; // true is users page, false is tests pages
+        bool _actGridView = false; // False is for students, true is for lecturers
 
         public LecturerDashboard()
         {
@@ -43,8 +45,8 @@ namespace Quazy_Quizzes
             this._emergencyButtons = new List<Button> { LogOutBtn, DisableActBtn, DeleteActBtn };
             this._stdText = new List<Label> { TitleLbl, UsernameLbl, NameLbl, EmailLbl, LastLoginLbl, SearchLbl };
 
-            this._userPageElements = new List<Control> { StdntActsBtn, LectrActsBtn, SearchLbl, SearchBar, UsernameLbl,
-                                                         NameLbl, EmailLbl, LastLoginLbl, EditActBtn, DisableActBtn,
+            this._userPageElements = new List<Control> { StdntActsBtn, LectrActsBtn, SearchLbl, SearchBar, ActGrid,
+                                                         UsernameLbl, NameLbl, EmailLbl, LastLoginLbl, EditActBtn, DisableActBtn,
                                                          DeleteActBtn, NewUserBtn};
 
             // Get page to match colour scheme
@@ -54,8 +56,15 @@ namespace Quazy_Quizzes
             // Components that should only be visible to admins
             this._adminsOnly = new List<Control> { StdntActsBtn, LectrActsBtn};
 
-            // If the user is not an admin then hide the admin only components
-            // Role of 0 is ignored as students should not be able to get on to the lecturer dashboard
+            // Ensure the DataGridView allows row selection
+            ActGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            ActGrid.MultiSelect = false;
+
+            LoadPage();
+        }
+
+        private void HideAdminElements()
+        {
             if (_usersRole == 1) // If the user is a student
             {
                 foreach (Control control in _adminsOnly)
@@ -63,12 +72,6 @@ namespace Quazy_Quizzes
                     control.Visible = false;
                 }
             }
-
-            FillUserTable(0); // Should be put into a background worker
-
-            // Ensure the DataGridView allows row selection
-            ActGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            ActGrid.MultiSelect = false;
         }
 
         private void SetColourScheme(ColourScheme colourScheme)
@@ -95,8 +98,11 @@ namespace Quazy_Quizzes
             {
                 control.Visible = true;
             }
+            HideAdminElements();
+
+            TitleLbl.Text = "User Management";
             SearchBar.Text = "";
-            FillUserTable(this._usersRole);
+            FillUserTable((this._actGridView == false) ? 0 : 1);
         }
 
         private void LoadTestPage()
@@ -109,6 +115,9 @@ namespace Quazy_Quizzes
             {
                 control.Visible = true;
             }
+            HideAdminElements();
+
+            TitleLbl.Text = "Test Management";
         }
 
         private void LoadPage()
@@ -178,7 +187,6 @@ namespace Quazy_Quizzes
             // For each user
             while (reader.Read())
             {
-                Console.WriteLine(reader[1].ToString());
                 string active = (reader[1].ToString() == "True") ? "Active" : "Inactive";
                 ActGrid.Rows.Add(reader[0].ToString(), active);
             }
@@ -186,12 +194,15 @@ namespace Quazy_Quizzes
             if (ActGrid.Rows.Count > 0)
             {
                 ActGrid.Rows[0].Selected = true;
+                if (ActGrid.Rows[0].Cells["UserName"].Value == null) return;  
                 LoadUserInfo(ActGrid.Rows[0].Cells["UserName"].Value.ToString());
             }
         }
 
+        // Changes the text of the disable/enable account button based on the current state of the account
         private void ChangeActStatusBtn(bool actState)
         {
+            // if param is true then the account is active
             if (actState) {
                 DisableActBtn.Text = "Disable Account";
                 if (Program._isDarkMode) Program._darkTheme.SetColourSchemeEmergencyButtons(DisableActBtn);
@@ -220,19 +231,21 @@ namespace Quazy_Quizzes
         // Fill table with Students
         private void StdntActsBtn_Click(object sender, EventArgs e)
         {
+            this._actGridView = false;
             FillUserTable(0);
         }
 
         // Fill the table with Lecturers
         private void LectrActsBtn_Click(object sender, EventArgs e)
         {
+            this._actGridView = true;
             FillUserTable(1);
         }
 
         // When the search bar is used it will get the data based on the search
         private void SearchBar_KeyUp(object sender, KeyEventArgs e)
         {
-            FillUserTable((_userPage == false) ? 0 : 1, SearchBar.Text);
+            FillUserTable((_actGridView == false) ? 0 : 1, SearchBar.Text);
         }
 
         // When a row is entered it loads that users data.
@@ -256,32 +269,60 @@ namespace Quazy_Quizzes
 
         private void DisableActBtn_Click(object sender, EventArgs e)
         {
+            string disableActSQL = "UPDATE `Users` SET `Active`=@status WHERE `Username`=@username";
+            string[] paramNames = new string[] { "@status", "@username" };
+            string[] parameters = new string[] { (DisableActBtn.Text == "Enable Account") ? "1" : "0", UsernameLbl.Text};
 
+            var runSql = new ConnectionHandler().ExectuteCommand(disableActSQL, paramNames, parameters);
+            if(!runSql) MessageBox.Show("Failed to disable/enable account");
+
+            FillUserTable((_actGridView == false) ? 0 : 1, SearchBar.Text);
+            ChangeActStatusBtn((DisableActBtn.Text == "Enable Account") ? true : false);
         }
 
         private void DeleteActBtn_Click(object sender, EventArgs e)
         {
+            // Make a dialog box to make sure user does want to delete the user
+            var confirmDeletion = MessageBox.Show($"Are you sure you want to delete this user : {UsernameLbl.Text}","Delete User",MessageBoxButtons.YesNoCancel);
+            if (confirmDeletion != DialogResult.Yes) return;
 
+            // Set up SQL to delete the user selected
+            string deleteActSQL = "DELETE FROM `Users` WHERE `UserName`=@username";
+            string[] paramNames = new string[] { "@username" };
+            string[] parameters = new string[] { UsernameLbl.Text };
+
+            // Run SQL
+            var runSQL = new ConnectionHandler().ExectuteCommand(deleteActSQL, paramNames, parameters);
+            if (!runSQL) MessageBox.Show("Failed to delete account"); // If SQL failed
+
+            FillUserTable((_actGridView == false) ? 0 : 1, SearchBar.Text);
         }
 
         private void NewUserBtn_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void UsersBtn_Click(object sender, EventArgs e)
         {
-
+            if (this._userPage == true) return;
+            this._userPage = true;
+            LoadPage();
         }
 
         private void TestsBtn_Click(object sender, EventArgs e)
         {
-
+            if (this._userPage == false) return;
+            this._userPage = false;
+            LoadPage();
         }
 
         private void LogOutBtn_Click(object sender, EventArgs e)
         {
-
+            Program._user.ClearData();
+            Form1 logInForm = new Form1();
+            logInForm.Show();
+            this.Hide();
         }
     }
 }
