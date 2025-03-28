@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using Conn;
 using QQColourScheme;
+using QQStoredProcedures;
 
 namespace Quazy_Quizzes
 {
@@ -46,13 +47,7 @@ namespace Quazy_Quizzes
         {
             try
             {
-                var con = new ConnectionHandler();
-                string procedureName = "GetUserQuizStats";
-                string[] paramNames = { "@userID" };
-                string[] parameters = { "1" }; // Placeholder _userID value
-
-                // Execute the stored procedure and load data into the DataGridView
-                var reader = con.StoredQuery(procedureName, paramNames, parameters);
+                var reader = StoredProcedures.GetUserQuizStats(1);
                 DataTable dt = new DataTable();
                 dt.Load(reader);
                 DgvStats.DataSource = dt;
