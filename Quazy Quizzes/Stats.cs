@@ -56,6 +56,10 @@ namespace Quazy_Quizzes
                 DataTable dt = new DataTable();
                 dt.Load(reader);
                 DgvStats.DataSource = dt;
+
+                // Adjust DataGridView to fit the container
+                DgvStats.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                DgvStats.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             }
             catch (Exception ex)
             {
