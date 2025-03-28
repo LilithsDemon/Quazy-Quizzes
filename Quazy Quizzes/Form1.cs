@@ -10,6 +10,12 @@ using System.Windows.Forms;
 using QQColourScheme;
 using Conn;
 using Status;
+using QQContactForm;
+using LogIn;
+
+using Registration;
+
+
 
 namespace Quazy_Quizzes
 {
@@ -79,10 +85,10 @@ namespace Quazy_Quizzes
             if(txtStudent.Enabled == false)
             {
                 //this re-configures the form for studetns to sign up
-                btnSignup.Location = new Point(1056, 645);
-                btnLogin.Location = new Point(340, 612);
-                txtUsername.Location = new Point(966, 280);
-                txtPassword.Location = new Point(966, 340);
+                btnSignup.Location = new Point(869, 632);
+                btnLogin.Location = new Point(223, 612);
+                txtUsername.Location = new Point(778, 283);
+                txtPassword.Location = new Point(778, 338);
                 txtStudent.Enabled = true;
                 txtEmail.Enabled = true;
                 txtCourse.Enabled = true;
@@ -98,7 +104,42 @@ namespace Quazy_Quizzes
             }
             else
             {
+                Form popupForm = new Form
+            {
+                Size = new Size(300, 200),
+                StartPosition = FormStartPosition.CenterScreen,
+                FormBorderStyle = FormBorderStyle.FixedDialog,
+                MaximizeBox = false,
+                MinimizeBox = false
+            };
+
+                ComboBox cbSecurityQ = new ComboBox
+                {
+                    Location = new Point(50, 50),
+                    Size = new Size(200, 50),
+                    DropDownStyle = ComboBoxStyle.DropDownList,
+                    
+                    
+                };
+                Button btnShowForm = new Button
+            {
+                Text = "Save Q/A",
+                Size = new Size(200, 50),
+                Location = new Point((popupForm.ClientSize.Width - 200) / 2, (popupForm.ClientSize.Height - 50) / 2),
+                Anchor = AnchorStyles.None,
+                BackColor = ColorTranslator.FromHtml("#00B2CC"),
+                Font = new Font("Orbitron", 18, FontStyle.Regular),
+                ForeColor = ColorTranslator.FromHtml("#FFFFFF")
+            };
                 //Here is where it will go if the user was trying to sign up
+                string username = txtUsername.Text;
+                string password = txtPassword.Text;
+                string firstName = txtFirst.Text;
+                string lastName = txtSurname.Text;
+                string email = txtEmail.Text;
+                
+                Register register = new Register(username, firstName, lastName, email, password, 0, false /*, securityQ, securityA*/);
+                CodeStatus registerStatus = register.RegisterUser();
             }
 
 
@@ -119,24 +160,58 @@ namespace Quazy_Quizzes
                 txtCourse.Visible = false;
                 txtFirst.Visible = false;
                 txtSurname.Visible = false;
-                txtUsername.Location = new Point(966, 373);
-                txtPassword.Location = new Point(966, 482);
-                btnSignup.Location = new Point(340, 612);
-                btnLogin.Location = new Point(1065, 612);
+                txtUsername.Location = new Point(778, 373);
+                txtPassword.Location = new Point(778, 482);
+                btnSignup.Location = new Point(223, 612);
+                btnLogin.Location = new Point(869, 612);
                 lblIntro.Text = "Quazy Quizzes is a game-\r\nbased learning platform \r\nthat allows users to \r\ncreate, share and play \r\ninteractive quizzes, \r\nserveys and discussions.\r\n";
                 lblTitle.Text = "Welcome to Quazy Quizzes";
             }
             else
             {
-                //Here is where it will go if the user was trying to login
+                string username = txtUsername.Text;
+                string password = txtPassword.Text;
+                UserLogin userLogin = new UserLogin(username, password);
+                CodeStatus codeStatus = userLogin.LoginWOSecurity();
             }
 
         }
 
         private void HelpBtn_Click(object sender, EventArgs e)
         {
-            AdminDash adminDash = new AdminDash();
-            adminDash.Show();
+            //AdminDash adminDash = new AdminDash();
+            //adminDash.Show();
+            ContactForm frm = new ContactForm();
+            frm.Show();
+
+
+        }
+
+        private void _btnToggleTheme_Click(object sender, EventArgs e)
+        {
+          
+            Program._isDarkMode = !Program._isDarkMode;
+
+            // If is now supposed to be dark mode
+            if (Program._isDarkMode)
+            {
+                SetColourScheme(Program._darkTheme);
+                return;
+            }
+
+           SetColourScheme(Program._lightTheme);
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result = MessageBox.Show("Are you sure you want to exit?", "Exit", buttons);
+            if (result == DialogResult.Yes)
+            {
+                MessageBox.Show("Thank you for using Quazy Quizzes", "Goodbye", MessageBoxButtons.OK);
+                Application.Exit();
+            }
         }
     }
 }
