@@ -47,6 +47,7 @@ namespace QQContactForm
         {
             this.BackColor = ColorTranslator.FromHtml(colourScheme._background);
             _containerPanel.BackColor = ColorTranslator.FromHtml(colourScheme._cardBackground);
+            colourScheme.SetColourSchemeHeader(LblTitle);
 
             // Apply colours to grouped elements
             colourScheme.SetColourSchemePrimaryText(_stdText);
