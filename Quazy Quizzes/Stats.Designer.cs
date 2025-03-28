@@ -44,7 +44,7 @@
             // 
             // LblTitle
             // 
-            this.LblTitle.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.LblTitle.Dock = System.Windows.Forms.DockStyle.Top;
             this.LblTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.LblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold);
             this.LblTitle.ForeColor = System.Drawing.Color.Black;
