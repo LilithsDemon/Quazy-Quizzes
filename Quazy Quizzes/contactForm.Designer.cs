@@ -8,7 +8,7 @@ namespace QQContactForm
     {
         // Components used in the form
         private IContainer _components = null;
-        private Label _lblTitle;
+        private Label LblTitle;
         private Button BtnBack, BtnToggleTheme, BtnSubmit;
         private Label LblSubject, LblMessage, LblCounter, LblEmail;
         private RichTextBox TxtMessage, TxtEmail, TxtSubject;
@@ -27,7 +27,7 @@ namespace QQContactForm
         // Initialize the components of the form
         private void InitializeComponent()
         {
-            this._lblTitle = new System.Windows.Forms.Label();
+            this.LblTitle = new System.Windows.Forms.Label();
             this.BtnBack = new System.Windows.Forms.Button();
             this.BtnToggleTheme = new System.Windows.Forms.Button();
             this.LblSubject = new System.Windows.Forms.Label();
@@ -42,19 +42,19 @@ namespace QQContactForm
             this._containerPanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // _lblTitle
+            // LblTitle
             // 
-            this._lblTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.LblTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this._lblTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this._lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold);
-            this._lblTitle.ForeColor = System.Drawing.Color.Black;
-            this._lblTitle.Location = new System.Drawing.Point(0, 0);
-            this._lblTitle.Name = "_lblTitle";
-            this._lblTitle.Size = new System.Drawing.Size(1280, 80);
-            this._lblTitle.TabIndex = 1;
-            this._lblTitle.Text = "Contact Us";
-            this._lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LblTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.LblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold);
+            this.LblTitle.ForeColor = System.Drawing.Color.Black;
+            this.LblTitle.Location = new System.Drawing.Point(0, 0);
+            this.LblTitle.Name = "LblTitle";
+            this.LblTitle.Size = new System.Drawing.Size(1280, 80);
+            this.LblTitle.TabIndex = 1;
+            this.LblTitle.Text = "Contact Us";
+            this.LblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // BtnBack
             // 
@@ -135,7 +135,6 @@ namespace QQContactForm
             this.LblCounter.Size = new System.Drawing.Size(96, 36);
             this.LblCounter.TabIndex = 4;
             this.LblCounter.Text = "0/500";
-            this.LblCounter.Click += new System.EventHandler(this.CounterLabel_Click);
             // 
             // BtnSubmit
             // 
@@ -217,7 +216,7 @@ namespace QQContactForm
             this.Controls.Add(this.BtnToggleTheme);
             this.Controls.Add(this.BtnBack);
             this.Controls.Add(this._containerPanel);
-            this.Controls.Add(this._lblTitle);
+            this.Controls.Add(this.LblTitle);
             this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "ContactForm";
             this.Text = "Contact Us";
