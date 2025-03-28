@@ -43,7 +43,7 @@ namespace Quazy_Quizzes
                 var con = new ConnectionHandler();
                 string procedureName = "GetUserQuizStats";
                 string[] paramNames = { "@userID" };
-                string[] parameters = { "5" }; // Placeholder _userID value
+                string[] parameters = { "1" }; // Placeholder _userID value
 
                 var reader = con.StoredQuery(procedureName, paramNames, parameters);
                 DataTable dt = new DataTable();
