@@ -36,6 +36,24 @@ namespace Quazy_Quizzes
             txtPassword.TextChanged += new EventHandler(TxtPassword_TextChanged);
             txtUsername.TextChanged += new EventHandler(TxtUsername_TextChanged);
             txtPassword.MouseClick += new MouseEventHandler(TxtPassword_Click);
+            txtEmail.MouseClick += new MouseEventHandler(txtEmail_Click);
+            txtFirst.MouseClick += new MouseEventHandler(txtFirst_Click);
+            txtSurname.MouseClick += new MouseEventHandler(txtSurname_Click);
+            txtStudent.MouseClick += new MouseEventHandler(txtStudent_Click);
+
+            string securityQSql = "SELECT * FROM `SecurityQuestions`";
+            try
+            {
+                var securityQReader = new ConnectionHandler().ExecuteQueryNoParams(securityQSql);
+                while (securityQReader.Read())
+                {
+                    cbSecurityQ.Items.Add(securityQReader["Question"].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
             //Sets Colour Scheme
             if (Program._isDarkMode) SetColourScheme(Program._darkTheme);
@@ -66,6 +84,39 @@ namespace Quazy_Quizzes
                 txtUsername.Text = "";
             }
         }
+        private void txtEmail_Click(object sender, EventArgs e)
+        {
+            //clears the text ready for the user to enter their username
+            if (txtEmail.Text == "Enter your email address")
+            {
+                txtEmail.Text = "";
+            }
+        }
+       
+        private void txtStudent_Click(object sender, EventArgs e)
+        {
+            //clears the text ready for the user to enter their username
+            if (txtStudent.Text == "Enter your student number")
+            {
+                txtStudent.Text = "";
+            }
+        }
+        private void txtFirst_Click(object sender, EventArgs e)
+        {
+            //clears the text ready for the user to enter their username
+            if (txtFirst.Text == "Enter your first name")
+            {
+                txtFirst.Text = "";
+            }
+        }
+        private void txtSurname_Click(object sender, EventArgs e)
+        {
+            //clears the text ready for the user to enter their username
+            if (txtSurname.Text == "Enter your last name")
+            {
+                txtSurname.Text = "";
+            }
+        }
 
         private void TxtPassword_TextChanged(object sender, EventArgs e)
         {
@@ -91,22 +142,21 @@ namespace Quazy_Quizzes
                 txtPassword.Location = new Point(778, 338);
                 txtStudent.Enabled = true;
                 txtEmail.Enabled = true;
-                txtCourse.Enabled = true;
+                cbSecurityQ.Enabled = true;
                 txtFirst.Enabled = true;
                 txtSurname.Enabled = true;
                 txtStudent.Visible = true;
                 txtEmail.Visible = true;
-                txtCourse.Visible = true;
+                cbSecurityQ.Visible = true;
                 txtFirst.Visible = true;
                 txtSurname.Visible = true;
                 lblIntro.Text = "Please enter your details to\r\nstart enjoying our Quazy \r\nQuizzes now! \r\nWe just need a few of your \r\ndetails and a confirmation\r\nfrom your lecturer and you\r\ncan begin right now!";
                 lblTitle.Text = "Sign Up to Quazy Quizzes";
+                
             }
             else
             {
-                string securityQSql = "SELECT * FROM `SecurityQuestions`";
-                var securityQReader = new ConnectionHandler().ExecuteQueryNoParams(securityQSql);
-
+                
                 Form popupForm = new Form
             {
                 Size = new Size(300, 200),
@@ -116,20 +166,19 @@ namespace Quazy_Quizzes
                 MinimizeBox = false
             };
 
-                ComboBox cbSecurityQ = new ComboBox
+                TextBox SecurityA = new TextBox
                 {
-                    Location = new Point(50, 50),
-                    Size = new Size(200, 50),
-                    DropDownStyle = ComboBoxStyle.DropDownList,
-                     
                     
+                    Size = new Size(200, 50),
+                    Location = new Point((popupForm.ClientSize.Width - 200) / 2, (popupForm.ClientSize.Height - 100) / 2),
+                    Anchor = AnchorStyles.None,
+                    BackColor = ColorTranslator.FromHtml("#00B2CC"),
+                    Font = new Font("Orbitron", 18, FontStyle.Regular),
+                    ForeColor = ColorTranslator.FromHtml("#FFFFFF")
                 };
-                while (securityQReader.Read())
-                {
-                    cbSecurityQ.Items.Add(securityQReader["Question"].ToString());
-                }
+                
 
-                Button btnShowForm = new Button
+                Button btnSave = new Button
             {
                 Text = "Save Q/A",
                 Size = new Size(200, 50),
@@ -139,6 +188,13 @@ namespace Quazy_Quizzes
                 Font = new Font("Orbitron", 18, FontStyle.Regular),
                 ForeColor = ColorTranslator.FromHtml("#FFFFFF")
             };
+                popupForm.Controls.Add(SecurityA);
+                popupForm.Controls.Add(btnSave);
+                popupForm.Show();
+
+
+
+                /*
                 //Here is where it will go if the user was trying to sign up
                 string username = txtUsername.Text;
                 string password = txtPassword.Text;
@@ -161,8 +217,9 @@ namespace Quazy_Quizzes
 
                 int securityQ = Convert.ToInt32(securityQReader["SecurityQID"]);
 
-                Register register = new Register(username, firstName, lastName, email, password, 0, false , securityQ, /*securityA*/);
+                Register register = new Register(username, firstName, lastName, email, password, 0, false , securityQ, securityA);
                 CodeStatus registerStatus = register.RegisterUser();
+                */
             }
 
 
@@ -175,12 +232,12 @@ namespace Quazy_Quizzes
                 // this is validation to check that the form is in login mode and not sign up mode
                 txtStudent.Enabled = false;
                 txtEmail.Enabled = false;
-                txtCourse.Enabled = false;
+                cbSecurityQ.Enabled = false;
                 txtFirst.Enabled = false;
                 txtSurname.Enabled = false;
                 txtStudent.Visible = false;
                 txtEmail.Visible = false;
-                txtCourse.Visible = false;
+                cbSecurityQ.Visible = false;
                 txtFirst.Visible = false;
                 txtSurname.Visible = false;
                 txtUsername.Location = new Point(778, 373);
@@ -196,6 +253,7 @@ namespace Quazy_Quizzes
                 string password = txtPassword.Text;
                 UserLogin userLogin = new UserLogin(username, password);
                 CodeStatus codeStatus = userLogin.LoginWOSecurity();
+                
             }
 
         }

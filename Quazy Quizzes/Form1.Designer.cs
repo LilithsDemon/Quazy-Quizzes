@@ -38,16 +38,16 @@
             this.txtStudent = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.txtFirst = new System.Windows.Forms.TextBox();
-            this.txtCourse = new System.Windows.Forms.TextBox();
             this.txtSurname = new System.Windows.Forms.TextBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.ActionPanel = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.InfoPanel = new System.Windows.Forms.Panel();
+            this.picbxLogo = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnExit = new System.Windows.Forms.Button();
             this._btnToggleTheme = new System.Windows.Forms.Button();
-            this.picbxLogo = new System.Windows.Forms.PictureBox();
+            this.cbSecurityQ = new System.Windows.Forms.ComboBox();
             this.ActionPanel.SuspendLayout();
             this.InfoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picbxLogo)).BeginInit();
@@ -102,7 +102,6 @@
             this.txtUsername.Size = new System.Drawing.Size(374, 38);
             this.txtUsername.TabIndex = 5;
             this.txtUsername.Text = "Enter your username";
-            this.txtUsername.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtUsername.TextChanged += new System.EventHandler(this.TxtUsername_TextChanged);
             // 
             // txtPassword
@@ -115,7 +114,6 @@
             this.txtPassword.Size = new System.Drawing.Size(374, 38);
             this.txtPassword.TabIndex = 6;
             this.txtPassword.Text = "Enter your password";
-            this.txtPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtPassword.TextChanged += new System.EventHandler(this.TxtPassword_TextChanged);
             // 
             // lblIntro
@@ -143,7 +141,6 @@
             this.txtStudent.Size = new System.Drawing.Size(374, 38);
             this.txtStudent.TabIndex = 8;
             this.txtStudent.Text = "Enter your student number";
-            this.txtStudent.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtStudent.Visible = false;
             // 
             // txtEmail
@@ -157,7 +154,6 @@
             this.txtEmail.Size = new System.Drawing.Size(374, 38);
             this.txtEmail.TabIndex = 11;
             this.txtEmail.Text = "Enter your email address";
-            this.txtEmail.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtEmail.Visible = false;
             // 
             // txtFirst
@@ -171,23 +167,7 @@
             this.txtFirst.Size = new System.Drawing.Size(374, 38);
             this.txtFirst.TabIndex = 10;
             this.txtFirst.Text = "Enter your first name";
-            this.txtFirst.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtFirst.Visible = false;
-            // 
-            // txtCourse
-            // 
-            this.txtCourse.AllowDrop = true;
-            this.txtCourse.BackColor = System.Drawing.Color.White;
-            this.txtCourse.Enabled = false;
-            this.txtCourse.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.txtCourse.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.txtCourse.Location = new System.Drawing.Point(778, 459);
-            this.txtCourse.Name = "txtCourse";
-            this.txtCourse.Size = new System.Drawing.Size(374, 38);
-            this.txtCourse.TabIndex = 9;
-            this.txtCourse.Text = "Enter your course title";
-            this.txtCourse.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtCourse.Visible = false;
             // 
             // txtSurname
             // 
@@ -200,7 +180,6 @@
             this.txtSurname.Size = new System.Drawing.Size(374, 38);
             this.txtSurname.TabIndex = 12;
             this.txtSurname.Text = "Enter your last name";
-            this.txtSurname.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSurname.Visible = false;
             // 
             // lblTitle
@@ -260,6 +239,16 @@
             this.InfoPanel.Size = new System.Drawing.Size(546, 645);
             this.InfoPanel.TabIndex = 12;
             // 
+            // picbxLogo
+            // 
+            this.picbxLogo.Image = ((System.Drawing.Image)(resources.GetObject("picbxLogo.Image")));
+            this.picbxLogo.Location = new System.Drawing.Point(77, 10);
+            this.picbxLogo.Name = "picbxLogo";
+            this.picbxLogo.Size = new System.Drawing.Size(417, 94);
+            this.picbxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picbxLogo.TabIndex = 14;
+            this.picbxLogo.TabStop = false;
+            // 
             // panel4
             // 
             this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -302,15 +291,18 @@
             this._btnToggleTheme.UseVisualStyleBackColor = false;
             this._btnToggleTheme.Click += new System.EventHandler(this._btnToggleTheme_Click);
             // 
-            // picbxLogo
+            // cbSecurityQ
             // 
-            this.picbxLogo.Image = ((System.Drawing.Image)(resources.GetObject("picbxLogo.Image")));
-            this.picbxLogo.Location = new System.Drawing.Point(77, 10);
-            this.picbxLogo.Name = "picbxLogo";
-            this.picbxLogo.Size = new System.Drawing.Size(417, 94);
-            this.picbxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picbxLogo.TabIndex = 14;
-            this.picbxLogo.TabStop = false;
+            this.cbSecurityQ.BackColor = System.Drawing.Color.White;
+            this.cbSecurityQ.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSecurityQ.Enabled = false;
+            this.cbSecurityQ.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.cbSecurityQ.FormattingEnabled = true;
+            this.cbSecurityQ.Location = new System.Drawing.Point(778, 459);
+            this.cbSecurityQ.Name = "cbSecurityQ";
+            this.cbSecurityQ.Size = new System.Drawing.Size(374, 39);
+            this.cbSecurityQ.TabIndex = 12;
+            this.cbSecurityQ.Visible = false;
             // 
             // Form1
             // 
@@ -319,13 +311,13 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1274, 1012);
+            this.Controls.Add(this.cbSecurityQ);
             this.Controls.Add(this._btnToggleTheme);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.txtSurname);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.txtFirst);
-            this.Controls.Add(this.txtCourse);
             this.Controls.Add(this.txtStudent);
             this.Controls.Add(this.lblIntro);
             this.Controls.Add(this.txtPassword);
@@ -356,7 +348,6 @@
         private System.Windows.Forms.TextBox txtStudent;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.TextBox txtFirst;
-        private System.Windows.Forms.TextBox txtCourse;
         private System.Windows.Forms.TextBox txtSurname;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Panel ActionPanel;
@@ -366,6 +357,7 @@
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button _btnToggleTheme;
         private System.Windows.Forms.PictureBox picbxLogo;
+        private System.Windows.Forms.ComboBox cbSecurityQ;
     }
 }
 
