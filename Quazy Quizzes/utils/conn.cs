@@ -24,6 +24,22 @@ namespace Conn
             this._constring = $"Server={this._host};User={this._username};Database={this._dbName};Password={this._password}; CharSet=utf8; SslMode=none";
         }
 
+        // Check Connection
+        public CodeStatus CheckConnection()
+        {
+            MySqlConnection con = new MySqlConnection(this._constring);
+            try
+            {
+                con.Open();
+            }
+            catch (Exception e)
+            {
+                if (e.GetType() == typeof(MySqlConnector.MySqlException)) return new CodeStatus(503, "Error with connection to Database");
+                else return new CodeStatus(500, "Unknown error");
+            }
+            return new CodeStatus(200, "Connection Established");
+        }
+
         // Open connection for inside this class, is private so should not be able to be used outside the class
         private MySqlConnection OpenConnection()
         {

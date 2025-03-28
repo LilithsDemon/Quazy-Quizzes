@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnLogout = new System.Windows.Forms.Button();
+            this.BackBtn = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblCourses = new System.Windows.Forms.Label();
@@ -40,16 +40,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // btnLogout
+            // BackBtn
             // 
-            this.btnLogout.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.btnLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
-            this.btnLogout.Location = new System.Drawing.Point(25, 25);
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(213, 99);
-            this.btnLogout.TabIndex = 29;
-            this.btnLogout.Text = "Logout";
-            this.btnLogout.UseVisualStyleBackColor = false;
+            this.BackBtn.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.BackBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
+            this.BackBtn.Location = new System.Drawing.Point(25, 25);
+            this.BackBtn.Name = "BackBtn";
+            this.BackBtn.Size = new System.Drawing.Size(213, 99);
+            this.BackBtn.TabIndex = 29;
+            this.BackBtn.Text = "Go Back";
+            this.BackBtn.UseVisualStyleBackColor = false;
             // 
             // lblTitle
             // 
@@ -93,7 +93,7 @@
             this.cboboxSelect.Name = "cboboxSelect";
             this.cboboxSelect.Size = new System.Drawing.Size(198, 37);
             this.cboboxSelect.TabIndex = 31;
-            this.cboboxSelect.SelectedIndexChanged += new System.EventHandler(this.cboboxSelect_SelectedIndexChanged);
+            this.cboboxSelect.SelectedIndexChanged += new System.EventHandler(this.CboBoxSelect_SelectedIndexChanged);
             // 
             // cboboxOptions
             // 
@@ -136,7 +136,7 @@
             this.cboClasses.Size = new System.Drawing.Size(188, 37);
             this.cboClasses.TabIndex = 35;
             this.cboClasses.Visible = false;
-            this.cboClasses.SelectedIndexChanged += new System.EventHandler(this.cboClasses_SelectedIndexChanged);
+            this.cboClasses.SelectedIndexChanged += new System.EventHandler(this.CboClasses_SelectedIndexChanged);
             // 
             // AdminDash
             // 
@@ -149,7 +149,7 @@
             this.Controls.Add(this.cboboxOptions);
             this.Controls.Add(this.cboboxSelect);
             this.Controls.Add(this.lblCourses);
-            this.Controls.Add(this.btnLogout);
+            this.Controls.Add(this.BackBtn);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.pictureBox1);
             this.Name = "AdminDash";
@@ -162,7 +162,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button btnLogout;
+        private System.Windows.Forms.Button BackBtn;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblCourses;

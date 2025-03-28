@@ -28,134 +28,125 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblQuizname = new System.Windows.Forms.Label();
-            this.lblQuestion = new System.Windows.Forms.Label();
-            this.btnNext = new System.Windows.Forms.Button();
-            this.btnPrevious = new System.Windows.Forms.Button();
-            this.btnHome = new System.Windows.Forms.Button();
-            this.rbnAnswer1 = new System.Windows.Forms.RadioButton();
-            this.rbnAnswer2 = new System.Windows.Forms.RadioButton();
-            this.rbnAnswer3 = new System.Windows.Forms.RadioButton();
-            this.rbnAnswer4 = new System.Windows.Forms.RadioButton();
+            this.ExamNameLbl = new System.Windows.Forms.Label();
+            this.QuestionLbl = new System.Windows.Forms.Label();
+            this.NextBtn = new System.Windows.Forms.Button();
+            this.PreviousBtn = new System.Windows.Forms.Button();
+            this.HomeBtn = new System.Windows.Forms.Button();
+            this.Answer1RBtn = new System.Windows.Forms.RadioButton();
+            this.Answer2RBtn = new System.Windows.Forms.RadioButton();
+            this.Answer3RBtn = new System.Windows.Forms.RadioButton();
+            this.Answer4Rbtn = new System.Windows.Forms.RadioButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // lblQuizname
+            // ExamNameLbl
             // 
-            this.lblQuizname.AutoSize = true;
-            this.lblQuizname.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F);
-            this.lblQuizname.Location = new System.Drawing.Point(705, 30);
-            this.lblQuizname.Name = "lblQuizname";
-            this.lblQuizname.Size = new System.Drawing.Size(208, 46);
-            this.lblQuizname.TabIndex = 15;
-            this.lblQuizname.Text = "QuizName";
-            this.lblQuizname.Click += new System.EventHandler(this.lblQuizname_Click);
+            this.ExamNameLbl.AutoSize = true;
+            this.ExamNameLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F);
+            this.ExamNameLbl.Location = new System.Drawing.Point(705, 30);
+            this.ExamNameLbl.Name = "ExamNameLbl";
+            this.ExamNameLbl.Size = new System.Drawing.Size(208, 46);
+            this.ExamNameLbl.TabIndex = 15;
+            this.ExamNameLbl.Text = "QuizName";
             // 
-            // lblQuestion
+            // QuestionLbl
             // 
-            this.lblQuestion.AutoSize = true;
-            this.lblQuestion.BackColor = System.Drawing.Color.Green;
-            this.lblQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F);
-            this.lblQuestion.Location = new System.Drawing.Point(752, 154);
-            this.lblQuestion.Name = "lblQuestion";
-            this.lblQuestion.Size = new System.Drawing.Size(180, 46);
-            this.lblQuestion.TabIndex = 16;
-            this.lblQuestion.Text = "Question";
-            this.lblQuestion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblQuestion.Click += new System.EventHandler(this.lblQuestion_Click);
+            this.QuestionLbl.AutoSize = true;
+            this.QuestionLbl.BackColor = System.Drawing.Color.Green;
+            this.QuestionLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F);
+            this.QuestionLbl.Location = new System.Drawing.Point(752, 154);
+            this.QuestionLbl.Name = "QuestionLbl";
+            this.QuestionLbl.Size = new System.Drawing.Size(180, 46);
+            this.QuestionLbl.TabIndex = 16;
+            this.QuestionLbl.Text = "Question";
+            this.QuestionLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btnNext
+            // NextBtn
             // 
-            this.btnNext.BackColor = System.Drawing.Color.Magenta;
-            this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
-            this.btnNext.Location = new System.Drawing.Point(1349, 716);
-            this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(213, 67);
-            this.btnNext.TabIndex = 17;
-            this.btnNext.Text = "Next";
-            this.btnNext.UseVisualStyleBackColor = false;
-            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            this.NextBtn.BackColor = System.Drawing.Color.Magenta;
+            this.NextBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
+            this.NextBtn.Location = new System.Drawing.Point(1349, 716);
+            this.NextBtn.Name = "NextBtn";
+            this.NextBtn.Size = new System.Drawing.Size(213, 67);
+            this.NextBtn.TabIndex = 17;
+            this.NextBtn.Text = "Next";
+            this.NextBtn.UseVisualStyleBackColor = false;
             // 
-            // btnPrevious
+            // PreviousBtn
             // 
-            this.btnPrevious.BackColor = System.Drawing.Color.Green;
-            this.btnPrevious.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
-            this.btnPrevious.Location = new System.Drawing.Point(168, 716);
-            this.btnPrevious.Name = "btnPrevious";
-            this.btnPrevious.Size = new System.Drawing.Size(213, 67);
-            this.btnPrevious.TabIndex = 18;
-            this.btnPrevious.Text = "Previous";
-            this.btnPrevious.UseVisualStyleBackColor = false;
-            this.btnPrevious.Click += new System.EventHandler(this.btnPrevious_Click);
+            this.PreviousBtn.BackColor = System.Drawing.Color.Green;
+            this.PreviousBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
+            this.PreviousBtn.Location = new System.Drawing.Point(168, 716);
+            this.PreviousBtn.Name = "PreviousBtn";
+            this.PreviousBtn.Size = new System.Drawing.Size(213, 67);
+            this.PreviousBtn.TabIndex = 18;
+            this.PreviousBtn.Text = "Previous";
+            this.PreviousBtn.UseVisualStyleBackColor = false;
             // 
-            // btnHome
+            // HomeBtn
             // 
-            this.btnHome.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.btnHome.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
-            this.btnHome.Location = new System.Drawing.Point(12, 6);
-            this.btnHome.Name = "btnHome";
-            this.btnHome.Size = new System.Drawing.Size(213, 99);
-            this.btnHome.TabIndex = 19;
-            this.btnHome.Text = "Return to Home";
-            this.btnHome.UseVisualStyleBackColor = false;
-            this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
+            this.HomeBtn.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.HomeBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
+            this.HomeBtn.Location = new System.Drawing.Point(12, 6);
+            this.HomeBtn.Name = "HomeBtn";
+            this.HomeBtn.Size = new System.Drawing.Size(213, 99);
+            this.HomeBtn.TabIndex = 19;
+            this.HomeBtn.Text = "Return to Home";
+            this.HomeBtn.UseVisualStyleBackColor = false;
             // 
-            // rbnAnswer1
+            // Answer1RBtn
             // 
-            this.rbnAnswer1.AutoSize = true;
-            this.rbnAnswer1.BackColor = System.Drawing.Color.Magenta;
-            this.rbnAnswer1.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
-            this.rbnAnswer1.Location = new System.Drawing.Point(319, 397);
-            this.rbnAnswer1.Name = "rbnAnswer1";
-            this.rbnAnswer1.Size = new System.Drawing.Size(177, 43);
-            this.rbnAnswer1.TabIndex = 20;
-            this.rbnAnswer1.TabStop = true;
-            this.rbnAnswer1.Text = "Answer 1";
-            this.rbnAnswer1.UseVisualStyleBackColor = false;
-            this.rbnAnswer1.CheckedChanged += new System.EventHandler(this.rbnAnswer1_CheckedChanged);
+            this.Answer1RBtn.AutoSize = true;
+            this.Answer1RBtn.BackColor = System.Drawing.Color.Magenta;
+            this.Answer1RBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
+            this.Answer1RBtn.Location = new System.Drawing.Point(319, 397);
+            this.Answer1RBtn.Name = "Answer1RBtn";
+            this.Answer1RBtn.Size = new System.Drawing.Size(177, 43);
+            this.Answer1RBtn.TabIndex = 20;
+            this.Answer1RBtn.TabStop = true;
+            this.Answer1RBtn.Text = "Answer 1";
+            this.Answer1RBtn.UseVisualStyleBackColor = false;
             // 
-            // rbnAnswer2
+            // Answer2RBtn
             // 
-            this.rbnAnswer2.AutoSize = true;
-            this.rbnAnswer2.BackColor = System.Drawing.Color.Magenta;
-            this.rbnAnswer2.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
-            this.rbnAnswer2.Location = new System.Drawing.Point(319, 558);
-            this.rbnAnswer2.Name = "rbnAnswer2";
-            this.rbnAnswer2.Size = new System.Drawing.Size(177, 43);
-            this.rbnAnswer2.TabIndex = 21;
-            this.rbnAnswer2.TabStop = true;
-            this.rbnAnswer2.Text = "Answer 2";
-            this.rbnAnswer2.UseVisualStyleBackColor = false;
-            this.rbnAnswer2.CheckedChanged += new System.EventHandler(this.rbnAnswer2_CheckedChanged);
+            this.Answer2RBtn.AutoSize = true;
+            this.Answer2RBtn.BackColor = System.Drawing.Color.Magenta;
+            this.Answer2RBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
+            this.Answer2RBtn.Location = new System.Drawing.Point(319, 558);
+            this.Answer2RBtn.Name = "Answer2RBtn";
+            this.Answer2RBtn.Size = new System.Drawing.Size(177, 43);
+            this.Answer2RBtn.TabIndex = 21;
+            this.Answer2RBtn.TabStop = true;
+            this.Answer2RBtn.Text = "Answer 2";
+            this.Answer2RBtn.UseVisualStyleBackColor = false;
             // 
-            // rbnAnswer3
+            // Answer3RBtn
             // 
-            this.rbnAnswer3.AutoSize = true;
-            this.rbnAnswer3.BackColor = System.Drawing.Color.Magenta;
-            this.rbnAnswer3.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
-            this.rbnAnswer3.Location = new System.Drawing.Point(932, 397);
-            this.rbnAnswer3.Name = "rbnAnswer3";
-            this.rbnAnswer3.Size = new System.Drawing.Size(177, 43);
-            this.rbnAnswer3.TabIndex = 22;
-            this.rbnAnswer3.TabStop = true;
-            this.rbnAnswer3.Text = "Answer 3";
-            this.rbnAnswer3.UseVisualStyleBackColor = false;
-            this.rbnAnswer3.CheckedChanged += new System.EventHandler(this.rbnAnswer3_CheckedChanged);
+            this.Answer3RBtn.AutoSize = true;
+            this.Answer3RBtn.BackColor = System.Drawing.Color.Magenta;
+            this.Answer3RBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
+            this.Answer3RBtn.Location = new System.Drawing.Point(932, 397);
+            this.Answer3RBtn.Name = "Answer3RBtn";
+            this.Answer3RBtn.Size = new System.Drawing.Size(177, 43);
+            this.Answer3RBtn.TabIndex = 22;
+            this.Answer3RBtn.TabStop = true;
+            this.Answer3RBtn.Text = "Answer 3";
+            this.Answer3RBtn.UseVisualStyleBackColor = false;
             // 
-            // rbnAnswer4
+            // Answer4Rbtn
             // 
-            this.rbnAnswer4.AutoSize = true;
-            this.rbnAnswer4.BackColor = System.Drawing.Color.Magenta;
-            this.rbnAnswer4.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
-            this.rbnAnswer4.Location = new System.Drawing.Point(932, 558);
-            this.rbnAnswer4.Name = "rbnAnswer4";
-            this.rbnAnswer4.Size = new System.Drawing.Size(177, 43);
-            this.rbnAnswer4.TabIndex = 23;
-            this.rbnAnswer4.TabStop = true;
-            this.rbnAnswer4.Text = "Answer 4";
-            this.rbnAnswer4.UseVisualStyleBackColor = false;
-            this.rbnAnswer4.CheckedChanged += new System.EventHandler(this.rbnAnswer4_CheckedChanged);
+            this.Answer4Rbtn.AutoSize = true;
+            this.Answer4Rbtn.BackColor = System.Drawing.Color.Magenta;
+            this.Answer4Rbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F);
+            this.Answer4Rbtn.Location = new System.Drawing.Point(932, 558);
+            this.Answer4Rbtn.Name = "Answer4Rbtn";
+            this.Answer4Rbtn.Size = new System.Drawing.Size(177, 43);
+            this.Answer4Rbtn.TabIndex = 23;
+            this.Answer4Rbtn.TabStop = true;
+            this.Answer4Rbtn.Text = "Answer 4";
+            this.Answer4Rbtn.UseVisualStyleBackColor = false;
             // 
             // pictureBox1
             // 
@@ -166,22 +157,21 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 14;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // Quizzes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1751, 1008);
-            this.Controls.Add(this.rbnAnswer4);
-            this.Controls.Add(this.rbnAnswer3);
-            this.Controls.Add(this.rbnAnswer2);
-            this.Controls.Add(this.rbnAnswer1);
-            this.Controls.Add(this.btnHome);
-            this.Controls.Add(this.btnPrevious);
-            this.Controls.Add(this.btnNext);
-            this.Controls.Add(this.lblQuestion);
-            this.Controls.Add(this.lblQuizname);
+            this.Controls.Add(this.Answer4Rbtn);
+            this.Controls.Add(this.Answer3RBtn);
+            this.Controls.Add(this.Answer2RBtn);
+            this.Controls.Add(this.Answer1RBtn);
+            this.Controls.Add(this.HomeBtn);
+            this.Controls.Add(this.PreviousBtn);
+            this.Controls.Add(this.NextBtn);
+            this.Controls.Add(this.QuestionLbl);
+            this.Controls.Add(this.ExamNameLbl);
             this.Controls.Add(this.pictureBox1);
             this.Name = "Quizzes";
             this.Text = "Quizzes";
@@ -193,15 +183,15 @@
 
         #endregion
 
-        private System.Windows.Forms.Label lblQuizname;
+        private System.Windows.Forms.Label ExamNameLbl;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label lblQuestion;
-        private System.Windows.Forms.Button btnNext;
-        private System.Windows.Forms.Button btnPrevious;
-        private System.Windows.Forms.Button btnHome;
-        private System.Windows.Forms.RadioButton rbnAnswer1;
-        private System.Windows.Forms.RadioButton rbnAnswer2;
-        private System.Windows.Forms.RadioButton rbnAnswer3;
-        private System.Windows.Forms.RadioButton rbnAnswer4;
+        private System.Windows.Forms.Label QuestionLbl;
+        private System.Windows.Forms.Button NextBtn;
+        private System.Windows.Forms.Button PreviousBtn;
+        private System.Windows.Forms.Button HomeBtn;
+        private System.Windows.Forms.RadioButton Answer1RBtn;
+        private System.Windows.Forms.RadioButton Answer2RBtn;
+        private System.Windows.Forms.RadioButton Answer3RBtn;
+        private System.Windows.Forms.RadioButton Answer4Rbtn;
     }
 }

@@ -8,7 +8,6 @@ using Status;
 using Conn;
 using System.Data;
 using System.Security.Cryptography;
-using Quazy_Quizzes.user;
 
 namespace QQStoredProcedures
 {
@@ -35,6 +34,30 @@ namespace QQStoredProcedures
             string procedureName = "GetAllCourseExamsWithScores";
             string[] paramNames = new string[] { "@UserID", "@CourseID" };
             string[] parameters = new string[] { userId.ToString(), courseId.ToString() };
+            return new ConnectionHandler().StoredQuery(procedureName, paramNames, parameters);
+        }
+
+        public static MySqlDataReader GetAllStudents(string search)
+        {
+            string procedureName = "GetAllStudents";
+            string[] paramNames = new string[] { "@Search" };
+            string[] parameters = new string[] { search };
+            return new ConnectionHandler().StoredQuery(procedureName, paramNames, parameters);
+        }
+
+        public static MySqlDataReader GetAllLecturers(string search)
+        {
+            string procedureName = "GetAllLecturers";
+            string[] paramNames = new string[] { "@Search" };
+            string[] parameters = new string[] { search };
+            return new ConnectionHandler().StoredQuery(procedureName, paramNames, parameters);
+        }
+
+        public static MySqlDataReader GetAllUserDataFromUsername(string username)
+        {
+            string procedureName = "GetUserData";
+            string[] paramNames = new string[] { "@Username" };
+            string[] parameters = new string[] { username };
             return new ConnectionHandler().StoredQuery(procedureName, paramNames, parameters);
         }
     }
