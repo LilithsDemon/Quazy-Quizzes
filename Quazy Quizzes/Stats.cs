@@ -41,9 +41,11 @@ namespace Quazy_Quizzes
             try
             {
                 var con = new ConnectionHandler();
-                string query = "CALL GetUserQuizStats(5)"; // Pass the placeholder value directly
+                string procedureName = "GetUserQuizStats";
+                string[] paramNames = { "@userID" };
+                string[] parameters = { "5" }; // Placeholder _userID value
 
-                var reader = con.StoredQuery(query, new string[] { }, new string[] { });
+                var reader = con.StoredQuery(procedureName, paramNames, parameters);
                 DataTable dt = new DataTable();
                 dt.Load(reader);
                 dgvStats.DataSource = dt;
@@ -71,5 +73,6 @@ namespace Quazy_Quizzes
 
             SetColourScheme(Program._lightTheme);
         }
+
     }
 }

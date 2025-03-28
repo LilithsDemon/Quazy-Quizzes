@@ -62,7 +62,7 @@
             // 
             // btnToggleTheme
             // 
-            this.btnToggleTheme.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            this.btnToggleTheme.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnToggleTheme.Location = new System.Drawing.Point(680, 20);
             this.btnToggleTheme.Name = "btnToggleTheme";
             this.btnToggleTheme.Size = new System.Drawing.Size(100, 40);
@@ -93,6 +93,7 @@
             this.Text = "Stats";
             ((System.ComponentModel.ISupportInitialize)(this.dgvStats)).EndInit();
             this.ResumeLayout(false);
+
         }
 
         #endregion
