@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Net;
 using System.Net.Mail;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using QQColourScheme;
 using Quazy_Quizzes;
@@ -113,6 +114,13 @@ namespace QQContactForm
                 return;
             }
 
+            // Validate email format
+            if (!IsValidEmail(TxtEmail.Text))
+            {
+                MessageBox.Show("A valid email address was not entered.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             try
             {
                 // Email details
@@ -150,6 +158,21 @@ namespace QQContactForm
             {
                 // Handle errors during email sending
                 MessageBox.Show("Failed to send email.\n\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // Helper method to validate email format
+        private bool IsValidEmail(string email)
+        {
+            try
+            {
+                // Use Regex to validate email format
+                var emailRegex = new Regex(@"^[^@\s]+@[^@\s]+\.[^@\s]+$");
+                return emailRegex.IsMatch(email);
+            }
+            catch
+            {
+                return false;
             }
         }
 
