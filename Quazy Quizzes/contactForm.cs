@@ -149,9 +149,5 @@ namespace QQContactForm
             }
         }
 
-        // Placeholder for the counter label click event (currently unused)
-        private void CounterLabel_Click(object sender, EventArgs e)
-        {
-        }
     }
 }

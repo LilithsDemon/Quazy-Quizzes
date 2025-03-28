@@ -135,7 +135,6 @@ namespace QQContactForm
             this.LblCounter.Size = new System.Drawing.Size(96, 36);
             this.LblCounter.TabIndex = 4;
             this.LblCounter.Text = "0/500";
-            this.LblCounter.Click += new System.EventHandler(this.CounterLabel_Click);
             // 
             // BtnSubmit
             // 
