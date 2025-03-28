@@ -132,9 +132,8 @@ namespace QQContactForm
                 MailMessage mail = new MailMessage();
                 mail.From = new MailAddress("olitaylorjones@gmail.com");
                 mail.To.Add("ws330966@weston.ac.uk");
-                mail.Subject = subject;
+                mail.Subject = $"Quazy Quizzes - New Message From Contact Form: {subject}";
                 mail.Body = $"From: {userEmail}\n\n{body}";
-                mail.ReplyToList.Add(new MailAddress(userEmail));
 
                 // Configure the SMTP client
                 SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587)
