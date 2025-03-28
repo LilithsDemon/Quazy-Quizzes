@@ -10,6 +10,7 @@ namespace Quazy_Quizzes
 {
     public partial class Stats : Form
     {
+        // Lists to group UI elements for styling
         private List<Button> _primaryButtons = new List<Button>();
         private List<Label> _stdText = new List<Label>();
         private List<DataGridView> _dataGrids = new List<DataGridView>();
@@ -18,16 +19,20 @@ namespace Quazy_Quizzes
         {
             InitializeComponent();
 
-            _primaryButtons = new List<Button> { btnBack, btnToggleTheme };
-            _stdText = new List<Label> { lblTitle };
-            _dataGrids = new List<DataGridView> { dgvStats };
+            // Initialize UI element groups
+            _primaryButtons = new List<Button> { BtnBack, BtnTheme };
+            _stdText = new List<Label> { LblTitle };
+            _dataGrids = new List<DataGridView> { DgvStats };
 
+            // Apply the appropriate theme
             if (Program._isDarkMode) SetColourScheme(Program._darkTheme);
             else SetColourScheme(Program._lightTheme);
 
+            // Load quiz stats into the DataGridView
             LoadStats();
         }
 
+        // Apply the selected colour scheme to the page
         private void SetColourScheme(ColourScheme colourScheme)
         {
             this.BackColor = ColorTranslator.FromHtml(colourScheme._background);
@@ -36,6 +41,7 @@ namespace Quazy_Quizzes
             colourScheme.SetColourSchemeDataGrid(_dataGrids);
         }
 
+        // Load quiz stats from the database
         private void LoadStats()
         {
             try
@@ -45,24 +51,27 @@ namespace Quazy_Quizzes
                 string[] paramNames = { "@userID" };
                 string[] parameters = { "1" }; // Placeholder _userID value
 
+                // Execute the stored procedure and load data into the DataGridView
                 var reader = con.StoredQuery(procedureName, paramNames, parameters);
                 DataTable dt = new DataTable();
                 dt.Load(reader);
-                dgvStats.DataSource = dt;
+                DgvStats.DataSource = dt;
             }
             catch (Exception ex)
             {
+                // Handle errors during data loading
                 MessageBox.Show("Failed to load stats: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void BtnBack_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Close(); // Close the Stats form
         }
 
         private void BtnToggleTheme_Click(object sender, EventArgs e)
         {
+            // Toggle between light and dark themes
             Program._isDarkMode = !Program._isDarkMode;
 
             if (Program._isDarkMode)
@@ -73,6 +82,5 @@ namespace Quazy_Quizzes
 
             SetColourScheme(Program._lightTheme);
         }
-
     }
 }

@@ -6,10 +6,10 @@
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
-        private System.Windows.Forms.Label lblTitle;
-        private System.Windows.Forms.Button btnBack;
-        private System.Windows.Forms.Button btnToggleTheme;
-        private System.Windows.Forms.DataGridView dgvStats;
+        private System.Windows.Forms.Label LblTitle;
+        private System.Windows.Forms.Button BtnBack;
+        private System.Windows.Forms.Button BtnTheme;
+        private System.Windows.Forms.DataGridView DgvStats;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -32,66 +32,66 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblTitle = new System.Windows.Forms.Label();
-            this.btnBack = new System.Windows.Forms.Button();
-            this.btnToggleTheme = new System.Windows.Forms.Button();
-            this.dgvStats = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvStats)).BeginInit();
+            this.LblTitle = new System.Windows.Forms.Label();
+            this.BtnBack = new System.Windows.Forms.Button();
+            this.BtnTheme = new System.Windows.Forms.Button();
+            this.DgvStats = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvStats)).BeginInit();
             this.SuspendLayout();
             // 
-            // lblTitle
+            // LblTitle
             // 
-            this.lblTitle.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold);
-            this.lblTitle.Location = new System.Drawing.Point(0, 0);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(800, 80);
-            this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "Your Quiz Stats";
-            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LblTitle.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.LblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold);
+            this.LblTitle.Location = new System.Drawing.Point(0, 0);
+            this.LblTitle.Name = "LblTitle";
+            this.LblTitle.Size = new System.Drawing.Size(800, 80);
+            this.LblTitle.TabIndex = 0;
+            this.LblTitle.Text = "Your Quiz Stats";
+            this.LblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btnBack
+            // BtnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(20, 20);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(100, 40);
-            this.btnBack.TabIndex = 1;
-            this.btnBack.Text = "Back";
-            this.btnBack.UseVisualStyleBackColor = true;
-            this.btnBack.Click += new System.EventHandler(this.BtnBack_Click);
+            this.BtnBack.Location = new System.Drawing.Point(20, 20);
+            this.BtnBack.Name = "BtnBack";
+            this.BtnBack.Size = new System.Drawing.Size(100, 40);
+            this.BtnBack.TabIndex = 1;
+            this.BtnBack.Text = "Back";
+            this.BtnBack.UseVisualStyleBackColor = true;
+            this.BtnBack.Click += new System.EventHandler(this.BtnBack_Click);
             // 
-            // btnToggleTheme
+            // BtnTheme
             // 
-            this.btnToggleTheme.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnToggleTheme.Location = new System.Drawing.Point(680, 20);
-            this.btnToggleTheme.Name = "btnToggleTheme";
-            this.btnToggleTheme.Size = new System.Drawing.Size(100, 40);
-            this.btnToggleTheme.TabIndex = 2;
-            this.btnToggleTheme.Text = "Toggle Theme";
-            this.btnToggleTheme.UseVisualStyleBackColor = true;
-            this.btnToggleTheme.Click += new System.EventHandler(this.BtnToggleTheme_Click);
+            this.BtnTheme.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnTheme.Location = new System.Drawing.Point(680, 20);
+            this.BtnTheme.Name = "BtnTheme";
+            this.BtnTheme.Size = new System.Drawing.Size(100, 40);
+            this.BtnTheme.TabIndex = 2;
+            this.BtnTheme.Text = "Toggle Theme";
+            this.BtnTheme.UseVisualStyleBackColor = true;
+            this.BtnTheme.Click += new System.EventHandler(this.BtnToggleTheme_Click);
             // 
-            // dgvStats
+            // DgvStats
             // 
-            this.dgvStats.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.DgvStats.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvStats.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvStats.Location = new System.Drawing.Point(50, 100);
-            this.dgvStats.Name = "dgvStats";
-            this.dgvStats.Size = new System.Drawing.Size(700, 300);
-            this.dgvStats.TabIndex = 3;
+            this.DgvStats.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvStats.Location = new System.Drawing.Point(50, 100);
+            this.DgvStats.Name = "DgvStats";
+            this.DgvStats.Size = new System.Drawing.Size(700, 300);
+            this.DgvStats.TabIndex = 3;
             // 
             // Stats
             // 
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.dgvStats);
-            this.Controls.Add(this.btnToggleTheme);
-            this.Controls.Add(this.btnBack);
-            this.Controls.Add(this.lblTitle);
+            this.Controls.Add(this.DgvStats);
+            this.Controls.Add(this.BtnTheme);
+            this.Controls.Add(this.BtnBack);
+            this.Controls.Add(this.LblTitle);
             this.Name = "Stats";
             this.Text = "Stats";
-            ((System.ComponentModel.ISupportInitialize)(this.dgvStats)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvStats)).EndInit();
             this.ResumeLayout(false);
 
         }
