@@ -87,6 +87,7 @@
             this.UsersBtn.TabIndex = 4;
             this.UsersBtn.Text = "Users";
             this.UsersBtn.UseVisualStyleBackColor = true;
+            this.UsersBtn.Click += new System.EventHandler(this.UsersBtn_Click);
             // 
             // TestsBtn
             // 
@@ -97,6 +98,7 @@
             this.TestsBtn.TabIndex = 5;
             this.TestsBtn.Text = "Tests";
             this.TestsBtn.UseVisualStyleBackColor = true;
+            this.TestsBtn.Click += new System.EventHandler(this.TestsBtn_Click);
             // 
             // LogOutBtn
             // 
@@ -108,6 +110,7 @@
             this.LogOutBtn.TabIndex = 6;
             this.LogOutBtn.Text = "Log Out";
             this.LogOutBtn.UseVisualStyleBackColor = true;
+            this.LogOutBtn.Click += new System.EventHandler(this.LogOutBtn_Click);
             // 
             // TitleLbl
             // 

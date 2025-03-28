@@ -23,7 +23,10 @@ namespace Quazy_Quizzes
         private List<Button> _emergencyButtons = new List<Button>();
         private List<Label> _stdText = new List<Label>();
 
-        private Control[] _adminsOnly;
+        private List<Control> _userPageElements = new List<Control>();
+        private List<Control> _testPageElements = new List<Control>();
+
+        private List<Control> _adminsOnly = new List<Control>();
 
         // Used in testing, should be in user class
         int _usersRole = 2;
@@ -40,12 +43,16 @@ namespace Quazy_Quizzes
             this._emergencyButtons = new List<Button> { LogOutBtn, DisableActBtn, DeleteActBtn };
             this._stdText = new List<Label> { TitleLbl, UsernameLbl, NameLbl, EmailLbl, LastLoginLbl, SearchLbl };
 
+            this._userPageElements = new List<Control> { StdntActsBtn, LectrActsBtn, SearchLbl, SearchBar, UsernameLbl,
+                                                         NameLbl, EmailLbl, LastLoginLbl, EditActBtn, DisableActBtn,
+                                                         DeleteActBtn, NewUserBtn};
+
             // Get page to match colour scheme
             if (Program._isDarkMode) SetColourScheme(Program._darkTheme);
             else SetColourScheme(Program._lightTheme);
 
             // Components that should only be visible to admins
-            this._adminsOnly = new Control[] { StdntActsBtn, LectrActsBtn};
+            this._adminsOnly = new List<Control> { StdntActsBtn, LectrActsBtn};
 
             // If the user is not an admin then hide the admin only components
             // Role of 0 is ignored as students should not be able to get on to the lecturer dashboard
@@ -76,6 +83,44 @@ namespace Quazy_Quizzes
             colourScheme.SetColourSchemeSecondaryButtons(_secondaryButtons);
             colourScheme.SetColourSchemeEmergencyButtons(_emergencyButtons);
             colourScheme.SetColourSchemePrimaryText(_stdText);
+        }
+
+        private void LoadUserPage()
+        {
+            foreach (Control control in _testPageElements)
+            {
+                control.Visible = false;
+            }
+            foreach (Control control in _userPageElements)
+            {
+                control.Visible = true;
+            }
+            SearchBar.Text = "";
+            FillUserTable(this._usersRole);
+        }
+
+        private void LoadTestPage()
+        {
+            foreach (Control control in _userPageElements)
+            {
+                control.Visible = false;
+            }
+            foreach (Control control in _testPageElements)
+            {
+                control.Visible = true;
+            }
+        }
+
+        private void LoadPage()
+        {
+            if(this._userPage == false)
+            {
+                LoadTestPage();
+            }
+            else
+            {
+                LoadUserPage();
+            }
         }
 
         private void ToggleThemeBtn_Click(object sender, EventArgs e)
@@ -220,6 +265,21 @@ namespace Quazy_Quizzes
         }
 
         private void NewUserBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UsersBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TestsBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LogOutBtn_Click(object sender, EventArgs e)
         {
 
         }
