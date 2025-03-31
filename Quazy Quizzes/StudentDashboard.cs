@@ -17,19 +17,27 @@ namespace Quazy_Quizzes
 
 
 
-    public partial class Student_Dashboard : Form
+    public partial class StudentDashboard : Form
     {
-        public Student_Dashboard()
+        public StudentDashboard()
         {
             InitializeComponent();
         }
 
         private void QuizSelectorbtn_Click(object sender, EventArgs e)
         {
-
+            //when this is used open the selected quiz from the combobox
+            int examID = (int)ComboBoxExams.SelectedValue;
+            //however because exams aren't implemented yet, this will just show a message box
+            MessageBox.Show("This will open the quiz with ID: " + examID);
         }
-
-        private void Student_Dashboard_Load(object sender, EventArgs e)
+        private void ViewAvailableCoursesbtn_Click(object sender, EventArgs e)
+        {
+            //when this is used open the available courses
+            //however because courses aren't implemented yet, this will just show a message box
+            MessageBox.Show("This will open the available courses");
+        }
+        private void StudentDashboard_Load(object sender, EventArgs e)
         {
             int userID = 2; // to be used during testing
             PopulateExamData(userID);
@@ -52,11 +60,11 @@ namespace Quazy_Quizzes
                 dvWithScores.RowFilter = "Score <> = ''";                 
 
                 // Bind to controls
-                comboBoxExams.DataSource = dvNoScores.ToTable();
-                comboBoxExams.DisplayMember = "ExamName"; 
-                comboBoxExams.ValueMember = "ExamID";
+                ComboBoxExams.DataSource = dvNoScores.ToTable();
+                ComboBoxExams.DisplayMember = "ExamName"; 
+                ComboBoxExams.ValueMember = "ExamID";
 
-                completedExams.DataSource= dvWithScores.ToTable();
+                CompletedExams.DataSource= dvWithScores.ToTable();
             }
         }
     }
