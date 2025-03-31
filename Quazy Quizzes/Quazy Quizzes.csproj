@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -159,6 +159,12 @@
     <Compile Include="Quizzes.Designer.cs">
       <DependentUpon>Quizzes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Student_Dashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Student_Dashboard.Designer.cs">
+      <DependentUpon>Student_Dashboard.cs</DependentUpon>
+    </Compile>
     <Compile Include="testing\testingTools.cs" />
     <Compile Include="testing\tests.cs" />
     <Compile Include="user\user.cs" />
@@ -197,6 +203,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Quizzes.resx">
       <DependentUpon>Quizzes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Student_Dashboard.resx">
+      <DependentUpon>Student_Dashboard.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

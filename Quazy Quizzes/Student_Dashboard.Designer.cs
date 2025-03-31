@@ -28,18 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBoxExams = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.QuizSelectorbtn = new System.Windows.Forms.Button();
+            this.completedExams = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.completedExams)).BeginInit();
             this.SuspendLayout();
             // 
-            // comboBox1
+            // comboBoxExams
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(112, 64);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 0;
+            this.comboBoxExams.FormattingEnabled = true;
+            this.comboBoxExams.Location = new System.Drawing.Point(112, 64);
+            this.comboBoxExams.Name = "comboBoxExams";
+            this.comboBoxExams.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxExams.TabIndex = 0;
             // 
             // label1
             // 
@@ -52,25 +54,36 @@
             this.label1.Text = "Please select a quiz, Student";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // button1
+            // QuizSelectorbtn
             // 
-            this.button1.Location = new System.Drawing.Point(133, 91);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.QuizSelectorbtn.Location = new System.Drawing.Point(135, 91);
+            this.QuizSelectorbtn.Name = "QuizSelectorbtn";
+            this.QuizSelectorbtn.Size = new System.Drawing.Size(75, 23);
+            this.QuizSelectorbtn.TabIndex = 2;
+            this.QuizSelectorbtn.Text = "Go!";
+            this.QuizSelectorbtn.UseVisualStyleBackColor = true;
+            this.QuizSelectorbtn.Click += new System.EventHandler(this.QuizSelectorbtn_Click);
+            // 
+            // completedExams
+            // 
+            this.completedExams.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.completedExams.Location = new System.Drawing.Point(527, 125);
+            this.completedExams.Name = "completedExams";
+            this.completedExams.Size = new System.Drawing.Size(240, 150);
+            this.completedExams.TabIndex = 3;
             // 
             // Student_Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.completedExams);
+            this.Controls.Add(this.QuizSelectorbtn);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.comboBoxExams);
             this.Name = "Student_Dashboard";
             this.Text = "Student_Dashboard";
+            ((System.ComponentModel.ISupportInitialize)(this.completedExams)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -78,8 +91,9 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBoxExams;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button QuizSelectorbtn;
+        private System.Windows.Forms.DataGridView completedExams;
     }
 }
