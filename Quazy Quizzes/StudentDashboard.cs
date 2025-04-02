@@ -22,10 +22,13 @@ namespace Quazy_Quizzes
     public partial class StudentDashboard : Form
     {
         private List<Button> _primaryButtons = new List<Button>();
+        private List<Label> _stdText = new List<Label>();
+
         public StudentDashboard()
         {
             InitializeComponent();
 
+            this._stdText = new List<Label> { UserWelcomeLbl, PastExamsLbl };
             this._primaryButtons = new List<Button> { QuizSelectorbtn, ChangeThemebtn, ViewAvailableCoursesbtn };
             // Get page to match colour scheme
             if (Program._isDarkMode) SetColourScheme(Program._darkTheme);

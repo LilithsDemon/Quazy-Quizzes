@@ -33,14 +33,18 @@
             this.ViewAvailableCoursesbtn = new System.Windows.Forms.Button();
             this.CompletedExams = new System.Windows.Forms.DataGridView();
             this.ChangeThemebtn = new System.Windows.Forms.Button();
+            this.UserWelcomeLbl = new System.Windows.Forms.Label();
+            this.PastExamsLbl = new System.Windows.Forms.Label();
+            this.QuizName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Score = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.CompletedExams)).BeginInit();
             this.SuspendLayout();
             // 
             // QuizSelectorbtn
             // 
-            this.QuizSelectorbtn.Location = new System.Drawing.Point(77, 94);
+            this.QuizSelectorbtn.Location = new System.Drawing.Point(77, 95);
             this.QuizSelectorbtn.Name = "QuizSelectorbtn";
-            this.QuizSelectorbtn.Size = new System.Drawing.Size(75, 23);
+            this.QuizSelectorbtn.Size = new System.Drawing.Size(93, 23);
             this.QuizSelectorbtn.TabIndex = 0;
             this.QuizSelectorbtn.Text = "Go to quiz!";
             this.QuizSelectorbtn.UseVisualStyleBackColor = true;
@@ -51,7 +55,7 @@
             this.ComboBoxExams.FormattingEnabled = true;
             this.ComboBoxExams.Location = new System.Drawing.Point(54, 56);
             this.ComboBoxExams.Name = "ComboBoxExams";
-            this.ComboBoxExams.Size = new System.Drawing.Size(121, 21);
+            this.ComboBoxExams.Size = new System.Drawing.Size(134, 21);
             this.ComboBoxExams.TabIndex = 1;
             // 
             // ViewAvailableCoursesbtn
@@ -65,7 +69,11 @@
             // 
             // CompletedExams
             // 
+            this.CompletedExams.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.CompletedExams.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.CompletedExams.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.QuizName,
+            this.Score});
             this.CompletedExams.Location = new System.Drawing.Point(302, 56);
             this.CompletedExams.Name = "CompletedExams";
             this.CompletedExams.Size = new System.Drawing.Size(240, 150);
@@ -73,7 +81,7 @@
             // 
             // ChangeThemebtn
             // 
-            this.ChangeThemebtn.Location = new System.Drawing.Point(68, 183);
+            this.ChangeThemebtn.Location = new System.Drawing.Point(77, 164);
             this.ChangeThemebtn.Name = "ChangeThemebtn";
             this.ChangeThemebtn.Size = new System.Drawing.Size(93, 23);
             this.ChangeThemebtn.TabIndex = 4;
@@ -81,11 +89,43 @@
             this.ChangeThemebtn.UseVisualStyleBackColor = true;
             this.ChangeThemebtn.Click += new System.EventHandler(this.ChangeThemebtn_Click);
             // 
+            // UserWelcomeLbl
+            // 
+            this.UserWelcomeLbl.AutoSize = true;
+            this.UserWelcomeLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UserWelcomeLbl.Location = new System.Drawing.Point(58, 19);
+            this.UserWelcomeLbl.Name = "UserWelcomeLbl";
+            this.UserWelcomeLbl.Size = new System.Drawing.Size(146, 18);
+            this.UserWelcomeLbl.TabIndex = 5;
+            this.UserWelcomeLbl.Text = "Welcome, Student";
+            // 
+            // PastExamsLbl
+            // 
+            this.PastExamsLbl.AutoSize = true;
+            this.PastExamsLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PastExamsLbl.Location = new System.Drawing.Point(299, 19);
+            this.PastExamsLbl.Name = "PastExamsLbl";
+            this.PastExamsLbl.Size = new System.Drawing.Size(243, 18);
+            this.PastExamsLbl.TabIndex = 6;
+            this.PastExamsLbl.Text = "View the scores on past quizes";
+            // 
+            // QuizName
+            // 
+            this.QuizName.HeaderText = "Exam Name";
+            this.QuizName.Name = "QuizName";
+            // 
+            // Score
+            // 
+            this.Score.HeaderText = "Score";
+            this.Score.Name = "Score";
+            // 
             // StudentDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.PastExamsLbl);
+            this.Controls.Add(this.UserWelcomeLbl);
             this.Controls.Add(this.ChangeThemebtn);
             this.Controls.Add(this.CompletedExams);
             this.Controls.Add(this.ViewAvailableCoursesbtn);
@@ -95,6 +135,7 @@
             this.Text = "StudentDashboard";
             ((System.ComponentModel.ISupportInitialize)(this.CompletedExams)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -105,5 +146,9 @@
         private System.Windows.Forms.Button ViewAvailableCoursesbtn;
         private System.Windows.Forms.DataGridView CompletedExams;
         private System.Windows.Forms.Button ChangeThemebtn;
+        private System.Windows.Forms.Label UserWelcomeLbl;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QuizName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Score;
+        private System.Windows.Forms.Label PastExamsLbl;
     }
 }
