@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using QQStoredProcedures;
 using QQColourScheme;
+using UserData;
 
 namespace Quazy_Quizzes
 {
@@ -25,11 +26,12 @@ namespace Quazy_Quizzes
             InitializeComponent();
 
             this._stdText = new List<Label> { UserWelcomeLbl, PastExamsLbl };
-            this._primaryButtons = new List<Button> { QuizSelectorbtn, ChangeThemebtn, ViewAvailableCoursesbtn };
+            this._primaryButtons = new List<Button> { CourseSelectorBtn , LogOutBtn , ChangeThemeBtn };
             // Get page to match colour scheme
             if (Program._isDarkMode) SetColourScheme(Program._darkTheme);
             else SetColourScheme(Program._lightTheme);
             PopulateExamsTable();
+            PopulateCoursesComboBox();
         }
 
          private void SetColourScheme(ColourScheme colourScheme)
@@ -39,22 +41,21 @@ namespace Quazy_Quizzes
             colourScheme.SetColourSchemePrimaryText(_stdText);
         }
 
-        private void QuizSelectorbtn_Click(object sender, EventArgs e)
+        private void CourseSelectorBtn_Click(object sender, EventArgs e)
         {
-            //when this is used open the selected quiz from the combobox
-            int examID = (int)ComboBoxExams.SelectedValue;
-            //however because exams aren't implemented yet, this will just show a message box
-            MessageBox.Show("This will open the quiz with ID: " + examID);
-        }
-
-        private void ViewAvailableCoursesbtn_Click(object sender, EventArgs e)
-        {
-            //when this is used open the available courses
+            //when this is used open the selected course from the combobox
+            int courseID = (int)ComboBoxCourses.SelectedValue;
             //however because courses aren't implemented yet, this will just show a message box
-            MessageBox.Show("This will open the available courses");
+            MessageBox.Show("This will open the course with ID: " + courseID);
         }
 
-        private void ChangeThemebtn_Click(object sender, EventArgs e)
+        private void LogOutBtn_Click(object sender, EventArgs e)
+        {
+            // Log out the user
+            this.Hide();
+        }
+
+        private void ChangeThemeBtn_Click(object sender, EventArgs e)
         {
             Program._isDarkMode = !Program._isDarkMode;
 
@@ -67,6 +68,24 @@ namespace Quazy_Quizzes
 
             SetColourScheme(Program._lightTheme);
         }
+        //Populate the combobox with the available courses
+        private void PopulateCoursesComboBox()
+        {
+            // Clear the combobox so only new elements will be put in
+            ComboBoxCourses.Items.Clear();
+            // Get the data for the courses
+            var reader = StoredProcedures.GetUsersCourses(this._userID);
+            {
+                // Convert DataReader to DataTable
+                DataTable dt = new DataTable();
+                dt.Load(reader);
+
+                ComboBoxCourses.DataSource = dt;
+                ComboBoxCourses.DisplayMember = "CourseName";
+                ComboBoxCourses.ValueMember = "CourseID";
+            }
+        }
+
 
         // Populate exam data
         private void PopulateExamsTable()
@@ -90,5 +109,7 @@ namespace Quazy_Quizzes
                 }
             }
         }
+
+
     }
 }

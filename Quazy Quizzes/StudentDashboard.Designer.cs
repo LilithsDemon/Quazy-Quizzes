@@ -28,67 +28,39 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.QuizSelectorbtn = new System.Windows.Forms.Button();
-            this.ComboBoxExams = new System.Windows.Forms.ComboBox();
-            this.ViewAvailableCoursesbtn = new System.Windows.Forms.Button();
+            this.ComboBoxCourses = new System.Windows.Forms.ComboBox();
             this.CompletedExams = new System.Windows.Forms.DataGridView();
-            this.ChangeThemebtn = new System.Windows.Forms.Button();
             this.UserWelcomeLbl = new System.Windows.Forms.Label();
             this.PastExamsLbl = new System.Windows.Forms.Label();
+            this._lblTitle = new System.Windows.Forms.Label();
+            this.ChangeThemeBtn = new System.Windows.Forms.Button();
+            this.LogOutBtn = new System.Windows.Forms.Button();
+            this.CourseSelectorBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.CompletedExams)).BeginInit();
             this.SuspendLayout();
             // 
-            // QuizSelectorbtn
+            // ComboBoxCourses
             // 
-            this.QuizSelectorbtn.Location = new System.Drawing.Point(77, 95);
-            this.QuizSelectorbtn.Name = "QuizSelectorbtn";
-            this.QuizSelectorbtn.Size = new System.Drawing.Size(93, 23);
-            this.QuizSelectorbtn.TabIndex = 0;
-            this.QuizSelectorbtn.Text = "Go to quiz!";
-            this.QuizSelectorbtn.UseVisualStyleBackColor = true;
-            this.QuizSelectorbtn.Click += new System.EventHandler(this.QuizSelectorbtn_Click);
-            // 
-            // ComboBoxExams
-            // 
-            this.ComboBoxExams.FormattingEnabled = true;
-            this.ComboBoxExams.Location = new System.Drawing.Point(54, 56);
-            this.ComboBoxExams.Name = "ComboBoxExams";
-            this.ComboBoxExams.Size = new System.Drawing.Size(134, 21);
-            this.ComboBoxExams.TabIndex = 1;
-            // 
-            // ViewAvailableCoursesbtn
-            // 
-            this.ViewAvailableCoursesbtn.Location = new System.Drawing.Point(54, 135);
-            this.ViewAvailableCoursesbtn.Name = "ViewAvailableCoursesbtn";
-            this.ViewAvailableCoursesbtn.Size = new System.Drawing.Size(134, 23);
-            this.ViewAvailableCoursesbtn.TabIndex = 2;
-            this.ViewAvailableCoursesbtn.Text = "View Available Courses";
-            this.ViewAvailableCoursesbtn.UseVisualStyleBackColor = true;
+            this.ComboBoxCourses.FormattingEnabled = true;
+            this.ComboBoxCourses.Location = new System.Drawing.Point(16, 119);
+            this.ComboBoxCourses.Name = "ComboBoxCourses";
+            this.ComboBoxCourses.Size = new System.Drawing.Size(134, 21);
+            this.ComboBoxCourses.TabIndex = 1;
             // 
             // CompletedExams
             // 
             this.CompletedExams.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.CompletedExams.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.CompletedExams.Location = new System.Drawing.Point(302, 56);
+            this.CompletedExams.Location = new System.Drawing.Point(356, 117);
             this.CompletedExams.Name = "CompletedExams";
             this.CompletedExams.Size = new System.Drawing.Size(240, 150);
             this.CompletedExams.TabIndex = 3;
-            // 
-            // ChangeThemebtn
-            // 
-            this.ChangeThemebtn.Location = new System.Drawing.Point(77, 164);
-            this.ChangeThemebtn.Name = "ChangeThemebtn";
-            this.ChangeThemebtn.Size = new System.Drawing.Size(93, 23);
-            this.ChangeThemebtn.TabIndex = 4;
-            this.ChangeThemebtn.Text = "Change Theme";
-            this.ChangeThemebtn.UseVisualStyleBackColor = true;
-            this.ChangeThemebtn.Click += new System.EventHandler(this.ChangeThemebtn_Click);
             // 
             // UserWelcomeLbl
             // 
             this.UserWelcomeLbl.AutoSize = true;
             this.UserWelcomeLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UserWelcomeLbl.Location = new System.Drawing.Point(58, 19);
+            this.UserWelcomeLbl.Location = new System.Drawing.Point(54, 89);
             this.UserWelcomeLbl.Name = "UserWelcomeLbl";
             this.UserWelcomeLbl.Size = new System.Drawing.Size(146, 18);
             this.UserWelcomeLbl.TabIndex = 5;
@@ -98,24 +70,81 @@
             // 
             this.PastExamsLbl.AutoSize = true;
             this.PastExamsLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PastExamsLbl.Location = new System.Drawing.Point(299, 19);
+            this.PastExamsLbl.Location = new System.Drawing.Point(353, 89);
             this.PastExamsLbl.Name = "PastExamsLbl";
             this.PastExamsLbl.Size = new System.Drawing.Size(243, 18);
             this.PastExamsLbl.TabIndex = 6;
             this.PastExamsLbl.Text = "View the scores on past quizes";
+            // 
+            // _lblTitle
+            // 
+            this._lblTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this._lblTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this._lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold);
+            this._lblTitle.ForeColor = System.Drawing.Color.Black;
+            this._lblTitle.Location = new System.Drawing.Point(-203, 0);
+            this._lblTitle.Name = "_lblTitle";
+            this._lblTitle.Size = new System.Drawing.Size(1280, 80);
+            this._lblTitle.TabIndex = 7;
+            this._lblTitle.Text = "Contact Us";
+            this._lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // ChangeThemeBtn
+            // 
+            this.ChangeThemeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ChangeThemeBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(178)))), ((int)(((byte)(204)))));
+            this.ChangeThemeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ChangeThemeBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.ChangeThemeBtn.ForeColor = System.Drawing.Color.White;
+            this.ChangeThemeBtn.Location = new System.Drawing.Point(596, 28);
+            this.ChangeThemeBtn.Name = "ChangeThemeBtn";
+            this.ChangeThemeBtn.Size = new System.Drawing.Size(192, 40);
+            this.ChangeThemeBtn.TabIndex = 8;
+            this.ChangeThemeBtn.Text = "Toggle Theme";
+            this.ChangeThemeBtn.UseVisualStyleBackColor = false;
+            // 
+            // LogOutBtn
+            // 
+            this.LogOutBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.LogOutBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(178)))), ((int)(((byte)(204)))));
+            this.LogOutBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.LogOutBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.LogOutBtn.ForeColor = System.Drawing.Color.White;
+            this.LogOutBtn.Location = new System.Drawing.Point(69, 28);
+            this.LogOutBtn.Name = "LogOutBtn";
+            this.LogOutBtn.Size = new System.Drawing.Size(192, 40);
+            this.LogOutBtn.TabIndex = 9;
+            this.LogOutBtn.Text = "Log Out";
+            this.LogOutBtn.UseVisualStyleBackColor = false;
+            this.LogOutBtn.Click += new System.EventHandler(this.LogOutBtn_Click);
+            // 
+            // CourseSelectorBtn
+            // 
+            this.CourseSelectorBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(178)))), ((int)(((byte)(204)))));
+            this.CourseSelectorBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CourseSelectorBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CourseSelectorBtn.ForeColor = System.Drawing.Color.White;
+            this.CourseSelectorBtn.Location = new System.Drawing.Point(177, 110);
+            this.CourseSelectorBtn.Name = "CourseSelectorBtn";
+            this.CourseSelectorBtn.Size = new System.Drawing.Size(117, 37);
+            this.CourseSelectorBtn.TabIndex = 10;
+            this.CourseSelectorBtn.Text = "Go to course!";
+            this.CourseSelectorBtn.UseVisualStyleBackColor = false;
             // 
             // StudentDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.CourseSelectorBtn);
+            this.Controls.Add(this.LogOutBtn);
+            this.Controls.Add(this.ChangeThemeBtn);
+            this.Controls.Add(this._lblTitle);
             this.Controls.Add(this.PastExamsLbl);
             this.Controls.Add(this.UserWelcomeLbl);
-            this.Controls.Add(this.ChangeThemebtn);
             this.Controls.Add(this.CompletedExams);
-            this.Controls.Add(this.ViewAvailableCoursesbtn);
-            this.Controls.Add(this.ComboBoxExams);
-            this.Controls.Add(this.QuizSelectorbtn);
+            this.Controls.Add(this.ComboBoxCourses);
             this.Name = "StudentDashboard";
             this.Text = "StudentDashboard";
             ((System.ComponentModel.ISupportInitialize)(this.CompletedExams)).EndInit();
@@ -125,13 +154,13 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button QuizSelectorbtn;
-        private System.Windows.Forms.ComboBox ComboBoxExams;
-        private System.Windows.Forms.Button ViewAvailableCoursesbtn;
+        private System.Windows.Forms.ComboBox ComboBoxCourses;
         private System.Windows.Forms.DataGridView CompletedExams;
-        private System.Windows.Forms.Button ChangeThemebtn;
         private System.Windows.Forms.Label UserWelcomeLbl;
         private System.Windows.Forms.Label PastExamsLbl;
+        private System.Windows.Forms.Label _lblTitle;
+        private System.Windows.Forms.Button ChangeThemeBtn;
+        private System.Windows.Forms.Button LogOutBtn;
+        private System.Windows.Forms.Button CourseSelectorBtn;
     }
 }
