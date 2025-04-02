@@ -23,6 +23,7 @@ namespace Quazy_Quizzes
     {
         private List<Button> _primaryButtons = new List<Button>();
         private List<Label> _stdText = new List<Label>();
+        private int _userID = 1; // Used during testing
 
         public StudentDashboard()
         {
@@ -33,6 +34,7 @@ namespace Quazy_Quizzes
             // Get page to match colour scheme
             if (Program._isDarkMode) SetColourScheme(Program._darkTheme);
             else SetColourScheme(Program._lightTheme);
+            PopulateExamData(this._userID);
         }
 
          private void SetColourScheme(ColourScheme colourScheme)
@@ -70,15 +72,10 @@ namespace Quazy_Quizzes
             SetColourScheme(Program._lightTheme);
         }
 
-        private void StudentDashboard_Load(object sender, EventArgs e)
-        {
-            int userID = 2; // to be used during testing
-            PopulateExamData(userID);
-        }
-
         // Populate exam data
         private void PopulateExamData(int userID)
         {
+            Console.WriteLine("Populating exam data for user: " + userID);
             using (MySqlDataReader reader = StoredProcedures.GetUsersExamsWithScores(userID))
             {
                 DataTable dt = new DataTable();
