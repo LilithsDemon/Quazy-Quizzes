@@ -159,11 +159,11 @@
     <Compile Include="Quizzes.Designer.cs">
       <DependentUpon>Quizzes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Student_Dashboard.cs">
+    <Compile Include="StudentDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Student_Dashboard.Designer.cs">
-      <DependentUpon>Student_Dashboard.cs</DependentUpon>
+    <Compile Include="StudentDashboard.Designer.cs">
+      <DependentUpon>StudentDashboard.cs</DependentUpon>
     </Compile>
     <Compile Include="testing\testingTools.cs" />
     <Compile Include="testing\tests.cs" />
@@ -204,8 +204,8 @@
     <EmbeddedResource Include="Quizzes.resx">
       <DependentUpon>Quizzes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Student_Dashboard.resx">
-      <DependentUpon>Student_Dashboard.cs</DependentUpon>
+    <EmbeddedResource Include="StudentDashboard.resx">
+      <DependentUpon>StudentDashboard.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

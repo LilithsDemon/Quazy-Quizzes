@@ -57,14 +57,14 @@ namespace Quazy_Quizzes
                 dvNoScores.RowFilter = "Score = ''";
 
                 DataView dvWithScores = new DataView(dt);
-                dvWithScores.RowFilter = "Score <> = ''";                 
+                dvWithScores.RowFilter = "Score <> = ''";
 
                 // Bind to controls
                 ComboBoxExams.DataSource = dvNoScores.ToTable();
-                ComboBoxExams.DisplayMember = "ExamName"; 
+                ComboBoxExams.DisplayMember = "ExamName";
                 ComboBoxExams.ValueMember = "ExamID";
 
-                CompletedExams.DataSource= dvWithScores.ToTable();
+                CompletedExams.DataSource = dvWithScores.ToTable();
             }
         }
     }
