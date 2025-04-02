@@ -11,14 +11,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using QQStoredProcedures;
 using QQColourScheme;
-using MySqlConnector;
 
 namespace Quazy_Quizzes
 {
-
-
-
-
     public partial class StudentDashboard : Form
     {
         private List<Button> _primaryButtons = new List<Button>();
@@ -34,13 +29,14 @@ namespace Quazy_Quizzes
             // Get page to match colour scheme
             if (Program._isDarkMode) SetColourScheme(Program._darkTheme);
             else SetColourScheme(Program._lightTheme);
-            PopulateExamData(this._userID);
+            PopulateExamsTable();
         }
 
          private void SetColourScheme(ColourScheme colourScheme)
         {
             this.BackColor = ColorTranslator.FromHtml(colourScheme._background);
             colourScheme.SetColourSchemePrimaryButtons(_primaryButtons);
+            colourScheme.SetColourSchemePrimaryText(_stdText);
         }
 
         private void QuizSelectorbtn_Click(object sender, EventArgs e)
@@ -73,27 +69,25 @@ namespace Quazy_Quizzes
         }
 
         // Populate exam data
-        private void PopulateExamData(int userID)
+        private void PopulateExamsTable()
         {
-            Console.WriteLine("Populating exam data for user: " + userID);
-            using (MySqlDataReader reader = StoredProcedures.GetUsersExamsWithScores(userID))
+            // Clear the grid so only new elements will be put in
+            CompletedExams.Rows.Clear();
+            CompletedExams.Columns.Clear();
+
+            //Make 2 columns, one to show the username, the other to show if the account is active or disabled
+            CompletedExams.Columns.Add("ExamName", "Exam Name");
+            CompletedExams.Columns.Add("Score", "Score %");
+
+            // Get the data for the exams
+            var reader = StoredProcedures.GetUsersExamsWithScores(this._userID);
+
+            while (reader.Read())
             {
-                DataTable dt = new DataTable();
-                dt.Load(reader);
-
-                //logic to split exams with scores and exams without scores
-                DataView dvNoScores = new DataView(dt);
-                dvNoScores.RowFilter = "Score = ''";
-
-                DataView dvWithScores = new DataView(dt);
-                dvWithScores.RowFilter = "Score <> = ''";
-
-                // Bind to controls
-                ComboBoxExams.DataSource = dvNoScores.ToTable();
-                ComboBoxExams.DisplayMember = "ExamName";
-                ComboBoxExams.ValueMember = "ExamID";
-
-                CompletedExams.DataSource = dvWithScores.ToTable();
+                if (reader[1].ToString() != "") // If the user has taken the exam
+                {
+                    CompletedExams.Rows.Add(reader[0].ToString(), reader[1].ToString()); // Exam name, score
+                }
             }
         }
     }

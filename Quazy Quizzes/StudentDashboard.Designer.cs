@@ -35,8 +35,6 @@
             this.ChangeThemebtn = new System.Windows.Forms.Button();
             this.UserWelcomeLbl = new System.Windows.Forms.Label();
             this.PastExamsLbl = new System.Windows.Forms.Label();
-            this.QuizName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Score = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.CompletedExams)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,9 +69,6 @@
             // 
             this.CompletedExams.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.CompletedExams.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.CompletedExams.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.QuizName,
-            this.Score});
             this.CompletedExams.Location = new System.Drawing.Point(302, 56);
             this.CompletedExams.Name = "CompletedExams";
             this.CompletedExams.Size = new System.Drawing.Size(240, 150);
@@ -109,16 +104,6 @@
             this.PastExamsLbl.TabIndex = 6;
             this.PastExamsLbl.Text = "View the scores on past quizes";
             // 
-            // QuizName
-            // 
-            this.QuizName.HeaderText = "Exam Name";
-            this.QuizName.Name = "QuizName";
-            // 
-            // Score
-            // 
-            this.Score.HeaderText = "Score";
-            this.Score.Name = "Score";
-            // 
             // StudentDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -147,8 +132,6 @@
         private System.Windows.Forms.DataGridView CompletedExams;
         private System.Windows.Forms.Button ChangeThemebtn;
         private System.Windows.Forms.Label UserWelcomeLbl;
-        private System.Windows.Forms.DataGridViewTextBoxColumn QuizName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Score;
         private System.Windows.Forms.Label PastExamsLbl;
     }
 }
