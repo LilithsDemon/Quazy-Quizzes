@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using QQStoredProcedures;
+using QQColourScheme;
+using MySqlConnector;
 
 namespace Quazy_Quizzes
 {
@@ -19,9 +21,21 @@ namespace Quazy_Quizzes
 
     public partial class StudentDashboard : Form
     {
+        private List<Button> _primaryButtons = new List<Button>();
         public StudentDashboard()
         {
             InitializeComponent();
+
+            this._primaryButtons = new List<Button> { QuizSelectorbtn, ChangeThemebtn, ViewAvailableCoursesbtn };
+            // Get page to match colour scheme
+            if (Program._isDarkMode) SetColourScheme(Program._darkTheme);
+            else SetColourScheme(Program._lightTheme);
+        }
+
+         private void SetColourScheme(ColourScheme colourScheme)
+        {
+            this.BackColor = ColorTranslator.FromHtml(colourScheme._background);
+            colourScheme.SetColourSchemePrimaryButtons(_primaryButtons);
         }
 
         private void QuizSelectorbtn_Click(object sender, EventArgs e)
@@ -31,12 +45,28 @@ namespace Quazy_Quizzes
             //however because exams aren't implemented yet, this will just show a message box
             MessageBox.Show("This will open the quiz with ID: " + examID);
         }
+
         private void ViewAvailableCoursesbtn_Click(object sender, EventArgs e)
         {
             //when this is used open the available courses
             //however because courses aren't implemented yet, this will just show a message box
             MessageBox.Show("This will open the available courses");
         }
+
+        private void ChangeThemebtn_Click(object sender, EventArgs e)
+        {
+            Program._isDarkMode = !Program._isDarkMode;
+
+            // If is now supposed to be dark mode
+            if (Program._isDarkMode)
+            {
+                SetColourScheme(Program._darkTheme);
+                return;
+            }
+
+            SetColourScheme(Program._lightTheme);
+        }
+
         private void StudentDashboard_Load(object sender, EventArgs e)
         {
             int userID = 2; // to be used during testing
@@ -46,7 +76,6 @@ namespace Quazy_Quizzes
         // Populate exam data
         private void PopulateExamData(int userID)
         {
-
             using (MySqlDataReader reader = StoredProcedures.GetUsersExamsWithScores(userID))
             {
                 DataTable dt = new DataTable();

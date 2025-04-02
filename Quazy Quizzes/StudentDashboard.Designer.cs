@@ -32,6 +32,7 @@
             this.ComboBoxExams = new System.Windows.Forms.ComboBox();
             this.ViewAvailableCoursesbtn = new System.Windows.Forms.Button();
             this.CompletedExams = new System.Windows.Forms.DataGridView();
+            this.ChangeThemebtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.CompletedExams)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,11 +71,22 @@
             this.CompletedExams.Size = new System.Drawing.Size(240, 150);
             this.CompletedExams.TabIndex = 3;
             // 
+            // ChangeThemebtn
+            // 
+            this.ChangeThemebtn.Location = new System.Drawing.Point(68, 183);
+            this.ChangeThemebtn.Name = "ChangeThemebtn";
+            this.ChangeThemebtn.Size = new System.Drawing.Size(93, 23);
+            this.ChangeThemebtn.TabIndex = 4;
+            this.ChangeThemebtn.Text = "Change Theme";
+            this.ChangeThemebtn.UseVisualStyleBackColor = true;
+            this.ChangeThemebtn.Click += new System.EventHandler(this.ChangeThemebtn_Click);
+            // 
             // StudentDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.ChangeThemebtn);
             this.Controls.Add(this.CompletedExams);
             this.Controls.Add(this.ViewAvailableCoursesbtn);
             this.Controls.Add(this.ComboBoxExams);
@@ -92,5 +104,6 @@
         private System.Windows.Forms.ComboBox ComboBoxExams;
         private System.Windows.Forms.Button ViewAvailableCoursesbtn;
         private System.Windows.Forms.DataGridView CompletedExams;
+        private System.Windows.Forms.Button ChangeThemebtn;
     }
 }
