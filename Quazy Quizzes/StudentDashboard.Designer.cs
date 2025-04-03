@@ -49,10 +49,13 @@
             // 
             // CompletedExams
             // 
+            this.CompletedExams.AllowUserToAddRows = false;
+            this.CompletedExams.AllowUserToDeleteRows = false;
             this.CompletedExams.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.CompletedExams.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.CompletedExams.Location = new System.Drawing.Point(356, 117);
             this.CompletedExams.Name = "CompletedExams";
+            this.CompletedExams.ReadOnly = true;
             this.CompletedExams.Size = new System.Drawing.Size(240, 150);
             this.CompletedExams.TabIndex = 3;
             // 
