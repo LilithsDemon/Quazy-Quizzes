@@ -115,7 +115,5 @@ namespace Quazy_Quizzes
                 }
             }
         }
-
-
     }
 }

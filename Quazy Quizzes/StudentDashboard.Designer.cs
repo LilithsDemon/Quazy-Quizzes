@@ -87,7 +87,7 @@
             this.HeaderLbl.Name = "HeaderLbl";
             this.HeaderLbl.Size = new System.Drawing.Size(812, 80);
             this.HeaderLbl.TabIndex = 7;
-            this.HeaderLbl.Text = "Student Dashboard";
+            this.HeaderLbl.Text = "Dashboard";
             this.HeaderLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ChangeThemeBtn
@@ -97,9 +97,9 @@
             this.ChangeThemeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ChangeThemeBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.ChangeThemeBtn.ForeColor = System.Drawing.Color.White;
-            this.ChangeThemeBtn.Location = new System.Drawing.Point(614, 12);
+            this.ChangeThemeBtn.Location = new System.Drawing.Point(536, 12);
             this.ChangeThemeBtn.Name = "ChangeThemeBtn";
-            this.ChangeThemeBtn.Size = new System.Drawing.Size(186, 40);
+            this.ChangeThemeBtn.Size = new System.Drawing.Size(209, 40);
             this.ChangeThemeBtn.TabIndex = 8;
             this.ChangeThemeBtn.Text = "Toggle Theme";
             this.ChangeThemeBtn.UseVisualStyleBackColor = false;
@@ -111,7 +111,7 @@
             this.LogOutBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LogOutBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.LogOutBtn.ForeColor = System.Drawing.Color.White;
-            this.LogOutBtn.Location = new System.Drawing.Point(12, 12);
+            this.LogOutBtn.Location = new System.Drawing.Point(100, 12);
             this.LogOutBtn.Name = "LogOutBtn";
             this.LogOutBtn.Size = new System.Drawing.Size(146, 40);
             this.LogOutBtn.TabIndex = 9;
