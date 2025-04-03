@@ -42,7 +42,7 @@
             // ComboBoxCourses
             // 
             this.ComboBoxCourses.FormattingEnabled = true;
-            this.ComboBoxCourses.Location = new System.Drawing.Point(20, 147);
+            this.ComboBoxCourses.Location = new System.Drawing.Point(25, 120);
             this.ComboBoxCourses.Name = "ComboBoxCourses";
             this.ComboBoxCourses.Size = new System.Drawing.Size(134, 21);
             this.ComboBoxCourses.TabIndex = 1;
@@ -60,11 +60,11 @@
             // 
             this.UserWelcomeLbl.AutoSize = true;
             this.UserWelcomeLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UserWelcomeLbl.Location = new System.Drawing.Point(54, 89);
+            this.UserWelcomeLbl.Location = new System.Drawing.Point(22, 89);
             this.UserWelcomeLbl.Name = "UserWelcomeLbl";
-            this.UserWelcomeLbl.Size = new System.Drawing.Size(146, 18);
+            this.UserWelcomeLbl.Size = new System.Drawing.Size(276, 18);
             this.UserWelcomeLbl.TabIndex = 5;
-            this.UserWelcomeLbl.Text = "Welcome, Student";
+            this.UserWelcomeLbl.Text = "Welcome, Student, select a course!";
             // 
             // PastExamsLbl
             // 
@@ -125,7 +125,7 @@
             this.CourseSelectorBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CourseSelectorBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CourseSelectorBtn.ForeColor = System.Drawing.Color.White;
-            this.CourseSelectorBtn.Location = new System.Drawing.Point(175, 137);
+            this.CourseSelectorBtn.Location = new System.Drawing.Point(180, 110);
             this.CourseSelectorBtn.Name = "CourseSelectorBtn";
             this.CourseSelectorBtn.Size = new System.Drawing.Size(117, 37);
             this.CourseSelectorBtn.TabIndex = 10;
