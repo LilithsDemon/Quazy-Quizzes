@@ -80,8 +80,8 @@ namespace Quazy_Quizzes
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Form1());
-            Application.Run(new StudentDashboard());
+
+            Application.Run(new Load()); // This is what the application should be starting on
 
 
             
