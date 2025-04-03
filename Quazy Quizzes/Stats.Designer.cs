@@ -44,13 +44,13 @@
             // 
             // LblTitle
             // 
-            this.LblTitle.Dock = System.Windows.Forms.DockStyle.Top;
             this.LblTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.LblTitle.Dock = System.Windows.Forms.DockStyle.Top;
             this.LblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold);
             this.LblTitle.ForeColor = System.Drawing.Color.Black;
             this.LblTitle.Location = new System.Drawing.Point(0, 0);
             this.LblTitle.Name = "LblTitle";
-            this.LblTitle.Size = new System.Drawing.Size(800, 80);
+            this.LblTitle.Size = new System.Drawing.Size(890, 80);
             this.LblTitle.TabIndex = 0;
             this.LblTitle.Text = "Your Quiz Stats";
             this.LblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -76,7 +76,7 @@
             this.BtnTheme.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnTheme.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.BtnTheme.ForeColor = System.Drawing.Color.White;
-            this.BtnTheme.Location = new System.Drawing.Point(660, 20);
+            this.BtnTheme.Location = new System.Drawing.Point(750, 20);
             this.BtnTheme.Name = "BtnTheme";
             this.BtnTheme.Size = new System.Drawing.Size(120, 40);
             this.BtnTheme.TabIndex = 2;
@@ -86,6 +86,8 @@
             // 
             // DgvStats
             // 
+            this.DgvStats.AllowUserToAddRows = false;
+            this.DgvStats.AllowUserToDeleteRows = false;
             this.DgvStats.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -93,7 +95,8 @@
             this.DgvStats.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvStats.Location = new System.Drawing.Point(-1, -1);
             this.DgvStats.Name = "DgvStats";
-            this.DgvStats.Size = new System.Drawing.Size(700, 400);
+            this.DgvStats.ReadOnly = true;
+            this.DgvStats.Size = new System.Drawing.Size(790, 400);
             this.DgvStats.TabIndex = 3;
             // 
             // ContainerPanel
@@ -106,12 +109,12 @@
             this.ContainerPanel.Controls.Add(this.DgvStats);
             this.ContainerPanel.Location = new System.Drawing.Point(50, 120);
             this.ContainerPanel.Name = "ContainerPanel";
-            this.ContainerPanel.Size = new System.Drawing.Size(700, 400);
+            this.ContainerPanel.Size = new System.Drawing.Size(790, 400);
             this.ContainerPanel.TabIndex = 4;
             // 
             // Stats
             // 
-            this.ClientSize = new System.Drawing.Size(800, 600);
+            this.ClientSize = new System.Drawing.Size(890, 600);
             this.Controls.Add(this.ContainerPanel);
             this.Controls.Add(this.BtnTheme);
             this.Controls.Add(this.BtnBack);
