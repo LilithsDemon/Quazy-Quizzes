@@ -42,7 +42,7 @@
             // ComboBoxCourses
             // 
             this.ComboBoxCourses.FormattingEnabled = true;
-            this.ComboBoxCourses.Location = new System.Drawing.Point(16, 119);
+            this.ComboBoxCourses.Location = new System.Drawing.Point(20, 147);
             this.ComboBoxCourses.Name = "ComboBoxCourses";
             this.ComboBoxCourses.Size = new System.Drawing.Size(134, 21);
             this.ComboBoxCourses.TabIndex = 1;
@@ -83,11 +83,11 @@
             this.HeaderLbl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.HeaderLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold);
             this.HeaderLbl.ForeColor = System.Drawing.Color.Black;
-            this.HeaderLbl.Location = new System.Drawing.Point(0, 0);
+            this.HeaderLbl.Location = new System.Drawing.Point(-12, -8);
             this.HeaderLbl.Name = "HeaderLbl";
-            this.HeaderLbl.Size = new System.Drawing.Size(800, 80);
+            this.HeaderLbl.Size = new System.Drawing.Size(812, 80);
             this.HeaderLbl.TabIndex = 7;
-            this.HeaderLbl.Text = "Contact Us";
+            this.HeaderLbl.Text = "Student Dashboard";
             this.HeaderLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ChangeThemeBtn
@@ -97,9 +97,9 @@
             this.ChangeThemeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ChangeThemeBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.ChangeThemeBtn.ForeColor = System.Drawing.Color.White;
-            this.ChangeThemeBtn.Location = new System.Drawing.Point(580, 20);
+            this.ChangeThemeBtn.Location = new System.Drawing.Point(614, 12);
             this.ChangeThemeBtn.Name = "ChangeThemeBtn";
-            this.ChangeThemeBtn.Size = new System.Drawing.Size(200, 40);
+            this.ChangeThemeBtn.Size = new System.Drawing.Size(186, 40);
             this.ChangeThemeBtn.TabIndex = 8;
             this.ChangeThemeBtn.Text = "Toggle Theme";
             this.ChangeThemeBtn.UseVisualStyleBackColor = false;
@@ -111,9 +111,9 @@
             this.LogOutBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LogOutBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.LogOutBtn.ForeColor = System.Drawing.Color.White;
-            this.LogOutBtn.Location = new System.Drawing.Point(20, 20);
+            this.LogOutBtn.Location = new System.Drawing.Point(12, 12);
             this.LogOutBtn.Name = "LogOutBtn";
-            this.LogOutBtn.Size = new System.Drawing.Size(200, 40);
+            this.LogOutBtn.Size = new System.Drawing.Size(146, 40);
             this.LogOutBtn.TabIndex = 9;
             this.LogOutBtn.Text = "Log Out";
             this.LogOutBtn.UseVisualStyleBackColor = false;
@@ -125,7 +125,7 @@
             this.CourseSelectorBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CourseSelectorBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CourseSelectorBtn.ForeColor = System.Drawing.Color.White;
-            this.CourseSelectorBtn.Location = new System.Drawing.Point(177, 110);
+            this.CourseSelectorBtn.Location = new System.Drawing.Point(175, 137);
             this.CourseSelectorBtn.Name = "CourseSelectorBtn";
             this.CourseSelectorBtn.Size = new System.Drawing.Size(117, 37);
             this.CourseSelectorBtn.TabIndex = 10;
