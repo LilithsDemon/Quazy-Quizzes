@@ -32,7 +32,7 @@
             this.CompletedExams = new System.Windows.Forms.DataGridView();
             this.UserWelcomeLbl = new System.Windows.Forms.Label();
             this.PastExamsLbl = new System.Windows.Forms.Label();
-            this._lblTitle = new System.Windows.Forms.Label();
+            this.HeaderLbl = new System.Windows.Forms.Label();
             this.ChangeThemeBtn = new System.Windows.Forms.Button();
             this.LogOutBtn = new System.Windows.Forms.Button();
             this.CourseSelectorBtn = new System.Windows.Forms.Button();
@@ -76,19 +76,19 @@
             this.PastExamsLbl.TabIndex = 6;
             this.PastExamsLbl.Text = "View the scores on past quizes";
             // 
-            // _lblTitle
+            // HeaderLbl
             // 
-            this._lblTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.HeaderLbl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this._lblTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this._lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold);
-            this._lblTitle.ForeColor = System.Drawing.Color.Black;
-            this._lblTitle.Location = new System.Drawing.Point(-203, 0);
-            this._lblTitle.Name = "_lblTitle";
-            this._lblTitle.Size = new System.Drawing.Size(1280, 80);
-            this._lblTitle.TabIndex = 7;
-            this._lblTitle.Text = "Contact Us";
-            this._lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.HeaderLbl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.HeaderLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold);
+            this.HeaderLbl.ForeColor = System.Drawing.Color.Black;
+            this.HeaderLbl.Location = new System.Drawing.Point(0, 0);
+            this.HeaderLbl.Name = "HeaderLbl";
+            this.HeaderLbl.Size = new System.Drawing.Size(800, 80);
+            this.HeaderLbl.TabIndex = 7;
+            this.HeaderLbl.Text = "Contact Us";
+            this.HeaderLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ChangeThemeBtn
             // 
@@ -97,23 +97,23 @@
             this.ChangeThemeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ChangeThemeBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.ChangeThemeBtn.ForeColor = System.Drawing.Color.White;
-            this.ChangeThemeBtn.Location = new System.Drawing.Point(596, 28);
+            this.ChangeThemeBtn.Location = new System.Drawing.Point(580, 20);
             this.ChangeThemeBtn.Name = "ChangeThemeBtn";
-            this.ChangeThemeBtn.Size = new System.Drawing.Size(192, 40);
+            this.ChangeThemeBtn.Size = new System.Drawing.Size(200, 40);
             this.ChangeThemeBtn.TabIndex = 8;
             this.ChangeThemeBtn.Text = "Toggle Theme";
             this.ChangeThemeBtn.UseVisualStyleBackColor = false;
+            this.ChangeThemeBtn.Click += new System.EventHandler(this.ChangeThemeBtn_Click);
             // 
             // LogOutBtn
             // 
-            this.LogOutBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.LogOutBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(178)))), ((int)(((byte)(204)))));
             this.LogOutBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LogOutBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.LogOutBtn.ForeColor = System.Drawing.Color.White;
-            this.LogOutBtn.Location = new System.Drawing.Point(69, 28);
+            this.LogOutBtn.Location = new System.Drawing.Point(20, 20);
             this.LogOutBtn.Name = "LogOutBtn";
-            this.LogOutBtn.Size = new System.Drawing.Size(192, 40);
+            this.LogOutBtn.Size = new System.Drawing.Size(200, 40);
             this.LogOutBtn.TabIndex = 9;
             this.LogOutBtn.Text = "Log Out";
             this.LogOutBtn.UseVisualStyleBackColor = false;
@@ -140,7 +140,7 @@
             this.Controls.Add(this.CourseSelectorBtn);
             this.Controls.Add(this.LogOutBtn);
             this.Controls.Add(this.ChangeThemeBtn);
-            this.Controls.Add(this._lblTitle);
+            this.Controls.Add(this.HeaderLbl);
             this.Controls.Add(this.PastExamsLbl);
             this.Controls.Add(this.UserWelcomeLbl);
             this.Controls.Add(this.CompletedExams);
@@ -158,7 +158,7 @@
         private System.Windows.Forms.DataGridView CompletedExams;
         private System.Windows.Forms.Label UserWelcomeLbl;
         private System.Windows.Forms.Label PastExamsLbl;
-        private System.Windows.Forms.Label _lblTitle;
+        private System.Windows.Forms.Label HeaderLbl;
         private System.Windows.Forms.Button ChangeThemeBtn;
         private System.Windows.Forms.Button LogOutBtn;
         private System.Windows.Forms.Button CourseSelectorBtn;

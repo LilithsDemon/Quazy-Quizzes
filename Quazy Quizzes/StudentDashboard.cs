@@ -18,6 +18,7 @@ namespace Quazy_Quizzes
     public partial class StudentDashboard : Form
     {
         private List<Button> _primaryButtons = new List<Button>();
+        private List<Button> _emergencyButtons = new List<Button>();
         private List<Label> _stdText = new List<Label>();
         private int _userID = 1; // Used during testing
 
@@ -26,7 +27,8 @@ namespace Quazy_Quizzes
             InitializeComponent();
 
             this._stdText = new List<Label> { UserWelcomeLbl, PastExamsLbl };
-            this._primaryButtons = new List<Button> { CourseSelectorBtn , LogOutBtn , ChangeThemeBtn };
+            this._primaryButtons = new List<Button> { CourseSelectorBtn , ChangeThemeBtn };
+            this._emergencyButtons = new List<Button> { LogOutBtn };
             // Get page to match colour scheme
             if (Program._isDarkMode) SetColourScheme(Program._darkTheme);
             else SetColourScheme(Program._lightTheme);
@@ -37,7 +39,9 @@ namespace Quazy_Quizzes
          private void SetColourScheme(ColourScheme colourScheme)
         {
             this.BackColor = ColorTranslator.FromHtml(colourScheme._background);
+            colourScheme.SetColourSchemeHeader(HeaderLbl);
             colourScheme.SetColourSchemePrimaryButtons(_primaryButtons);
+            colourScheme.SetColourSchemeEmergencyButtons(_emergencyButtons);
             colourScheme.SetColourSchemePrimaryText(_stdText);
         }
 
@@ -51,7 +55,9 @@ namespace Quazy_Quizzes
 
         private void LogOutBtn_Click(object sender, EventArgs e)
         {
-            // Log out the user
+            Program._user.ClearData();
+            Form1 logInForm = new Form1();
+            logInForm.Show();
             this.Hide();
         }
 
