@@ -60,6 +60,7 @@ namespace QQStoredProcedures
             string[] parameters = new string[] { username };
             return new ConnectionHandler().StoredQuery(procedureName, paramNames, parameters);
         }
+      
         public static MySqlDataReader GetUsersExamsWithScores(int userId)
         {
             string procedureName = "GetUsersExamsWithScores";
@@ -68,5 +69,12 @@ namespace QQStoredProcedures
             return new ConnectionHandler().StoredQuery(procedureName, paramNames, parameters);
         }
 
+        public static MySqlDataReader GetUserQuizStats(int userId)
+        {
+            string procedureName = "GetUserQuizStats";
+            string[] paramNames = new string[] { "@UserID" };
+            string[] parameters = new string[] { userId.ToString() };
+            return new ConnectionHandler().StoredQuery(procedureName, paramNames, parameters);
+        }
     }
 }

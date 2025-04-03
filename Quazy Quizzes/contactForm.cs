@@ -34,38 +34,12 @@ namespace QQContactForm
             else SetColourScheme(Program._lightTheme);
         }
 
-        // Handles the "Back" button click event to navigate back to the previous form
+        // Handles the "Back" button click event to navigate back to Form1
         private void BackButton_Click(object sender, EventArgs e)
         {
             this.Hide(); // Hide the current form
-            Form popupForm = new Form
-            {
-                Size = new Size(300, 200),
-                StartPosition = FormStartPosition.CenterScreen,
-                FormBorderStyle = FormBorderStyle.FixedDialog,
-                MaximizeBox = false,
-                MinimizeBox = false
-            };
-
-            // Button to show the contact form again
-            Button btnShowForm = new Button
-            {
-                Text = "Show Contact Form",
-                Size = new Size(200, 50),
-                Location = new Point((popupForm.ClientSize.Width - 200) / 2, (popupForm.ClientSize.Height - 50) / 2),
-                Anchor = AnchorStyles.None,
-                BackColor = ColorTranslator.FromHtml("#00B2CC"),
-                Font = new Font("Orbitron", 18, FontStyle.Regular),
-                ForeColor = ColorTranslator.FromHtml("#FFFFFF")
-            };
-            btnShowForm.Click += (s, args) =>
-            {
-                this.Show(); // Show the contact form
-                popupForm.Close(); // Close the popup form
-            };
-
-            popupForm.Controls.Add(btnShowForm);
-            popupForm.ShowDialog();
+            Form1 mainForm = new Form1(); // Create an instance of Form1
+            mainForm.Show(); // Show Form1
         }
 
         // Applies the given colour scheme to the form and its elements
@@ -73,6 +47,7 @@ namespace QQContactForm
         {
             this.BackColor = ColorTranslator.FromHtml(colourScheme._background);
             _containerPanel.BackColor = ColorTranslator.FromHtml(colourScheme._cardBackground);
+            colourScheme.SetColourSchemeHeader(LblTitle);
 
             // Apply colours to grouped elements
             colourScheme.SetColourSchemePrimaryText(_stdText);
@@ -132,9 +107,8 @@ namespace QQContactForm
                 MailMessage mail = new MailMessage();
                 mail.From = new MailAddress("olitaylorjones@gmail.com");
                 mail.To.Add("ws330966@weston.ac.uk");
-                mail.Subject = subject;
+                mail.Subject = $"Quazy Quizzes - New Message From Contact Form: {subject}";
                 mail.Body = $"From: {userEmail}\n\n{body}";
-                mail.ReplyToList.Add(new MailAddress(userEmail));
 
                 // Configure the SMTP client
                 SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587)
@@ -176,9 +150,5 @@ namespace QQContactForm
             }
         }
 
-        // Placeholder for the counter label click event (currently unused)
-        private void CounterLabel_Click(object sender, EventArgs e)
-        {
-        }
     }
 }

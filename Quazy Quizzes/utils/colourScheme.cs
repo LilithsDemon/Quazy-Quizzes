@@ -159,5 +159,19 @@ namespace QQColourScheme
         {
             SetColourSchemeButton(buttonElement, 2);
         }
+
+        // Set the colour scheme on given DataGridView components
+        public void SetColourSchemeDataGrid(List<DataGridView> dataGrids)
+        {
+            foreach (var dataGrid in dataGrids)
+            {
+                dataGrid.BackgroundColor = ColorTranslator.FromHtml(this._cardBackground);
+                dataGrid.DefaultCellStyle.BackColor = ColorTranslator.FromHtml(this._cardBackground);
+                dataGrid.DefaultCellStyle.ForeColor = ColorTranslator.FromHtml(this._primaryText);
+                dataGrid.ColumnHeadersDefaultCellStyle.BackColor = ColorTranslator.FromHtml(this._headerBackground);
+                dataGrid.ColumnHeadersDefaultCellStyle.ForeColor = ColorTranslator.FromHtml(this._headerText);
+                dataGrid.EnableHeadersVisualStyles = false;
+            }
+        }
     }
 }
