@@ -300,7 +300,8 @@ namespace Quazy_Quizzes
 
         private void NewUserBtn_Click(object sender, EventArgs e)
         {
-            
+            CreateNewUser newUser = new CreateNewUser();
+            newUser.Show();
         }
 
         private void UsersBtn_Click(object sender, EventArgs e)

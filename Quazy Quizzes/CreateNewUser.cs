@@ -16,6 +16,8 @@ namespace Quazy_Quizzes
 
         List<Label> _primaryTextLabels = new List<Label>();
         List<Button> _primaryButtons = new List<Button>();
+        List<TextBox> _textBoxes = new List<TextBox>();
+        List<ComboBox> _comboBoxes = new List<ComboBox>();
 
         int _usersRole = 2;
 
@@ -23,7 +25,10 @@ namespace Quazy_Quizzes
         {
             InitializeComponent();
 
-            this._primaryButtons.Add(CreateUserBtn);
+            this._primaryButtons = new List<Button>() { CreateUserBtn };
+            this._primaryTextLabels = new List<Label>() { UsernameLbl, FirstNameLbl, LastNameLbl, EmailLbl, PasswordLbl, SecurityQLbl, SecurityALbl, RoleLbl};
+            this._textBoxes = new List<TextBox>() { UsernameInput, FirstNameInput, LastNameInput, EmailInput, PasswordInput, SecurityAInput };
+            this._comboBoxes = new List<ComboBox>() { SecurityQCB, RoleCB };
 
             // Get page to match colour scheme
             if (Program._isDarkMode) SetColourScheme(Program._darkTheme);
@@ -36,6 +41,8 @@ namespace Quazy_Quizzes
 
             colourScheme.SetColourSchemePrimaryButtons(this._primaryButtons);
             colourScheme.SetColourSchemePrimaryText(this._primaryTextLabels);
+            colourScheme.SetColourSchemeTextBox(this._textBoxes);
+            colourScheme.SetColourSchemeComboBox(this._comboBoxes);
         }
     }
 }

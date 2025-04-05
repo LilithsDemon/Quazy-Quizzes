@@ -41,6 +41,10 @@
             this.SecurityQCB = new System.Windows.Forms.ComboBox();
             this.SecurityALbl = new System.Windows.Forms.Label();
             this.SecurityAInput = new System.Windows.Forms.TextBox();
+            this.EmailLbl = new System.Windows.Forms.Label();
+            this.EmailInput = new System.Windows.Forms.TextBox();
+            this.RoleCB = new System.Windows.Forms.ComboBox();
+            this.RoleLbl = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // CreateUserBtn
@@ -111,7 +115,7 @@
             // PasswordLbl
             // 
             this.PasswordLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.PasswordLbl.Location = new System.Drawing.Point(325, 238);
+            this.PasswordLbl.Location = new System.Drawing.Point(325, 313);
             this.PasswordLbl.Name = "PasswordLbl";
             this.PasswordLbl.Size = new System.Drawing.Size(150, 25);
             this.PasswordLbl.TabIndex = 8;
@@ -121,7 +125,7 @@
             // PasswordInput
             // 
             this.PasswordInput.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.PasswordInput.Location = new System.Drawing.Point(325, 266);
+            this.PasswordInput.Location = new System.Drawing.Point(325, 341);
             this.PasswordInput.Name = "PasswordInput";
             this.PasswordInput.Size = new System.Drawing.Size(150, 20);
             this.PasswordInput.TabIndex = 7;
@@ -129,7 +133,7 @@
             // SecurityQLbl
             // 
             this.SecurityQLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.SecurityQLbl.Location = new System.Drawing.Point(325, 305);
+            this.SecurityQLbl.Location = new System.Drawing.Point(325, 380);
             this.SecurityQLbl.Name = "SecurityQLbl";
             this.SecurityQLbl.Size = new System.Drawing.Size(150, 25);
             this.SecurityQLbl.TabIndex = 10;
@@ -139,7 +143,7 @@
             // SecurityQCB
             // 
             this.SecurityQCB.FormattingEnabled = true;
-            this.SecurityQCB.Location = new System.Drawing.Point(325, 333);
+            this.SecurityQCB.Location = new System.Drawing.Point(325, 408);
             this.SecurityQCB.Name = "SecurityQCB";
             this.SecurityQCB.Size = new System.Drawing.Size(150, 21);
             this.SecurityQCB.TabIndex = 11;
@@ -147,7 +151,7 @@
             // SecurityALbl
             // 
             this.SecurityALbl.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.SecurityALbl.Location = new System.Drawing.Point(325, 369);
+            this.SecurityALbl.Location = new System.Drawing.Point(325, 444);
             this.SecurityALbl.Name = "SecurityALbl";
             this.SecurityALbl.Size = new System.Drawing.Size(150, 25);
             this.SecurityALbl.TabIndex = 13;
@@ -157,16 +161,56 @@
             // SecurityAInput
             // 
             this.SecurityAInput.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.SecurityAInput.Location = new System.Drawing.Point(325, 397);
+            this.SecurityAInput.Location = new System.Drawing.Point(325, 472);
             this.SecurityAInput.Name = "SecurityAInput";
             this.SecurityAInput.Size = new System.Drawing.Size(150, 20);
             this.SecurityAInput.TabIndex = 12;
+            // 
+            // EmailLbl
+            // 
+            this.EmailLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.EmailLbl.Location = new System.Drawing.Point(325, 249);
+            this.EmailLbl.Name = "EmailLbl";
+            this.EmailLbl.Size = new System.Drawing.Size(150, 25);
+            this.EmailLbl.TabIndex = 15;
+            this.EmailLbl.Text = "Email";
+            this.EmailLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // EmailInput
+            // 
+            this.EmailInput.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.EmailInput.Location = new System.Drawing.Point(325, 277);
+            this.EmailInput.Name = "EmailInput";
+            this.EmailInput.Size = new System.Drawing.Size(150, 20);
+            this.EmailInput.TabIndex = 14;
+            // 
+            // RoleCB
+            // 
+            this.RoleCB.FormattingEnabled = true;
+            this.RoleCB.Location = new System.Drawing.Point(322, 539);
+            this.RoleCB.Name = "RoleCB";
+            this.RoleCB.Size = new System.Drawing.Size(150, 21);
+            this.RoleCB.TabIndex = 17;
+            // 
+            // RoleLbl
+            // 
+            this.RoleLbl.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.RoleLbl.Location = new System.Drawing.Point(322, 511);
+            this.RoleLbl.Name = "RoleLbl";
+            this.RoleLbl.Size = new System.Drawing.Size(150, 25);
+            this.RoleLbl.TabIndex = 16;
+            this.RoleLbl.Text = "Role";
+            this.RoleLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // CreateNewUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 661);
+            this.Controls.Add(this.RoleCB);
+            this.Controls.Add(this.RoleLbl);
+            this.Controls.Add(this.EmailLbl);
+            this.Controls.Add(this.EmailInput);
             this.Controls.Add(this.SecurityALbl);
             this.Controls.Add(this.SecurityAInput);
             this.Controls.Add(this.SecurityQCB);
@@ -202,5 +246,9 @@
         private System.Windows.Forms.ComboBox SecurityQCB;
         private System.Windows.Forms.Label SecurityALbl;
         private System.Windows.Forms.TextBox SecurityAInput;
+        private System.Windows.Forms.Label EmailLbl;
+        private System.Windows.Forms.TextBox EmailInput;
+        private System.Windows.Forms.ComboBox RoleCB;
+        private System.Windows.Forms.Label RoleLbl;
     }
 }
