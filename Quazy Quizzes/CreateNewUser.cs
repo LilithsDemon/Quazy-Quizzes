@@ -19,7 +19,8 @@ namespace Quazy_Quizzes
         List<TextBox> _textBoxes = new List<TextBox>();
         List<ComboBox> _comboBoxes = new List<ComboBox>();
 
-        int _usersRole = 2;
+        int _usersRole = 2; // Used for testing
+
 
         public CreateNewUser()
         {
@@ -33,6 +34,16 @@ namespace Quazy_Quizzes
             // Get page to match colour scheme
             if (Program._isDarkMode) SetColourScheme(Program._darkTheme);
             else SetColourScheme(Program._lightTheme);
+        }
+
+        public void FillSecurityQBox()
+        {
+            
+        }
+
+        public void FillRoleBox()
+        {
+
         }
 
         private void SetColourScheme(ColourScheme colourScheme)
