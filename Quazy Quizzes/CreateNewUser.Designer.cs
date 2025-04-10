@@ -45,6 +45,7 @@
             this.EmailInput = new System.Windows.Forms.TextBox();
             this.RoleCB = new System.Windows.Forms.ComboBox();
             this.RoleLbl = new System.Windows.Forms.Label();
+            this.CancelBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // CreateUserBtn
@@ -54,9 +55,10 @@
             this.CreateUserBtn.Location = new System.Drawing.Point(325, 600);
             this.CreateUserBtn.Name = "CreateUserBtn";
             this.CreateUserBtn.Size = new System.Drawing.Size(150, 50);
-            this.CreateUserBtn.TabIndex = 0;
+            this.CreateUserBtn.TabIndex = 9;
             this.CreateUserBtn.Text = "Create New user";
             this.CreateUserBtn.UseVisualStyleBackColor = true;
+            this.CreateUserBtn.Click += new System.EventHandler(this.CreateUserBtn_Click);
             // 
             // UsernameInput
             // 
@@ -92,7 +94,7 @@
             this.FirstNameInput.Location = new System.Drawing.Point(325, 125);
             this.FirstNameInput.Name = "FirstNameInput";
             this.FirstNameInput.Size = new System.Drawing.Size(150, 20);
-            this.FirstNameInput.TabIndex = 3;
+            this.FirstNameInput.TabIndex = 2;
             // 
             // LastNameLbl
             // 
@@ -110,7 +112,7 @@
             this.LastNameInput.Location = new System.Drawing.Point(325, 198);
             this.LastNameInput.Name = "LastNameInput";
             this.LastNameInput.Size = new System.Drawing.Size(150, 20);
-            this.LastNameInput.TabIndex = 5;
+            this.LastNameInput.TabIndex = 3;
             // 
             // PasswordLbl
             // 
@@ -128,7 +130,7 @@
             this.PasswordInput.Location = new System.Drawing.Point(325, 341);
             this.PasswordInput.Name = "PasswordInput";
             this.PasswordInput.Size = new System.Drawing.Size(150, 20);
-            this.PasswordInput.TabIndex = 7;
+            this.PasswordInput.TabIndex = 5;
             // 
             // SecurityQLbl
             // 
@@ -146,7 +148,7 @@
             this.SecurityQCB.Location = new System.Drawing.Point(325, 408);
             this.SecurityQCB.Name = "SecurityQCB";
             this.SecurityQCB.Size = new System.Drawing.Size(150, 21);
-            this.SecurityQCB.TabIndex = 11;
+            this.SecurityQCB.TabIndex = 6;
             // 
             // SecurityALbl
             // 
@@ -164,7 +166,7 @@
             this.SecurityAInput.Location = new System.Drawing.Point(325, 472);
             this.SecurityAInput.Name = "SecurityAInput";
             this.SecurityAInput.Size = new System.Drawing.Size(150, 20);
-            this.SecurityAInput.TabIndex = 12;
+            this.SecurityAInput.TabIndex = 7;
             // 
             // EmailLbl
             // 
@@ -182,7 +184,7 @@
             this.EmailInput.Location = new System.Drawing.Point(325, 277);
             this.EmailInput.Name = "EmailInput";
             this.EmailInput.Size = new System.Drawing.Size(150, 20);
-            this.EmailInput.TabIndex = 14;
+            this.EmailInput.TabIndex = 4;
             // 
             // RoleCB
             // 
@@ -190,7 +192,7 @@
             this.RoleCB.Location = new System.Drawing.Point(322, 539);
             this.RoleCB.Name = "RoleCB";
             this.RoleCB.Size = new System.Drawing.Size(150, 21);
-            this.RoleCB.TabIndex = 17;
+            this.RoleCB.TabIndex = 8;
             // 
             // RoleLbl
             // 
@@ -202,11 +204,22 @@
             this.RoleLbl.Text = "Role";
             this.RoleLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // CancelBtn
+            // 
+            this.CancelBtn.Location = new System.Drawing.Point(30, 27);
+            this.CancelBtn.Name = "CancelBtn";
+            this.CancelBtn.Size = new System.Drawing.Size(100, 50);
+            this.CancelBtn.TabIndex = 17;
+            this.CancelBtn.Text = "Cancel";
+            this.CancelBtn.UseVisualStyleBackColor = true;
+            this.CancelBtn.Click += new System.EventHandler(this.CancelBtn_Click);
+            // 
             // CreateNewUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 661);
+            this.Controls.Add(this.CancelBtn);
             this.Controls.Add(this.RoleCB);
             this.Controls.Add(this.RoleLbl);
             this.Controls.Add(this.EmailLbl);
@@ -250,5 +263,6 @@
         private System.Windows.Forms.TextBox EmailInput;
         private System.Windows.Forms.ComboBox RoleCB;
         private System.Windows.Forms.Label RoleLbl;
+        private System.Windows.Forms.Button CancelBtn;
     }
 }
