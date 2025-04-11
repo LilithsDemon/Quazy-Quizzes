@@ -67,7 +67,6 @@
             // SidebarBg
             // 
             this.SidebarBg.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.SidebarBg.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.SidebarBg.Dock = System.Windows.Forms.DockStyle.Left;
             this.SidebarBg.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SidebarBg.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold);
@@ -131,6 +130,7 @@
             this.StdntActsBtn.TabIndex = 8;
             this.StdntActsBtn.Text = "Student Accounts";
             this.StdntActsBtn.UseVisualStyleBackColor = true;
+            this.StdntActsBtn.Visible = false;
             this.StdntActsBtn.Click += new System.EventHandler(this.StdntActsBtn_Click);
             // 
             // LectrActsBtn
@@ -142,6 +142,7 @@
             this.LectrActsBtn.TabIndex = 9;
             this.LectrActsBtn.Text = "Lecturer Accounts";
             this.LectrActsBtn.UseVisualStyleBackColor = true;
+            this.LectrActsBtn.Visible = false;
             this.LectrActsBtn.Click += new System.EventHandler(this.LectrActsBtn_Click);
             // 
             // ActGrid

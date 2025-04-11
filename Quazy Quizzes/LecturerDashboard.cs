@@ -23,6 +23,7 @@ namespace Quazy_Quizzes
         private List<Button> _secondaryButtons = new List<Button>();
         private List<Button> _emergencyButtons = new List<Button>();
         private List<Label> _stdText = new List<Label>();
+        private List<DataGridView> _dataGrids = new List<DataGridView>();
 
         private List<Control> _userPageElements = new List<Control>();
         private List<Control> _testPageElements = new List<Control>();
@@ -44,6 +45,7 @@ namespace Quazy_Quizzes
             this._secondaryButtons = new List<Button> { StdntActsBtn, LectrActsBtn, EditActBtn, ToggleThemeBtn };
             this._emergencyButtons = new List<Button> { LogOutBtn, DisableActBtn, DeleteActBtn };
             this._stdText = new List<Label> { TitleLbl, UsernameLbl, NameLbl, EmailLbl, LastLoginLbl, SearchLbl };
+            this._dataGrids = new List<DataGridView> { ActGrid };
 
             this._userPageElements = new List<Control> { StdntActsBtn, LectrActsBtn, SearchLbl, SearchBar, ActGrid,
                                                          UsernameLbl, NameLbl, EmailLbl, LastLoginLbl, EditActBtn, DisableActBtn,
@@ -86,6 +88,7 @@ namespace Quazy_Quizzes
             colourScheme.SetColourSchemeSecondaryButtons(_secondaryButtons);
             colourScheme.SetColourSchemeEmergencyButtons(_emergencyButtons);
             colourScheme.SetColourSchemePrimaryText(_stdText);
+            colourScheme.SetColourSchemeDataGridViews(_dataGrids);
         }
 
         private void LoadUserPage()
