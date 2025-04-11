@@ -41,14 +41,27 @@
             this.NameLbl = new System.Windows.Forms.Label();
             this.NewUserBtn = new System.Windows.Forms.Button();
             this.EmailLbl = new System.Windows.Forms.Label();
-            this.SearchBar = new System.Windows.Forms.TextBox();
-            this.SearchLbl = new System.Windows.Forms.Label();
+            this.ActSearchBar = new System.Windows.Forms.TextBox();
+            this.ActSearchLbl = new System.Windows.Forms.Label();
             this.LastLoginLbl = new System.Windows.Forms.Label();
             this.EditActBtn = new System.Windows.Forms.Button();
             this.DisableActBtn = new System.Windows.Forms.Button();
             this.DeleteActBtn = new System.Windows.Forms.Button();
             this.ToggleThemeBtn = new System.Windows.Forms.Button();
+            this.CourseSearchLbl = new System.Windows.Forms.Label();
+            this.CourseSearchBar = new System.Windows.Forms.TextBox();
+            this.CourseGrid = new System.Windows.Forms.DataGridView();
+            this.QuizGrid = new System.Windows.Forms.DataGridView();
+            this.QuizSearchBar = new System.Windows.Forms.TextBox();
+            this.QuizSearchLbl = new System.Windows.Forms.Label();
+            this.NewCourseBtn = new System.Windows.Forms.Button();
+            this.NewQuizBtn = new System.Windows.Forms.Button();
+            this.EditCourseBtn = new System.Windows.Forms.Button();
+            this.EditQuizBtn = new System.Windows.Forms.Button();
+            this.DeleteQuizBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ActGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CourseGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.QuizGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // HeaderBg
@@ -187,7 +200,7 @@
             this.NewUserBtn.Name = "NewUserBtn";
             this.NewUserBtn.Size = new System.Drawing.Size(150, 50);
             this.NewUserBtn.TabIndex = 14;
-            this.NewUserBtn.Text = "Create New user";
+            this.NewUserBtn.Text = "Create New User";
             this.NewUserBtn.UseVisualStyleBackColor = true;
             this.NewUserBtn.Click += new System.EventHandler(this.NewUserBtn_Click);
             // 
@@ -202,26 +215,26 @@
             this.EmailLbl.Text = "Email: ";
             this.EmailLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // SearchBar
+            // ActSearchBar
             // 
-            this.SearchBar.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.SearchBar.Location = new System.Drawing.Point(175, 245);
-            this.SearchBar.Name = "SearchBar";
-            this.SearchBar.Size = new System.Drawing.Size(200, 20);
-            this.SearchBar.TabIndex = 16;
-            this.SearchBar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.SearchBar_KeyUp);
+            this.ActSearchBar.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.ActSearchBar.Location = new System.Drawing.Point(175, 245);
+            this.ActSearchBar.Name = "ActSearchBar";
+            this.ActSearchBar.Size = new System.Drawing.Size(200, 20);
+            this.ActSearchBar.TabIndex = 16;
+            this.ActSearchBar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.SearchBar_KeyUp);
             // 
-            // SearchLbl
+            // ActSearchLbl
             // 
-            this.SearchLbl.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.SearchLbl.AutoSize = true;
-            this.SearchLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SearchLbl.Location = new System.Drawing.Point(175, 225);
-            this.SearchLbl.Name = "SearchLbl";
-            this.SearchLbl.Size = new System.Drawing.Size(59, 16);
-            this.SearchLbl.TabIndex = 17;
-            this.SearchLbl.Text = "Search...";
-            this.SearchLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ActSearchLbl.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.ActSearchLbl.AutoSize = true;
+            this.ActSearchLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ActSearchLbl.Location = new System.Drawing.Point(175, 225);
+            this.ActSearchLbl.Name = "ActSearchLbl";
+            this.ActSearchLbl.Size = new System.Drawing.Size(130, 16);
+            this.ActSearchLbl.TabIndex = 17;
+            this.ActSearchLbl.Text = "Search for account ...";
+            this.ActSearchLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // LastLoginLbl
             // 
@@ -282,19 +295,142 @@
             this.ToggleThemeBtn.UseVisualStyleBackColor = false;
             this.ToggleThemeBtn.Click += new System.EventHandler(this.ToggleThemeBtn_Click);
             // 
+            // CourseSearchLbl
+            // 
+            this.CourseSearchLbl.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.CourseSearchLbl.AutoSize = true;
+            this.CourseSearchLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CourseSearchLbl.Location = new System.Drawing.Point(175, 179);
+            this.CourseSearchLbl.Name = "CourseSearchLbl";
+            this.CourseSearchLbl.Size = new System.Drawing.Size(124, 16);
+            this.CourseSearchLbl.TabIndex = 23;
+            this.CourseSearchLbl.Text = "Search for course ...";
+            this.CourseSearchLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // CourseSearchBar
+            // 
+            this.CourseSearchBar.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.CourseSearchBar.Location = new System.Drawing.Point(178, 198);
+            this.CourseSearchBar.Name = "CourseSearchBar";
+            this.CourseSearchBar.Size = new System.Drawing.Size(247, 20);
+            this.CourseSearchBar.TabIndex = 24;
+            // 
+            // CourseGrid
+            // 
+            this.CourseGrid.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.CourseGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.CourseGrid.Location = new System.Drawing.Point(175, 244);
+            this.CourseGrid.MultiSelect = false;
+            this.CourseGrid.Name = "CourseGrid";
+            this.CourseGrid.ReadOnly = true;
+            this.CourseGrid.Size = new System.Drawing.Size(250, 275);
+            this.CourseGrid.TabIndex = 25;
+            // 
+            // QuizGrid
+            // 
+            this.QuizGrid.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.QuizGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.QuizGrid.Location = new System.Drawing.Point(517, 245);
+            this.QuizGrid.MultiSelect = false;
+            this.QuizGrid.Name = "QuizGrid";
+            this.QuizGrid.ReadOnly = true;
+            this.QuizGrid.Size = new System.Drawing.Size(250, 275);
+            this.QuizGrid.TabIndex = 28;
+            // 
+            // QuizSearchBar
+            // 
+            this.QuizSearchBar.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.QuizSearchBar.Location = new System.Drawing.Point(520, 199);
+            this.QuizSearchBar.Name = "QuizSearchBar";
+            this.QuizSearchBar.Size = new System.Drawing.Size(247, 20);
+            this.QuizSearchBar.TabIndex = 27;
+            // 
+            // QuizSearchLbl
+            // 
+            this.QuizSearchLbl.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.QuizSearchLbl.AutoSize = true;
+            this.QuizSearchLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.QuizSearchLbl.Location = new System.Drawing.Point(517, 180);
+            this.QuizSearchLbl.Name = "QuizSearchLbl";
+            this.QuizSearchLbl.Size = new System.Drawing.Size(107, 16);
+            this.QuizSearchLbl.TabIndex = 26;
+            this.QuizSearchLbl.Text = "Search for quiz ...";
+            this.QuizSearchLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // NewCourseBtn
+            // 
+            this.NewCourseBtn.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.NewCourseBtn.Location = new System.Drawing.Point(228, 556);
+            this.NewCourseBtn.Name = "NewCourseBtn";
+            this.NewCourseBtn.Size = new System.Drawing.Size(150, 50);
+            this.NewCourseBtn.TabIndex = 29;
+            this.NewCourseBtn.Text = "Create New Course";
+            this.NewCourseBtn.UseVisualStyleBackColor = true;
+            // 
+            // NewQuizBtn
+            // 
+            this.NewQuizBtn.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.NewQuizBtn.Location = new System.Drawing.Point(565, 556);
+            this.NewQuizBtn.Name = "NewQuizBtn";
+            this.NewQuizBtn.Size = new System.Drawing.Size(150, 50);
+            this.NewQuizBtn.TabIndex = 30;
+            this.NewQuizBtn.Text = "Create New Quiz";
+            this.NewQuizBtn.UseVisualStyleBackColor = true;
+            // 
+            // EditCourseBtn
+            // 
+            this.EditCourseBtn.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.EditCourseBtn.Location = new System.Drawing.Point(916, 260);
+            this.EditCourseBtn.Name = "EditCourseBtn";
+            this.EditCourseBtn.Size = new System.Drawing.Size(150, 50);
+            this.EditCourseBtn.TabIndex = 31;
+            this.EditCourseBtn.Text = "Edit Selected Course";
+            this.EditCourseBtn.UseVisualStyleBackColor = true;
+            // 
+            // EditQuizBtn
+            // 
+            this.EditQuizBtn.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.EditQuizBtn.Location = new System.Drawing.Point(916, 363);
+            this.EditQuizBtn.Name = "EditQuizBtn";
+            this.EditQuizBtn.Size = new System.Drawing.Size(150, 50);
+            this.EditQuizBtn.TabIndex = 32;
+            this.EditQuizBtn.Text = "Edit Selected Quiz";
+            this.EditQuizBtn.UseVisualStyleBackColor = true;
+            // 
+            // DeleteQuizBtn
+            // 
+            this.DeleteQuizBtn.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.DeleteQuizBtn.Location = new System.Drawing.Point(916, 450);
+            this.DeleteQuizBtn.Name = "DeleteQuizBtn";
+            this.DeleteQuizBtn.Size = new System.Drawing.Size(150, 50);
+            this.DeleteQuizBtn.TabIndex = 33;
+            this.DeleteQuizBtn.Text = "Delete Selected Quiz";
+            this.DeleteQuizBtn.UseVisualStyleBackColor = true;
+            // 
             // LecturerDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 626);
+            this.Controls.Add(this.DeleteQuizBtn);
+            this.Controls.Add(this.EditQuizBtn);
+            this.Controls.Add(this.EditCourseBtn);
+            this.Controls.Add(this.NewQuizBtn);
+            this.Controls.Add(this.NewCourseBtn);
+            this.Controls.Add(this.QuizGrid);
+            this.Controls.Add(this.QuizSearchBar);
+            this.Controls.Add(this.QuizSearchLbl);
+            this.Controls.Add(this.CourseGrid);
+            this.Controls.Add(this.CourseSearchBar);
+            this.Controls.Add(this.CourseSearchLbl);
             this.Controls.Add(this.ActGrid);
             this.Controls.Add(this.ToggleThemeBtn);
             this.Controls.Add(this.DeleteActBtn);
             this.Controls.Add(this.DisableActBtn);
             this.Controls.Add(this.EditActBtn);
             this.Controls.Add(this.LastLoginLbl);
-            this.Controls.Add(this.SearchLbl);
-            this.Controls.Add(this.SearchBar);
+            this.Controls.Add(this.ActSearchLbl);
+            this.Controls.Add(this.ActSearchBar);
             this.Controls.Add(this.EmailLbl);
             this.Controls.Add(this.NewUserBtn);
             this.Controls.Add(this.NameLbl);
@@ -310,6 +446,8 @@
             this.Name = "LecturerDashboard";
             this.Text = "LecturerDashboard";
             ((System.ComponentModel.ISupportInitialize)(this.ActGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CourseGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.QuizGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -330,12 +468,23 @@
         private System.Windows.Forms.Label NameLbl;
         private System.Windows.Forms.Button NewUserBtn;
         private System.Windows.Forms.Label EmailLbl;
-        private System.Windows.Forms.TextBox SearchBar;
-        private System.Windows.Forms.Label SearchLbl;
+        private System.Windows.Forms.TextBox ActSearchBar;
+        private System.Windows.Forms.Label ActSearchLbl;
         private System.Windows.Forms.Label LastLoginLbl;
         private System.Windows.Forms.Button EditActBtn;
         private System.Windows.Forms.Button DisableActBtn;
         private System.Windows.Forms.Button DeleteActBtn;
         private System.Windows.Forms.Button ToggleThemeBtn;
+        private System.Windows.Forms.Label CourseSearchLbl;
+        private System.Windows.Forms.TextBox CourseSearchBar;
+        private System.Windows.Forms.DataGridView CourseGrid;
+        private System.Windows.Forms.DataGridView QuizGrid;
+        private System.Windows.Forms.TextBox QuizSearchBar;
+        private System.Windows.Forms.Label QuizSearchLbl;
+        private System.Windows.Forms.Button NewCourseBtn;
+        private System.Windows.Forms.Button NewQuizBtn;
+        private System.Windows.Forms.Button EditCourseBtn;
+        private System.Windows.Forms.Button EditQuizBtn;
+        private System.Windows.Forms.Button DeleteQuizBtn;
     }
 }

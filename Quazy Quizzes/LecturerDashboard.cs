@@ -24,6 +24,7 @@ namespace Quazy_Quizzes
         private List<Button> _emergencyButtons = new List<Button>();
         private List<Label> _stdText = new List<Label>();
         private List<DataGridView> _dataGrids = new List<DataGridView>();
+        private List<TextBox> _textBoxes = new List<TextBox>();
 
         private List<Control> _userPageElements = new List<Control>();
         private List<Control> _testPageElements = new List<Control>();
@@ -41,15 +42,22 @@ namespace Quazy_Quizzes
             InitializeComponent();
 
             // Components used for setting colour scheme
-            this._primaryButtons = new List<Button> { UsersBtn, TestsBtn, NewUserBtn };
-            this._secondaryButtons = new List<Button> { StdntActsBtn, LectrActsBtn, EditActBtn, ToggleThemeBtn };
-            this._emergencyButtons = new List<Button> { LogOutBtn, DisableActBtn, DeleteActBtn };
-            this._stdText = new List<Label> { TitleLbl, UsernameLbl, NameLbl, EmailLbl, LastLoginLbl, SearchLbl };
-            this._dataGrids = new List<DataGridView> { ActGrid };
+            this._primaryButtons = new List<Button> { UsersBtn, TestsBtn, NewUserBtn, NewCourseBtn, NewQuizBtn };
+            this._secondaryButtons = new List<Button> { StdntActsBtn, LectrActsBtn, EditActBtn, ToggleThemeBtn, 
+                                                        EditQuizBtn, EditCourseBtn};
+            this._emergencyButtons = new List<Button> { LogOutBtn, DisableActBtn, DeleteActBtn, DeleteQuizBtn };
+            this._stdText = new List<Label> { TitleLbl, UsernameLbl, NameLbl, EmailLbl, LastLoginLbl, ActSearchLbl,
+                                               CourseSearchLbl, QuizSearchLbl};
+            this._dataGrids = new List<DataGridView> { ActGrid, CourseGrid, QuizGrid };
+            this._textBoxes = new List<TextBox> { ActSearchBar, CourseSearchBar, QuizSearchBar };
 
-            this._userPageElements = new List<Control> { StdntActsBtn, LectrActsBtn, SearchLbl, SearchBar, ActGrid,
+            this._userPageElements = new List<Control> { StdntActsBtn, LectrActsBtn, ActSearchLbl, ActSearchBar, ActGrid,
                                                          UsernameLbl, NameLbl, EmailLbl, LastLoginLbl, EditActBtn, DisableActBtn,
                                                          DeleteActBtn, NewUserBtn};
+
+            this._testPageElements = new List<Control> { NewCourseBtn, NewQuizBtn, CourseSearchLbl, CourseSearchBar, CourseGrid,
+                                                         QuizSearchLbl, QuizSearchBar, QuizGrid,
+                                                         EditCourseBtn, EditQuizBtn, DeleteQuizBtn};
 
             // Get page to match colour scheme
             if (Program._isDarkMode) SetColourScheme(Program._darkTheme);
@@ -83,12 +91,12 @@ namespace Quazy_Quizzes
             colourScheme.SetColourSchemeHeader(HeaderBg);
             colourScheme.SetColourSchemeHeader(SidebarBg);
 
-
             colourScheme.SetColourSchemePrimaryButtons(_primaryButtons);
             colourScheme.SetColourSchemeSecondaryButtons(_secondaryButtons);
             colourScheme.SetColourSchemeEmergencyButtons(_emergencyButtons);
             colourScheme.SetColourSchemePrimaryText(_stdText);
-            colourScheme.SetColourSchemeDataGridViews(_dataGrids);
+            colourScheme.SetColourSchemeDataGrid(_dataGrids);
+            colourScheme.SetColourSchemeTextBox(_textBoxes);
         }
 
         private void LoadUserPage()
@@ -104,7 +112,7 @@ namespace Quazy_Quizzes
             HideAdminElements();
 
             TitleLbl.Text = "User Management";
-            SearchBar.Text = "";
+            ActSearchBar.Text = "";
             FillUserTable((this._actGridView == false) ? 0 : 1);
         }
 
@@ -125,14 +133,8 @@ namespace Quazy_Quizzes
 
         private void LoadPage()
         {
-            if(this._userPage == false)
-            {
-                LoadTestPage();
-            }
-            else
-            {
-                LoadUserPage();
-            }
+            if(this._userPage == false) LoadTestPage();
+            else LoadUserPage();
         }
 
         private void ToggleThemeBtn_Click(object sender, EventArgs e)
@@ -248,7 +250,7 @@ namespace Quazy_Quizzes
         // When the search bar is used it will get the data based on the search
         private void SearchBar_KeyUp(object sender, KeyEventArgs e)
         {
-            FillUserTable((_actGridView == false) ? 0 : 1, SearchBar.Text);
+            FillUserTable((_actGridView == false) ? 0 : 1, ActSearchBar.Text);
         }
 
         // When a row is entered it loads that users data.
@@ -279,7 +281,7 @@ namespace Quazy_Quizzes
             var runSql = new ConnectionHandler().ExectuteCommand(disableActSQL, paramNames, parameters);
             if(!runSql) MessageBox.Show("Failed to disable/enable account");
 
-            FillUserTable((_actGridView == false) ? 0 : 1, SearchBar.Text);
+            FillUserTable((_actGridView == false) ? 0 : 1, ActSearchBar.Text);
             ChangeActStatusBtn((DisableActBtn.Text == "Enable Account") ? true : false);
         }
 
@@ -298,7 +300,7 @@ namespace Quazy_Quizzes
             var runSQL = new ConnectionHandler().ExectuteCommand(deleteActSQL, paramNames, parameters);
             if (!runSQL) MessageBox.Show("Failed to delete account"); // If SQL failed
 
-            FillUserTable((_actGridView == false) ? 0 : 1, SearchBar.Text);
+            FillUserTable((_actGridView == false) ? 0 : 1, ActSearchBar.Text);
         }
 
         private void NewUserBtn_Click(object sender, EventArgs e)
