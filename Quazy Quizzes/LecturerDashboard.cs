@@ -34,12 +34,21 @@ namespace Quazy_Quizzes
         // Used in testing, should be in user class
         int _usersRole = 2;
 
+        int _usersID = 4; // Used for testing - connected to one existing course
+
         bool _userPage = true; // true is users page, false is tests pages
         bool _actGridView = false; // False is for students, true is for lecturers
 
         public LecturerDashboard()
         {
             InitializeComponent();
+
+            if(this._usersRole == 0) // Makes sure student does not load this page
+            {
+                StudentDashboard studentDashboard = new StudentDashboard();
+                studentDashboard.Show();
+                this.Hide();
+            }
 
             // Components used for setting colour scheme
             this._primaryButtons = new List<Button> { UsersBtn, TestsBtn, NewUserBtn, NewCourseBtn, NewQuizBtn };
@@ -129,6 +138,9 @@ namespace Quazy_Quizzes
             HideAdminElements();
 
             TitleLbl.Text = "Test Management";
+            CourseSearchBar.Text = "";
+            QuizSearchBar.Text = "";
+            FillCoursesTable();
         }
 
         private void LoadPage()
@@ -201,6 +213,47 @@ namespace Quazy_Quizzes
                 ActGrid.Rows[0].Selected = true;
                 if (ActGrid.Rows[0].Cells["UserName"].Value == null) return;  
                 LoadUserInfo(ActGrid.Rows[0].Cells["UserName"].Value.ToString());
+            }
+        }
+
+        private void FillCoursesTable(string search="")
+        {
+            CourseGrid.Rows.Clear();
+            CourseGrid.Columns.Clear();
+
+            CourseGrid.Columns.Add("CourseName", "Course Name");
+
+            var con = new ConnectionHandler();
+            MySqlDataReader reader = null;
+
+            try
+            {
+                if(this._usersRole == 1)
+                {
+                    string SQL = "SELECT `CourseName` FROM `Courses` LEFT JOIN `UserToCourse` ON `Courses`.`CourseID` = `UserToCourse`.`CourseID` WHERE `UserToCourse`.`UserID` = @userID;";
+                    string[] paramNames = new string[] { "@userID" };
+                    string[] parameters = new string[] { this._usersID.ToString() };
+                    reader = con.ExectuteQuery(SQL, paramNames, parameters);
+                } else
+                {
+                    string SQL = "SELECT `CourseName` FROM `Courses`;";
+                    reader = con.ExecuteQueryNoParams(SQL);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            while (reader.Read())
+            {
+                CourseGrid.Rows.Add(reader[0].ToString());
+            }
+
+            if (CourseGrid.Rows.Count > 0)
+            {
+                CourseGrid.Rows[0].Selected = true;
+                if (CourseGrid.Rows[0].Cells["CourseName"].Value == null) return;
             }
         }
 
