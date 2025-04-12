@@ -14,6 +14,7 @@ using Conn;
 using QQStoredProcedures;
 using System.Net.Mail;
 using System.Security.Principal;
+using System.Xml.Serialization;
 
 namespace Quazy_Quizzes
 {
@@ -34,7 +35,7 @@ namespace Quazy_Quizzes
         // Used in testing, should be in user class
         int _usersRole = 2;
 
-        int _usersID = 4; // Used for testing - connected to one existing course
+        int _usersID = 3; // Used for testing - connected to one existing course
 
         bool _userPage = true; // true is users page, false is tests pages
         bool _actGridView = false; // False is for students, true is for lecturers
@@ -76,8 +77,11 @@ namespace Quazy_Quizzes
             this._adminsOnly = new List<Control> { StdntActsBtn, LectrActsBtn};
 
             // Ensure the DataGridView allows row selection
-            ActGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            ActGrid.MultiSelect = false;
+            foreach(DataGridView gridView in  this._dataGrids)
+            {
+                gridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                gridView.MultiSelect = false;
+            }
 
             LoadPage();
         }
@@ -216,7 +220,7 @@ namespace Quazy_Quizzes
             }
         }
 
-        private void FillCoursesTable(string search="")
+        public void FillCoursesTable(string search = "")
         {
             CourseGrid.Rows.Clear();
             CourseGrid.Columns.Clear();
@@ -230,19 +234,24 @@ namespace Quazy_Quizzes
             {
                 if(this._usersRole == 1)
                 {
-                    string SQL = "SELECT `CourseName` FROM `Courses` LEFT JOIN `UserToCourse` ON `Courses`.`CourseID` = `UserToCourse`.`CourseID` WHERE `UserToCourse`.`UserID` = @userID;";
-                    string[] paramNames = new string[] { "@userID" };
-                    string[] parameters = new string[] { this._usersID.ToString() };
+                    string SQL = "SELECT `Courses`.`CourseName` FROM `Courses` LEFT JOIN `UserToCourse` ON `Courses`.`CourseID` = `UserToCourse`.`CourseID`" +
+                                 " WHERE `UserToCourse`.`UserID` = @userID; AND `Courses`.`CourseName` LIKE CONCAT('%', @search, '%');";
+                    string[] paramNames = new string[] { "@userID", "@search" };
+                    string[] parameters = new string[] { this._usersID.ToString(), search };
                     reader = con.ExectuteQuery(SQL, paramNames, parameters);
                 } else
                 {
-                    string SQL = "SELECT `CourseName` FROM `Courses`;";
-                    reader = con.ExecuteQueryNoParams(SQL);
+                    string SQL = "SELECT `CourseName` FROM `Courses` WHERE `Courses`.`CourseName` LIKE CONCAT('%', @search, '%');";
+                    string[] paramNames = new string[] { "@search" };
+                    string[] parameters = new string[] { search };
+                    reader = con.ExectuteQuery(SQL, paramNames, parameters);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                EditCourseBtn.Visible = false;
+                EditQuizBtn.Visible = false;
+                return;
             }
 
             while (reader.Read())
@@ -253,9 +262,57 @@ namespace Quazy_Quizzes
             if (CourseGrid.Rows.Count > 0)
             {
                 CourseGrid.Rows[0].Selected = true;
-                if (CourseGrid.Rows[0].Cells["CourseName"].Value == null) return;
+                if (CourseGrid.Rows[0].Cells["CourseName"].Value == null)
+                {
+                    EditCourseBtn.Visible = false;
+                    EditQuizBtn.Visible = false;
+                    return;
+                }
+                EditCourseBtn.Visible = true;
+                EditQuizBtn.Visible = true;
             }
+            FillQuizzesTable();
         }
+
+        public void FillQuizzesTable(string search = "")
+        {
+            QuizGrid.Rows.Clear();
+            QuizGrid.Columns.Clear();
+
+            QuizGrid.Columns.Add("QuizName", "Quiz Name");
+
+            var con = new ConnectionHandler();
+            MySqlDataReader reader = null;
+
+            try
+            {
+                string SQL = "SELECT `Exams`.`ExamName` FROM `Exams` LEFT JOIN `Courses` ON `Exams`.`CourseID` = `Courses`.`CourseID`" +
+                             " WHERE `Courses`.`CourseName` = @courseName AND `Exams`.`ExamName` LIKE CONCAT('%', @search, '%');";
+                string[] paramNames = new string[] { "@courseName", "@search" };
+                string[] parameters = new string[] { CourseGrid.SelectedRows[0].Cells["CourseName"].Value.ToString(), search };
+                reader = con.ExectuteQuery(SQL, paramNames, parameters);
+            }
+            catch (Exception ex)
+            {
+                EditQuizBtn.Visible = false;
+                return;
+            }
+            while (reader.Read())
+            {
+                QuizGrid.Rows.Add(reader[0].ToString());
+            }
+            if (QuizGrid.Rows.Count > 0)
+            {
+                QuizGrid.Rows[0].Selected = true;
+                if (QuizGrid.Rows[0].Cells["QuizName"].Value == null)
+                {
+                    EditQuizBtn.Visible = false;
+                    return;
+                }
+            }
+            EditQuizBtn.Visible = true;
+        }
+
 
         // Changes the text of the disable/enable account button based on the current state of the account
         private void ChangeActStatusBtn(bool actState)
@@ -272,19 +329,7 @@ namespace Quazy_Quizzes
             else if (!Program._isDarkMode) Program._lightTheme.SetColourSchemePrimaryButtons(DisableActBtn);
         }
 
-        // If a cell is clicked it will load the users data for that user
-        private void ActGrid_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0) // Ensure the click is not on the header row
-            {
-                DataGridViewRow row = ActGrid.Rows[e.RowIndex];
-                if (row.Cells["UserName"].Value == null) return;
-                string username = row.Cells["UserName"].Value.ToString();
-                if (row.Cells["Status"].Value.ToString() == "Active") ChangeActStatusBtn(true);
-                else ChangeActStatusBtn(false);
-                LoadUserInfo(username);
-            }
-        }
+
 
         // Fill table with Students
         private void StdntActsBtn_Click(object sender, EventArgs e)
@@ -301,9 +346,58 @@ namespace Quazy_Quizzes
         }
 
         // When the search bar is used it will get the data based on the search
-        private void SearchBar_KeyUp(object sender, KeyEventArgs e)
+        private void ActSearchBar_KeyUp(object sender, KeyEventArgs e)
         {
             FillUserTable((_actGridView == false) ? 0 : 1, ActSearchBar.Text);
+        }
+        
+        // When the search bar is used it will get the data based on the search
+
+        private void CourseSearchBar_KeyUp(object sender, KeyEventArgs e)
+        {
+            FillCoursesTable(CourseSearchBar.Text);
+        }
+
+        // When the search bar is used it will get the data based on the search
+        private void QuizSearchBar_KeyUp(object sender, KeyEventArgs e)
+        {
+            FillQuizzesTable(QuizSearchBar.Text);
+        }
+
+        private void CourseGrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0) // Ensure the click is not on the header row
+            {
+                DataGridViewRow row = CourseGrid.Rows[e.RowIndex];
+                if (row.Cells["CourseName"].Value == null) return;
+                string courseName = row.Cells["CourseName"].Value.ToString();
+                FillQuizzesTable();
+            }
+        }
+
+        private void CourseGrid_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0) // Ensure the click is not on the header row
+            {
+                DataGridViewRow row = CourseGrid.Rows[e.RowIndex];
+                if (row.Cells["CourseName"].Value == null) return;
+                string courseName = row.Cells["CourseName"].Value.ToString();
+                FillQuizzesTable();
+            }
+        }
+
+        // If a cell is clicked it will load the users data for that user
+        private void ActGrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0) // Ensure the click is not on the header row
+            {
+                DataGridViewRow row = ActGrid.Rows[e.RowIndex];
+                if (row.Cells["UserName"].Value == null) return;
+                string username = row.Cells["UserName"].Value.ToString();
+                if (row.Cells["Status"].Value.ToString() == "Active") ChangeActStatusBtn(true);
+                else ChangeActStatusBtn(false);
+                LoadUserInfo(username);
+            }
         }
 
         // When a row is entered it loads that users data.

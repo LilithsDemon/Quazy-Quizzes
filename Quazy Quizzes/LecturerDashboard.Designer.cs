@@ -222,7 +222,7 @@
             this.ActSearchBar.Name = "ActSearchBar";
             this.ActSearchBar.Size = new System.Drawing.Size(200, 20);
             this.ActSearchBar.TabIndex = 16;
-            this.ActSearchBar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.SearchBar_KeyUp);
+            this.ActSearchBar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ActSearchBar_KeyUp);
             // 
             // ActSearchLbl
             // 
@@ -314,9 +314,12 @@
             this.CourseSearchBar.Name = "CourseSearchBar";
             this.CourseSearchBar.Size = new System.Drawing.Size(247, 20);
             this.CourseSearchBar.TabIndex = 24;
+            this.CourseSearchBar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.CourseSearchBar_KeyUp);
             // 
             // CourseGrid
             // 
+            this.CourseGrid.AllowUserToAddRows = false;
+            this.CourseGrid.AllowUserToDeleteRows = false;
             this.CourseGrid.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.CourseGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.CourseGrid.Location = new System.Drawing.Point(175, 244);
@@ -325,9 +328,13 @@
             this.CourseGrid.ReadOnly = true;
             this.CourseGrid.Size = new System.Drawing.Size(250, 275);
             this.CourseGrid.TabIndex = 25;
+            this.CourseGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CourseGrid_CellClick);
+            this.CourseGrid.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.CourseGrid_RowEnter);
             // 
             // QuizGrid
             // 
+            this.QuizGrid.AllowUserToAddRows = false;
+            this.QuizGrid.AllowUserToDeleteRows = false;
             this.QuizGrid.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.QuizGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.QuizGrid.Location = new System.Drawing.Point(517, 245);
@@ -344,6 +351,7 @@
             this.QuizSearchBar.Name = "QuizSearchBar";
             this.QuizSearchBar.Size = new System.Drawing.Size(247, 20);
             this.QuizSearchBar.TabIndex = 27;
+            this.QuizSearchBar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.QuizSearchBar_KeyUp);
             // 
             // QuizSearchLbl
             // 
