@@ -24,6 +24,37 @@ namespace Quazy_Quizzes
 
             
         }
+        public void LoadAllExams(int courseID)
+        {
+            ConnectionHandler connHandler = new ConnectionHandler();
+
+
+            string sql = @"
+        SELECT ExamName 
+        FROM Exams 
+        WHERE CourseID = @CourseID 
+        ORDER BY ExamName;";
+            string[] paramNames = { "@CourseID" };
+            string[] parameters = { courseID.ToString() }; // Convert to string for your class
+
+            try
+            {
+                MySqlDataReader reader = connHandler.ExectuteQuery(sql, paramNames, parameters);
+                AllExams.Items.Clear();
+
+                while (reader.Read())
+                {
+                    string examName = reader["ExamName"].ToString();
+                    AllExams.Items.Add(examName); // Add exam names to ListBox
+                }
+
+                reader.Close(); // Mitigate connection leak
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading exams: " + ex.Message);
+            }
+        }
         //this will be used to load the exams for the course
         public void LoadPendingExams(int courseID, int userID)
         {
@@ -132,6 +163,7 @@ namespace Quazy_Quizzes
                     ExamLabel.Visible = false;
                     StudentExamsList.Visible = false;
                     LoadLeaderboardForCourse(courseID);
+                    LoadAllExams(courseID);
                     break;
                 case 2:
                     //admin
