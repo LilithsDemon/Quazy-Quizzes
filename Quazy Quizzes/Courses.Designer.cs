@@ -32,15 +32,15 @@
             this.ChangeThemeBtn = new System.Windows.Forms.Button();
             this.BtnBack = new System.Windows.Forms.Button();
             this.LeaderboardLbl = new System.Windows.Forms.Label();
-            this.LeaderboadDataGrid = new System.Windows.Forms.DataGridView();
+            this.LeaderboardDataGrid = new System.Windows.Forms.DataGridView();
+            this.StudentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Score = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StudentExamsList = new System.Windows.Forms.ListBox();
             this.ExamLabel = new System.Windows.Forms.Label();
             this.AllExams = new System.Windows.Forms.ListBox();
             this.AllExamLabel = new System.Windows.Forms.Label();
             this.AddNewQuizBtn = new System.Windows.Forms.Button();
-            this.StudentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Score = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.LeaderboadDataGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LeaderboardDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // HeaderBg
@@ -94,20 +94,32 @@
             this.LeaderboardLbl.TabIndex = 11;
             this.LeaderboardLbl.Text = "Class Leaderboard";
             // 
-            // LeaderboadDataGrid
+            // LeaderboardDataGrid
             // 
-            this.LeaderboadDataGrid.AllowUserToAddRows = false;
-            this.LeaderboadDataGrid.AllowUserToDeleteRows = false;
-            this.LeaderboadDataGrid.BackgroundColor = System.Drawing.Color.White;
-            this.LeaderboadDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.LeaderboadDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.LeaderboardDataGrid.AllowUserToAddRows = false;
+            this.LeaderboardDataGrid.AllowUserToDeleteRows = false;
+            this.LeaderboardDataGrid.BackgroundColor = System.Drawing.Color.White;
+            this.LeaderboardDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.LeaderboardDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.StudentName,
             this.Score});
-            this.LeaderboadDataGrid.Location = new System.Drawing.Point(425, 193);
-            this.LeaderboadDataGrid.Name = "LeaderboadDataGrid";
-            this.LeaderboadDataGrid.ReadOnly = true;
-            this.LeaderboadDataGrid.Size = new System.Drawing.Size(248, 238);
-            this.LeaderboadDataGrid.TabIndex = 12;
+            this.LeaderboardDataGrid.Location = new System.Drawing.Point(425, 193);
+            this.LeaderboardDataGrid.Name = "LeaderboardDataGrid";
+            this.LeaderboardDataGrid.ReadOnly = true;
+            this.LeaderboardDataGrid.Size = new System.Drawing.Size(248, 238);
+            this.LeaderboardDataGrid.TabIndex = 12;
+            // 
+            // StudentName
+            // 
+            this.StudentName.HeaderText = "Name";
+            this.StudentName.Name = "StudentName";
+            this.StudentName.ReadOnly = true;
+            // 
+            // Score
+            // 
+            this.Score.HeaderText = "Score";
+            this.Score.Name = "Score";
+            this.Score.ReadOnly = true;
             // 
             // StudentExamsList
             // 
@@ -159,18 +171,6 @@
             this.AddNewQuizBtn.UseVisualStyleBackColor = true;
             this.AddNewQuizBtn.Click += new System.EventHandler(this.AddNewQuizBtn_Click);
             // 
-            // StudentName
-            // 
-            this.StudentName.HeaderText = "Name";
-            this.StudentName.Name = "StudentName";
-            this.StudentName.ReadOnly = true;
-            // 
-            // Score
-            // 
-            this.Score.HeaderText = "Score";
-            this.Score.Name = "Score";
-            this.Score.ReadOnly = true;
-            // 
             // Courses
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -181,14 +181,14 @@
             this.Controls.Add(this.AllExams);
             this.Controls.Add(this.ExamLabel);
             this.Controls.Add(this.StudentExamsList);
-            this.Controls.Add(this.LeaderboadDataGrid);
+            this.Controls.Add(this.LeaderboardDataGrid);
             this.Controls.Add(this.LeaderboardLbl);
             this.Controls.Add(this.BtnBack);
             this.Controls.Add(this.ChangeThemeBtn);
             this.Controls.Add(this.HeaderBg);
             this.Name = "Courses";
             this.Text = "Courses";
-            ((System.ComponentModel.ISupportInitialize)(this.LeaderboadDataGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.LeaderboardDataGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -200,7 +200,7 @@
         private System.Windows.Forms.Button ChangeThemeBtn;
         private System.Windows.Forms.Button BtnBack;
         private System.Windows.Forms.Label LeaderboardLbl;
-        private System.Windows.Forms.DataGridView LeaderboadDataGrid;
+        private System.Windows.Forms.DataGridView LeaderboardDataGrid;
         private System.Windows.Forms.ListBox StudentExamsList;
         private System.Windows.Forms.Label ExamLabel;
         private System.Windows.Forms.ListBox AllExams;
