@@ -24,11 +24,51 @@ namespace Quazy_Quizzes
 
             
         }
+        //this will be used to load the exams for the course
+        public void LoadPendingExams(int courseID, int userID)
+        {
+            ConnectionHandler connHandler = new ConnectionHandler();
+
+                // SQL query (parameterized)
+                string sql = @"
+            SELECT Exams.ExamID, Exams.ExamName 
+            FROM Exams
+            WHERE Exams.CourseID = @CourseID
+              AND Exams.ExamID NOT IN (
+                SELECT Scores.ExamID 
+                FROM Scores 
+                WHERE Scores.UserID = @UserID
+              )
+            ORDER BY Exams.ExamName;";
+
+            // Parameters (CourseID and UserID)
+            string[] paramNames = { "@CourseID", "@UserID" };
+            string[] parameters = { courseID.ToString(), userID.ToString() };
+
+            try
+            {
+                MySqlDataReader reader = connHandler.ExectuteQuery(sql, paramNames, parameters);
+                StudentExamsList.Items.Clear();
+
+                while (reader.Read())
+                {
+                    string examName = reader["ExamName"].ToString();
+                    StudentExamsList.Items.Add(examName); //populate the listbox with the exam names
+                }
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading pending exams: " + ex.Message);
+            }
+        }
+        //this will be used to load the leaderboard for the courses
         public void LoadLeaderboardForCourse(int courseID)
         {
             ConnectionHandler connHandler = new ConnectionHandler();
 
-            // SQL query (parameterized)
+            
             string sql = @"
         SELECT 
             Users.UserName AS Username
@@ -39,7 +79,6 @@ namespace Quazy_Quizzes
         WHERE Exams.CourseID = @CourseID
         ORDER BY Scores.Score DESC;";
 
-            // Parameters (CourseID is an integer)
             string[] paramNames = { "@CourseID" };
             string[] parameters = { courseID.ToString() };
 
@@ -82,6 +121,7 @@ namespace Quazy_Quizzes
                     ExamLabel.Visible = true;
                     StudentExamsList.Visible = true;
                     LoadLeaderboardForCourse(courseID);
+                    LoadPendingExams(courseID, Program._user._userID);
                     break;
                 case 1:
                     //lecturer
