@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using UserData;
 using Conn;
 using MySqlConnector;
+using QQColourScheme;
+
 
 namespace Quazy_Quizzes
 {
@@ -29,8 +31,21 @@ namespace Quazy_Quizzes
             this._primaryButtons = new List<Button> {  AddNewQuizBtn };
             this._emergencyButtons = new List<Button> { BtnBack };
             this._stdText = new List<Label> { AllExamLabel, ExamLabel };
+            //get the page to match the colour scheme
+            if (Program._isDarkMode) SetColourScheme(Program._darkTheme);
+            else SetColourScheme(Program._lightTheme);
+
+        }
+        private void SetColourScheme(ColourScheme colourScheme)
+        {
+            this.BackColor = ColorTranslator.FromHtml(colourScheme._background);
+
+            colourScheme.SetColourSchemeHeader(HeaderBg);
 
 
+            colourScheme.SetColourSchemePrimaryButtons(_primaryButtons);
+            colourScheme.SetColourSchemeEmergencyButtons(_emergencyButtons);
+            colourScheme.SetColourSchemePrimaryText(_stdText);
         }
         public void LoadAllExams(int courseID)
         {
@@ -240,6 +255,20 @@ namespace Quazy_Quizzes
             //quizzes aren't implimented yet so just show a message box
             MessageBox.Show("Quizzes are not implemented yet", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
+        }
+
+        private void ChangeThemeBtn_Click(object sender, EventArgs e)
+        {
+            Program._isDarkMode = !Program._isDarkMode;
+
+            // If is now supposed to be dark mode
+            if (Program._isDarkMode)
+            {
+                SetColourScheme(Program._darkTheme);
+                return;
+            }
+
+            SetColourScheme(Program._lightTheme);
         }
     }
     public class Exam

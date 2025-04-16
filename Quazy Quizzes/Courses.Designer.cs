@@ -69,6 +69,7 @@
             this.ChangeThemeBtn.TabIndex = 9;
             this.ChangeThemeBtn.Text = "Toggle Theme";
             this.ChangeThemeBtn.UseVisualStyleBackColor = false;
+            this.ChangeThemeBtn.Click += new System.EventHandler(this.ChangeThemeBtn_Click);
             // 
             // BtnBack
             // 
