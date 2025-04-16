@@ -35,8 +35,7 @@ namespace Quazy_Quizzes
         WHERE CourseID = @CourseID 
         ORDER BY ExamName;";
             string[] paramNames = { "@CourseID" };
-            string[] parameters = { courseID.ToString() }; // Convert to string for your class
-
+            string[] parameters = { courseID.ToString() };
             try
             {
                 MySqlDataReader reader = connHandler.ExectuteQuery(sql, paramNames, parameters);
@@ -45,10 +44,10 @@ namespace Quazy_Quizzes
                 while (reader.Read())
                 {
                     string examName = reader["ExamName"].ToString();
-                    AllExams.Items.Add(examName); // Add exam names to ListBox
+                    AllExams.Items.Add(examName);
                 }
 
-                reader.Close(); // Mitigate connection leak
+                reader.Close(); 
             }
             catch (Exception ex)
             {
@@ -60,7 +59,7 @@ namespace Quazy_Quizzes
         {
             ConnectionHandler connHandler = new ConnectionHandler();
 
-                // SQL query (parameterized)
+
                 string sql = @"
             SELECT Exams.ExamID, Exams.ExamName 
             FROM Exams
@@ -72,7 +71,7 @@ namespace Quazy_Quizzes
               )
             ORDER BY Exams.ExamName;";
 
-            // Parameters (CourseID and UserID)
+
             string[] paramNames = { "@CourseID", "@UserID" };
             string[] parameters = { courseID.ToString(), userID.ToString() };
 
@@ -117,7 +116,7 @@ namespace Quazy_Quizzes
             {
                 MySqlDataReader reader = connHandler.ExectuteQuery(sql, paramNames, parameters);
 
-                // Create a DataTable to hold the results
+                
                 DataTable dataTable = new DataTable();
                 dataTable.Columns.Add("Username", typeof(string));
                 dataTable.Columns.Add("Score", typeof(int));
@@ -181,12 +180,34 @@ namespace Quazy_Quizzes
                     break;
             }
         }
-            //populate the listboxes
-            //populate the leaderboard of all the students in the class arraged by score
-
+           
 
         private void BtnBack_Click(object sender, EventArgs e)
         {
+            //if the user is a student take them to StudentDashboard and if they're a lecturer take them to LecturerDashboard
+            //if the user is an admin take them to AdminDash
+            switch (Program._user._role)
+            {
+                case 0:
+                    //student
+                    StudentDashboard studentDashboard = new StudentDashboard();
+                    studentDashboard.Show();
+                    break;
+                case 1:
+                    //lecturer
+                    LecturerDashboard lecturerDashboard = new LecturerDashboard();
+                    lecturerDashboard.Show();
+                    break;
+                case 2:
+                    //admin
+                    AdminDash adminDashboard = new AdminDash();
+                    adminDashboard.Show();
+                    break;
+                default:
+                    //error
+                    MessageBox.Show("Error: User role not found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+            }
             //hide this form
             this.Hide();
         }
