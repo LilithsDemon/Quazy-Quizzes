@@ -13,16 +13,24 @@ using MySqlConnector;
 
 namespace Quazy_Quizzes
 {
-
+   
     public partial class Courses : Form
     {
+        private List<Button> _primaryButtons = new List<Button>();
+        private List<Button> _emergencyButtons = new List<Button>();
+        private List<Label> _stdText = new List<Label>();
+
         public int courseID = 0; //used during testing it will be a get ; set ; in the future
         public Courses()
         {
 
             InitializeComponent();
+            //colour scheme lists 
+            this._primaryButtons = new List<Button> {  AddNewQuizBtn };
+            this._emergencyButtons = new List<Button> { BtnBack };
+            this._stdText = new List<Label> { AllExamLabel, ExamLabel };
 
-            
+
         }
         public void LoadAllExams(int courseID)
         {
@@ -59,18 +67,16 @@ namespace Quazy_Quizzes
         {
             ConnectionHandler connHandler = new ConnectionHandler();
 
-
-                string sql = @"
-            SELECT Exams.ExamID, Exams.ExamName 
-            FROM Exams
-            WHERE Exams.CourseID = @CourseID
-              AND Exams.ExamID NOT IN (
-                SELECT Scores.ExamID 
-                FROM Scores 
-                WHERE Scores.UserID = @UserID
-              )
-            ORDER BY Exams.ExamName;";
-
+            string sql = @"
+        SELECT Exams.ExamID, Exams.ExamName 
+        FROM Exams
+        WHERE Exams.CourseID = @CourseID
+          AND Exams.ExamID NOT IN (
+            SELECT Scores.ExamID 
+            FROM Scores 
+            WHERE Scores.UserID = @UserID
+          )
+        ORDER BY Exams.ExamName;";
 
             string[] paramNames = { "@CourseID", "@UserID" };
             string[] parameters = { courseID.ToString(), userID.ToString() };
@@ -82,8 +88,13 @@ namespace Quazy_Quizzes
 
                 while (reader.Read())
                 {
-                    string examName = reader["ExamName"].ToString();
-                    StudentExamsList.Items.Add(examName); //populate the listbox with the exam names
+                    //Create Exam objects with ID and Name
+                    Exam exam = new Exam
+                    {
+                        examID = Convert.ToInt32(reader["ExamID"]),
+                        examName = reader["ExamName"].ToString()
+                    };
+                    StudentExamsList.Items.Add(exam);
                 }
 
                 reader.Close();
@@ -217,6 +228,28 @@ namespace Quazy_Quizzes
             //take the user to add a new quiz but quizzes aren't implemented yet
             //so just show a message box
             MessageBox.Show("Quizzes are not implemented yet", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        private void StudentExamsList_DoubleClick(object sender, EventArgs e)
+        {
+            if (StudentExamsList.SelectedItem == null) return;
+
+            // Get the selected exam's ID
+            Exam selectedExam = (Exam)StudentExamsList.SelectedItem;
+            int examId = selectedExam.examID;
+
+            //quizzes aren't implimented yet so just show a message box
+            MessageBox.Show("Quizzes are not implemented yet", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+        }
+    }
+    public class Exam
+    {
+        public int examID { get; set; }
+        public string examName { get; set; }
+
+        public override string ToString()
+        {
+            return examName; //only shows the name in the list
         }
     }
 }
