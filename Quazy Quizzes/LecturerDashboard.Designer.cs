@@ -59,6 +59,7 @@
             this.EditCourseBtn = new System.Windows.Forms.Button();
             this.EditQuizBtn = new System.Windows.Forms.Button();
             this.DeleteQuizBtn = new System.Windows.Forms.Button();
+            this.DisableQuizBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ActGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CourseGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.QuizGrid)).BeginInit();
@@ -343,6 +344,8 @@
             this.QuizGrid.ReadOnly = true;
             this.QuizGrid.Size = new System.Drawing.Size(250, 275);
             this.QuizGrid.TabIndex = 28;
+            this.QuizGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.QuizGrid_CellClick);
+            this.QuizGrid.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.QuizGrid_RowEnter);
             // 
             // QuizSearchBar
             // 
@@ -374,6 +377,7 @@
             this.NewCourseBtn.TabIndex = 29;
             this.NewCourseBtn.Text = "Create New Course";
             this.NewCourseBtn.UseVisualStyleBackColor = true;
+            this.NewCourseBtn.Click += new System.EventHandler(this.NewCourseBtn_Click);
             // 
             // NewQuizBtn
             // 
@@ -384,42 +388,57 @@
             this.NewQuizBtn.TabIndex = 30;
             this.NewQuizBtn.Text = "Create New Quiz";
             this.NewQuizBtn.UseVisualStyleBackColor = true;
+            this.NewQuizBtn.Click += new System.EventHandler(this.NewQuizBtn_Click);
             // 
             // EditCourseBtn
             // 
-            this.EditCourseBtn.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.EditCourseBtn.Location = new System.Drawing.Point(916, 260);
+            this.EditCourseBtn.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.EditCourseBtn.Location = new System.Drawing.Point(916, 245);
             this.EditCourseBtn.Name = "EditCourseBtn";
             this.EditCourseBtn.Size = new System.Drawing.Size(150, 50);
             this.EditCourseBtn.TabIndex = 31;
-            this.EditCourseBtn.Text = "Edit Selected Course";
+            this.EditCourseBtn.Text = "View Selected Course";
             this.EditCourseBtn.UseVisualStyleBackColor = true;
+            this.EditCourseBtn.Click += new System.EventHandler(this.EditCourseBtn_Click);
             // 
             // EditQuizBtn
             // 
-            this.EditQuizBtn.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.EditQuizBtn.Location = new System.Drawing.Point(916, 363);
+            this.EditQuizBtn.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.EditQuizBtn.Location = new System.Drawing.Point(916, 325);
             this.EditQuizBtn.Name = "EditQuizBtn";
             this.EditQuizBtn.Size = new System.Drawing.Size(150, 50);
             this.EditQuizBtn.TabIndex = 32;
             this.EditQuizBtn.Text = "Edit Selected Quiz";
             this.EditQuizBtn.UseVisualStyleBackColor = true;
+            this.EditQuizBtn.Click += new System.EventHandler(this.EditQuizBtn_Click);
             // 
             // DeleteQuizBtn
             // 
-            this.DeleteQuizBtn.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.DeleteQuizBtn.Location = new System.Drawing.Point(916, 450);
+            this.DeleteQuizBtn.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.DeleteQuizBtn.Location = new System.Drawing.Point(916, 470);
             this.DeleteQuizBtn.Name = "DeleteQuizBtn";
             this.DeleteQuizBtn.Size = new System.Drawing.Size(150, 50);
             this.DeleteQuizBtn.TabIndex = 33;
             this.DeleteQuizBtn.Text = "Delete Selected Quiz";
             this.DeleteQuizBtn.UseVisualStyleBackColor = true;
+            this.DeleteQuizBtn.Click += new System.EventHandler(this.DeleteQuizBtn_Click);
+            // 
+            // DisableQuizBtn
+            // 
+            this.DisableQuizBtn.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.DisableQuizBtn.Location = new System.Drawing.Point(916, 400);
+            this.DisableQuizBtn.Name = "DisableQuizBtn";
+            this.DisableQuizBtn.Size = new System.Drawing.Size(150, 50);
+            this.DisableQuizBtn.TabIndex = 34;
+            this.DisableQuizBtn.Text = "Enable Selected Quiz";
+            this.DisableQuizBtn.UseVisualStyleBackColor = true;
             // 
             // LecturerDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 626);
+            this.Controls.Add(this.DisableQuizBtn);
             this.Controls.Add(this.DeleteQuizBtn);
             this.Controls.Add(this.EditQuizBtn);
             this.Controls.Add(this.EditCourseBtn);
@@ -494,5 +513,6 @@
         private System.Windows.Forms.Button EditCourseBtn;
         private System.Windows.Forms.Button EditQuizBtn;
         private System.Windows.Forms.Button DeleteQuizBtn;
+        private System.Windows.Forms.Button DisableQuizBtn;
     }
 }
