@@ -86,10 +86,11 @@ namespace Quazy_Quizzes
         SELECT Exams.ExamID, Exams.ExamName 
         FROM Exams
         WHERE Exams.CourseID = @CourseID
+          AND Exams.Status = TRUE  -- Filter for exams with status = true
           AND Exams.ExamID NOT IN (
-            SELECT Scores.ExamID 
-            FROM Scores 
-            WHERE Scores.UserID = @UserID
+              SELECT Scores.ExamID 
+              FROM Scores 
+              WHERE Scores.UserID = @UserID
           )
         ORDER BY Exams.ExamName;";
 
@@ -103,7 +104,6 @@ namespace Quazy_Quizzes
 
                 while (reader.Read())
                 {
-                    //Create Exam objects with ID and Name
                     Exam exam = new Exam
                     {
                         examID = Convert.ToInt32(reader["ExamID"]),
