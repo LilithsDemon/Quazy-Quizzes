@@ -11,49 +11,86 @@ namespace Quazy_Quizzes
 {
     public partial class Stats : Form
     {
-        // Lists to group UI elements for styling
         private List<Button> _primaryButtons = new List<Button>();
         private List<Label> _stdText = new List<Label>();
         private List<DataGridView> _dataGrids = new List<DataGridView>();
         private int _userRole;
         private List<string> _courses = new List<string>();
-        private Button BtnToggleRole;
 
         public Stats()
         {
             InitializeComponent();
 
-            // Initialize UI element groups
+            // Hook up combo box events manually
+            CmbCourses.SelectedIndexChanged += CmbCourses_SelectedIndexChanged;
+            CmbExams.SelectedIndexChanged += CmbExams_SelectedIndexChanged;
+
             _primaryButtons = new List<Button> { BtnBack, BtnTheme };
             _stdText = new List<Label> { LblTitle };
             _dataGrids = new List<DataGridView> { DgvStats };
 
-            // Determine user role
-            _userRole = GetUserRole();
+            _userRole = 1;
 
             if (_userRole == 1) // Staff
             {
                 LblCourse.Visible = true;
                 CmbCourses.Visible = true;
+                LblExams.Visible = true;
+                CmbExams.Visible = true;
                 LoadCourses();
+                DgvStats.DataSource = null; // Clear stats on startup for staff
             }
             else // Student
             {
                 LblCourse.Visible = false;
                 CmbCourses.Visible = false;
+                LblExams.Visible = false;
+                CmbExams.Visible = false;
+                LoadStats();
             }
 
-            // Apply the appropriate theme
             if (Program._isDarkMode) SetColourScheme(Program._darkTheme);
             else SetColourScheme(Program._lightTheme);
 
-            // Load stats
-            LoadStats();
-
-            // Initialize toggle role button
-            InitializeToggleRoleButton();
         }
 
+        private void BtnBack_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void BtnToggleTheme_Click(object sender, EventArgs e)
+        {
+            Program._isDarkMode = !Program._isDarkMode;
+            SetColourScheme(Program._isDarkMode ? Program._darkTheme : Program._lightTheme);
+        }
+
+        private void CmbCourses_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_userRole == 1)
+            {
+                LoadExams();
+                DgvStats.DataSource = null;
+            }
+        }
+
+        private void CmbExams_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_userRole == 1 && CmbCourses.SelectedItem != null && CmbExams.SelectedItem != null)
+            {
+                LoadStats();
+            }
+        }
+
+        private void SetColourScheme(ColourScheme colourScheme)
+        {
+            this.BackColor = ColorTranslator.FromHtml(colourScheme._background);
+            colourScheme.SetColourSchemePrimaryButtons(_primaryButtons);
+            colourScheme.SetColourSchemePrimaryText(_stdText);
+            colourScheme.SetColourSchemeDataGrid(_dataGrids);
+        }
+
+        // Load user role from database
         private int GetUserRole()
         {
             string query = "SELECT `Role` FROM `Users` WHERE `UserID` = @userID";
@@ -65,8 +102,7 @@ namespace Quazy_Quizzes
                 connection.Open();
                 using (var command = new MySqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@userID", 1); // Placeholder userID
-
+                    command.Parameters.AddWithValue("@userID", 1); // Placeholder
                     var result = command.ExecuteScalar();
                     if (result != null)
                     {
@@ -80,45 +116,108 @@ namespace Quazy_Quizzes
 
         private void LoadCourses()
         {
-            string query = "SELECT CourseName FROM Courses";
-
-            var connectionHandler = new Conn.ConnectionHandler();
-            using (var connection = connectionHandler.GetConnection())
+            try
             {
-                connection.Open();
-                using (var command = new MySqlCommand(query, connection))
+                CmbCourses.DataSource = null;
+                CmbCourses.Items.Clear();
+
+                string query = _userRole == 1
+                    ? @"SELECT c.CourseID, c.CourseName
+                         FROM Courses c
+                         LEFT JOIN UserToCourse uc ON c.CourseID = uc.CourseID
+                         WHERE uc.UserID = @userID"
+                    : "SELECT CourseID, CourseName FROM Courses";
+
+                DataTable dt = new DataTable();
+
+                var connectionHandler = new ConnectionHandler();
+                using (var connection = connectionHandler.GetConnection())
                 {
-                    using (var reader = command.ExecuteReader())
+                    connection.Open();
+
+                    using (var command = new MySqlCommand(query, connection))
                     {
-                        while (reader.Read())
+                        if (_userRole == 1)
                         {
-                            _courses.Add(reader["CourseName"].ToString());
+                            command.Parameters.AddWithValue("@userID", 1); // Replace with dynamic user ID
+                        }
+
+                        using (var adapter = new MySqlDataAdapter(command))
+                        {
+                            adapter.Fill(dt);
                         }
                     }
                 }
+
+                CmbCourses.DataSource = dt;
+                CmbCourses.DisplayMember = "CourseName";
+                CmbCourses.ValueMember = "CourseID";
+                CmbCourses.SelectedIndex = -1;
+                CmbCourses.Refresh();
             }
-
-            CmbCourses.DataSource = _courses;
+            catch (Exception ex)
+            {
+                //MessageBox.Show("LoadCourses error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-        // Apply the selected colour scheme to the page
-        private void SetColourScheme(ColourScheme colourScheme)
+        private void LoadExams()
         {
-            this.BackColor = ColorTranslator.FromHtml(colourScheme._background);
-            colourScheme.SetColourSchemePrimaryButtons(_primaryButtons);
-            colourScheme.SetColourSchemePrimaryText(_stdText);
-            colourScheme.SetColourSchemeDataGrid(_dataGrids);
+            try
+            {
+                DataRowView drv = CmbCourses.SelectedItem as DataRowView;
+                if (drv == null)
+                {
+                    //MessageBox.Show("Selected item is not a DataRowView.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                int selectedCourseID = Convert.ToInt32(drv["CourseID"]);
+                string query = "SELECT `ExamID`, `ExamName` FROM `Exams` WHERE `CourseID` = @courseID";
+                DataTable dt = new DataTable();
+
+                var connectionHandler = new ConnectionHandler();
+                using (var connection = connectionHandler.GetConnection())
+                {
+                    connection.Open();
+
+                    using (var command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@courseID", selectedCourseID);
+
+                        using (var adapter = new MySqlDataAdapter(command))
+                        {
+                            adapter.Fill(dt);
+                        }
+                    }
+                }
+
+                if (dt.Rows.Count == 0)
+                {
+                    MessageBox.Show("No exams found for selected course.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                CmbExams.DataSource = dt;
+                CmbExams.DisplayMember = "ExamName";
+                CmbExams.ValueMember = "ExamID";
+                CmbExams.SelectedIndex = -1;
+                CmbExams.Refresh();
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show("LoadExams error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-        // Load quiz stats from the database
         private void LoadStats()
         {
             try
             {
-                string procedureName = _userRole == 1 ? "GetCourseStats" : "GetUserQuizStats";
                 string query = _userRole == 1
-                    ? "CALL " + procedureName + "(@courseName)"
-                    : "CALL " + procedureName + "(@userID)";
+                    ? @"SELECT u.Username, s.Score
+                        FROM Scores s
+                        JOIN Users u ON s.UserID = u.UserID
+                        WHERE s.ExamID = @examID"
+                    : "CALL GetUserQuizStats(@userID)";
 
                 var connectionHandler = new Conn.ConnectionHandler();
                 using (var connection = connectionHandler.GetConnection())
@@ -128,16 +227,16 @@ namespace Quazy_Quizzes
                     {
                         if (_userRole == 1)
                         {
-                            if (CmbCourses.SelectedItem == null)
+                            if (CmbExams.SelectedValue == null)
                             {
-                                MessageBox.Show("Please select a course.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                //MessageBox.Show("Please select an exam.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 return;
                             }
-                            command.Parameters.AddWithValue("@courseName", CmbCourses.SelectedItem.ToString());
+                            command.Parameters.AddWithValue("@examID", Convert.ToInt32(CmbExams.SelectedValue));
                         }
                         else
                         {
-                            command.Parameters.AddWithValue("@userID", 1); // Placeholder userID
+                            command.Parameters.AddWithValue("@userID", 1); // Placeholder user ID
                         }
 
                         using (var reader = command.ExecuteReader())
@@ -154,52 +253,8 @@ namespace Quazy_Quizzes
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Failed to load stats: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show("Failed to load stats: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void BtnBack_Click(object sender, EventArgs e)
-        {
-            this.Close(); // Close the Stats form
-        }
-
-        private void BtnToggleTheme_Click(object sender, EventArgs e)
-        {
-            // Toggle between light and dark themes
-            Program._isDarkMode = !Program._isDarkMode;
-
-            if (Program._isDarkMode)
-            {
-                SetColourScheme(Program._darkTheme);
-                return;
-            }
-
-            SetColourScheme(Program._lightTheme);
-        }
-
-        private void CmbCourses_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (_userRole == 1) LoadStats();
-        }
-
-        private void InitializeToggleRoleButton()
-        {
-            this.BtnToggleRole = new Button();
-            this.BtnToggleRole.Text = "Toggle Role";
-            this.BtnToggleRole.Font = new Font("Microsoft Sans Serif", 14F);
-            this.BtnToggleRole.Size = new Size(150, 40);
-            this.BtnToggleRole.Location = new Point(20, 80);
-            this.BtnToggleRole.Click += new EventHandler(this.BtnToggleRole_Click);
-            this.Controls.Add(this.BtnToggleRole);
-        }
-
-        private void BtnToggleRole_Click(object sender, EventArgs e)
-        {
-            _userRole = _userRole == 1 ? 0 : 1; // Toggle between staff (1) and student (0)
-            MessageBox.Show(_userRole == 1 ? "Switched to Staff" : "Switched to Student", "Role Toggled", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            LblCourse.Visible = _userRole == 1;
-            CmbCourses.Visible = _userRole == 1;
-            LoadStats();
         }
     }
 }

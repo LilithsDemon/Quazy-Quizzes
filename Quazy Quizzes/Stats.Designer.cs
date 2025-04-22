@@ -13,6 +13,8 @@
         private System.Windows.Forms.Panel ContainerPanel;
         private System.Windows.Forms.ComboBox CmbCourses;
         private System.Windows.Forms.Label LblCourse;
+        private System.Windows.Forms.ComboBox CmbExams;
+        private System.Windows.Forms.Label LblExams;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -30,18 +32,22 @@
         #region Windows Form Designer generated code
 
         /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
+        /// Required method for Designer support - do not modify the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
+
             this.LblTitle = new System.Windows.Forms.Label();
             this.BtnBack = new System.Windows.Forms.Button();
             this.BtnTheme = new System.Windows.Forms.Button();
             this.DgvStats = new System.Windows.Forms.DataGridView();
             this.ContainerPanel = new System.Windows.Forms.Panel();
             this.CmbCourses = new System.Windows.Forms.ComboBox();
+            this.CmbCourses.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.LblCourse = new System.Windows.Forms.Label();
+            this.CmbExams = new System.Windows.Forms.ComboBox();
+            this.CmbExams.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.LblExams = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DgvStats)).BeginInit();
             this.ContainerPanel.SuspendLayout();
             this.SuspendLayout();
@@ -100,7 +106,7 @@
             this.DgvStats.Location = new System.Drawing.Point(-1, -1);
             this.DgvStats.Name = "DgvStats";
             this.DgvStats.ReadOnly = true;
-            this.DgvStats.Size = new System.Drawing.Size(700, 400);
+            this.DgvStats.Size = new System.Drawing.Size(700, 347);
             this.DgvStats.TabIndex = 3;
             // 
             // ContainerPanel
@@ -111,9 +117,9 @@
             this.ContainerPanel.BackColor = System.Drawing.Color.White;
             this.ContainerPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ContainerPanel.Controls.Add(this.DgvStats);
-            this.ContainerPanel.Location = new System.Drawing.Point(50, 120);
+            this.ContainerPanel.Location = new System.Drawing.Point(50, 173);
             this.ContainerPanel.Name = "ContainerPanel";
-            this.ContainerPanel.Size = new System.Drawing.Size(700, 400);
+            this.ContainerPanel.Size = new System.Drawing.Size(700, 347);
             this.ContainerPanel.TabIndex = 4;
             // 
             // CmbCourses
@@ -136,9 +142,30 @@
             this.LblCourse.TabIndex = 5;
             this.LblCourse.Text = "Select Course:";
             // 
+            // CmbExams
+            // 
+            this.CmbExams.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.CmbExams.FormattingEnabled = true;
+            this.CmbExams.Location = new System.Drawing.Point(222, 130);
+            this.CmbExams.Name = "CmbExams";
+            this.CmbExams.Size = new System.Drawing.Size(300, 37);
+            this.CmbExams.TabIndex = 8;
+            // 
+            // LblExams
+            // 
+            this.LblExams.AutoSize = true;
+            this.LblExams.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.LblExams.Location = new System.Drawing.Point(50, 130);
+            this.LblExams.Name = "LblExams";
+            this.LblExams.Size = new System.Drawing.Size(153, 29);
+            this.LblExams.TabIndex = 7;
+            this.LblExams.Text = "Select Exam:";
+            // 
             // Stats
             // 
             this.ClientSize = new System.Drawing.Size(800, 600);
+            this.Controls.Add(this.LblExams);
+            this.Controls.Add(this.CmbExams);
             this.Controls.Add(this.LblCourse);
             this.Controls.Add(this.CmbCourses);
             this.Controls.Add(this.ContainerPanel);

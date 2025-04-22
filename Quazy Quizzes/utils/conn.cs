@@ -156,5 +156,50 @@ namespace Conn
             return reader;
         }
 
+        public List<string> GetCourses()
+        {
+            string query = "SELECT CourseName FROM Courses";
+            List<string> courses = new List<string>();
+
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            courses.Add(reader["CourseName"].ToString());
+                        }
+                    }
+                }
+            }
+
+            return courses;
+        }
+
+        public List<string> GetExams()
+        {
+            string query = "SELECT ExamName FROM Exams";
+            List<string> exams = new List<string>();
+
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            exams.Add(reader["ExamName"].ToString());
+                        }
+                    }
+                }
+            }
+
+            return exams;
+        }
     }
 }
