@@ -17,6 +17,7 @@ namespace Quazy_Quizzes
         private List<DataGridView> _dataGrids = new List<DataGridView>();
         private int _userRole;
         private List<string> _courses = new List<string>();
+        private Button BtnToggleRole;
 
         public Stats()
         {
@@ -48,6 +49,9 @@ namespace Quazy_Quizzes
 
             // Load stats
             LoadStats();
+
+            // Initialize toggle role button
+            InitializeToggleRoleButton();
         }
 
         private int GetUserRole()
@@ -124,6 +128,11 @@ namespace Quazy_Quizzes
                     {
                         if (_userRole == 1)
                         {
+                            if (CmbCourses.SelectedItem == null)
+                            {
+                                MessageBox.Show("Please select a course.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                return;
+                            }
                             command.Parameters.AddWithValue("@courseName", CmbCourses.SelectedItem.ToString());
                         }
                         else
@@ -171,6 +180,26 @@ namespace Quazy_Quizzes
         private void CmbCourses_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (_userRole == 1) LoadStats();
+        }
+
+        private void InitializeToggleRoleButton()
+        {
+            this.BtnToggleRole = new Button();
+            this.BtnToggleRole.Text = "Toggle Role";
+            this.BtnToggleRole.Font = new Font("Microsoft Sans Serif", 14F);
+            this.BtnToggleRole.Size = new Size(150, 40);
+            this.BtnToggleRole.Location = new Point(20, 80);
+            this.BtnToggleRole.Click += new EventHandler(this.BtnToggleRole_Click);
+            this.Controls.Add(this.BtnToggleRole);
+        }
+
+        private void BtnToggleRole_Click(object sender, EventArgs e)
+        {
+            _userRole = _userRole == 1 ? 0 : 1; // Toggle between staff (1) and student (0)
+            MessageBox.Show(_userRole == 1 ? "Switched to Staff" : "Switched to Student", "Role Toggled", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            LblCourse.Visible = _userRole == 1;
+            CmbCourses.Visible = _userRole == 1;
+            LoadStats();
         }
     }
 }

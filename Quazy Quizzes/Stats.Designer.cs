@@ -120,7 +120,7 @@
             // 
             this.CmbCourses.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.CmbCourses.FormattingEnabled = true;
-            this.CmbCourses.Location = new System.Drawing.Point(218, 80);
+            this.CmbCourses.Location = new System.Drawing.Point(222, 80);
             this.CmbCourses.Name = "CmbCourses";
             this.CmbCourses.Size = new System.Drawing.Size(300, 37);
             this.CmbCourses.TabIndex = 6;
@@ -130,7 +130,7 @@
             // 
             this.LblCourse.AutoSize = true;
             this.LblCourse.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.LblCourse.Location = new System.Drawing.Point(50, 80);
+            this.LblCourse.Location = new System.Drawing.Point(45, 83);
             this.LblCourse.Name = "LblCourse";
             this.LblCourse.Size = new System.Drawing.Size(171, 29);
             this.LblCourse.TabIndex = 5;
