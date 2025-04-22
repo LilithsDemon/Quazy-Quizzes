@@ -36,17 +36,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-
             this.LblTitle = new System.Windows.Forms.Label();
             this.BtnBack = new System.Windows.Forms.Button();
             this.BtnTheme = new System.Windows.Forms.Button();
             this.DgvStats = new System.Windows.Forms.DataGridView();
             this.ContainerPanel = new System.Windows.Forms.Panel();
             this.CmbCourses = new System.Windows.Forms.ComboBox();
-            this.CmbCourses.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.LblCourse = new System.Windows.Forms.Label();
             this.CmbExams = new System.Windows.Forms.ComboBox();
-            this.CmbExams.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.LblExams = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DgvStats)).BeginInit();
             this.ContainerPanel.SuspendLayout();
@@ -124,9 +121,10 @@
             // 
             // CmbCourses
             // 
+            this.CmbCourses.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CmbCourses.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.CmbCourses.FormattingEnabled = true;
-            this.CmbCourses.Location = new System.Drawing.Point(222, 80);
+            this.CmbCourses.Location = new System.Drawing.Point(222, 83);
             this.CmbCourses.Name = "CmbCourses";
             this.CmbCourses.Size = new System.Drawing.Size(300, 37);
             this.CmbCourses.TabIndex = 6;
@@ -136,7 +134,7 @@
             // 
             this.LblCourse.AutoSize = true;
             this.LblCourse.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.LblCourse.Location = new System.Drawing.Point(45, 83);
+            this.LblCourse.Location = new System.Drawing.Point(45, 86);
             this.LblCourse.Name = "LblCourse";
             this.LblCourse.Size = new System.Drawing.Size(171, 29);
             this.LblCourse.TabIndex = 5;
@@ -144,6 +142,7 @@
             // 
             // CmbExams
             // 
+            this.CmbExams.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CmbExams.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
             this.CmbExams.FormattingEnabled = true;
             this.CmbExams.Location = new System.Drawing.Point(222, 130);

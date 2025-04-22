@@ -88,6 +88,11 @@ namespace Quazy_Quizzes
             colourScheme.SetColourSchemePrimaryButtons(_primaryButtons);
             colourScheme.SetColourSchemePrimaryText(_stdText);
             colourScheme.SetColourSchemeDataGrid(_dataGrids);
+            colourScheme.SetColourSchemeLabels(new List<Label> { LblCourse, LblExams }); // Exclude LblTitle
+
+            // Set LblTitle background color explicitly
+            LblTitle.ForeColor = ColorTranslator.FromHtml(colourScheme._headerText);
+            LblTitle.BackColor = ColorTranslator.FromHtml(colourScheme._headerBackground);
         }
 
         // Load user role from database
@@ -189,11 +194,6 @@ namespace Quazy_Quizzes
                             adapter.Fill(dt);
                         }
                     }
-                }
-
-                if (dt.Rows.Count == 0)
-                {
-                    MessageBox.Show("No exams found for selected course.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
                 CmbExams.DataSource = dt;
