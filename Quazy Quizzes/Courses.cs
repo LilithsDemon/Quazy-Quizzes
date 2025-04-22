@@ -257,6 +257,20 @@ namespace Quazy_Quizzes
 
         }
 
+        private void AllExams_DoubleClick(object sender, EventArgs e)
+        {
+            if (AllExams.SelectedItem == null) return;
+
+            // Get the selected exam's ID
+            Exam selectedExam = (Exam)AllExams.SelectedItem;
+            int examId = selectedExam.examID;
+
+            //open the quiz editor but that's not done yet so just show a message box
+            MessageBox.Show("Quizzes are not implemented yet", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+
+        }
+
         private void ChangeThemeBtn_Click(object sender, EventArgs e)
         {
             Program._isDarkMode = !Program._isDarkMode;
