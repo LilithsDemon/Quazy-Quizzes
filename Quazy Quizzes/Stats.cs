@@ -31,7 +31,7 @@ namespace Quazy_Quizzes
 
             _userRole = 1;
 
-            if (_userRole == 1) // Staff
+            if (_userRole >= 1) // Staff & Admin
             {
                 LblCourse.Visible = true;
                 CmbCourses.Visible = true;
