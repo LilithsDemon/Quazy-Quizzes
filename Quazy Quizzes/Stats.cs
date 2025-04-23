@@ -21,7 +21,6 @@ namespace Quazy_Quizzes
         {
             InitializeComponent();
 
-            // Hook up combo box events manually
             CmbCourses.SelectedIndexChanged += CmbCourses_SelectedIndexChanged;
             CmbExams.SelectedIndexChanged += CmbExams_SelectedIndexChanged;
 
@@ -31,16 +30,16 @@ namespace Quazy_Quizzes
 
             _userRole = 1;
 
-            if (_userRole >= 1) // Staff & Admin
+            if (_userRole >= 1)
             {
                 LblCourse.Visible = true;
                 CmbCourses.Visible = true;
                 LblExams.Visible = true;
                 CmbExams.Visible = true;
                 LoadCourses();
-                DgvStats.DataSource = null; // Clear stats on startup for staff
+                DgvStats.DataSource = null;
             }
-            else // Student
+            else
             {
                 LblCourse.Visible = false;
                 CmbCourses.Visible = false;
@@ -51,7 +50,6 @@ namespace Quazy_Quizzes
 
             if (Program._isDarkMode) SetColourScheme(Program._darkTheme);
             else SetColourScheme(Program._lightTheme);
-
         }
 
         private void BtnBack_Click(object sender, EventArgs e)
@@ -88,14 +86,11 @@ namespace Quazy_Quizzes
             colourScheme.SetColourSchemePrimaryButtons(_primaryButtons);
             colourScheme.SetColourSchemePrimaryText(_stdText);
             colourScheme.SetColourSchemeDataGrid(_dataGrids);
-            colourScheme.SetColourSchemeLabels(new List<Label> { LblCourse, LblExams }); // Exclude LblTitle
-
-            // Set LblTitle background color explicitly
+            colourScheme.SetColourSchemeLabels(new List<Label> { LblCourse, LblExams });
             LblTitle.ForeColor = ColorTranslator.FromHtml(colourScheme._headerText);
             LblTitle.BackColor = ColorTranslator.FromHtml(colourScheme._headerBackground);
         }
 
-        // Load user role from database
         private int GetUserRole()
         {
             string query = "SELECT `Role` FROM `Users` WHERE `UserID` = @userID";
@@ -107,7 +102,7 @@ namespace Quazy_Quizzes
                 connection.Open();
                 using (var command = new MySqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@userID", 1); // Placeholder
+                    command.Parameters.AddWithValue("@userID", 1);
                     var result = command.ExecuteScalar();
                     if (result != null)
                     {
@@ -126,33 +121,11 @@ namespace Quazy_Quizzes
                 CmbCourses.DataSource = null;
                 CmbCourses.Items.Clear();
 
-                string query = _userRole == 1
-                    ? @"SELECT c.CourseID, c.CourseName
-                         FROM Courses c
-                         LEFT JOIN UserToCourse uc ON c.CourseID = uc.CourseID
-                         WHERE uc.UserID = @userID"
-                    : "SELECT CourseID, CourseName FROM Courses";
+                string query = "SELECT CourseID, CourseName FROM Courses WHERE CourseID IN (SELECT CourseID FROM UserToCourse WHERE UserID = 1)";
+                var reader = new ConnectionHandler().ExecuteQueryNoParams(query);
 
                 DataTable dt = new DataTable();
-
-                var connectionHandler = new ConnectionHandler();
-                using (var connection = connectionHandler.GetConnection())
-                {
-                    connection.Open();
-
-                    using (var command = new MySqlCommand(query, connection))
-                    {
-                        if (_userRole == 1)
-                        {
-                            command.Parameters.AddWithValue("@userID", 1); // Replace with dynamic user ID
-                        }
-
-                        using (var adapter = new MySqlDataAdapter(command))
-                        {
-                            adapter.Fill(dt);
-                        }
-                    }
-                }
+                dt.Load(reader);
 
                 CmbCourses.DataSource = dt;
                 CmbCourses.DisplayMember = "CourseName";
@@ -160,9 +133,8 @@ namespace Quazy_Quizzes
                 CmbCourses.SelectedIndex = -1;
                 CmbCourses.Refresh();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                //MessageBox.Show("LoadCourses error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -173,7 +145,6 @@ namespace Quazy_Quizzes
                 DataRowView drv = CmbCourses.SelectedItem as DataRowView;
                 if (drv == null)
                 {
-                    //MessageBox.Show("Selected item is not a DataRowView.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 int selectedCourseID = Convert.ToInt32(drv["CourseID"]);
@@ -202,9 +173,8 @@ namespace Quazy_Quizzes
                 CmbExams.SelectedIndex = -1;
                 CmbExams.Refresh();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                //MessageBox.Show("LoadExams error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -213,10 +183,7 @@ namespace Quazy_Quizzes
             try
             {
                 string query = _userRole == 1
-                    ? @"SELECT u.Username, s.Score
-                        FROM Scores s
-                        JOIN Users u ON s.UserID = u.UserID
-                        WHERE s.ExamID = @examID"
+                    ? @"SELECT u.Username, s.Score FROM Scores s JOIN Users u ON s.UserID = u.UserID WHERE s.ExamID = @examID"
                     : "CALL GetUserQuizStats(@userID)";
 
                 var connectionHandler = new Conn.ConnectionHandler();
@@ -229,14 +196,13 @@ namespace Quazy_Quizzes
                         {
                             if (CmbExams.SelectedValue == null)
                             {
-                                //MessageBox.Show("Please select an exam.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 return;
                             }
                             command.Parameters.AddWithValue("@examID", Convert.ToInt32(CmbExams.SelectedValue));
                         }
                         else
                         {
-                            command.Parameters.AddWithValue("@userID", 1); // Placeholder user ID
+                            command.Parameters.AddWithValue("@userID", 1);
                         }
 
                         using (var reader = command.ExecuteReader())
@@ -251,9 +217,8 @@ namespace Quazy_Quizzes
                 DgvStats.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 DgvStats.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                //MessageBox.Show("Failed to load stats: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
