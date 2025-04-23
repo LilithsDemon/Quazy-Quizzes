@@ -22,10 +22,11 @@ namespace Quazy_Quizzes
         private List<Button> _emergencyButtons = new List<Button>();
         private List<Label> _stdText = new List<Label>();
 
-        public int courseID = 0; //used during testing it will be a get ; set ; in the future
-        public Courses()
+        //this is used to get the courseID from passed in data
+        public int courseID { get; set; } 
+        public Courses(int courseID)
         {
-
+            this.courseID = courseID;
             InitializeComponent();
             //colour scheme lists 
             this._primaryButtons = new List<Button> {  AddNewQuizBtn };
