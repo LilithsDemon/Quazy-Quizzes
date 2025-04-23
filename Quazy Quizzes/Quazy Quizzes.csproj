@@ -110,11 +110,29 @@
     <Compile Include="contactForm.Designer.cs">
       <DependentUpon>contactForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CreateNewCourse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateNewCourse.Designer.cs">
+      <DependentUpon>CreateNewCourse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CreateNewQuiz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateNewQuiz.Designer.cs">
+      <DependentUpon>CreateNewQuiz.cs</DependentUpon>
+    </Compile>
     <Compile Include="CreateNewUser.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CreateNewUser.Designer.cs">
       <DependentUpon>CreateNewUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditUserData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditUserData.Designer.cs">
+      <DependentUpon>EditUserData.cs</DependentUpon>
     </Compile>
     <Compile Include="ErrorForm.cs">
       <SubType>Form</SubType>
@@ -165,13 +183,12 @@
     <Compile Include="Quizzes.Designer.cs">
       <DependentUpon>Quizzes.cs</DependentUpon>
     </Compile>
-
     <Compile Include="StudentDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
-	  <Compile Include="StudentDashboard.Designer.cs">
-		  <DependentUpon>StudentDashboard.cs</DependentUpon>
-	  </Compile>
+    <Compile Include="StudentDashboard.Designer.cs">
+      <DependentUpon>StudentDashboard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Stats.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -191,8 +208,17 @@
     <EmbeddedResource Include="AdminDash.resx">
       <DependentUpon>AdminDash.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CreateNewCourse.resx">
+      <DependentUpon>CreateNewCourse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateNewQuiz.resx">
+      <DependentUpon>CreateNewQuiz.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CreateNewUser.resx">
       <DependentUpon>CreateNewUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditUserData.resx">
+      <DependentUpon>EditUserData.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ErrorForm.resx">
       <DependentUpon>ErrorForm.cs</DependentUpon>
@@ -220,9 +246,9 @@
     <EmbeddedResource Include="Quizzes.resx">
       <DependentUpon>Quizzes.cs</DependentUpon>
     </EmbeddedResource>
-		<EmbeddedResource Include="StudentDashboard.resx">
-			<DependentUpon>StudentDashboard.cs</DependentUpon>
-		</EmbeddedResource>
+    <EmbeddedResource Include="StudentDashboard.resx">
+      <DependentUpon>StudentDashboard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Stats.resx">
       <DependentUpon>Stats.cs</DependentUpon>
     </EmbeddedResource>

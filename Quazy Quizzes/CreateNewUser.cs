@@ -82,6 +82,43 @@ namespace Quazy_Quizzes
 
         private void CreateUserBtn_Click(object sender, EventArgs e)
         {
+            // Checks to make sure that fields are correctly filled in.
+            if(string.IsNullOrEmpty(UsernameInput.Text) || string.IsNullOrEmpty(FirstNameInput.Text) || string.IsNullOrEmpty(LastNameInput.Text) || string.IsNullOrEmpty(EmailInput.Text) || string.IsNullOrEmpty(PasswordInput.Text) || string.IsNullOrEmpty(SecurityAInput.Text) || SecurityQCB.SelectedIndex == -1 || RoleCB.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please fill in all fields.");
+                return;
+            }
+            if (UsernameInput.Text.Length < 3)
+            {
+                MessageBox.Show("Username must be at least 3 characters long.");
+                return;
+            }
+            if (PasswordInput.Text.Length < 6)
+            {
+                MessageBox.Show("Password must be at least 6 characters long.");
+                return;
+            }
+            if (EmailInput.Text.Length < 5 || !EmailInput.Text.Contains("@"))
+            {
+                MessageBox.Show("Please enter a valid email address.");
+                return;
+            }
+            if (SecurityAInput.Text.Length < 3)
+            {
+                MessageBox.Show("Security answer must be at least 3 characters long.");
+                return;
+            }
+            if(RoleCB.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a valid role.");
+                return;
+            }
+            if (SecurityQCB.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a security question.");
+                return;
+            }
+
             Register register = new Register(
                 UsernameInput.Text, //username
                 FirstNameInput.Text, //firstname

@@ -432,6 +432,7 @@
             this.DisableQuizBtn.TabIndex = 34;
             this.DisableQuizBtn.Text = "Enable Selected Quiz";
             this.DisableQuizBtn.UseVisualStyleBackColor = true;
+            this.DisableQuizBtn.Click += new System.EventHandler(this.DisableQuizBtn_Click);
             // 
             // LecturerDashboard
             // 

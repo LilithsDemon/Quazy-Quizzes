@@ -246,6 +246,7 @@ namespace Quazy_Quizzes
                     string[] paramNames = new string[] { "@search" };
                     string[] parameters = new string[] { search };
                     reader = con.ExectuteQuery(SQL, paramNames, parameters);
+                 
                 }
             }
             catch (Exception ex)
@@ -455,7 +456,7 @@ namespace Quazy_Quizzes
 
         private void EditActBtn_Click(object sender, EventArgs e)
         {
-
+            // Needs to open an edit account menu
         }
 
         private void DisableActBtn_Click(object sender, EventArgs e)
@@ -519,12 +520,12 @@ namespace Quazy_Quizzes
 
         private void EditCourseBtn_Click(object sender, EventArgs e)
         {
-            // Load the courses page, this page should be able to edit the name of the course if the person is a lecturer or an admin
+            // Load the courses page, this page should be able to edit the name of the course if the person is a lecturer or an admin not made yet
         }
 
         private void EditQuizBtn_Click(object sender, EventArgs e)
         {
-            // Load the edit quiz page
+            // Load the edit quiz page does not exist yer
         }
 
         private void DeleteQuizBtn_Click(object sender, EventArgs e)
@@ -568,7 +569,22 @@ namespace Quazy_Quizzes
 
         private void NewCourseBtn_Click(object sender, EventArgs e)
         {
+            CreateNewCourse newCourseForm = new CreateNewCourse();
+            newCourseForm.Show();
+        }
 
+        private void DisableQuizBtn_Click(object sender, EventArgs e)
+        {
+            string disableQuizSQL = "UPDATE `Exams` LEFT JOIN `Courses` ON `Courses`.`CourseID` = `Exams`.`CourseID`" +
+                " SET `Status`=@status WHERE `Exams`.`ExamName` = @examName AND `Courses`.`CourseName` =" +
+                " @courseName;";
+            string[] paramNames = new string[] { "@status", "@examName", "@courseName" };
+            string[] parameters = new string[] { (DisableQuizBtn.Text == "Enable Selected Quiz") ? "1" : "0", QuizGrid.SelectedCells[0].Value.ToString(), CourseGrid.SelectedCells[0].Value.ToString() };
+
+            var runSql = new ConnectionHandler().ExectuteCommand(disableQuizSQL, paramNames, parameters);
+            if (!runSql) MessageBox.Show("Failed to disable/enable quiz");
+
+            FillQuizzesTable(QuizSearchBar.Text);
         }
     }
 }
