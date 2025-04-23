@@ -14,7 +14,8 @@ namespace Quazy_Quizzes
         private List<Button> _primaryButtons = new List<Button>();
         private List<Label> _stdText = new List<Label>();
         private List<DataGridView> _dataGrids = new List<DataGridView>();
-        private int _userRole;
+        private int _userRole = 1; // Adjustable for testing: 0 = Student, 1 = Staff, 2 = Admin
+        private int _testUserID = 1; // Adjustable for testing different users
         private List<string> _courses = new List<string>();
 
         public Stats()
@@ -28,7 +29,7 @@ namespace Quazy_Quizzes
             _stdText = new List<Label> { LblTitle };
             _dataGrids = new List<DataGridView> { DgvStats };
 
-            _userRole = 1;
+            // _userRole = GetUserRole(); // Disabled for manual testing with _userRole
 
             if (_userRole >= 1)
             {
@@ -65,7 +66,7 @@ namespace Quazy_Quizzes
 
         private void CmbCourses_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (_userRole == 1)
+            if (_userRole >= 1)
             {
                 LoadExams();
                 DgvStats.DataSource = null;
@@ -74,7 +75,7 @@ namespace Quazy_Quizzes
 
         private void CmbExams_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (_userRole == 1 && CmbCourses.SelectedItem != null && CmbExams.SelectedItem != null)
+            if (_userRole >= 1 && CmbCourses.SelectedItem != null && CmbExams.SelectedItem != null)
             {
                 LoadStats();
             }
@@ -102,7 +103,7 @@ namespace Quazy_Quizzes
                 connection.Open();
                 using (var command = new MySqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@userID", 1);
+                    command.Parameters.AddWithValue("@userID", _testUserID);
                     var result = command.ExecuteScalar();
                     if (result != null)
                     {
@@ -121,11 +122,35 @@ namespace Quazy_Quizzes
                 CmbCourses.DataSource = null;
                 CmbCourses.Items.Clear();
 
-                string query = "SELECT CourseID, CourseName FROM Courses WHERE CourseID IN (SELECT CourseID FROM UserToCourse WHERE UserID = 1)";
-                var reader = new ConnectionHandler().ExecuteQueryNoParams(query);
+                string query = _userRole == 2
+                    ? "SELECT CourseID, CourseName FROM Courses"
+                    : _userRole == 1
+                        ? "SELECT c.CourseID, c.CourseName FROM Courses c INNER JOIN UserToCourse uc ON c.CourseID = uc.CourseID WHERE uc.UserID = @userID"
+                        : null;
+
+                if (query == null)
+                {
+                    return;
+                }
 
                 DataTable dt = new DataTable();
-                dt.Load(reader);
+
+                var connectionHandler = new ConnectionHandler();
+                using (var connection = connectionHandler.GetConnection())
+                {
+                    connection.Open();
+                    using (var command = new MySqlCommand(query, connection))
+                    {
+                        if (_userRole == 1)
+                        {
+                            command.Parameters.AddWithValue("@userID", _testUserID);
+                        }
+                        using (var adapter = new MySqlDataAdapter(command))
+                        {
+                            adapter.Fill(dt);
+                        }
+                    }
+                }
 
                 CmbCourses.DataSource = dt;
                 CmbCourses.DisplayMember = "CourseName";
@@ -202,7 +227,7 @@ namespace Quazy_Quizzes
                         }
                         else
                         {
-                            command.Parameters.AddWithValue("@userID", 1);
+                            command.Parameters.AddWithValue("@userID", _testUserID);
                         }
 
                         using (var reader = command.ExecuteReader())
