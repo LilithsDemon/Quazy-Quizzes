@@ -92,29 +92,6 @@ namespace Quazy_Quizzes
             LblTitle.BackColor = ColorTranslator.FromHtml(colourScheme._headerBackground);
         }
 
-        private int GetUserRole()
-        {
-            string query = "SELECT `Role` FROM `Users` WHERE `UserID` = @userID";
-            int role = 0;
-
-            var connectionHandler = new Conn.ConnectionHandler();
-            using (var connection = connectionHandler.GetConnection())
-            {
-                connection.Open();
-                using (var command = new MySqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@userID", _testUserID);
-                    var result = command.ExecuteScalar();
-                    if (result != null)
-                    {
-                        role = Convert.ToInt32(result);
-                    }
-                }
-            }
-
-            return role;
-        }
-
         private void LoadCourses()
         {
             try
