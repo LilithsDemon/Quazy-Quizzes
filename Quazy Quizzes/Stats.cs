@@ -14,11 +14,11 @@ namespace Quazy_Quizzes
         private List<Button> _primaryButtons = new List<Button>();
         private List<Label> _stdText = new List<Label>();
         private List<DataGridView> _dataGrids = new List<DataGridView>();
-        private int _userRole = 1; // Adjustable for testing: 0 = Student, 1 = Staff, 2 = Admin
+        private int _userRole = 0; // Adjustable for testing: 0 = Student, 1 = Staff, 2 = Admin
         private int _testUserID = 1; // Adjustable for testing different users
         private List<string> _courses = new List<string>();
 
-        public Stats()
+        public Stats(int courseID = 0)
         {
             InitializeComponent();
 
@@ -38,6 +38,7 @@ namespace Quazy_Quizzes
                 LblExams.Visible = true;
                 CmbExams.Visible = true;
                 LoadCourses();
+                LoadExams();
                 DgvStats.DataSource = null;
             }
             else
@@ -133,7 +134,6 @@ namespace Quazy_Quizzes
                 CmbCourses.DisplayMember = "CourseName";
                 CmbCourses.ValueMember = "CourseID";
                 CmbCourses.SelectedIndex = -1;
-                CmbCourses.Refresh();
             }
             catch (Exception)
             {
@@ -147,9 +147,14 @@ namespace Quazy_Quizzes
                 DataRowView drv = CmbCourses.SelectedItem as DataRowView;
                 if (drv == null)
                 {
+                    CmbExams.DataSource = null;
                     return;
                 }
                 int selectedCourseID = Convert.ToInt32(drv["CourseID"]);
+                if (CmbCourses.SelectedIndex == -1)
+                {
+                    return;
+                }
                 string query = "SELECT `ExamID`, `ExamName` FROM `Exams` WHERE `CourseID` = @courseID";
                 DataTable dt = new DataTable();
 
