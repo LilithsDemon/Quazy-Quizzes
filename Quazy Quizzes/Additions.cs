@@ -92,14 +92,21 @@ namespace Quazy_Quizzes
 
                 
                 string sql = @"
-            SELECT u.UserID, u.UserName 
-            FROM Users u
-            WHERE u.Role = 0 
-              AND u.Active = 1
-              AND u.UserID NOT IN (
-                  SELECT UserID 
-                  FROM UserToCourse 
-                  WHERE CourseID = @courseID
+           SELECT
+    `Users`.`UserID`,
+    `Users`.`UserName`
+FROM
+    `Users`
+WHERE
+    `Users`.`Role` = 0 
+    AND `Users`.`Active` = 1 
+    AND `Users`.`UserID` NOT IN (
+        SELECT
+            `UserID`
+        FROM
+            `UserToCourse`
+        WHERE
+            `CourseID` = @courseID
               )";
 
                 string[] paramNames = { "@courseID" };
