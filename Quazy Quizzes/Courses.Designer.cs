@@ -35,12 +35,13 @@
             this.LeaderboardDataGrid = new System.Windows.Forms.DataGridView();
             this.StudentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Score = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StudentExamsList = new System.Windows.Forms.ListBox();
             this.ExamLabel = new System.Windows.Forms.Label();
-            this.AllExams = new System.Windows.Forms.ListBox();
-            this.AllExamLabel = new System.Windows.Forms.Label();
             this.AddNewQuizBtn = new System.Windows.Forms.Button();
+            this.AllExamLabel = new System.Windows.Forms.Label();
+            this.ExamDataGridView = new System.Windows.Forms.DataGridView();
+            this.LoadQuizBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.LeaderboardDataGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ExamDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // HeaderBg
@@ -89,7 +90,7 @@
             // 
             this.LeaderboardLbl.AutoSize = true;
             this.LeaderboardLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LeaderboardLbl.Location = new System.Drawing.Point(471, 151);
+            this.LeaderboardLbl.Location = new System.Drawing.Point(471, 111);
             this.LeaderboardLbl.Name = "LeaderboardLbl";
             this.LeaderboardLbl.Size = new System.Drawing.Size(133, 18);
             this.LeaderboardLbl.TabIndex = 11;
@@ -104,7 +105,7 @@
             this.LeaderboardDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.StudentName,
             this.Score});
-            this.LeaderboardDataGrid.Location = new System.Drawing.Point(425, 193);
+            this.LeaderboardDataGrid.Location = new System.Drawing.Point(423, 148);
             this.LeaderboardDataGrid.Name = "LeaderboardDataGrid";
             this.LeaderboardDataGrid.ReadOnly = true;
             this.LeaderboardDataGrid.Size = new System.Drawing.Size(248, 238);
@@ -122,49 +123,20 @@
             this.Score.Name = "Score";
             this.Score.ReadOnly = true;
             // 
-            // StudentExamsList
-            // 
-            this.StudentExamsList.FormattingEnabled = true;
-            this.StudentExamsList.Location = new System.Drawing.Point(144, 193);
-            this.StudentExamsList.Name = "StudentExamsList";
-            this.StudentExamsList.Size = new System.Drawing.Size(240, 238);
-            this.StudentExamsList.TabIndex = 13;
-            this.StudentExamsList.Visible = false;
-            // 
             // ExamLabel
             // 
             this.ExamLabel.AutoSize = true;
             this.ExamLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ExamLabel.Location = new System.Drawing.Point(213, 151);
+            this.ExamLabel.Location = new System.Drawing.Point(213, 111);
             this.ExamLabel.Name = "ExamLabel";
             this.ExamLabel.Size = new System.Drawing.Size(92, 18);
             this.ExamLabel.TabIndex = 14;
             this.ExamLabel.Text = "Exams to do";
             this.ExamLabel.Visible = false;
             // 
-            // AllExams
-            // 
-            this.AllExams.FormattingEnabled = true;
-            this.AllExams.Location = new System.Drawing.Point(144, 193);
-            this.AllExams.Name = "AllExams";
-            this.AllExams.Size = new System.Drawing.Size(240, 238);
-            this.AllExams.TabIndex = 15;
-            this.AllExams.Visible = false;
-            // 
-            // AllExamLabel
-            // 
-            this.AllExamLabel.AutoSize = true;
-            this.AllExamLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AllExamLabel.Location = new System.Drawing.Point(213, 151);
-            this.AllExamLabel.Name = "AllExamLabel";
-            this.AllExamLabel.Size = new System.Drawing.Size(73, 18);
-            this.AllExamLabel.TabIndex = 16;
-            this.AllExamLabel.Text = "All Exams";
-            this.AllExamLabel.Visible = false;
-            // 
             // AddNewQuizBtn
             // 
-            this.AddNewQuizBtn.Location = new System.Drawing.Point(37, 212);
+            this.AddNewQuizBtn.Location = new System.Drawing.Point(38, 168);
             this.AddNewQuizBtn.Name = "AddNewQuizBtn";
             this.AddNewQuizBtn.Size = new System.Drawing.Size(82, 46);
             this.AddNewQuizBtn.TabIndex = 17;
@@ -172,16 +144,48 @@
             this.AddNewQuizBtn.UseVisualStyleBackColor = true;
             this.AddNewQuizBtn.Click += new System.EventHandler(this.AddNewQuizBtn_Click);
             // 
+            // AllExamLabel
+            // 
+            this.AllExamLabel.AutoSize = true;
+            this.AllExamLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AllExamLabel.Location = new System.Drawing.Point(213, 111);
+            this.AllExamLabel.Name = "AllExamLabel";
+            this.AllExamLabel.Size = new System.Drawing.Size(73, 18);
+            this.AllExamLabel.TabIndex = 16;
+            this.AllExamLabel.Text = "All Exams";
+            this.AllExamLabel.Visible = false;
+            // 
+            // ExamDataGridView
+            // 
+            this.ExamDataGridView.AllowUserToAddRows = false;
+            this.ExamDataGridView.AllowUserToDeleteRows = false;
+            this.ExamDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ExamDataGridView.Location = new System.Drawing.Point(142, 148);
+            this.ExamDataGridView.Name = "ExamDataGridView";
+            this.ExamDataGridView.ReadOnly = true;
+            this.ExamDataGridView.Size = new System.Drawing.Size(238, 238);
+            this.ExamDataGridView.TabIndex = 18;
+            // 
+            // LoadQuizBtn
+            // 
+            this.LoadQuizBtn.Location = new System.Drawing.Point(177, 415);
+            this.LoadQuizBtn.Name = "LoadQuizBtn";
+            this.LoadQuizBtn.Size = new System.Drawing.Size(164, 23);
+            this.LoadQuizBtn.TabIndex = 19;
+            this.LoadQuizBtn.Text = "Load Selected Quiz";
+            this.LoadQuizBtn.UseVisualStyleBackColor = true;
+            this.LoadQuizBtn.Click += new System.EventHandler(this.LoadQuizBtn_Click);
+            // 
             // Courses
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.LoadQuizBtn);
+            this.Controls.Add(this.ExamDataGridView);
             this.Controls.Add(this.AddNewQuizBtn);
             this.Controls.Add(this.AllExamLabel);
-            this.Controls.Add(this.AllExams);
             this.Controls.Add(this.ExamLabel);
-            this.Controls.Add(this.StudentExamsList);
             this.Controls.Add(this.LeaderboardDataGrid);
             this.Controls.Add(this.LeaderboardLbl);
             this.Controls.Add(this.BtnBack);
@@ -190,6 +194,7 @@
             this.Name = "Courses";
             this.Text = "Courses";
             ((System.ComponentModel.ISupportInitialize)(this.LeaderboardDataGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ExamDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -202,12 +207,12 @@
         private System.Windows.Forms.Button BtnBack;
         private System.Windows.Forms.Label LeaderboardLbl;
         private System.Windows.Forms.DataGridView LeaderboardDataGrid;
-        private System.Windows.Forms.ListBox StudentExamsList;
         private System.Windows.Forms.Label ExamLabel;
-        private System.Windows.Forms.ListBox AllExams;
-        private System.Windows.Forms.Label AllExamLabel;
         private System.Windows.Forms.Button AddNewQuizBtn;
         private System.Windows.Forms.DataGridViewTextBoxColumn StudentName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Score;
+        private System.Windows.Forms.Label AllExamLabel;
+        private System.Windows.Forms.DataGridView ExamDataGridView;
+        private System.Windows.Forms.Button LoadQuizBtn;
     }
 }

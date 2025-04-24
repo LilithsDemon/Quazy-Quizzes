@@ -81,7 +81,7 @@ namespace Quazy_Quizzes
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Application.Run(new Load()); // This is what the application should be starting on
+            Application.Run(new Courses(1)); // This is what the application should be starting on
 
 
             
