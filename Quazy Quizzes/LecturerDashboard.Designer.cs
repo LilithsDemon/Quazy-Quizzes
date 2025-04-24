@@ -56,7 +56,7 @@
             this.QuizSearchLbl = new System.Windows.Forms.Label();
             this.NewCourseBtn = new System.Windows.Forms.Button();
             this.NewQuizBtn = new System.Windows.Forms.Button();
-            this.EditCourseBtn = new System.Windows.Forms.Button();
+            this.w = new System.Windows.Forms.Button();
             this.EditQuizBtn = new System.Windows.Forms.Button();
             this.DeleteQuizBtn = new System.Windows.Forms.Button();
             this.DisableQuizBtn = new System.Windows.Forms.Button();
@@ -390,16 +390,16 @@
             this.NewQuizBtn.UseVisualStyleBackColor = true;
             this.NewQuizBtn.Click += new System.EventHandler(this.NewQuizBtn_Click);
             // 
-            // EditCourseBtn
+            // w
             // 
-            this.EditCourseBtn.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.EditCourseBtn.Location = new System.Drawing.Point(916, 245);
-            this.EditCourseBtn.Name = "EditCourseBtn";
-            this.EditCourseBtn.Size = new System.Drawing.Size(150, 50);
-            this.EditCourseBtn.TabIndex = 31;
-            this.EditCourseBtn.Text = "View Selected Course";
-            this.EditCourseBtn.UseVisualStyleBackColor = true;
-            this.EditCourseBtn.Click += new System.EventHandler(this.EditCourseBtn_Click);
+            this.w.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.w.Location = new System.Drawing.Point(916, 245);
+            this.w.Name = "w";
+            this.w.Size = new System.Drawing.Size(150, 50);
+            this.w.TabIndex = 31;
+            this.w.Text = "View Stats on Courses";
+            this.w.UseVisualStyleBackColor = true;
+            this.w.Click += new System.EventHandler(this.ViewCourseStatsBtn_Click);
             // 
             // EditQuizBtn
             // 
@@ -442,7 +442,7 @@
             this.Controls.Add(this.DisableQuizBtn);
             this.Controls.Add(this.DeleteQuizBtn);
             this.Controls.Add(this.EditQuizBtn);
-            this.Controls.Add(this.EditCourseBtn);
+            this.Controls.Add(this.w);
             this.Controls.Add(this.NewQuizBtn);
             this.Controls.Add(this.NewCourseBtn);
             this.Controls.Add(this.QuizGrid);
@@ -511,7 +511,7 @@
         private System.Windows.Forms.Label QuizSearchLbl;
         private System.Windows.Forms.Button NewCourseBtn;
         private System.Windows.Forms.Button NewQuizBtn;
-        private System.Windows.Forms.Button EditCourseBtn;
+        private System.Windows.Forms.Button w;
         private System.Windows.Forms.Button EditQuizBtn;
         private System.Windows.Forms.Button DeleteQuizBtn;
         private System.Windows.Forms.Button DisableQuizBtn;

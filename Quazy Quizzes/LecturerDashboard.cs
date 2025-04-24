@@ -54,7 +54,7 @@ namespace Quazy_Quizzes
             // Components used for setting colour scheme
             this._primaryButtons = new List<Button> { UsersBtn, TestsBtn, NewUserBtn, NewCourseBtn, NewQuizBtn };
             this._secondaryButtons = new List<Button> { StdntActsBtn, LectrActsBtn, EditActBtn, ToggleThemeBtn, 
-                                                        EditQuizBtn, EditCourseBtn};
+                                                        EditQuizBtn, w};
             this._emergencyButtons = new List<Button> { LogOutBtn, DisableActBtn, DeleteActBtn, DeleteQuizBtn, DisableQuizBtn};
             this._stdText = new List<Label> { TitleLbl, UsernameLbl, NameLbl, EmailLbl, LastLoginLbl, ActSearchLbl,
                                                CourseSearchLbl, QuizSearchLbl};
@@ -67,7 +67,7 @@ namespace Quazy_Quizzes
 
             this._testPageElements = new List<Control> { NewCourseBtn, NewQuizBtn, CourseSearchLbl, CourseSearchBar, CourseGrid,
                                                          QuizSearchLbl, QuizSearchBar, QuizGrid,
-                                                         EditCourseBtn, EditQuizBtn, DeleteQuizBtn, DisableQuizBtn};
+                                                         w, EditQuizBtn, DeleteQuizBtn, DisableQuizBtn};
 
             // Get page to match colour scheme
             if (Program._isDarkMode) SetColourScheme(Program._darkTheme);
@@ -251,7 +251,7 @@ namespace Quazy_Quizzes
             }
             catch (Exception ex)
             {
-                EditCourseBtn.Visible = false;
+                w.Visible = false;
                 EditQuizBtn.Visible = false;
                 DisableQuizBtn.Visible = false;
                 DeleteQuizBtn.Visible = false;
@@ -268,13 +268,13 @@ namespace Quazy_Quizzes
                 CourseGrid.Rows[0].Selected = true;
                 if (CourseGrid.Rows[0].Cells["CourseName"].Value == null)
                 {
-                    EditCourseBtn.Visible = false;
+                    w.Visible = false;
                     EditQuizBtn.Visible = false;
                     DisableQuizBtn.Visible = false;
                     DeleteQuizBtn.Visible = false;
                     return;
                 }
-                EditCourseBtn.Visible = true;
+                w.Visible = true;
                 EditQuizBtn.Visible = true;
                 DisableQuizBtn.Visible = true;
                 DeleteQuizBtn.Visible = true;
@@ -518,7 +518,7 @@ namespace Quazy_Quizzes
             this.Hide();
         }
 
-        private void EditCourseBtn_Click(object sender, EventArgs e)
+        private void ViewCourseStatsBtn_Click(object sender, EventArgs e)
         {
             // Load the courses page, this page should be able to edit the name of the course if the person is a lecturer or an admin not made yet
         }
