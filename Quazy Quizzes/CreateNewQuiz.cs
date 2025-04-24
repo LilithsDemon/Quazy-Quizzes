@@ -36,6 +36,8 @@ namespace Quazy_Quizzes
             // Get page to match colour scheme
             if (Program._isDarkMode) SetColourScheme(Program._darkTheme);
             else SetColourScheme(Program._lightTheme);
+
+            FillCourseComboBox();
         }
 
         private void SetColourScheme(ColourScheme colourScheme)
@@ -103,7 +105,10 @@ namespace Quazy_Quizzes
             }
             string quizName = QuizNameInput.Text;
             string courseName = CourseNameCB.SelectedItem.ToString();
-            string sql = "INSERT INTO `Quizzes`(`QuizID`, `QuizName`, `CourseID`) VALUES (null, @QuizName, (SELECT `CourseID` FROM `Courses` WHERE `CourseName` = @CourseName))";
+
+            string sql = "INSERT INTO `Exams`(`ExamID`, `CourseID`, `ExamName`, `Status`) VALUES (null,(SELECT `CourseID` FROM `Courses` WHERE `CourseName` = @courseName LIMIT 1),@quizName,0);";
+            string[] paramNames = new string[] { "@courseName", "@quizName" };
+            string[] parameters = new string[] { courseName, quizName };
         }
     }
 }

@@ -33,7 +33,7 @@ namespace Quazy_Quizzes
         private List<Control> _adminsOnly = new List<Control>();
 
         // Used in testing, should be in user class
-        int _usersRole = 2;
+        int _usersRole = 1;
 
         int _usersID = 4; // Used for testing - connected to one existing course
 
