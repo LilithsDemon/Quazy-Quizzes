@@ -30,12 +30,14 @@
         {
             this.StudentComboBox = new System.Windows.Forms.ComboBox();
             this.LecturerComboBox = new System.Windows.Forms.ComboBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.UsersInCourse = new System.Windows.Forms.DataGridView();
             this.StudentLbl = new System.Windows.Forms.Label();
             this.AddStudentBtn = new System.Windows.Forms.Button();
             this.LecturerLbl = new System.Windows.Forms.Label();
             this.AddLecturerBtn = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Surname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.UsersInCourse)).BeginInit();
             this.SuspendLayout();
             // 
             // StudentComboBox
@@ -54,13 +56,18 @@
             this.LecturerComboBox.Size = new System.Drawing.Size(121, 21);
             this.LecturerComboBox.TabIndex = 1;
             // 
-            // dataGridView1
+            // UsersInCourse
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(53, 77);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(240, 150);
-            this.dataGridView1.TabIndex = 2;
+            this.UsersInCourse.AllowUserToDeleteRows = false;
+            this.UsersInCourse.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.UsersInCourse.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.FirstName,
+            this.Surname});
+            this.UsersInCourse.Location = new System.Drawing.Point(53, 77);
+            this.UsersInCourse.Name = "UsersInCourse";
+            this.UsersInCourse.ReadOnly = true;
+            this.UsersInCourse.Size = new System.Drawing.Size(245, 150);
+            this.UsersInCourse.TabIndex = 2;
             // 
             // StudentLbl
             // 
@@ -79,6 +86,7 @@
             this.AddStudentBtn.TabIndex = 4;
             this.AddStudentBtn.Text = "Add Student";
             this.AddStudentBtn.UseVisualStyleBackColor = true;
+            this.AddStudentBtn.Click += new System.EventHandler(this.AddStudentBtn_Click);
             // 
             // LecturerLbl
             // 
@@ -97,6 +105,19 @@
             this.AddLecturerBtn.TabIndex = 6;
             this.AddLecturerBtn.Text = "Add Lecturer";
             this.AddLecturerBtn.UseVisualStyleBackColor = true;
+            this.AddLecturerBtn.Click += new System.EventHandler(this.AddLecturerBtn_Click);
+            // 
+            // FirstName
+            // 
+            this.FirstName.HeaderText = "First Name";
+            this.FirstName.Name = "FirstName";
+            this.FirstName.ReadOnly = true;
+            // 
+            // Surname
+            // 
+            this.Surname.HeaderText = "Surname";
+            this.Surname.Name = "Surname";
+            this.Surname.ReadOnly = true;
             // 
             // Additions
             // 
@@ -107,12 +128,12 @@
             this.Controls.Add(this.LecturerLbl);
             this.Controls.Add(this.AddStudentBtn);
             this.Controls.Add(this.StudentLbl);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.UsersInCourse);
             this.Controls.Add(this.LecturerComboBox);
             this.Controls.Add(this.StudentComboBox);
             this.Name = "Additions";
             this.Text = "Additions";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.UsersInCourse)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -122,10 +143,12 @@
 
         private System.Windows.Forms.ComboBox StudentComboBox;
         private System.Windows.Forms.ComboBox LecturerComboBox;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView UsersInCourse;
         private System.Windows.Forms.Label StudentLbl;
         private System.Windows.Forms.Button AddStudentBtn;
         private System.Windows.Forms.Label LecturerLbl;
         private System.Windows.Forms.Button AddLecturerBtn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FirstName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Surname;
     }
 }
