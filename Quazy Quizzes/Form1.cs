@@ -315,17 +315,45 @@ namespace Quazy_Quizzes
 
         private void _btnToggleTheme_Click(object sender, EventArgs e)
         {
-          
             Program._isDarkMode = !Program._isDarkMode;
 
-            // If is now supposed to be dark mode
+            // If it is now supposed to be dark mode
             if (Program._isDarkMode)
             {
-                SetColourScheme(Program._darkTheme);
+                ApplyTheme(Program._darkTheme);
                 return;
             }
 
-           SetColourScheme(Program._lightTheme);
+            ApplyTheme(Program._lightTheme);
+        }
+
+        private void ApplyTheme(ColourScheme theme)
+        {
+            // Apply the theme to the form background
+            this.BackColor = ColorTranslator.FromHtml(theme._background);
+
+            // Apply the theme to the header
+            theme.SetColourSchemeHeader(lblTitle);
+
+            // Apply the theme to primary buttons
+            theme.SetColourSchemePrimaryButtons(_primaryButtons);
+
+            // Apply the theme to secondary buttons
+            theme.SetColourSchemeSecondaryButtons(_secondaryButtons);
+
+            // Apply the theme to labels
+            theme.SetColourSchemePrimaryText(new List<Label> { lblIntro });
+            lblIntro.BackColor = ColorTranslator.FromHtml(theme._cardBackground);
+            // Apply the theme to panels
+            ActionPanel.BackColor = ColorTranslator.FromHtml(theme._cardBackground);
+            InfoPanel.BackColor = ColorTranslator.FromHtml(theme._cardBackground);
+
+            // Apply the theme to textboxes
+            theme.SetColourSchemeTextBox(new List<RichTextBox>());
+
+            // Apply the theme to dropdowns
+            cbSecurityQ.BackColor = ColorTranslator.FromHtml(theme._cardBackground);
+            cbSecurityQ.ForeColor = ColorTranslator.FromHtml(theme._primaryText);
         }
 
         private void btnExit_Click(object sender, EventArgs e)
