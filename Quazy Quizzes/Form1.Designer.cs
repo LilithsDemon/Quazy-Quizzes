@@ -290,8 +290,9 @@
             this.cbSecurityQ.Enabled = false;
             this.cbSecurityQ.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
             this.cbSecurityQ.FormattingEnabled = true;
-            this.cbSecurityQ.Items.AddRange(new object[] {
-            "Please enter a security question"});
+            this.cbSecurityQ.Items.Clear();
+            this.cbSecurityQ.Items.Add("Please enter a 2FA question");
+            this.cbSecurityQ.SelectedIndex = 0;
             this.cbSecurityQ.Location = new System.Drawing.Point(778, 459);
             this.cbSecurityQ.Name = "cbSecurityQ";
             this.cbSecurityQ.Size = new System.Drawing.Size(374, 39);
