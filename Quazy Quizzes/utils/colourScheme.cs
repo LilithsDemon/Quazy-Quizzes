@@ -97,6 +97,32 @@ namespace QQColourScheme
             textBoxElement.ForeColor = ColorTranslator.FromHtml(this._primaryText);
         }
 
+        // Set the colour scheme on given TextBoxElements
+        public void SetColourSchemeTextBox(List<TextBox> textBoxElements)
+        {
+            foreach (TextBox textBoxElement in textBoxElements) SetColourSchemeTextBox(textBoxElement);
+        }
+
+        // Method overloading to allow for just one TextBox element instead of a list of them
+        public void SetColourSchemeTextBox(TextBox textBoxElement)
+        {
+            textBoxElement.BackColor = ColorTranslator.FromHtml(this._cardBackground);
+            textBoxElement.ForeColor = ColorTranslator.FromHtml(this._primaryText);
+        }
+
+        // Set the colour scheme on given ComboBoxElements
+        public void SetColourSchemeComboBox(List<ComboBox> comboBoxElements)
+        {
+            foreach (ComboBox comboBoxElement in comboBoxElements) SetColourSchemeComboBox(comboBoxElement);
+        }
+
+        // Method overloading to allow for just one ComboBox element instead of a list of them
+        public void SetColourSchemeComboBox(ComboBox comboBoxElement)
+        {
+            comboBoxElement.BackColor = ColorTranslator.FromHtml(this._cardBackground);
+            comboBoxElement.ForeColor = ColorTranslator.FromHtml(this._primaryText);
+        }
+
         // Sets the button based on what button type is passed in
         private void SetColourSchemeButton(Button buttonElement, int buttonType)
         {

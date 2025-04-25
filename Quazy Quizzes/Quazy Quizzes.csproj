@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -122,6 +122,30 @@
     <Compile Include="contactForm.Designer.cs">
       <DependentUpon>contactForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CreateNewCourse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateNewCourse.Designer.cs">
+      <DependentUpon>CreateNewCourse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CreateNewQuiz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateNewQuiz.Designer.cs">
+      <DependentUpon>CreateNewQuiz.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CreateNewUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateNewUser.Designer.cs">
+      <DependentUpon>CreateNewUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditUserData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditUserData.Designer.cs">
+      <DependentUpon>EditUserData.cs</DependentUpon>
+    </Compile>
     <Compile Include="Courses.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -213,6 +237,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AdminDash.resx">
       <DependentUpon>AdminDash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateNewCourse.resx">
+      <DependentUpon>CreateNewCourse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateNewQuiz.resx">
+      <DependentUpon>CreateNewQuiz.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateNewUser.resx">
+      <DependentUpon>CreateNewUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditUserData.resx">
+      <DependentUpon>EditUserData.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Courses.resx">
       <DependentUpon>Courses.cs</DependentUpon>
