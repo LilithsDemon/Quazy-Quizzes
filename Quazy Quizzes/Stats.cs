@@ -14,8 +14,6 @@ namespace Quazy_Quizzes
         private List<Button> _primaryButtons = new List<Button>();
         private List<Label> _stdText = new List<Label>();
         private List<DataGridView> _dataGrids = new List<DataGridView>();
-        private int _userRole = 0; // Adjustable for testing: 0 = Student, 1 = Staff, 2 = Admin
-        private int _testUserID = 1; // Adjustable for testing different users
         private List<string> _courses = new List<string>();
 
         public Stats(int courseID = 0)
@@ -29,9 +27,9 @@ namespace Quazy_Quizzes
             _stdText = new List<Label> { LblTitle };
             _dataGrids = new List<DataGridView> { DgvStats };
 
-            // _userRole = GetUserRole(); // Disabled for manual testing with _userRole
+            // Program._user._role = GetUserRole(); // Disabled for manual testing with Program._user._role
 
-            if (_userRole >= 1)
+            if (Program._user._role >= 1)
             {
                 LblCourse.Visible = true;
                 CmbCourses.Visible = true;
@@ -67,7 +65,7 @@ namespace Quazy_Quizzes
 
         private void CmbCourses_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (_userRole >= 1)
+            if (Program._user._role >= 1)
             {
                 LoadExams();
                 DgvStats.DataSource = null;
@@ -76,7 +74,7 @@ namespace Quazy_Quizzes
 
         private void CmbExams_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (_userRole >= 1 && CmbCourses.SelectedItem != null && CmbExams.SelectedItem != null)
+            if (Program._user._role >= 1 && CmbCourses.SelectedItem != null && CmbExams.SelectedItem != null)
             {
                 LoadStats();
             }
@@ -100,9 +98,9 @@ namespace Quazy_Quizzes
                 CmbCourses.DataSource = null;
                 CmbCourses.Items.Clear();
 
-                string query = _userRole == 2
+                string query = Program._user._role == 2
                     ? "SELECT CourseID, CourseName FROM Courses"
-                    : _userRole == 1
+                    : Program._user._role == 1
                         ? "SELECT c.CourseID, c.CourseName FROM Courses c INNER JOIN UserToCourse uc ON c.CourseID = uc.CourseID WHERE uc.UserID = @userID"
                         : null;
 
@@ -119,9 +117,9 @@ namespace Quazy_Quizzes
                     connection.Open();
                     using (var command = new MySqlCommand(query, connection))
                     {
-                        if (_userRole == 1)
+                        if (Program._user._role == 1)
                         {
-                            command.Parameters.AddWithValue("@userID", _testUserID);
+                            command.Parameters.AddWithValue("@userID", Program._user._userID);
                         }
                         using (var adapter = new MySqlDataAdapter(command))
                         {
@@ -189,7 +187,7 @@ namespace Quazy_Quizzes
         {
             try
             {
-                string query = _userRole == 1
+                string query = Program._user._role == 1
                     ? @"SELECT u.Username, s.Score FROM Scores s JOIN Users u ON s.UserID = u.UserID WHERE s.ExamID = @examID"
                     : "CALL GetUserQuizStats(@userID)";
 
@@ -199,7 +197,7 @@ namespace Quazy_Quizzes
                     connection.Open();
                     using (var command = new MySqlCommand(query, connection))
                     {
-                        if (_userRole == 1)
+                        if (Program._user._role == 1)
                         {
                             if (CmbExams.SelectedValue == null)
                             {
@@ -209,7 +207,7 @@ namespace Quazy_Quizzes
                         }
                         else
                         {
-                            command.Parameters.AddWithValue("@userID", _testUserID);
+                            command.Parameters.AddWithValue("@userID", Program._user._userID);
                         }
 
                         using (var reader = command.ExecuteReader())

@@ -19,15 +19,15 @@ namespace Quazy_Quizzes
     public partial class Additions : Form
     {
 
-        int courseID = 1;
-        int userRole = 1; // 0 = student, 1 = lecturer, 2 = admin
+        private int _courseID = 1;
         private List<Button> _primaryButtons = new List<Button>();
         private List<Button> _emergencyButtons = new List<Button>();
         private List<Label> _stdText = new List<Label>();
         private List<DataGridView> _dataGrids = new List<DataGridView>();
         private List<Control> _adminElements = new List<Control>();
-        public Additions()
+        public Additions(int courseID)
         {
+            this._courseID = courseID;
             InitializeComponent();
             // Grouping UI elements into categories
             _stdText = new List<Label> { HeaderLbl, StudentLbl, LecturerLbl };
@@ -46,14 +46,14 @@ namespace Quazy_Quizzes
         private void LoadElementsForRole()
         {
             // Hide or show elements based on user role
-            if (userRole == 1) // Student
+            if (Program._user._role == 1) // Student
             {
                 foreach (Control control in _adminElements)
                 {
                     control.Visible = false;
                 }
             }
-            else if (userRole == 2) // Lecturer
+            else if (Program._user._role == 2) // Lecturer
             {
                 foreach (Control control in _adminElements)
                 {
@@ -73,11 +73,11 @@ namespace Quazy_Quizzes
 
         private void Additions_Load(object sender, EventArgs e)
         {
-            PopulateEnrolledUsersGrid(courseID);
-            LoadPotentialStudents(courseID);
+            PopulateEnrolledUsersGrid(this._courseID);
+            LoadPotentialStudents(this._courseID);
             LecturerComboBox.Visible = false;
             AddLecturerBtn.Visible = false;
-            if (userRole == 2)
+            if (Program._user._role == 2)
             {
                 // Hide the lecturer controls if the user is a student
                 LecturerComboBox.Visible = true;
@@ -194,12 +194,12 @@ WHERE
 
             try
             {
-                bool success = EnrollUserInCourse(userId, courseID);
+                bool success = EnrollUserInCourse(userId, this._courseID);
 
                 if (success)
                 {
                     MessageBox.Show("User enrolled successfully!");
-                    PopulateEnrolledUsersGrid(courseID); // Refresh grid
+                    PopulateEnrolledUsersGrid(this._courseID); // Refresh grid
                 }
             }
             catch (Exception ex)
@@ -266,11 +266,11 @@ WHERE
             int userId = (int)LecturerComboBox.SelectedValue;
             try
             {
-                bool success = EnrollUserInCourse(userId, courseID);
+                bool success = EnrollUserInCourse(userId, this._courseID);
                 if (success)
                 {
                     MessageBox.Show("User enrolled successfully!");
-                    PopulateEnrolledUsersGrid(courseID); // Refresh grid
+                    PopulateEnrolledUsersGrid(this._courseID); // Refresh grid
                 }
             }
             catch (Exception ex)

@@ -56,10 +56,11 @@
             this.QuizSearchLbl = new System.Windows.Forms.Label();
             this.NewCourseBtn = new System.Windows.Forms.Button();
             this.NewQuizBtn = new System.Windows.Forms.Button();
-            this.w = new System.Windows.Forms.Button();
+            this.ViewStatsBtn = new System.Windows.Forms.Button();
             this.EditQuizBtn = new System.Windows.Forms.Button();
             this.DeleteQuizBtn = new System.Windows.Forms.Button();
             this.DisableQuizBtn = new System.Windows.Forms.Button();
+            this.AddUserToCourseBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ActGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CourseGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.QuizGrid)).BeginInit();
@@ -390,21 +391,21 @@
             this.NewQuizBtn.UseVisualStyleBackColor = true;
             this.NewQuizBtn.Click += new System.EventHandler(this.NewQuizBtn_Click);
             // 
-            // w
+            // ViewStatsBtn
             // 
-            this.w.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.w.Location = new System.Drawing.Point(916, 245);
-            this.w.Name = "w";
-            this.w.Size = new System.Drawing.Size(150, 50);
-            this.w.TabIndex = 31;
-            this.w.Text = "View Stats on Courses";
-            this.w.UseVisualStyleBackColor = true;
-            this.w.Click += new System.EventHandler(this.ViewCourseStatsBtn_Click);
+            this.ViewStatsBtn.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.ViewStatsBtn.Location = new System.Drawing.Point(916, 191);
+            this.ViewStatsBtn.Name = "ViewStatsBtn";
+            this.ViewStatsBtn.Size = new System.Drawing.Size(150, 50);
+            this.ViewStatsBtn.TabIndex = 31;
+            this.ViewStatsBtn.Text = "View Stats on Courses";
+            this.ViewStatsBtn.UseVisualStyleBackColor = true;
+            this.ViewStatsBtn.Click += new System.EventHandler(this.ViewCourseStatsBtn_Click);
             // 
             // EditQuizBtn
             // 
             this.EditQuizBtn.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.EditQuizBtn.Location = new System.Drawing.Point(916, 325);
+            this.EditQuizBtn.Location = new System.Drawing.Point(916, 363);
             this.EditQuizBtn.Name = "EditQuizBtn";
             this.EditQuizBtn.Size = new System.Drawing.Size(150, 50);
             this.EditQuizBtn.TabIndex = 32;
@@ -415,7 +416,7 @@
             // DeleteQuizBtn
             // 
             this.DeleteQuizBtn.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.DeleteQuizBtn.Location = new System.Drawing.Point(916, 470);
+            this.DeleteQuizBtn.Location = new System.Drawing.Point(916, 526);
             this.DeleteQuizBtn.Name = "DeleteQuizBtn";
             this.DeleteQuizBtn.Size = new System.Drawing.Size(150, 50);
             this.DeleteQuizBtn.TabIndex = 33;
@@ -426,7 +427,7 @@
             // DisableQuizBtn
             // 
             this.DisableQuizBtn.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.DisableQuizBtn.Location = new System.Drawing.Point(916, 400);
+            this.DisableQuizBtn.Location = new System.Drawing.Point(916, 453);
             this.DisableQuizBtn.Name = "DisableQuizBtn";
             this.DisableQuizBtn.Size = new System.Drawing.Size(150, 50);
             this.DisableQuizBtn.TabIndex = 34;
@@ -434,15 +435,27 @@
             this.DisableQuizBtn.UseVisualStyleBackColor = true;
             this.DisableQuizBtn.Click += new System.EventHandler(this.DisableQuizBtn_Click);
             // 
+            // AddUserToCourseBtn
+            // 
+            this.AddUserToCourseBtn.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.AddUserToCourseBtn.Location = new System.Drawing.Point(916, 275);
+            this.AddUserToCourseBtn.Name = "AddUserToCourseBtn";
+            this.AddUserToCourseBtn.Size = new System.Drawing.Size(150, 50);
+            this.AddUserToCourseBtn.TabIndex = 35;
+            this.AddUserToCourseBtn.Text = "Add User To Course";
+            this.AddUserToCourseBtn.UseVisualStyleBackColor = true;
+            this.AddUserToCourseBtn.Click += new System.EventHandler(this.AddUserToCourseBtn_Click);
+            // 
             // LecturerDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 626);
+            this.Controls.Add(this.AddUserToCourseBtn);
             this.Controls.Add(this.DisableQuizBtn);
             this.Controls.Add(this.DeleteQuizBtn);
             this.Controls.Add(this.EditQuizBtn);
-            this.Controls.Add(this.w);
+            this.Controls.Add(this.ViewStatsBtn);
             this.Controls.Add(this.NewQuizBtn);
             this.Controls.Add(this.NewCourseBtn);
             this.Controls.Add(this.QuizGrid);
@@ -511,9 +524,10 @@
         private System.Windows.Forms.Label QuizSearchLbl;
         private System.Windows.Forms.Button NewCourseBtn;
         private System.Windows.Forms.Button NewQuizBtn;
-        private System.Windows.Forms.Button w;
+        private System.Windows.Forms.Button ViewStatsBtn;
         private System.Windows.Forms.Button EditQuizBtn;
         private System.Windows.Forms.Button DeleteQuizBtn;
         private System.Windows.Forms.Button DisableQuizBtn;
+        private System.Windows.Forms.Button AddUserToCourseBtn;
     }
 }

@@ -32,11 +32,6 @@ namespace Quazy_Quizzes
 
         private List<Control> _adminsOnly = new List<Control>();
 
-        // Used in testing, should be in user class
-        int _usersRole = 1;
-
-        int _usersID = 4; // Used for testing - connected to one existing course
-
         bool _userPage = true; // true is users page, false is tests pages
         bool _actGridView = false; // False is for students, true is for lecturers
 
@@ -44,7 +39,7 @@ namespace Quazy_Quizzes
         {
             InitializeComponent();
 
-            if(this._usersRole == 0) // Makes sure student does not load this page
+            if(Program._user._role == 0) // Makes sure student does not load this page
             {
                 StudentDashboard studentDashboard = new StudentDashboard();
                 studentDashboard.Show();
@@ -54,7 +49,7 @@ namespace Quazy_Quizzes
             // Components used for setting colour scheme
             this._primaryButtons = new List<Button> { UsersBtn, TestsBtn, NewUserBtn, NewCourseBtn, NewQuizBtn };
             this._secondaryButtons = new List<Button> { StdntActsBtn, LectrActsBtn, EditActBtn, ToggleThemeBtn, 
-                                                        EditQuizBtn, w};
+                                                        EditQuizBtn, ViewStatsBtn, AddUserToCourseBtn};
             this._emergencyButtons = new List<Button> { LogOutBtn, DisableActBtn, DeleteActBtn, DeleteQuizBtn, DisableQuizBtn};
             this._stdText = new List<Label> { TitleLbl, UsernameLbl, NameLbl, EmailLbl, LastLoginLbl, ActSearchLbl,
                                                CourseSearchLbl, QuizSearchLbl};
@@ -67,7 +62,7 @@ namespace Quazy_Quizzes
 
             this._testPageElements = new List<Control> { NewCourseBtn, NewQuizBtn, CourseSearchLbl, CourseSearchBar, CourseGrid,
                                                          QuizSearchLbl, QuizSearchBar, QuizGrid,
-                                                         w, EditQuizBtn, DeleteQuizBtn, DisableQuizBtn};
+                                                         ViewStatsBtn, EditQuizBtn, DeleteQuizBtn, DisableQuizBtn, AddUserToCourseBtn};
 
             // Get page to match colour scheme
             if (Program._isDarkMode) SetColourScheme(Program._darkTheme);
@@ -158,7 +153,7 @@ namespace Quazy_Quizzes
 
         private void HideAdminElements()
         {
-            if (_usersRole == 1) // If the user ia not admin
+            if (Program._user._role == 1) // If the user ia not admin
             {
                 foreach (Control control in _adminsOnly)
                 {
@@ -226,19 +221,22 @@ namespace Quazy_Quizzes
             CourseGrid.Rows.Clear();
             CourseGrid.Columns.Clear();
 
+            CourseGrid.Columns.Add("CourseID", "Course ID");
             CourseGrid.Columns.Add("CourseName", "Course Name");
+
+            CourseGrid.Columns[0].Visible = false;
 
             var con = new ConnectionHandler();
             MySqlDataReader reader = null;
 
             try
             {
-                if(this._usersRole == 1)
+                if(Program._user._role == 1)
                 {
-                    string SQL = "SELECT `Courses`.`CourseName` FROM `Courses` LEFT JOIN `UserToCourse` ON `Courses`.`CourseID` = `UserToCourse`.`CourseID`" +
+                    string SQL = "SELECT `Courses`.`CourseID`, `Courses`.`CourseName` FROM `Courses` LEFT JOIN `UserToCourse` ON `Courses`.`CourseID` = `UserToCourse`.`CourseID`" +
                                  " WHERE `UserToCourse`.`UserID` = @userID; AND `Courses`.`CourseName` LIKE CONCAT('%', @search, '%');";
                     string[] paramNames = new string[] { "@userID", "@search" };
-                    string[] parameters = new string[] { this._usersID.ToString(), search };
+                    string[] parameters = new string[] { Program._user._userID.ToString(), search };
                     reader = con.ExectuteQuery(SQL, paramNames, parameters);
                 } 
                 else {
@@ -251,16 +249,17 @@ namespace Quazy_Quizzes
             }
             catch (Exception ex)
             {
-                w.Visible = false;
+                ViewStatsBtn.Visible = false;
                 EditQuizBtn.Visible = false;
                 DisableQuizBtn.Visible = false;
                 DeleteQuizBtn.Visible = false;
+                AddUserToCourseBtn.Visible = false;
                 return;
             }
 
             while (reader.Read())
             {
-                CourseGrid.Rows.Add(reader[0].ToString());
+                CourseGrid.Rows.Add(reader[0].ToString(), reader[1].ToString());
             }
 
             if (CourseGrid.Rows.Count > 0)
@@ -268,16 +267,18 @@ namespace Quazy_Quizzes
                 CourseGrid.Rows[0].Selected = true;
                 if (CourseGrid.Rows[0].Cells["CourseName"].Value == null)
                 {
-                    w.Visible = false;
+                    ViewStatsBtn.Visible = false;
                     EditQuizBtn.Visible = false;
                     DisableQuizBtn.Visible = false;
                     DeleteQuizBtn.Visible = false;
+                    AddUserToCourseBtn.Visible = false;
                     return;
                 }
-                w.Visible = true;
+                ViewStatsBtn.Visible = true;
                 EditQuizBtn.Visible = true;
                 DisableQuizBtn.Visible = true;
                 DeleteQuizBtn.Visible = true;
+                AddUserToCourseBtn.Visible = true;
             }
             FillQuizzesTable();
         }
@@ -287,15 +288,18 @@ namespace Quazy_Quizzes
             QuizGrid.Rows.Clear();
             QuizGrid.Columns.Clear();
 
+            QuizGrid.Columns.Add("QuizID", "Quiz ID");
             QuizGrid.Columns.Add("QuizName", "Quiz Name");
             QuizGrid.Columns.Add("QuizStatus", "Status");
+
+            QuizGrid.Columns[0].Visible = false;
 
             var con = new ConnectionHandler();
             MySqlDataReader reader = null;
 
             try
             {
-                string SQL = "SELECT `Exams`.`ExamName`, `Exams`.`Status` FROM `Exams` LEFT JOIN `Courses` ON `Exams`.`CourseID` = `Courses`.`CourseID`" +
+                string SQL = "SELECT `Exams`.`ExamID`, `Exams`.`ExamName`, `Exams`.`Status` FROM `Exams` LEFT JOIN `Courses` ON `Exams`.`CourseID` = `Courses`.`CourseID`" +
                              " WHERE `Courses`.`CourseName` = @courseName AND `Exams`.`ExamName` LIKE CONCAT('%', @search, '%');";
                 string[] paramNames = new string[] { "@courseName", "@search" };
                 string[] parameters = new string[] { CourseGrid.SelectedRows[0].Cells["CourseName"].Value.ToString(), search };
@@ -310,8 +314,8 @@ namespace Quazy_Quizzes
             }
             while (reader.Read())
             {
-                string active = (reader[1].ToString() == "True") ? "Active" : "Inactive";
-                QuizGrid.Rows.Add(reader[0].ToString(), active);
+                string active = (reader[2].ToString() == "True") ? "Active" : "Inactive";
+                QuizGrid.Rows.Add(reader[0].ToString(), reader[1].ToString(), active);
             }
             if (QuizGrid.Rows.Count > 0)
             {
@@ -520,12 +524,14 @@ namespace Quazy_Quizzes
 
         private void ViewCourseStatsBtn_Click(object sender, EventArgs e)
         {
-            // Load the courses page, this page should be able to edit the name of the course if the person is a lecturer or an admin not made yet
+            Stats statForm = new Stats();
+            statForm.Show();
         }
 
         private void EditQuizBtn_Click(object sender, EventArgs e)
         {
-            // Load the edit quiz page does not exist yer
+            EditQuiz editQuizForm = new EditQuiz(Convert.ToInt32(QuizGrid.SelectedCells[0].Value));
+            editQuizForm.Show();
         }
 
         private void DeleteQuizBtn_Click(object sender, EventArgs e)
@@ -564,7 +570,8 @@ namespace Quazy_Quizzes
 
         private void NewQuizBtn_Click(object sender, EventArgs e)
         {
-
+            CreateNewQuiz newQuizForm = new CreateNewQuiz();
+            newQuizForm.Show();
         }
 
         private void NewCourseBtn_Click(object sender, EventArgs e)
@@ -585,6 +592,12 @@ namespace Quazy_Quizzes
             if (!runSql) MessageBox.Show("Failed to disable/enable quiz");
 
             FillQuizzesTable(QuizSearchBar.Text);
+        }
+
+        private void AddUserToCourseBtn_Click(object sender, EventArgs e)
+        {
+            Additions addUserToCourseForm = new Additions(Convert.ToInt32(CourseGrid.SelectedCells[0].Value));
+            addUserToCourseForm.Show();
         }
     }
 }

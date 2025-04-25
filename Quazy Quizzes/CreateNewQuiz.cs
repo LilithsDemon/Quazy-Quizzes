@@ -20,9 +20,6 @@ namespace Quazy_Quizzes
         private List<TextBox> _textBoxes = new List<TextBox>();
         private List<ComboBox> _comboBoxes = new List<ComboBox>();
 
-        //Testing without login
-        private int _usersRole = 1;
-        private int _usersID = 4;
 
         public CreateNewQuiz()
         {
@@ -59,12 +56,12 @@ namespace Quazy_Quizzes
 
             try
             {
-                if (this._usersRole == 1)
+                if (Program._user._role == 1)
                 {
                     string SQL = "SELECT `Courses`.`CourseName` FROM `Courses` LEFT JOIN `UserToCourse` ON `Courses`.`CourseID` = `UserToCourse`.`CourseID`" +
                                  " WHERE `UserToCourse`.`UserID` = @userID;";
-                    string[] paramNames = new string[] { "@userID", "@search" };
-                    string[] parameters = new string[] { this._usersID.ToString()};
+                    string[] paramNames = new string[] { "@userID" };
+                    string[] parameters = new string[] { Program._user._userID.ToString()};
                     reader = con.ExectuteQuery(SQL, paramNames, parameters);
                 }
                 else
@@ -73,15 +70,14 @@ namespace Quazy_Quizzes
                     reader = con.ExecuteQueryNoParams(SQL);
 
                 }
+                while (reader.Read())
+                {
+                    CourseNameCB.Items.Add(reader[0]);
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error loading courses");
-            }
-
-            while (reader.Read())
-            {
-                CourseNameCB.Items.Add(reader[0]);
             }
 
             if (CourseNameCB.Items.Count > 0)

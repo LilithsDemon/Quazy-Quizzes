@@ -26,9 +26,6 @@ namespace Quazy_Quizzes
         private List<Control> _lecturerElements = new List<Control>();
         private List<Control> _studentElements = new List<Control>();
 
-        private int _userRole = 1;
-        private int _userID = 1;
-
         //this is used to get the courseID from passed in data
         public int _courseID { get; set; } 
         public Courses(int courseID)
@@ -65,7 +62,7 @@ namespace Quazy_Quizzes
 
         private void LoadElementsForRole()
         {
-            if (this._userRole == 0)
+            if (Program._user._role == 0)
             {
                 //student
                 foreach (Control control in _lecturerElements)
@@ -138,7 +135,7 @@ namespace Quazy_Quizzes
             string getDoneQuizIDSql = "SELECT `Scores`.`ExamID` FROM `Scores` LEFT JOIN `Exams` ON `Scores`.`ExamID` = `Exams`.`ExamID` " +
                 "WHERE `Scores`.`UserID` = @userID AND `Exams`.`CourseID` = @courseID AND `Exams`.`Status` = 1; ";
             string[] doneQuizParamNames = { "@userID", "@courseID" };
-            string[] doneQuizParameters = { this._userID.ToString(), this._courseID.ToString() };
+            string[] doneQuizParameters = { Program._user._userID.ToString(), this._courseID.ToString() };
 
             Dictionary<int, string> allQuizzes = new Dictionary<int, string>();
 

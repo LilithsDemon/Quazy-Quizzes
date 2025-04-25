@@ -20,7 +20,6 @@ namespace Quazy_Quizzes
         private List<Button> _primaryButtons = new List<Button>();
         private List<Button> _emergencyButtons = new List<Button>();
         private List<Label> _stdText = new List<Label>();
-        private int _userID = 1; // Used during testing
 
         public StudentDashboard()
         {
@@ -81,7 +80,7 @@ namespace Quazy_Quizzes
             // Clear the combobox so only new elements will be put in
             ComboBoxCourses.Items.Clear();
             // Get the data for the courses
-            var reader = StoredProcedures.GetUsersCourses(this._userID);
+            var reader = StoredProcedures.GetUsersCourses(Program._user._userID);
             {
                 // Convert DataReader to DataTable
                 DataTable dt = new DataTable();
@@ -106,7 +105,7 @@ namespace Quazy_Quizzes
             CompletedExams.Columns.Add("Score", "Score %");
 
             // Get the data for the exams
-            var reader = StoredProcedures.GetUsersExamsWithScores(this._userID);
+            var reader = StoredProcedures.GetUsersExamsWithScores(Program._user._userID);
 
             while (reader.Read())
             {
@@ -115,6 +114,13 @@ namespace Quazy_Quizzes
                     CompletedExams.Rows.Add(reader[0].ToString(), reader[1].ToString()); // Exam name, score
                 }
             }
+        }
+
+        private void CourseSelectorBtn_Click_1(object sender, EventArgs e)
+        {
+            Courses courseForm = new Courses(Convert.ToInt32(ComboBoxCourses.SelectedValue));
+            courseForm.Show();
+            this.Hide();
         }
     }
 }
