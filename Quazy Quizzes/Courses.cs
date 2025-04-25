@@ -26,14 +26,14 @@ namespace Quazy_Quizzes
         private List<Control> _lecturerElements = new List<Control>();
         private List<Control> _studentElements = new List<Control>();
 
-        private int _userRole = 0;
+        private int _userRole = 1;
         private int _userID = 1;
 
         //this is used to get the courseID from passed in data
-        public int courseID { get; set; } 
+        public int _courseID { get; set; } 
         public Courses(int courseID)
         {
-            this.courseID = courseID;
+            this._courseID = courseID;
             InitializeComponent();
             //colour scheme lists 
             this._primaryButtons = new List<Button> {  AddNewQuizBtn, LoadQuizBtn };
@@ -47,7 +47,7 @@ namespace Quazy_Quizzes
             else SetColourScheme(Program._lightTheme);
 
             LoadElementsForRole();
-            
+            LoadLeaderboardForCourse();
         }
 
         private void SetColourScheme(ColourScheme colourScheme)
@@ -60,6 +60,7 @@ namespace Quazy_Quizzes
             colourScheme.SetColourSchemePrimaryButtons(_primaryButtons);
             colourScheme.SetColourSchemeEmergencyButtons(_emergencyButtons);
             colourScheme.SetColourSchemePrimaryText(_stdText);
+            colourScheme.SetColourSchemeDataGrid(_dataGrids);
         }
 
         private void LoadElementsForRole()
@@ -104,7 +105,7 @@ namespace Quazy_Quizzes
 
             string sql = "SELECT `ExamName` FROM `Exams` WHERE `CourseID` = @courseID";
             string[] paramNames = { "@courseID" };
-            string[] parameters = { courseID.ToString() };
+            string[] parameters = { this._courseID.ToString() };
             try
             {
                 MySqlDataReader reader = connHandler.ExectuteQuery(sql, paramNames, parameters);
@@ -130,47 +131,62 @@ namespace Quazy_Quizzes
 
             ExamDataGridView.Columns[0].Visible = false;
 
-            ConnectionHandler connHandler = new ConnectionHandler();
+            string getAllQuizzesIDSql = "SELECT `Exams`.`ExamID`, `Exams`.`ExamName` FROM `Exams` WHERE `Exams`.`CourseID` = @courseID AND `Exams`.`Status` = 1;";
+            string[] allQuizzesParamNames = { "@courseID" };
+            string[] allQuizzesParameters = { this._courseID.ToString()};
 
-            string sql = "SELECT `Exams`.`ExamID` `Exams`.`ExamName`, `Scores`.`Score` FROM `Scores` RIGHT JOIN `Exams` " +
-                "ON `Scores`.`ExamID` = `Exams`.`ExamID` JOIN `Courses` " +
-                "ON `Exams`.`CourseID` = `Courses`.`CourseID` JOIN `UserToCourse` " +
-                "ON `UserToCourse`.`CourseID` = `Courses`.`CourseID` JOIN `Users` " +
-                "ON `Users`.`UserID` = `UserToCourse`.`UserID` " +
-                "WHERE `Users`.`UserID` = @UserID AND `Courses`.`CourseID` = @CourseID AND `Exams`.`Status` = 1 AND `Score` IS null;";
-            string[] paramNames = { "@CourseID", "@UserID" };
-            string[] parameters = { courseID.ToString(), this._userID.ToString() };
+            string getDoneQuizIDSql = "SELECT `Scores`.`ExamID` FROM `Scores` LEFT JOIN `Exams` ON `Scores`.`ExamID` = `Exams`.`ExamID` " +
+                "WHERE `Scores`.`UserID` = @userID AND `Exams`.`CourseID` = @courseID AND `Exams`.`Status` = 1; ";
+            string[] doneQuizParamNames = { "@userID", "@courseID" };
+            string[] doneQuizParameters = { this._userID.ToString(), this._courseID.ToString() };
+
+            Dictionary<int, string> allQuizzes = new Dictionary<int, string>();
 
             try
             {
-                MySqlDataReader reader = connHandler.ExectuteQuery(sql, paramNames, parameters);
+                MySqlDataReader allQuizReader = new ConnectionHandler().ExectuteQuery(getAllQuizzesIDSql, allQuizzesParamNames, allQuizzesParameters);
 
-                while (reader.Read()) ExamDataGridView.Rows.Add(reader[0], reader[1]);
+                while (allQuizReader.Read())
+                {
+                    allQuizzes.Add(Convert.ToInt32(allQuizReader["ExamID"]), allQuizReader["ExamName"].ToString());
+                }
             }
-            catch (Exception ex)
+            catch { /*No courses in this course */}
+
+            try
             {
-               
+                MySqlDataReader doneQuizReader = new ConnectionHandler().ExectuteQuery(getDoneQuizIDSql, doneQuizParamNames, doneQuizParameters);
+                while (doneQuizReader.Read())
+                {
+                    allQuizzes.Remove(Convert.ToInt32(doneQuizReader["ExamID"]));
+                }
             }
+            catch { /*This user has done no quizzes in this course */}
+            
+            foreach (KeyValuePair<int, string> quiz in allQuizzes)
+            {
+                ExamDataGridView.Rows.Add(quiz.Key, quiz.Value);
+            }
+
         }
 
         //this will be used to load the leaderboard for the courses
-        public void LoadLeaderboardForCourse(int courseID)
+        public void LoadLeaderboardForCourse()
         {
             ConnectionHandler connHandler = new ConnectionHandler();
 
             
-            string sql = @"
-        SELECT 
-            Users.UserName AS Username
-            Scores.Score
-        FROM Users
-        JOIN Scores ON Users.UserID = Scores.UserID
-        JOIN Exams ON Scores.ExamID = Exams.ExamID
-        WHERE Exams.CourseID = @CourseID
-        ORDER BY Scores.Score DESC;";
+            string sql = "SELECT `Users`.`UserName` as 'UserName'," +
+                " SUM(`Scores`.`Score`) / (SELECT COUNT(`ExamID`) FROM `Exams` WHERE `Status` = 1 AND `CourseID` = 1) AS 'AverageScore'" +
+                " FROM `Scores` " +
+                "JOIN `Exams` ON `Exams`.`ExamID` = `Scores`.`ExamID` " +
+                "JOIN `Users` ON `Scores`.`UserID` = `Users`.`UserID` " +
+                "WHERE `Exams`.`Status` = 1 AND `Exams`.`CourseID` = @courseID AND `Users`.`Role` = 0 " +
+                "GROUP BY `Users`.`UserName` " +
+                "ORDER BY SUM(`Scores`.`Score`) / (SELECT COUNT(`ExamID`) FROM `Exams` WHERE `Status` = 1 AND `CourseID` = 1) DESC LIMIT 5; ";
 
-            string[] paramNames = { "@CourseID" };
-            string[] parameters = { courseID.ToString() };
+            string[] paramNames = { "@courseID" };
+            string[] parameters = { this._courseID.ToString() };
 
             try
             {
@@ -179,13 +195,13 @@ namespace Quazy_Quizzes
                 
                 DataTable dataTable = new DataTable();
                 dataTable.Columns.Add("Username", typeof(string));
-                dataTable.Columns.Add("Score", typeof(int));
+                dataTable.Columns.Add("Avg Score", typeof(int));
 
                 //populate the DataTable
                 while (reader.Read())
                 {
-                    string username = reader["Username"].ToString();
-                    int score = Convert.ToInt32(reader["Score"]);
+                    string username = reader["UserName"].ToString();
+                    int score = Convert.ToInt32(reader["AverageScore"]);
                     dataTable.Rows.Add(username, score);
                 }
 
@@ -232,9 +248,7 @@ namespace Quazy_Quizzes
 
         private void AddNewQuizBtn_Click(object sender, EventArgs e)
         {
-            //take the user to add a new quiz but quizzes aren't implemented yet
-            //so just show a message box
-            MessageBox.Show("Quizzes are not implemented yet", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            // not currently implemented
         }
 
         private void ChangeThemeBtn_Click(object sender, EventArgs e)
@@ -254,6 +268,7 @@ namespace Quazy_Quizzes
         private void LoadQuizBtn_Click(object sender, EventArgs e)
         {
             int selectedCourseID = Convert.ToInt32(ExamDataGridView.SelectedRows[0].Cells[0].Value);
+            MessageBox.Show(selectedCourseID.ToString());
         }
     }
 }

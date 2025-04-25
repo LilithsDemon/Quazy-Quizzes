@@ -33,8 +33,6 @@
             this.BtnBack = new System.Windows.Forms.Button();
             this.LeaderboardLbl = new System.Windows.Forms.Label();
             this.LeaderboardDataGrid = new System.Windows.Forms.DataGridView();
-            this.StudentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Score = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ExamLabel = new System.Windows.Forms.Label();
             this.AddNewQuizBtn = new System.Windows.Forms.Button();
             this.AllExamLabel = new System.Windows.Forms.Label();
@@ -102,26 +100,11 @@
             this.LeaderboardDataGrid.AllowUserToDeleteRows = false;
             this.LeaderboardDataGrid.BackgroundColor = System.Drawing.Color.White;
             this.LeaderboardDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.LeaderboardDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.StudentName,
-            this.Score});
             this.LeaderboardDataGrid.Location = new System.Drawing.Point(423, 148);
             this.LeaderboardDataGrid.Name = "LeaderboardDataGrid";
             this.LeaderboardDataGrid.ReadOnly = true;
             this.LeaderboardDataGrid.Size = new System.Drawing.Size(248, 238);
             this.LeaderboardDataGrid.TabIndex = 12;
-            // 
-            // StudentName
-            // 
-            this.StudentName.HeaderText = "Name";
-            this.StudentName.Name = "StudentName";
-            this.StudentName.ReadOnly = true;
-            // 
-            // Score
-            // 
-            this.Score.HeaderText = "Score";
-            this.Score.Name = "Score";
-            this.Score.ReadOnly = true;
             // 
             // ExamLabel
             // 
@@ -209,8 +192,6 @@
         private System.Windows.Forms.DataGridView LeaderboardDataGrid;
         private System.Windows.Forms.Label ExamLabel;
         private System.Windows.Forms.Button AddNewQuizBtn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn StudentName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Score;
         private System.Windows.Forms.Label AllExamLabel;
         private System.Windows.Forms.DataGridView ExamDataGridView;
         private System.Windows.Forms.Button LoadQuizBtn;
