@@ -114,7 +114,7 @@ namespace Quazy_Quizzes
 
                 reader.Close(); 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 
             }

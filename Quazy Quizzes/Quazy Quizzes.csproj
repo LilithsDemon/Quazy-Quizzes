@@ -96,6 +96,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddQuestion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddQuestion.Designer.cs">
+      <DependentUpon>AddQuestion.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdminDash.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +121,12 @@
     </Compile>
     <Compile Include="Courses.Designer.cs">
       <DependentUpon>Courses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditQuiz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditQuiz.Designer.cs">
+      <DependentUpon>EditQuiz.cs</DependentUpon>
     </Compile>
     <Compile Include="ErrorForm.cs">
       <SubType>Form</SubType>
@@ -184,6 +196,9 @@
     <Compile Include="utils\conn.cs" />
     <Compile Include="utils\status.cs" />
     <Compile Include="utils\stored_procedures.cs" />
+    <EmbeddedResource Include="AddQuestion.resx">
+      <DependentUpon>AddQuestion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="contactForm.resx">
       <DependentUpon>contactForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -192,6 +207,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Courses.resx">
       <DependentUpon>Courses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditQuiz.resx">
+      <DependentUpon>EditQuiz.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ErrorForm.resx">
       <DependentUpon>ErrorForm.cs</DependentUpon>
