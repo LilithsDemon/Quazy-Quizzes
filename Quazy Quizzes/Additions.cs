@@ -24,6 +24,8 @@ namespace Quazy_Quizzes
         private List<Button> _primaryButtons = new List<Button>();
         private List<Button> _emergencyButtons = new List<Button>();
         private List<Label> _stdText = new List<Label>();
+        private List<DataGridView> _dataGrids = new List<DataGridView>();
+        private List<Control> _adminElements = new List<Control>();
         public Additions()
         {
             InitializeComponent();
@@ -31,7 +33,33 @@ namespace Quazy_Quizzes
             _stdText = new List<Label> { HeaderLbl, StudentLbl, LecturerLbl };
             _primaryButtons = new List<Button> { AddStudentBtn, AddLecturerBtn, ChangeThemeBtn };
             _emergencyButtons = new List<Button> { BackBtn };
+            _dataGrids = new List<DataGridView> { UsersInCourse };
+            _adminElements = new List<Control> { LecturerComboBox, AddLecturerBtn, LecturerLbl };
+            
+            LoadPotentialLecturers();
+            LoadPotentialStudents(courseID);
+            PopulateEnrolledUsersGrid(courseID);
+            LoadElementsForRole();
 
+
+        }
+        private void LoadElementsForRole()
+        {
+            // Hide or show elements based on user role
+            if (userRole == 1) // Student
+            {
+                foreach (Control control in _adminElements)
+                {
+                    control.Visible = false;
+                }
+            }
+            else if (userRole == 2) // Lecturer
+            {
+                foreach (Control control in _adminElements)
+                {
+                    control.Visible = true;
+                }
+            }
         }
         //toggle between light and dark mode
         private void SetColourScheme(ColourScheme colourScheme)
@@ -66,6 +94,9 @@ namespace Quazy_Quizzes
                 //Get data from database
                 DataTable enrolledUsers = GetEnrolledUsers(courseID);
 
+                //Clear the grid
+                UsersInCourse.Rows.Clear();
+                UsersInCourse.Columns.Clear();
                 //Bind to DataGridView
                 UsersInCourse.DataSource = enrolledUsers;
 
@@ -79,6 +110,8 @@ namespace Quazy_Quizzes
         
         private DataTable GetEnrolledUsers(int courseID)
         {
+
+            
             DataTable dataTable = new DataTable();
             var handler = new ConnectionHandler();
 

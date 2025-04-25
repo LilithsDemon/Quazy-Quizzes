@@ -31,8 +31,6 @@
             this.StudentComboBox = new System.Windows.Forms.ComboBox();
             this.LecturerComboBox = new System.Windows.Forms.ComboBox();
             this.UsersInCourse = new System.Windows.Forms.DataGridView();
-            this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Surname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StudentLbl = new System.Windows.Forms.Label();
             this.AddStudentBtn = new System.Windows.Forms.Button();
             this.LecturerLbl = new System.Windows.Forms.Label();
@@ -61,28 +59,14 @@
             // 
             // UsersInCourse
             // 
+            this.UsersInCourse.AllowUserToAddRows = false;
             this.UsersInCourse.AllowUserToDeleteRows = false;
             this.UsersInCourse.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.UsersInCourse.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.FirstName,
-            this.Surname});
             this.UsersInCourse.Location = new System.Drawing.Point(83, 172);
             this.UsersInCourse.Name = "UsersInCourse";
             this.UsersInCourse.ReadOnly = true;
             this.UsersInCourse.Size = new System.Drawing.Size(245, 150);
             this.UsersInCourse.TabIndex = 2;
-            // 
-            // FirstName
-            // 
-            this.FirstName.HeaderText = "First Name";
-            this.FirstName.Name = "FirstName";
-            this.FirstName.ReadOnly = true;
-            // 
-            // Surname
-            // 
-            this.Surname.HeaderText = "Surname";
-            this.Surname.Name = "Surname";
-            this.Surname.ReadOnly = true;
             // 
             // StudentLbl
             // 
@@ -198,8 +182,6 @@
         private System.Windows.Forms.Button AddStudentBtn;
         private System.Windows.Forms.Label LecturerLbl;
         private System.Windows.Forms.Button AddLecturerBtn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FirstName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Surname;
         private System.Windows.Forms.Label HeaderLbl;
         private System.Windows.Forms.Button ChangeThemeBtn;
         private System.Windows.Forms.Button BackBtn;
