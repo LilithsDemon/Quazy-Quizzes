@@ -254,13 +254,9 @@ namespace Quazy_Quizzes
 
         private void HelpBtn_Click(object sender, EventArgs e)
         {
-            //AdminDash adminDash = new AdminDash();
-            //adminDash.Show();
-            ContactForm frm = new ContactForm();
-            frm.Show();
-            this.Close();
-
-
+            this.Hide(); // Hide the current form
+            ContactForm mainForm = new ContactForm();
+            mainForm.Show();
         }
 
         private void _btnToggleTheme_Click(object sender, EventArgs e)

@@ -37,7 +37,7 @@ namespace QQContactForm
         // Handles the "Back" button click event to navigate back to Form1
         private void BackButton_Click(object sender, EventArgs e)
         {
-            this.Hide(); // Hide the current form
+            this.Close(); // Hide the current form
             Form1 mainForm = new Form1(); // Create an instance of Form1
             mainForm.Show(); // Show Form1
         }
