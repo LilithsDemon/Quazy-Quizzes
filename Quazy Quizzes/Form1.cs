@@ -29,6 +29,8 @@ namespace Quazy_Quizzes
 
             InitializeComponent();
 
+            this.FormClosed += Form1_FormClosed;
+
             _primaryButtons = new List<Button>() { btnSignup, btnLogin };
             _secondaryButtons = new List<Button>() { HelpBtn};
 
@@ -58,6 +60,11 @@ namespace Quazy_Quizzes
             //Sets Colour Scheme
             if (Program._isDarkMode) SetColourScheme(Program._darkTheme);
             else SetColourScheme(Program._lightTheme);
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
 
         private void SetColourScheme(ColourScheme colourScheme)
@@ -264,6 +271,7 @@ namespace Quazy_Quizzes
             //adminDash.Show();
             ContactForm frm = new ContactForm();
             frm.Show();
+            this.Close();
 
 
         }

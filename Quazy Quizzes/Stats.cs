@@ -81,6 +81,5 @@ namespace Quazy_Quizzes
 
             SetColourScheme(Program._lightTheme);
         }
-
     }
 }

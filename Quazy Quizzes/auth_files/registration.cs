@@ -41,7 +41,7 @@ namespace Registration
                 // If there is lines then a user with that username already exists
                 if (reader.HasRows) return new CodeStatus(400, "Sorry a user with this username already exists");
             }
-            catch (Exception ex) // If exception states that no data exists then we know that the username is free
+            catch (Exception) // If exception states that no data exists then we know that the username is free
             {
 
             }
