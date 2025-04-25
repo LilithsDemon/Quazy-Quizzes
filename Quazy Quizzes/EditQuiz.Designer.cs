@@ -119,6 +119,7 @@
             this.Controls.Add(this.labelTitle);
             this.Name = "EditQuiz";
             this.Text = "Edit Quiz";
+            this.Resize += new System.EventHandler(this.EditQuiz_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewQuestions)).EndInit();
             this.ResumeLayout(false);
 

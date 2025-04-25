@@ -230,5 +230,37 @@ namespace Quazy_Quizzes
             if (Program._isDarkMode) SetColourScheme(Program._darkTheme);
             else SetColourScheme(Program._lightTheme);
         }
+
+        private void EditQuiz_Resize(object sender, EventArgs e)
+        {
+            int padding = 20;
+
+            // Adjust the title label
+            labelTitle.Width = this.ClientSize.Width;
+            labelTitle.Height = 50;
+
+            // Adjust the DataGridView
+            dataGridViewQuestions.Width = this.ClientSize.Width - (2 * padding);
+            dataGridViewQuestions.Height = this.ClientSize.Height - labelTitle.Height - 150;
+            dataGridViewQuestions.Location = new Point(padding, labelTitle.Bottom + padding);
+
+            // Adjust the buttons
+            int buttonWidth = 120;
+            int buttonHeight = 30;
+            int buttonSpacing = 10;
+
+            buttonAddQuestion.Size = new Size(buttonWidth, buttonHeight);
+            buttonSaveChanges.Size = new Size(buttonWidth, buttonHeight);
+            buttonDeleteQuestion.Size = new Size(buttonWidth, buttonHeight);
+            buttonBack.Size = new Size(buttonWidth, buttonHeight);
+            buttonToggleTheme.Size = new Size(buttonWidth, buttonHeight);
+
+            int buttonY = dataGridViewQuestions.Bottom + padding;
+            buttonAddQuestion.Location = new Point(padding, buttonY);
+            buttonSaveChanges.Location = new Point(buttonAddQuestion.Right + buttonSpacing, buttonY);
+            buttonDeleteQuestion.Location = new Point(buttonSaveChanges.Right + buttonSpacing, buttonY);
+            buttonBack.Location = new Point(padding, padding);
+            buttonToggleTheme.Location = new Point(this.ClientSize.Width - buttonWidth - padding, padding);
+        }
     }
 }
