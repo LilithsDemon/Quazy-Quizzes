@@ -46,6 +46,9 @@ namespace Quazy_Quizzes
             try
             {
                 var securityQReader = new ConnectionHandler().ExecuteQueryNoParams(securityQSql);
+                cbSecurityQ.Items.Clear();
+                cbSecurityQ.Items.Add("Please enter a security question"); // Add filler text
+                cbSecurityQ.SelectedIndex = 0; // Set filler text as default
                 while (securityQReader.Read())
                 {
                     cbSecurityQ.Items.Add(securityQReader["Question"].ToString());

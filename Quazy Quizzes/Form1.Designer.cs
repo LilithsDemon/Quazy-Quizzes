@@ -284,11 +284,13 @@
             this.cbSecurityQ.Enabled = false;
             this.cbSecurityQ.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
             this.cbSecurityQ.FormattingEnabled = true;
+            this.cbSecurityQ.Items.Add("Please enter a security question");
             this.cbSecurityQ.Location = new System.Drawing.Point(778, 459);
             this.cbSecurityQ.Name = "cbSecurityQ";
             this.cbSecurityQ.Size = new System.Drawing.Size(374, 39);
             this.cbSecurityQ.TabIndex = 12;
             this.cbSecurityQ.Visible = false;
+            this.cbSecurityQ.SelectedIndex = 0;
             // 
             // Form1
             // 
