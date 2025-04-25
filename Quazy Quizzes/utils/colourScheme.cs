@@ -199,5 +199,14 @@ namespace QQColourScheme
                 dataGrid.EnableHeadersVisualStyles = false;
             }
         }
+
+        public void SetColourSchemeLabels(List<Label> labels)
+        {
+            foreach (var label in labels)
+            {
+                label.ForeColor = ColorTranslator.FromHtml(this._primaryText);
+                label.BackColor = ColorTranslator.FromHtml(this._background);
+            }
+        }
     }
 }

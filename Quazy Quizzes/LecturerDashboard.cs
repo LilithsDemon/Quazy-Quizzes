@@ -200,7 +200,7 @@ namespace Quazy_Quizzes
                 if (role == 0) reader = StoredProcedures.GetAllStudents(search);
                 else reader = StoredProcedures.GetAllLecturers(search);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // If no rows are returned then return
                 return;
