@@ -57,7 +57,7 @@
             this.HelpBtn.BackColor = System.Drawing.Color.Fuchsia;
             this.HelpBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.HelpBtn.ForeColor = System.Drawing.Color.White;
-            this.HelpBtn.Location = new System.Drawing.Point(223, 708);
+            this.HelpBtn.Location = new System.Drawing.Point(223, 693);
             this.HelpBtn.Name = "HelpBtn";
             this.HelpBtn.Size = new System.Drawing.Size(179, 63);
             this.HelpBtn.TabIndex = 0;
@@ -71,7 +71,7 @@
             this.btnSignup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.btnSignup.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.btnSignup.ForeColor = System.Drawing.Color.White;
-            this.btnSignup.Location = new System.Drawing.Point(223, 612);
+            this.btnSignup.Location = new System.Drawing.Point(223, 597);
             this.btnSignup.Name = "btnSignup";
             this.btnSignup.Size = new System.Drawing.Size(179, 63);
             this.btnSignup.TabIndex = 2;
@@ -85,7 +85,7 @@
             this.btnLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.btnLogin.ForeColor = System.Drawing.Color.White;
-            this.btnLogin.Location = new System.Drawing.Point(869, 612);
+            this.btnLogin.Location = new System.Drawing.Point(869, 597);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(179, 63);
             this.btnLogin.TabIndex = 3;
@@ -200,7 +200,7 @@
             this.ActionPanel.Location = new System.Drawing.Point(695, 153);
             this.ActionPanel.Name = "ActionPanel";
             this.ActionPanel.Padding = new System.Windows.Forms.Padding(30);
-            this.ActionPanel.Size = new System.Drawing.Size(546, 645);
+            this.ActionPanel.Size = new System.Drawing.Size(546, 630);
             this.ActionPanel.TabIndex = 10;
             // 
             // panel2
@@ -213,7 +213,7 @@
             this.panel2.Location = new System.Drawing.Point(-648, -1);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(30);
-            this.panel2.Size = new System.Drawing.Size(546, 645);
+            this.panel2.Size = new System.Drawing.Size(546, 630);
             this.panel2.TabIndex = 11;
             // 
             // InfoPanel
@@ -227,7 +227,7 @@
             this.InfoPanel.Location = new System.Drawing.Point(49, 153);
             this.InfoPanel.Name = "InfoPanel";
             this.InfoPanel.Padding = new System.Windows.Forms.Padding(30);
-            this.InfoPanel.Size = new System.Drawing.Size(546, 645);
+            this.InfoPanel.Size = new System.Drawing.Size(546, 630);
             this.InfoPanel.TabIndex = 12;
             // 
             // picbxLogo
@@ -250,7 +250,7 @@
             this.panel4.Location = new System.Drawing.Point(-648, -1);
             this.panel4.Name = "panel4";
             this.panel4.Padding = new System.Windows.Forms.Padding(30);
-            this.panel4.Size = new System.Drawing.Size(546, 645);
+            this.panel4.Size = new System.Drawing.Size(546, 630);
             this.panel4.TabIndex = 11;
             // 
             // btnExit
@@ -290,9 +290,8 @@
             this.cbSecurityQ.Enabled = false;
             this.cbSecurityQ.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
             this.cbSecurityQ.FormattingEnabled = true;
-            this.cbSecurityQ.Items.Clear();
-            this.cbSecurityQ.Items.Add("Please enter a 2FA question");
-            this.cbSecurityQ.SelectedIndex = 0;
+            this.cbSecurityQ.Items.AddRange(new object[] {
+            "Please enter a 2FA question"});
             this.cbSecurityQ.Location = new System.Drawing.Point(778, 459);
             this.cbSecurityQ.Name = "cbSecurityQ";
             this.cbSecurityQ.Size = new System.Drawing.Size(374, 39);
@@ -305,7 +304,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1274, 1012);
+            this.ClientSize = new System.Drawing.Size(1274, 997);
             this.Controls.Add(this.cbSecurityQ);
             this.Controls.Add(this._btnToggleTheme);
             this.Controls.Add(this.btnExit);
