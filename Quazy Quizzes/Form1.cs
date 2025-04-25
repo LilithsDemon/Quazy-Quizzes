@@ -41,7 +41,6 @@ namespace Quazy_Quizzes
             txtEmail.MouseClick += new MouseEventHandler(txtEmail_Click);
             txtFirst.MouseClick += new MouseEventHandler(txtFirst_Click);
             txtSurname.MouseClick += new MouseEventHandler(txtSurname_Click);
-            txtStudent.MouseClick += new MouseEventHandler(txtStudent_Click);
 
             string securityQSql = "SELECT * FROM `SecurityQuestions`";
             try
@@ -100,14 +99,6 @@ namespace Quazy_Quizzes
             }
         }
        
-        private void txtStudent_Click(object sender, EventArgs e)
-        {
-            //clears the text ready for the user to enter their username
-            if (txtStudent.Text == "Enter your student number")
-            {
-                txtStudent.Text = "";
-            }
-        }
         private void txtFirst_Click(object sender, EventArgs e)
         {
             //clears the text ready for the user to enter their username
@@ -140,19 +131,17 @@ namespace Quazy_Quizzes
 
         private void SignupBtn_Click(object sender, EventArgs e)
         {
-            if(txtStudent.Enabled == false)
+            if(txtEmail.Enabled == false)
             {
                 //this re-configures the form for studetns to sign up
                 btnSignup.Location = new Point(869, 632);
                 btnLogin.Location = new Point(223, 612);
                 txtUsername.Location = new Point(778, 283);
                 txtPassword.Location = new Point(778, 338);
-                txtStudent.Enabled = true;
                 txtEmail.Enabled = true;
                 cbSecurityQ.Enabled = true;
                 txtFirst.Enabled = true;
                 txtSurname.Enabled = true;
-                txtStudent.Visible = true;
                 txtEmail.Visible = true;
                 cbSecurityQ.Visible = true;
                 txtFirst.Visible = true;
@@ -234,15 +223,13 @@ namespace Quazy_Quizzes
 
         private void LoginBtn_Click(object sender, EventArgs e)
         {
-            if(txtStudent.Enabled == true)
+            if(txtEmail.Enabled == true)
             {
                 // this is validation to check that the form is in login mode and not sign up mode
-                txtStudent.Enabled = false;
                 txtEmail.Enabled = false;
                 cbSecurityQ.Enabled = false;
                 txtFirst.Enabled = false;
                 txtSurname.Enabled = false;
-                txtStudent.Visible = false;
                 txtEmail.Visible = false;
                 cbSecurityQ.Visible = false;
                 txtFirst.Visible = false;

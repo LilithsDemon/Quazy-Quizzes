@@ -35,7 +35,6 @@
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.lblIntro = new System.Windows.Forms.Label();
-            this.txtStudent = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.txtFirst = new System.Windows.Forms.TextBox();
             this.txtSurname = new System.Windows.Forms.TextBox();
@@ -129,19 +128,6 @@
             this.lblIntro.Text = "Quazy Quizzes is a game-\r\nbased learning platform \r\nthat allows users to \r\ncreate" +
     ", share and play \r\ninteractive quizzes, \r\nserveys and discussions.";
             this.lblIntro.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // txtStudent
-            // 
-            this.txtStudent.BackColor = System.Drawing.Color.White;
-            this.txtStudent.Enabled = false;
-            this.txtStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.txtStudent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.txtStudent.Location = new System.Drawing.Point(778, 220);
-            this.txtStudent.Name = "txtStudent";
-            this.txtStudent.Size = new System.Drawing.Size(374, 38);
-            this.txtStudent.TabIndex = 8;
-            this.txtStudent.Text = "Enter your student number";
-            this.txtStudent.Visible = false;
             // 
             // txtEmail
             // 
@@ -318,7 +304,6 @@
             this.Controls.Add(this.txtSurname);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.txtFirst);
-            this.Controls.Add(this.txtStudent);
             this.Controls.Add(this.lblIntro);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtUsername);
@@ -345,7 +330,6 @@
         private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Label lblIntro;
-        private System.Windows.Forms.TextBox txtStudent;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.TextBox txtFirst;
         private System.Windows.Forms.TextBox txtSurname;
