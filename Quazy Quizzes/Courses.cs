@@ -267,8 +267,8 @@ namespace Quazy_Quizzes
 
         private void LoadQuizBtn_Click(object sender, EventArgs e)
         {
-            int selectedCourseID = Convert.ToInt32(ExamDataGridView.SelectedRows[0].Cells[0].Value);
-            MessageBox.Show(selectedCourseID.ToString());
+            //int selectedCourseID = Convert.ToInt32(ExamDataGridView.SelectedRows[0].Cells[0].Value);
+            //MessageBox.Show(selectedCourseID.ToString());
         }
     }
 }
