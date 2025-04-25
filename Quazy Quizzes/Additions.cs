@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Conn;
 using MySqlConnector;
+using QQColourScheme;
 using QQStoredProcedures;
 using UserData;
 
@@ -20,9 +21,26 @@ namespace Quazy_Quizzes
 
         int courseID = 1;
         int userRole = 1; // 0 = student, 1 = lecturer, 2 = admin
+        private List<Button> _primaryButtons = new List<Button>();
+        private List<Button> _emergencyButtons = new List<Button>();
+        private List<Label> _stdText = new List<Label>();
         public Additions()
         {
             InitializeComponent();
+            // Grouping UI elements into categories
+            _stdText = new List<Label> { HeaderLbl, StudentLbl, LecturerLbl };
+            _primaryButtons = new List<Button> { AddStudentBtn, AddLecturerBtn, ChangeThemeBtn };
+            _emergencyButtons = new List<Button> { BackBtn };
+
+        }
+        //toggle between light and dark mode
+        private void SetColourScheme(ColourScheme colourScheme)
+        {
+            this.BackColor = ColorTranslator.FromHtml(colourScheme._background);
+            colourScheme.SetColourSchemeHeader(HeaderLbl);
+            colourScheme.SetColourSchemePrimaryButtons(_primaryButtons);
+            colourScheme.SetColourSchemeEmergencyButtons(_emergencyButtons);
+            colourScheme.SetColourSchemePrimaryText(_stdText);
         }
 
         private void Additions_Load(object sender, EventArgs e)
@@ -231,19 +249,24 @@ WHERE
 
         private void BackBtn_Click(object sender, EventArgs e)
         {
-            // Hide the current form and open LecturerDashboard or AdminDashboard depending on the user role
             this.Hide();
-            if (userRole == 1)
+            LecturerDashboard lecturerDashboard = new LecturerDashboard();
+            lecturerDashboard.Show();
+        }
+
+
+         private void ChangeThemeBtn_Click(object sender, EventArgs e)
+        {
+            Program._isDarkMode = !Program._isDarkMode;
+
+            // If is now supposed to be dark mode
+            if (Program._isDarkMode)
             {
-                LecturerDashboard lecturerDashboard = new LecturerDashboard();
-                lecturerDashboard.Show();
-            }
-            else if (userRole == 2)
-            {
-                AdminDash adminDashboard = new AdminDash();
-                adminDashboard.Show();
+                SetColourScheme(Program._darkTheme);
+                return;
             }
 
-        }
+            SetColourScheme(Program._lightTheme);
+         }
     }
 }

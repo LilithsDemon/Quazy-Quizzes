@@ -115,10 +115,5 @@ namespace Quazy_Quizzes
                 }
             }
         }
-
-        private void CourseSelectorBtn_Click_1(object sender, EventArgs e)
-        {
-
-        }
     }
 }

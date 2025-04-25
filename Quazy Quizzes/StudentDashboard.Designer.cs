@@ -134,7 +134,6 @@
             this.CourseSelectorBtn.TabIndex = 10;
             this.CourseSelectorBtn.Text = "Go to course!";
             this.CourseSelectorBtn.UseVisualStyleBackColor = false;
-            this.CourseSelectorBtn.Click += new System.EventHandler(this.CourseSelectorBtn_Click_1);
             // 
             // StudentDashboard
             // 

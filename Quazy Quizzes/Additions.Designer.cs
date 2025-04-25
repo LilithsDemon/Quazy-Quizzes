@@ -37,7 +37,7 @@
             this.AddStudentBtn = new System.Windows.Forms.Button();
             this.LecturerLbl = new System.Windows.Forms.Label();
             this.AddLecturerBtn = new System.Windows.Forms.Button();
-            this.HeaderBg = new System.Windows.Forms.Label();
+            this.HeaderLbl = new System.Windows.Forms.Label();
             this.ChangeThemeBtn = new System.Windows.Forms.Button();
             this.BackBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.UsersInCourse)).BeginInit();
@@ -124,18 +124,18 @@
             this.AddLecturerBtn.UseVisualStyleBackColor = true;
             this.AddLecturerBtn.Click += new System.EventHandler(this.AddLecturerBtn_Click);
             // 
-            // HeaderBg
+            // HeaderLbl
             // 
-            this.HeaderBg.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.HeaderBg.Dock = System.Windows.Forms.DockStyle.Top;
-            this.HeaderBg.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold);
-            this.HeaderBg.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.HeaderBg.Location = new System.Drawing.Point(0, 0);
-            this.HeaderBg.Name = "HeaderBg";
-            this.HeaderBg.Size = new System.Drawing.Size(800, 80);
-            this.HeaderBg.TabIndex = 7;
-            this.HeaderBg.Text = "Course Additions";
-            this.HeaderBg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.HeaderLbl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            this.HeaderLbl.Dock = System.Windows.Forms.DockStyle.Top;
+            this.HeaderLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold);
+            this.HeaderLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.HeaderLbl.Location = new System.Drawing.Point(0, 0);
+            this.HeaderLbl.Name = "HeaderLbl";
+            this.HeaderLbl.Size = new System.Drawing.Size(800, 80);
+            this.HeaderLbl.TabIndex = 7;
+            this.HeaderLbl.Text = "Course Additions";
+            this.HeaderLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // ChangeThemeBtn
             // 
@@ -150,6 +150,7 @@
             this.ChangeThemeBtn.TabIndex = 9;
             this.ChangeThemeBtn.Text = "Toggle Theme";
             this.ChangeThemeBtn.UseVisualStyleBackColor = false;
+            this.ChangeThemeBtn.Click += new System.EventHandler(this.ChangeThemeBtn_Click);
             // 
             // BackBtn
             // 
@@ -172,7 +173,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.BackBtn);
             this.Controls.Add(this.ChangeThemeBtn);
-            this.Controls.Add(this.HeaderBg);
+            this.Controls.Add(this.HeaderLbl);
             this.Controls.Add(this.AddLecturerBtn);
             this.Controls.Add(this.LecturerLbl);
             this.Controls.Add(this.AddStudentBtn);
@@ -199,7 +200,7 @@
         private System.Windows.Forms.Button AddLecturerBtn;
         private System.Windows.Forms.DataGridViewTextBoxColumn FirstName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Surname;
-        private System.Windows.Forms.Label HeaderBg;
+        private System.Windows.Forms.Label HeaderLbl;
         private System.Windows.Forms.Button ChangeThemeBtn;
         private System.Windows.Forms.Button BackBtn;
     }
