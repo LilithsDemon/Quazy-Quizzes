@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Conn;
+using QQColourScheme;
 
 namespace Quazy_Quizzes
 {
@@ -17,13 +18,40 @@ namespace Quazy_Quizzes
         private int _selectedExamID;
         private int _examID;
         private int _userID;
+        private List<Button> _primaryButtons = new List<Button>();
+        private List<DataGridView> _dataGrids = new List<DataGridView>();
 
         public EditQuiz(int examID)
         {
             InitializeComponent();
             _connectionHandler = new ConnectionHandler();
             _examID = examID;
+
+            // Initialize button and DataGridView lists for styling
+            _primaryButtons = new List<Button> { buttonAddQuestion, buttonSaveChanges, buttonDeleteQuestion, buttonBack, buttonToggleTheme };
+            _dataGrids = new List<DataGridView> { dataGridViewQuestions };
+
+            // Apply the color scheme
+            if (Program._isDarkMode) SetColourScheme(Program._darkTheme);
+            else SetColourScheme(Program._lightTheme);
+
             LoadExams();
+        }
+
+        private void SetColourScheme(ColourScheme colourScheme)
+        {
+            // Apply the theme to the form background
+            this.BackColor = ColorTranslator.FromHtml(colourScheme._background);
+
+            // Apply the theme to primary buttons
+            colourScheme.SetColourSchemePrimaryButtons(_primaryButtons);
+
+            // Apply the theme to the DataGridView
+            colourScheme.SetColourSchemeDataGrid(_dataGrids);
+
+            // Apply the theme to the title
+            labelTitle.ForeColor = ColorTranslator.FromHtml(colourScheme._headerText);
+            labelTitle.BackColor = ColorTranslator.FromHtml(colourScheme._primaryButtonColourScheme._buttonBackground);
         }
 
         private void LoadExams()
@@ -50,9 +78,15 @@ namespace Quazy_Quizzes
 
             // If provided examID is valid for the user, use it. Otherwise, pick the first available.
             if (exams.ContainsKey(_examID))
+            {
                 _selectedExamID = _examID;
+                labelTitle.Text = exams[_examID]; // Set the title to the quiz name
+            }
             else if (exams.Count > 0)
+            {
                 _selectedExamID = exams.Keys.First();
+                labelTitle.Text = exams[_selectedExamID]; // Set the title to the first available quiz name
+            }
 
             LoadQuestions();
         }
@@ -179,6 +213,22 @@ namespace Quazy_Quizzes
                 );
                 dataGridViewQuestions.Rows.Remove(selectedRow);
             }
+        }
+
+        private void ButtonBack_Click(object sender, EventArgs e)
+        {
+            this.Hide(); // Close the current window
+            LecturerDashboard lecturerDashboard = new LecturerDashboard();
+            lecturerDashboard.Show(); // Open the lecturer dashboard
+        }
+
+        private void ButtonToggleTheme_Click(object sender, EventArgs e)
+        {
+            Program._isDarkMode = !Program._isDarkMode;
+
+            // Apply the new theme
+            if (Program._isDarkMode) SetColourScheme(Program._darkTheme);
+            else SetColourScheme(Program._lightTheme);
         }
     }
 }
