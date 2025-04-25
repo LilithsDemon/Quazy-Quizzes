@@ -49,8 +49,9 @@ namespace Quazy_Quizzes
         {
             //when this is used open the selected course from the combobox
             int courseID = (int)ComboBoxCourses.SelectedValue;
-            //however because courses aren't implemented yet, this will just show a message box
-            MessageBox.Show("This will open the course with ID: " + courseID);
+            //open Courses.cs and pass the courseID to it
+            Courses courseForm = new Courses(courseID);
+            courseForm.Show();
         }
 
         private void LogOutBtn_Click(object sender, EventArgs e)

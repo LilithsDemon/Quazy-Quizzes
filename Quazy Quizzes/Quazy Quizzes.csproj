@@ -57,8 +57,8 @@
     <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=9.0.0.4, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Extensions.DependencyInjection.Abstractions.9.0.4\lib\net462\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=9.0.0.4, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.Extensions.Logging.Abstractions.9.0.4\lib\net462\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=8.0.0.3, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.8.0.3\lib\net462\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="MySqlConnector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d33d3e53aa5f8c92, processorArchitecture=MSIL">
       <HintPath>packages\MySqlConnector.2.4.0\lib\net471\MySqlConnector.dll</HintPath>
@@ -115,6 +115,12 @@
     </Compile>
     <Compile Include="contactForm.Designer.cs">
       <DependentUpon>contactForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Courses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Courses.Designer.cs">
+      <DependentUpon>Courses.cs</DependentUpon>
     </Compile>
     <Compile Include="ErrorForm.cs">
       <SubType>Form</SubType>
@@ -192,6 +198,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AdminDash.resx">
       <DependentUpon>AdminDash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Courses.resx">
+      <DependentUpon>Courses.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ErrorForm.resx">
       <DependentUpon>ErrorForm.cs</DependentUpon>
