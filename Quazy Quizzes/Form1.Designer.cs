@@ -23,8 +23,7 @@
         #region Windows Form Designer generated code
 
         /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
+        /// Required method for Designer support - do not modify the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
@@ -54,6 +53,7 @@
             // 
             // HelpBtn
             // 
+            this.HelpBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.HelpBtn.BackColor = System.Drawing.Color.Fuchsia;
             this.HelpBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.HelpBtn.ForeColor = System.Drawing.Color.White;
@@ -67,6 +67,7 @@
             // 
             // btnSignup
             // 
+            this.btnSignup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSignup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.btnSignup.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.btnSignup.ForeColor = System.Drawing.Color.White;
@@ -80,6 +81,7 @@
             // 
             // btnLogin
             // 
+            this.btnLogin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.btnLogin.ForeColor = System.Drawing.Color.White;
@@ -93,6 +95,7 @@
             // 
             // txtUsername
             // 
+            this.txtUsername.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtUsername.BackColor = System.Drawing.Color.White;
             this.txtUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
             this.txtUsername.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
@@ -105,6 +108,7 @@
             // 
             // txtPassword
             // 
+            this.txtPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPassword.BackColor = System.Drawing.Color.White;
             this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
             this.txtPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
@@ -131,6 +135,7 @@
             // 
             // txtEmail
             // 
+            this.txtEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtEmail.BackColor = System.Drawing.Color.White;
             this.txtEmail.Enabled = false;
             this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
@@ -144,6 +149,7 @@
             // 
             // txtFirst
             // 
+            this.txtFirst.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtFirst.BackColor = System.Drawing.Color.White;
             this.txtFirst.Enabled = false;
             this.txtFirst.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
@@ -157,6 +163,7 @@
             // 
             // txtSurname
             // 
+            this.txtSurname.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSurname.BackColor = System.Drawing.Color.White;
             this.txtSurname.Enabled = false;
             this.txtSurname.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
@@ -185,8 +192,7 @@
             // 
             // ActionPanel
             // 
-            this.ActionPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.ActionPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ActionPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.ActionPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -212,9 +218,8 @@
             // 
             // InfoPanel
             // 
-            this.InfoPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.InfoPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.InfoPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.InfoPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.InfoPanel.Controls.Add(this.picbxLogo);
@@ -279,18 +284,19 @@
             // 
             // cbSecurityQ
             // 
+            this.cbSecurityQ.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbSecurityQ.BackColor = System.Drawing.Color.White;
             this.cbSecurityQ.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSecurityQ.Enabled = false;
             this.cbSecurityQ.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
             this.cbSecurityQ.FormattingEnabled = true;
-            this.cbSecurityQ.Items.Add("Please enter a security question");
+            this.cbSecurityQ.Items.AddRange(new object[] {
+            "Please enter a security question"});
             this.cbSecurityQ.Location = new System.Drawing.Point(778, 459);
             this.cbSecurityQ.Name = "cbSecurityQ";
             this.cbSecurityQ.Size = new System.Drawing.Size(374, 39);
             this.cbSecurityQ.TabIndex = 12;
             this.cbSecurityQ.Visible = false;
-            this.cbSecurityQ.SelectedIndex = 0;
             // 
             // Form1
             // 

@@ -64,6 +64,26 @@ namespace Quazy_Quizzes
             else SetColourScheme(Program._lightTheme);
         }
 
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+
+            // Dynamically adjust control positions and sizes
+            lblTitle.Width = this.ClientSize.Width;
+
+            int panelSpacing = 20;
+            int panelWidth = (this.ClientSize.Width - (3 * panelSpacing)) / 2;
+            int panelHeight = this.ClientSize.Height - lblTitle.Height - (2 * panelSpacing);
+
+            InfoPanel.Width = panelWidth;
+            InfoPanel.Height = panelHeight;
+            InfoPanel.Location = new Point(panelSpacing, lblTitle.Height + panelSpacing);
+
+            ActionPanel.Width = panelWidth;
+            ActionPanel.Height = panelHeight;
+            ActionPanel.Location = new Point(InfoPanel.Right + panelSpacing, lblTitle.Height + panelSpacing);
+        }
+
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
