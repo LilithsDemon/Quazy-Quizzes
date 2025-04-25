@@ -29,6 +29,8 @@ namespace Quazy_Quizzes
         private int _userRole = 1;
         private int _userID = 1;
 
+        private Button PlayQuizBtn;
+
         //this is used to get the courseID from passed in data
         public int _courseID { get; set; } 
         public Courses(int courseID)
@@ -45,6 +47,27 @@ namespace Quazy_Quizzes
             //get the page to match the colour scheme
             if (Program._isDarkMode) SetColourScheme(Program._darkTheme);
             else SetColourScheme(Program._lightTheme);
+
+            this.PlayQuizBtn = new Button
+            {
+                Text = "Play Quiz",
+                Location = new Point(10, 400), // Adjust location as needed
+                Size = new Size(100, 30)
+            };
+            this.PlayQuizBtn.Click += PlayQuizBtn_Click;
+            this.Controls.Add(this.PlayQuizBtn);
+
+            // Add a checkbox column to the ExamDataGridView
+            var selectColumn = new DataGridViewCheckBoxColumn
+            {
+                Name = "SelectColumn",
+                HeaderText = "Select",
+                Width = 50
+            };
+            ExamDataGridView.Columns.Add(selectColumn);
+
+            // Handle the CellContentClick event to ensure only one checkbox is selected
+            ExamDataGridView.CellContentClick += ExamDataGridView_CellContentClick;
 
             LoadElementsForRole();
             LoadLeaderboardForCourse();
@@ -126,10 +149,18 @@ namespace Quazy_Quizzes
             ExamDataGridView.Rows.Clear();
             ExamDataGridView.Columns.Clear();
 
+            // Add columns for ExamID, ExamName, and the Select checkbox
             ExamDataGridView.Columns.Add("ExamID", "Exam ID");
             ExamDataGridView.Columns.Add("ExamName", "Exam Name");
+            var selectColumn = new DataGridViewCheckBoxColumn
+            {
+                Name = "SelectColumn",
+                HeaderText = "Select",
+                Width = 50
+            };
+            ExamDataGridView.Columns.Add(selectColumn);
 
-            ExamDataGridView.Columns[0].Visible = false;
+            ExamDataGridView.Columns["ExamID"].Visible = false;
 
             string getAllQuizzesIDSql = "SELECT `Exams`.`ExamID`, `Exams`.`ExamName` FROM `Exams` WHERE `Exams`.`CourseID` = @courseID AND `Exams`.`Status` = 1;";
             string[] allQuizzesParamNames = { "@courseID" };
@@ -165,7 +196,7 @@ namespace Quazy_Quizzes
             
             foreach (KeyValuePair<int, string> quiz in allQuizzes)
             {
-                ExamDataGridView.Rows.Add(quiz.Key, quiz.Value);
+                ExamDataGridView.Rows.Add(quiz.Key, quiz.Value, false);
             }
 
         }
@@ -267,8 +298,87 @@ namespace Quazy_Quizzes
 
         private void LoadQuizBtn_Click(object sender, EventArgs e)
         {
-            //int selectedCourseID = Convert.ToInt32(ExamDataGridView.SelectedRows[0].Cells[0].Value);
-            //MessageBox.Show(selectedCourseID.ToString());
+            if (ExamDataGridView.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a quiz to load.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Ensure the selected row contains a valid ExamID
+            int selectedExamID;
+            try
+            {
+                selectedExamID = Convert.ToInt32(ExamDataGridView.SelectedRows[0].Cells["ExamID"].Value);
+            }
+            catch
+            {
+                MessageBox.Show("Invalid selection. Please select a valid quiz.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Navigate to the playQuiz page with the selected ExamID
+            playQuiz quizPage = new playQuiz(selectedExamID);
+            quizPage.Show();
+            this.Hide();
+        }
+
+        private void PlayQuizBtn_Click(object sender, EventArgs e)
+        {
+            // Find the selected exam
+            DataGridViewRow selectedRow = ExamDataGridView.Rows
+                .Cast<DataGridViewRow>()
+                .FirstOrDefault(row => row.Cells["SelectColumn"].Value != null && Convert.ToBoolean(row.Cells["SelectColumn"].Value) == true);
+
+            if (selectedRow == null)
+            {
+                MessageBox.Show("Please select a quiz to play.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Get the ExamID of the selected quiz
+            int selectedExamID;
+            try
+            {
+                selectedExamID = Convert.ToInt32(selectedRow.Cells["ExamID"].Value);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error retrieving ExamID: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Debugging message to confirm ExamID
+            MessageBox.Show($"Selected ExamID: {selectedExamID}", "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            // Navigate to the playQuiz page with the selected ExamID
+            try
+            {
+                playQuiz quizPage = new playQuiz(selectedExamID);
+                quizPage.Show();
+                this.Hide();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error navigating to playQuiz: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ExamDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Ensure the column exists and is the SelectColumn
+            if (ExamDataGridView.Columns["SelectColumn"] == null || e.ColumnIndex != ExamDataGridView.Columns["SelectColumn"].Index || e.RowIndex < 0)
+            {
+                return;
+            }
+
+            // Uncheck all other checkboxes
+            foreach (DataGridViewRow row in ExamDataGridView.Rows)
+            {
+                if (row.Index != e.RowIndex)
+                {
+                    row.Cells["SelectColumn"].Value = false;
+                }
+            }
         }
     }
 }
