@@ -228,5 +228,22 @@ WHERE
             }
 
         }
+
+        private void BackBtn_Click(object sender, EventArgs e)
+        {
+            // Hide the current form and open LecturerDashboard or AdminDashboard depending on the user role
+            this.Hide();
+            if (userRole == 1)
+            {
+                LecturerDashboard lecturerDashboard = new LecturerDashboard();
+                lecturerDashboard.Show();
+            }
+            else if (userRole == 2)
+            {
+                AdminDash adminDashboard = new AdminDash();
+                adminDashboard.Show();
+            }
+
+        }
     }
 }
