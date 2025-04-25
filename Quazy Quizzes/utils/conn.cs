@@ -156,5 +156,26 @@ namespace Conn
             return reader;
         }
 
+        // Executes a non-query command such as INSERT, UPDATE, or DELETE
+        public void ExecuteNonQuery(string sql, string[] paramNames, object[] paramValues)
+        {
+            if (paramNames.Length != paramValues.Length)
+            {
+                throw new ArgumentException("Parameter names and values count must match.");
+            }
+
+            using (MySqlConnection con = OpenConnection())
+            {
+                using (MySqlCommand command = new MySqlCommand(sql, con))
+                {
+                    for (int i = 0; i < paramNames.Length; i++)
+                    {
+                        command.Parameters.AddWithValue(paramNames[i], paramValues[i]);
+                    }
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

@@ -183,9 +183,35 @@ namespace Quazy_Quizzes
             
         }
 
+        private bool RegisterUser(string username, string firstName, string lastName, string email, string password, int securityQ, string securityA)
+        {
+            Register registerUser = new Register(username, firstName, lastName, email, password, 0, true, securityQ, securityA);
+            CodeStatus success = registerUser.RegisterUser();
+            if(success._statusCode != 200)
+            {
+                MessageBox.Show(success._statusMessage);
+                return false;
+            }
+            return true;
+        }
+
+        private string HashString(string input)
+        {
+            using (System.Security.Cryptography.SHA256 sha256 = System.Security.Cryptography.SHA256.Create())
+            {
+                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(input));
+                StringBuilder builder = new StringBuilder();
+                foreach (byte b in bytes)
+                {
+                    builder.Append(b.ToString("x2"));
+                }
+                return builder.ToString();
+            }
+        }
+
         private void SignupBtn_Click(object sender, EventArgs e)
         {
-            if(txtEmail.Enabled == false)
+            if (txtEmail.Enabled == false)
             {
                 //this re-configures the form for studetns to sign up
                 btnSignup.Location = new Point(869, 632);
@@ -206,78 +232,73 @@ namespace Quazy_Quizzes
             }
             else
             {
-                
-                Form popupForm = new Form
-            {
-                Size = new Size(300, 200),
-                StartPosition = FormStartPosition.CenterScreen,
-                FormBorderStyle = FormBorderStyle.FixedDialog,
-                MaximizeBox = false,
-                MinimizeBox = false
-            };
-
-                TextBox SecurityA = new TextBox
+                // Validate inputs
+                if (string.IsNullOrWhiteSpace(txtUsername.Text) || txtUsername.Text == "Enter your username" ||
+                    string.IsNullOrWhiteSpace(txtPassword.Text) || txtPassword.Text == "Enter your password" ||
+                    string.IsNullOrWhiteSpace(txtFirst.Text) || txtFirst.Text == "Enter your first name" ||
+                    string.IsNullOrWhiteSpace(txtSurname.Text) || txtSurname.Text == "Enter your last name" ||
+                    string.IsNullOrWhiteSpace(txtEmail.Text) || txtEmail.Text == "Enter your email address" ||
+                    cbSecurityQ.SelectedIndex == 0 || string.IsNullOrWhiteSpace(cbSecurityQ.Text))
                 {
-                    
-                    Size = new Size(200, 50),
-                    Location = new Point((popupForm.ClientSize.Width - 200) / 2, (popupForm.ClientSize.Height - 100) / 2),
-                    Anchor = AnchorStyles.None,
-                    BackColor = ColorTranslator.FromHtml("#00B2CC"),
-                    Font = new Font("Orbitron", 18, FontStyle.Regular),
-                    ForeColor = ColorTranslator.FromHtml("#FFFFFF")
-                };
-                
-
-                Button btnSave = new Button
-            {
-                Text = "Save Q/A",
-                Size = new Size(200, 50),
-                Location = new Point((popupForm.ClientSize.Width - 200) / 2, (popupForm.ClientSize.Height - 50) / 2),
-                Anchor = AnchorStyles.None,
-                BackColor = ColorTranslator.FromHtml("#00B2CC"),
-                Font = new Font("Orbitron", 18, FontStyle.Regular),
-                ForeColor = ColorTranslator.FromHtml("#FFFFFF")
-            };
-                popupForm.Controls.Add(SecurityA);
-                popupForm.Controls.Add(btnSave);
-                popupForm.Show();
-
-
-
-                /*
-                //Here is where it will go if the user was trying to sign up
-                string username = txtUsername.Text;
-                string password = txtPassword.Text;
-                string firstName = txtFirst.Text;
-                string lastName = txtSurname.Text;
-                string email = txtEmail.Text;
-
-                string securityQSql2 = "SELECT * FROM `SecurityQuestions` WHERE `Question` = @question";
-                string[] securityQParamNames = { "@question" };
-                string[] securityQParameters = { cbSecurityQ.SelectedItem.ToString() };
-                try
-                {
-                    var securityQReader2 = new ConnectionHandler().ExectuteQuery(securityQSql2, securityQParamNames, securityQParameters);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Please select a security question");
+                    MessageBox.Show("Please fill in all fields and select a security question.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                int securityQ = Convert.ToInt32(securityQReader["SecurityQID"]);
+                // Prompt for the 2FA answer
+                string securityAnswer = PromptForSecurityAnswer();
+                if (string.IsNullOrWhiteSpace(securityAnswer))
+                {
+                    MessageBox.Show("Security answer cannot be empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
-                Register register = new Register(username, firstName, lastName, email, password, 0, false , securityQ, securityA);
-                CodeStatus registerStatus = register.RegisterUser();
-                */
+                // Get the selected security question ID
+                int securityQ = cbSecurityQ.SelectedIndex; // Assuming the dropdown index matches the SecurityQID
+
+                // Register the user
+                bool success = RegisterUser(
+                    txtUsername.Text,
+                    txtFirst.Text,
+                    txtSurname.Text,
+                    txtEmail.Text,
+                    txtPassword.Text,
+                    securityQ,
+                    securityAnswer
+                );
+
+                if (success)
+                {
+                    MessageBox.Show("Account registered successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    // Reset form to login mode
+                    LoginBtn_Click(sender, e);
+                }
             }
+        }
 
+        private string PromptForSecurityAnswer()
+        {
+            using (Form prompt = new Form())
+            {
+                prompt.Width = 300;
+                prompt.Height = 150;
+                prompt.Text = "Security Answer";
 
+                Label textLabel = new Label() { Left = 20, Top = 20, Text = "Enter your security answer:" };
+                TextBox inputBox = new TextBox() { Left = 20, Top = 50, Width = 240 };
+
+                Button confirmation = new Button() { Text = "OK", Left = 180, Width = 80, Top = 80, DialogResult = DialogResult.OK };
+                prompt.Controls.Add(textLabel);
+                prompt.Controls.Add(inputBox);
+                prompt.Controls.Add(confirmation);
+                prompt.AcceptButton = confirmation;
+
+                return prompt.ShowDialog() == DialogResult.OK ? inputBox.Text : null;
+            }
         }
 
         private void LoginBtn_Click(object sender, EventArgs e)
         {
-            if(txtEmail.Enabled == true)
+            if (txtEmail.Enabled == true)
             {
                 // this is validation to check that the form is in login mode and not sign up mode
                 txtEmail.Enabled = false;
@@ -297,13 +318,32 @@ namespace Quazy_Quizzes
             }
             else
             {
-                string username = txtUsername.Text;
-                string password = txtPassword.Text;
-                UserLogin userLogin = new UserLogin(username, password);
-                CodeStatus codeStatus = userLogin.LoginWOSecurity();
-                
-            }
+                // Validate inputs
+                if (string.IsNullOrWhiteSpace(txtUsername.Text) || txtUsername.Text == "Enter your username" ||
+                    string.IsNullOrWhiteSpace(txtPassword.Text) || txtPassword.Text == "Enter your password")
+                {
+                    MessageBox.Show("Please enter both username and password.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
+                // Attempt login
+                UserLogin userLogin = new UserLogin(txtUsername.Text, txtPassword.Text);
+                CodeStatus loginStatus = userLogin.LoginWOSecurity();
+
+                if (loginStatus._statusCode == 200)
+                {
+                    MessageBox.Show("Login successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    // Proceed to the next form or functionality
+                    this.Hide();
+                    // Example: Open the main dashboard
+                    Stats dashboard = new Stats();
+                    dashboard.Show();
+                }
+                else
+                {
+                    MessageBox.Show(loginStatus._statusMessage, "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void HelpBtn_Click(object sender, EventArgs e)
