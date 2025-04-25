@@ -74,46 +74,77 @@ namespace Quazy_Quizzes
         }
         private void TxtPassword_Click(object sender, EventArgs e)
         {
-            // Set the password character to a star
             txtPassword.PasswordChar = '*';
             if (txtPassword.Text == "Enter your password")
             {
                 txtPassword.Text = "";
             }
+            txtPassword.Leave += (s, ev) =>
+            {
+                if (string.IsNullOrWhiteSpace(txtPassword.Text))
+                {
+                    txtPassword.PasswordChar = '\0'; // Reset password char
+                    txtPassword.Text = "Enter your password";
+                }
+            };
         }
 
         private void TxtUsername_Click(object sender, EventArgs e)
         {
-            //clears the text ready for the user to enter their username
             if (txtUsername.Text == "Enter your username")
             {
                 txtUsername.Text = "";
             }
+            txtUsername.Leave += (s, ev) =>
+            {
+                if (string.IsNullOrWhiteSpace(txtUsername.Text))
+                {
+                    txtUsername.Text = "Enter your username";
+                }
+            };
         }
         private void txtEmail_Click(object sender, EventArgs e)
         {
-            //clears the text ready for the user to enter their username
             if (txtEmail.Text == "Enter your email address")
             {
                 txtEmail.Text = "";
             }
+            txtEmail.Leave += (s, ev) =>
+            {
+                if (string.IsNullOrWhiteSpace(txtEmail.Text))
+                {
+                    txtEmail.Text = "Enter your email address";
+                }
+            };
         }
        
         private void txtFirst_Click(object sender, EventArgs e)
         {
-            //clears the text ready for the user to enter their username
             if (txtFirst.Text == "Enter your first name")
             {
                 txtFirst.Text = "";
             }
+            txtFirst.Leave += (s, ev) =>
+            {
+                if (string.IsNullOrWhiteSpace(txtFirst.Text))
+                {
+                    txtFirst.Text = "Enter your first name";
+                }
+            };
         }
         private void txtSurname_Click(object sender, EventArgs e)
         {
-            //clears the text ready for the user to enter their username
             if (txtSurname.Text == "Enter your last name")
             {
                 txtSurname.Text = "";
             }
+            txtSurname.Leave += (s, ev) =>
+            {
+                if (string.IsNullOrWhiteSpace(txtSurname.Text))
+                {
+                    txtSurname.Text = "Enter your last name";
+                }
+            };
         }
 
         private void TxtPassword_TextChanged(object sender, EventArgs e)
