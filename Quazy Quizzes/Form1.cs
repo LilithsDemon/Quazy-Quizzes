@@ -97,7 +97,7 @@ namespace Quazy_Quizzes
         }
         private void TxtPassword_Click(object sender, EventArgs e)
         {
-            txtPassword.PasswordChar = '*';
+            txtPassword.PasswordChar = '*'; // Ensure password characters are masked
             if (txtPassword.Text == "Enter your password")
             {
                 txtPassword.Text = "";
@@ -333,11 +333,20 @@ namespace Quazy_Quizzes
                 if (loginStatus._statusCode == 200)
                 {
                     MessageBox.Show("Login successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    // Proceed to the next form or functionality
+
+                    // Redirect based on role
+                    int userRole = Program._user._role; // Assuming Program._user.Role holds the logged-in user's role
                     this.Hide();
-                    // Example: Open the main dashboard
-                    Stats dashboard = new Stats();
-                    dashboard.Show();
+                    if (userRole >= 1)
+                    {
+                        LecturerDashboard lecturerDashboard = new LecturerDashboard();
+                        lecturerDashboard.Show();
+                    }
+                    else if (userRole == 0)
+                    {
+                        StudentDashboard studentDashboard = new StudentDashboard();
+                        studentDashboard.Show();
+                    }
                 }
                 else
                 {
